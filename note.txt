@@ -1,0 +1,2 @@
+# include <sysexits.h>
+// pour les err exit code
