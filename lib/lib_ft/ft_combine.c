@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 15:44:12 by anboisve          #+#    #+#             */
-/*   Updated: 2023/02/15 14:03:32 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/05/26 10:30:16 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static char	*ft_add_c_to_s(char *s, char c)
 	new = ft_calloc(i + 2, sizeof(char));
 	ft_memmove(new, s, i);
 	new[i] = c;
-	ft_safe_free(s);
+	ft_free(s);
 	return (new);
 }
 
@@ -49,18 +49,18 @@ static char	*ft_add_str(va_list list, char type, char *s)
 	tmp = ft_add_arg(list, type);
 	s = ft_strfjoin(s, tmp);
 	if (type != 's')
-		ft_safe_free(tmp);
+		ft_free(tmp);
 	return (s);
 }
 
-/*
-	combine is use like a printf but give you back the result in a char *
-		s = str 
-		S = str but will free it for you
-		d || i for int
-		x = hexadecimal
-		%% = add one %
-*/
+/// @brief make a news string like a printf and return it
+/// @param s flag like a printf
+/// @details s = str 
+/// @details S = str but will free it for you
+/// @details d || i for int
+/// @details x = hexadecimal
+/// @details %% = add one %
+/// @return new str
 char	*ft_combine(char *s, ...)
 {
 	size_t	i;

@@ -6,15 +6,14 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 11:41:52 by anboisve          #+#    #+#             */
-/*   Updated: 2023/03/30 14:21:42 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/05/26 15:49:00 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-/*
-dup a str in a new
-*/
+/// @brief dup a string
+/// @return new string
 char	*ft_strdup(const char *s1)
 {
 	int		i;

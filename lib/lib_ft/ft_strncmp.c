@@ -6,15 +6,17 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 18:48:00 by anboisve          #+#    #+#             */
-/*   Updated: 2023/04/11 14:28:43 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/05/26 16:06:11 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-/*
-return the dif of s1 and s2
-*/
+/// @brief compere 2 str
+/// @param s1 
+/// @param s2 
+/// @param n size in byte
+/// @return return the diference
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
 	size_t	i;

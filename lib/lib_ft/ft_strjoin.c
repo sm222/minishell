@@ -6,15 +6,16 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 13:33:59 by anboisve          #+#    #+#             */
-/*   Updated: 2023/03/30 14:26:39 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/05/26 15:54:41 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-/*
-make a copy of s1 and s2 in one str
-*/
+/// @brief combine 2 string togerter, if the 2 of them is NULL, return NULL
+/// @param s1 input 1
+/// @param s2 input 2
+/// @return new str of the new str
 char	*ft_strjoin(char const *s1, char const *s2)
 {
 	size_t	i;

@@ -6,15 +6,15 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 13:53:12 by anboisve          #+#    #+#             */
-/*   Updated: 2023/03/30 13:42:54 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/05/26 10:18:55 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-/*
-copy a doubble char pointer on a new ptr
-*/
+/// @brief copy a double array
+/// @param str input
+/// @return new double array
 char	**ft_cpy_double_char(char **str)
 {
 	size_t	i;

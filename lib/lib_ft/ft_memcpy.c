@@ -6,15 +6,17 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 08:46:16 by anboisve          #+#    #+#             */
-/*   Updated: 2023/03/30 12:44:23 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/05/26 10:57:02 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-/*
-copy the memorry in a void ptr (don't malloc dst)
-*/
+/// @brief copy memory to a new ptr
+/// @param dst were the copy go
+/// @param src input of the copy
+/// @param n byte size
+/// @return new copy
 void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
 	size_t	i;

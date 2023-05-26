@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 10:20:33 by anboisve          #+#    #+#             */
-/*   Updated: 2023/04/13 10:30:19 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/05/26 15:38:53 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,10 @@ static int	return_index(char *s, char **list, t_index *index)
 	return (0);
 }
 
+/// @brief don't use need to be fix
+/// @param s 
+/// @param list 
+/// @return 
 char	**ft_str_split(const char *s, char **list)
 {
 	t_list	*data;

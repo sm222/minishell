@@ -6,15 +6,15 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 17:01:20 by anboisve          #+#    #+#             */
-/*   Updated: 2023/03/30 11:32:02 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/05/26 10:34:07 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-/*
-take a str and give you back number in int
-*/
+/// @brief take a str and returna a int
+/// @param str input
+/// @return number
 int	ft_atoi(const char *str)
 {
 	int	i;

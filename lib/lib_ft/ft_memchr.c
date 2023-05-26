@@ -6,15 +6,17 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 09:01:49 by anboisve          #+#    #+#             */
-/*   Updated: 2023/03/30 12:42:43 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/05/26 10:51:44 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-/*
-return the the mem were it find the same bit, else return NULL
-*/
+/// @brief look for a nuber in memory
+/// @param s memory array
+/// @param c seek number
+/// @param n byte size
+/// @return adress were it was find
 void	*ft_memchr(const void *s, int c, size_t n)
 {
 	size_t	i;

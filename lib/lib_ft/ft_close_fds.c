@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 11:13:41 by anboisve          #+#    #+#             */
-/*   Updated: 2023/04/24 12:22:44 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/05/26 10:28:47 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,10 @@ int	ft_close_fds(int **fds, int f_ptr, int size)
 		if (close(fds[i][1]) == 0)
 			close_nb++;
 		if (f_ptr)
-			fds[i] = ft_safe_free(fds[i]);
+			fds[i] = ft_free(fds[i]);
 		i++;
 	}
 	if (f_ptr && fds)
-		fds = ft_safe_free(fds);
+		fds = ft_free(fds);
 	return (close_nb);
 }

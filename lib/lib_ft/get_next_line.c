@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 12:31:43 by anboisve          #+#    #+#             */
-/*   Updated: 2023/03/30 14:56:22 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/05/26 10:30:40 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static char	*ft_tiny_split(char *s, size_t *cut)
 			break ;
 	new = ft_calloc(1 + i, sizeof(char));
 	if (!new)
-		return (new = ft_safe_free(new));
+		return (new = ft_free(new));
 	*cut = i;
 	while (i--)
 		new[i] = s[i];
@@ -66,11 +66,11 @@ char	*get_next_line(int fd)
 			break ;
 		book[fd] = ft_strfjoin(book[fd], t_val.tmp);
 	}
-	t_val.tmp = ft_safe_free(t_val.tmp);
+	t_val.tmp = ft_free(t_val.tmp);
 	if (t_val.rv == -1 || (t_val.rv <= 0 && *book[fd] == 0))
-		return (book[fd] = ft_safe_free(book[fd]), NULL);
+		return (book[fd] = ft_free(book[fd]), NULL);
 	t_val.tmp = ft_tiny_split(book[fd], &t_val.cut);
 	t_val.tmp2 = book[fd];
 	book[fd] = ft_strfjoin(NULL, book[fd] + t_val.cut);
-	return (ft_safe_free(t_val.tmp2), t_val.tmp);
+	return (ft_free(t_val.tmp2), t_val.tmp);
 }

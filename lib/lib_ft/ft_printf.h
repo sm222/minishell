@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 13:13:03 by anboisve          #+#    #+#             */
-/*   Updated: 2023/02/17 09:59:29 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/05/26 11:51:14 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 
 # include "libft.h"
 
-int		ft_printf(const char *str, ...);
-int		ft_put_p(unsigned long nbr);
+int		ft_printf(int fd, const char *str, ...);
+int		ft_put_p(unsigned long p, int fd);
 char	*ft_ulltoa(unsigned long long nb, int base);
-int		ft_put_hex(unsigned int val, char maj);
-int		ft_put_u(unsigned int nb);
+int	ft_put_hex(unsigned int nb, char maj, int fd);
+int		ft_put_u(unsigned int nb, int fd);
 
 #endif

@@ -5,18 +5,17 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/06 15:19:56 by anboisve          #+#    #+#             */
-/*   Updated: 2023/03/30 13:20:38 by anboisve         ###   ########.fr       */
+/*   Created: 2023/05/26 10:27:28 by anboisve          #+#    #+#             */
+/*   Updated: 2023/05/26 10:28:06 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-/*
-	free only if pointer is not NULL
-	return NULL
-*/
-void	*ft_safe_free(void *p)
+/// @brief free a pointer if the adrres in not NULL
+/// @param p input
+/// @return NULL
+void	*ft_free(void *p)
 {
 	if (p)
 		free(p);

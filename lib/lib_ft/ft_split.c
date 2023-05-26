@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 09:09:23 by anboisve          #+#    #+#             */
-/*   Updated: 2023/04/02 17:26:47 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/05/26 13:43:16 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,10 @@ char	*ft_strdup_c(const char *str, char c)
 	return (new);
 }
 
-/*
-take str and char to split on, return a double array
-*/
+/// @brief split a sring on a spesific caracter
+/// @param s input 
+/// @param c carater
+/// @return new double array
 char	**ft_split(char const *s, char c)
 {
 	char	**new;

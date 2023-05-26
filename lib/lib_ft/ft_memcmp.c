@@ -6,15 +6,17 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 09:41:07 by anboisve          #+#    #+#             */
-/*   Updated: 2023/03/30 12:43:43 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/05/26 10:55:42 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-/*
-return the diference in the 2 void *ptr
-*/
+/// @brief compare memory and return the diference
+/// @param s1 array 1
+/// @param s2 array 2
+/// @param n size of the array
+/// @return dif
 int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
 	size_t	i;

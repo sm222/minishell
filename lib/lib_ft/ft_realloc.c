@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 13:46:45 by anboisve          #+#    #+#             */
-/*   Updated: 2023/03/30 13:19:37 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/05/26 10:31:50 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,6 @@ void	*ft_realloc(void *old, size_t count, size_t size, size_t new_size)
 		ft_memcpy(new, old, count * new_size);
 	else
 		ft_memcpy(new, old, count * size);
-	ft_safe_free(old);
+	ft_free(old);
 	return (new);
 }

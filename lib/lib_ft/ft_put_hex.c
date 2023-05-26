@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 16:51:22 by anboisve          #+#    #+#             */
-/*   Updated: 2023/03/30 12:57:07 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/05/26 11:50:49 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 put number in hex
 if maj = X, it will output in maj
 */
-int	ft_put_hex(unsigned int nb, char maj)
+int	ft_put_hex(unsigned int nb, char maj, int fd)
 {
 	int		size;
 	char	*tmp;
@@ -26,7 +26,7 @@ int	ft_put_hex(unsigned int nb, char maj)
 	if (maj == 'X')
 		while (size--)
 			tmp[size] = ft_toupper(tmp[size]);
-	size = ft_putstr_fd(tmp, STDOUT_FILENO);
-	ft_safe_free(tmp);
+	size = ft_putstr_fd(tmp, fd);
+	ft_free(tmp);
 	return (size);
 }

@@ -6,16 +6,16 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 11:32:07 by anboisve          #+#    #+#             */
-/*   Updated: 2023/03/30 14:02:18 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/05/26 15:48:31 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-/*
-look for a char in a str and return the adress
-else return NULL
-*/
+/// @brief look in a str for a char
+/// @param s str
+/// @param c target
+/// @return adress of the targer
 char	*ft_strchr(const char *s, int c)
 {
 	size_t		i;
