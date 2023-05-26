@@ -13,9 +13,12 @@ NAME	=	minishell
 LIBFT		=	libft.a
 LIBFT_DIR	=	lib/lib_ft/
 
+RL_DIR		=	readline/
+RL_H	=	libhistory.a
+RL_L	=	libreadline.a
+
 #tools
 C_TOOL =	C_tools/C_tool.a
-
 #
 
 # Compiler and flags
@@ -36,7 +39,8 @@ all: libft $(NAME)
 	@echo $(shell reset)$(GRN)
 	@echo $(CYN) "\n\n			correction is made by $(USER)\n\n " $(RESET)
 $(NAME): $(OBJS)
-	@$(CC) $(CFLAGS) $(OBJS) $(LIBFT_DIR)$(LIBFT) $(C_TOOL) -o $(NAME)
+	@$(CC) $(CFLAGS) $(OBJS) $(LIBFT_DIR)$(LIBFT) -l readline -l ncurses \
+	$(RL_DIR)$(RL_H) $(RL_DIR)$(RL_L) $(C_TOOL) -o $(NAME)
 
 libft:
 	@echo $(GRN)making libft$(WHT)

@@ -19,6 +19,8 @@
 # Libraries
 *.lib
 *.a
+!readline/libhistory.a
+!readline/libreadline.a
 *.la
 *.lo
 
