@@ -13,6 +13,9 @@ NAME	=	minishell
 LIBFT		=	libft.a
 LIBFT_DIR	=	lib/lib_ft/
 
+EXECUTION_LIB	=	execution.a
+EXECUTION_DIR	=	execution/
+
 RL_DIR		=	readline/
 RL_H	=	libhistory.a
 RL_L	=	libreadline.a
@@ -35,24 +38,30 @@ OBJS	=	$(SRCS:.c=.o)
 
 USER = $(shell whoami)
 
-all: libft buildin $(NAME)
-	@echo $(shell reset)$(GRN)
+all: libft buildin exe $(NAME)
 	@echo $(CYN) "\n\n			correction is made by $(USER)\n\n " $(RESET)
 $(NAME): $(OBJS)
 	@$(CC) $(CFLAGS) $(OBJS) $(LIBFT_DIR)$(LIBFT) -l readline -l ncurses \
-	$(RL_DIR)$(RL_H) $(RL_DIR)$(RL_L) $(C_TOOL) -o $(NAME)
+	$(RL_DIR)$(RL_H) $(RL_DIR)$(RL_L) $(C_TOOL) $(EXECUTION_DIR)$(EXECUTION_LIB) \
+	-o $(NAME)
 
 libft:
 	@echo $(GRN)making libft$(WHT)
 	@$(MAKE) -C $(LIBFT_DIR)
 
 buildin:
+	@echo $(GRN)making buildin$(WHT)
 	@make -C build_in/echo
+
+exe:
+	@echo $(GRN)execution buildin$(WHT)
+	@make -C $(EXECUTION_DIR)
 
 # Removes objects
 clean:
 	@$(RM) $(OBJS)
 	@make -C $(LIBFT_DIR) clean
+	@make -C $(EXECUTION_DIR) clean
 	@echo $(shell clear)
 	@echo -n $(GRN)
 	@echo clean *.o$(RESET)
@@ -62,6 +71,7 @@ fclean: clean
 	@$(RM) $(NAME)
 	@$(RM) $(B_NAME)
 	@make -C $(LIBFT_DIR) fclean
+	@make -C $(EXECUTION_DIR) fclean
 	@echo $(shell clear)$(GRN)clean all$(RESET)
 
 
