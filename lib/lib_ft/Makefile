@@ -34,6 +34,7 @@ SRCS	=	ft_atoi.c\
 			ft_strlcat.c\
 			ft_strlcpy.c\
 			ft_strlen.c\
+			ft_strlen_double.c\
 			ft_strmapi.c\
 			ft_strncmp.c\
 			ft_strnstr.c\
@@ -63,6 +64,7 @@ SRCS	=	ft_atoi.c\
 			ft_lstclear.c\
 			ft_lstiter.c\
 			ft_lstmap.c
+
 
 OBJS	=	$(SRCS:.c=.o)
 
