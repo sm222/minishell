@@ -35,7 +35,7 @@ OBJS	=	$(SRCS:.c=.o)
 
 USER = $(shell whoami)
 
-all: libft $(NAME)
+all: libft buildin $(NAME)
 	@echo $(shell reset)$(GRN)
 	@echo $(CYN) "\n\n			correction is made by $(USER)\n\n " $(RESET)
 $(NAME): $(OBJS)
@@ -46,6 +46,8 @@ libft:
 	@echo $(GRN)making libft$(WHT)
 	@$(MAKE) -C $(LIBFT_DIR)
 
+buildin:
+	@make -C build_in/echo
 
 # Removes objects
 clean:
