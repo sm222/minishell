@@ -25,6 +25,11 @@ size_t	cmd_node_len(t_cmd *list)
 	return (i);
 }
 
+/// @brief add a node at the end of the list
+/// @param list 
+/// @param cmd 
+/// @param order 
+/// @return 
 short	cmd_make_node_last(t_cmd **list, char **cmd, int order)
 {
 	t_cmd	*tmp;
@@ -48,8 +53,8 @@ short	cmd_make_node_last(t_cmd **list, char **cmd, int order)
 	return (cmd_node_len(*list));
 }
 
-/// @brief 
-/// @param in 
+/// @brief free the list
+/// @param in input
 void	cmd_free(t_cmd *in)
 {
 	t_cmd	*tmp;
