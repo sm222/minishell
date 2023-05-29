@@ -4,6 +4,7 @@
 		"libft.h": "c",
 		"ft_printf.h": "c",
 		"sysexits.h": "c",
-		"minishell.h": "c"
+		"minishell.h": "c",
+		"err.h": "c"
 	}
 }

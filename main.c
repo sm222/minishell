@@ -1,14 +1,15 @@
 #include "minishell.h"
 
-int	main(void)
+int	main(int ac, char **av, char **en)
 {
 	char	*s;
-	int		fd;
 	t_cmd	*list;
+	t_mshell	shell;
 
+	(void)ac;
+	(void)av;
+	shell.en = ft_cpy_double_char(en);
 	s = PROMPT;
-	fd = open("test", O_CREAT | O_TRUNC | O_RDWR, 0644);
-
 	while (s)
 	{
 		s = readline(PROMPT);
@@ -20,7 +21,7 @@ int	main(void)
 		ft_free(s);
 	}
 	cmd_free(list);
-	close(fd);
+	ft_double_sfree((void **)shell.en);
 	rl_clear_history();
 	return (0);
 }
