@@ -26,13 +26,14 @@ size_t	cmd_node_len(t_cmd *list)
 }
 
 /// @brief add a node at the end of the list
-/// @param list 
-/// @param cmd 
-/// @param order 
-/// @return 
+/// @param list list input
+/// @param cmd argument
+/// @param order of execution
+/// @return return negatif nuber if fail, else return the size of the list
 short	cmd_make_node_last(t_cmd **list, char **cmd, int order)
 {
 	t_cmd	*tmp;
+	size_t	len;
 
 	if (!list)
 		return (BAD_ARGS);
@@ -42,6 +43,7 @@ short	cmd_make_node_last(t_cmd **list, char **cmd, int order)
 		*list = cmd_make_node(cmd, order);
 		if (!*list)
 			return (M_FAIL);
+		(*list)->order = 1;
 		return (1);
 	}
 	while (tmp->next)
@@ -50,7 +52,9 @@ short	cmd_make_node_last(t_cmd **list, char **cmd, int order)
 	if (!tmp->next)
 		return (M_FAIL);
 	tmp->next->prev = tmp;
-	return (cmd_node_len(*list));
+	len = cmd_node_len(*list);
+	tmp->next->order = len + 1;
+	return (len);
 }
 
 /// @brief free the list

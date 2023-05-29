@@ -43,6 +43,7 @@ SRCS	=	ft_atoi.c\
 			ft_substr.c\
 			ft_tolower.c\
 			ft_toupper.c\
+			ft_return_ptr.c\
 			ft_safe_free.c\
 			ft_double_sfree.c\
 			ft_realloc.c\
