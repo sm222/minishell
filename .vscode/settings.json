@@ -3,6 +3,7 @@
 		"*.c": "c",
 		"libft.h": "c",
 		"ft_printf.h": "c",
-		"sysexits.h": "c"
+		"sysexits.h": "c",
+		"minishell.h": "c"
 	}
 }

@@ -7,7 +7,7 @@ t_cmd	*cmd_make_node(char **cmd, int order)
 	new = ft_calloc(1, sizeof(t_cmd));
 	if (!new)
 		return (NULL);
-	new->commend = ft_cpy_double_char(cmd);
+	new->command = ft_cpy_double_char(cmd);
 	new->order = order;
 	return (new);
 }
@@ -30,31 +30,33 @@ short	cmd_make_node_last(t_cmd **list, char **cmd, int order)
 	t_cmd	*tmp;
 
 	if (!list)
-		return (-1);
+		return (BAD_ARGS);
 	tmp = (*list);
 	if (!tmp)
 	{
 		*list = cmd_make_node(cmd, order);
 		if (!*list)
-			return (-2);
+			return (M_FAIL);
 		return (1);
 	}
 	while (tmp->next)
 		tmp = tmp->next;
 	tmp->next = cmd_make_node(cmd, order);
 	if (!tmp->next)
-		return (-3);
+		return (M_FAIL);
 	tmp->next->prev = tmp;
 	return (cmd_node_len(*list));
 }
 
+/// @brief 
+/// @param in 
 void	cmd_free(t_cmd *in)
 {
 	t_cmd	*tmp;
 
 	while (in)
 	{
-		ft_double_sfree((void **)in->commend);
+		ft_double_sfree((void **)in->command);
 		tmp = in->next;
 		ft_free(in);
 		in = tmp;
