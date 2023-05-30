@@ -4,15 +4,18 @@ CC		=	gcc
 CFLAGS	=	-Wall -Werror -Wextra
 RM		=	rm -f
 
+LIBFT		=	libft.a
+LIBFT_DIR	=	../lib/lib_ft/
+
 SRCS	=	build_cmd.c\
 			run.c
-
 
 OBJS	=	$(SRCS:.c=.o)
 
 all: $(NAME)
 
-$(NAME): $(OBJS)
+$(NAME): $(OBJS) $(LIBFT_DIR)$(LIBFT)
+	@cp $(LIBFT_DIR)$(LIBFT) $(NAME)
 	@ar -rcs $(NAME) $(OBJS)
 
 $(OBJS): $(SRCS)

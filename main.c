@@ -2,8 +2,8 @@
 
 int	main(int ac, char **av, char **en)
 {
-	char	*s;
-	t_cmd	*list;
+	char		*s;
+	t_cmd		*list;
 	t_mshell	shell;
 
 	(void)ac;
