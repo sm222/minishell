@@ -16,6 +16,7 @@
 # include "lib/lib_ft/libft.h"
 # include "readline/history.h"
 # include "readline/readline.h"
+# include "execution/execution.h"
 
 //--------------------------//
 //			tools			//
@@ -36,6 +37,7 @@
 typedef struct s_mshell
 {
 	char	**en;
+	char	**path;
 
 }	t_mshell;
 
@@ -43,8 +45,8 @@ typedef struct s_mshell
 //--------------------------//
 //			fontion			//
 //--------------------------//
+int	get_env_path(t_mshell *data)
 
-#include "execution/execution.h"
 
 
 #endif // MINISHELL_H

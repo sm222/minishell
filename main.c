@@ -3,7 +3,7 @@
 int	main(int ac, char **av, char **en)
 {
 	char		*s;
-	t_cmd		*list;
+	char		*out;
 	t_mshell	shell;
 
 	(void)ac;
@@ -16,11 +16,10 @@ int	main(int ac, char **av, char **en)
 		if (s && *s)
 		{
 			add_history(s);
-			printf("%d\n", cmd_make_node_last(&list, ft_split(s, ' '), 0));
+			printf("%d\n", find_path("/bin/cat", &out, ))
 		}
 		ft_free(s);
 	}
-	cmd_free(list);
 	ft_double_sfree((void **)shell.en);
 	rl_clear_history();
 	return (0);
