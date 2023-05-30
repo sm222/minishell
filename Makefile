@@ -21,7 +21,8 @@ RL_H	=	libhistory.a
 RL_L	=	libreadline.a
 
 #tools
-C_TOOL =	C_tools/C_tool.a
+C_TOOL		=	C_tools/C_tool.a
+C_TOOL_DIR	=	C_tools/
 #
 
 # Compiler and flags
@@ -38,7 +39,7 @@ OBJS	=	$(SRCS:.c=.o)
 
 USER = $(shell whoami)
 
-all: libft buildin exe $(NAME)
+all: tools libft buildin exe $(NAME)
 	@echo $(CYN) "\n\n			correction is made by $(USER)\n\n " $(RESET)
 $(NAME): $(OBJS)
 	@$(CC) $(CFLAGS) $(OBJS) $(LIBFT_DIR)$(LIBFT) -l readline -l ncurses \
@@ -57,6 +58,10 @@ exe:
 	@echo $(GRN)execution buildin$(WHT)
 	@make -C $(EXECUTION_DIR)
 
+
+#https://github.com/sm222/C_tools
+tools:
+	make -C $(C_TOOL_DIR)
 # Removes objects
 clean:
 	@$(RM) $(OBJS)

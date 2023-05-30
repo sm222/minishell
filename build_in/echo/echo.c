@@ -17,11 +17,9 @@ void	print_loop(char **av)
 
 int	echo(char **av)
 {
-	size_t	len;
 	size_t	i;
 
 	i = 0;
-	len = ft_strlen_double(av);
 	if (ft_strncmp("-n", av[1], 2) == 0)
 	{
 		i = 1;
