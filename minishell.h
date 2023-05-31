@@ -45,8 +45,8 @@ typedef struct s_mshell
 //--------------------------//
 //			fontion			//
 //--------------------------//
-int	get_env_path(t_mshell *data)
 
+int	get_env_path(t_mshell *data);
 
 
 #endif // MINISHELL_H

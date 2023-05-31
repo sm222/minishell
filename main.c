@@ -9,14 +9,17 @@ int	main(int ac, char **av, char **en)
 	(void)ac;
 	(void)av;
 	shell.en = ft_cpy_double_char(en);
+	ft_printf(1, "%d\n", get_env_path(&shell));
+	ft_printf(1, "ici\n");
 	s = PROMPT;
 	while (s)
 	{
 		s = readline(PROMPT);
 		if (s && *s)
 		{
+			ft_printf(1, "%d\n", find_path(s, &out, shell.path));
+			printf("out %s\n", out);
 			add_history(s);
-			printf("%d\n", find_path("/bin/cat", &out, ))
 		}
 		ft_free(s);
 	}

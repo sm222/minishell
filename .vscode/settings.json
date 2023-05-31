@@ -5,6 +5,8 @@
 		"ft_printf.h": "c",
 		"sysexits.h": "c",
 		"minishell.h": "c",
-		"err.h": "c"
+		"err.h": "c",
+		"c_tool.h": "c",
+		"execution.h": "c"
 	}
 }

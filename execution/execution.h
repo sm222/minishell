@@ -41,12 +41,15 @@ contenant le délimiteur. Cependant, l’historique n’a pas à être mis à jo
 ◦ >> doit rediriger la sortie en mode append.
 */
 
-/*/*//*/*//*/*//*/*//*/*//*/*/
+//--------------------------//
+//			fontion			//
+//--------------------------//
+
 void	cmd_free(t_cmd *in);
 size_t	cmd_node_len(t_cmd *list);
 t_cmd	*cmd_make_node(char **cmd, int order);
 int		find_path(char *name, char **out, char **list);
 short	cmd_make_node_last(t_cmd **list, char **cmd, int order);
-/*/*//*/*//*/*//*/*//*/*//*/*/
+
 
 #endif // EXECUTION_H

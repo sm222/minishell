@@ -8,7 +8,8 @@ LIBFT		=	libft.a
 LIBFT_DIR	=	../lib/lib_ft/
 
 SRCS	=	build_cmd.c\
-			run.c
+			run.c\
+			find_cmd.c
 
 OBJS	=	$(SRCS:.c=.o)
 

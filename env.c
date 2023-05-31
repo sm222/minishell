@@ -3,7 +3,7 @@
 int	get_env_path(t_mshell *data)
 {
 	size_t	i;
-	int		err;
+	int		error;
 
 	i = 0;
 	while (data->en[i])
@@ -12,12 +12,13 @@ int	get_env_path(t_mshell *data)
 		{
 			data->path = ft_split(data->en[i], ':');
 			if (!data->path)
-				err = M_FAIL;
+				error = M_FAIL;
 			else
-				err = 1;
+				error = 1;
 			break ;
 		}
-		err = FAIL;
+		error = FAIL;
+		i++;
 	}
-	return (err);
+	return (error);
 }
