@@ -47,6 +47,7 @@ contenant le délimiteur. Cependant, l’historique n’a pas à être mis à jo
 //			fontion			//
 //--------------------------//
 
+int		run_cmd(t_cmd *in);
 void	cmd_free(t_cmd *in);
 size_t	cmd_node_len(t_cmd *list);
 t_cmd	*cmd_make_node(char **cmd, int order);

@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 11:07:18 by anboisve          #+#    #+#             */
-/*   Updated: 2023/05/28 10:30:56 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/06/01 15:54:01 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ char	*ft_combine(char *s, ...);
 void	*ft_free(void *p);
 void	ft_bzero(void *s, size_t n);
 void	**ft_double_sfree(void **ptr);
+void	*fr_return_ptr(void *ptr, int i);
 void	*ft_calloc(size_t count, size_t size);
 void	*ft_memset(void *b, int c, size_t len);
 void	*ft_memchr(const void *s, int c, size_t n);
