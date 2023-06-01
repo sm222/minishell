@@ -1,5 +1,10 @@
 #include "minishell.h"
 
+/// @brief make the path double array in 'data->path'
+/// @param data take 'mshell' struct
+/// @return FAIL if can't find 'PATH='
+/// @return if split fail
+/// @return else SUCCESS
 int	get_env_path(t_mshell *data)
 {
 	size_t	i;
@@ -14,7 +19,7 @@ int	get_env_path(t_mshell *data)
 			if (!data->path)
 				error = M_FAIL;
 			else
-				error = 1;
+				error = SUCCESS;
 			break ;
 		}
 		error = FAIL;

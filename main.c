@@ -10,7 +10,6 @@ int	main(int ac, char **av, char **en)
 	(void)av;
 	shell.en = ft_cpy_double_char(en);
 	ft_printf(1, "%d\n", get_env_path(&shell));
-	ft_printf(1, "ici\n");
 	s = PROMPT;
 	while (s)
 	{
