@@ -4,14 +4,12 @@
 
 int	run_cmd(t_cmd *in)
 {
-	t_cmd	*tmp;
+	char	*cmd;
+	char	**path;
 
-	(void)tmp;
-	if (!in)
+	path = NULL;
+	if (!in || !in->command)
 		return (BAD_ARGS);
-	while (in)
-	{
-
-	}
+	find_path(in->command[0], &cmd, path);
 	return (0);
 }

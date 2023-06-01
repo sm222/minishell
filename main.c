@@ -3,21 +3,19 @@
 int	main(int ac, char **av, char **en)
 {
 	char		*s;
-	char		*out;
 	t_mshell	shell;
 
-	(void)ac;
+	(void) ac;
 	(void)av;
 	shell.en = ft_cpy_double_char(en);
-	ft_printf(1, "%d\n", get_env_path(&shell));
+	if (get_env_path(&shell) <= FAIL)
+		return (127);
 	s = PROMPT;
 	while (s)
 	{
 		s = readline(PROMPT);
 		if (s && *s)
 		{
-			ft_printf(1, "%d\n", find_path(s, &out, shell.path));
-			printf("out %s\n", out);
 			add_history(s);
 		}
 		ft_free(s);

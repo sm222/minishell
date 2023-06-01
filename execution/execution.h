@@ -6,12 +6,14 @@
 //			include			//
 //--------------------------//
 
-# include "../lib/lib_ft/libft.h"
 # include "../include/err.h"
+# include "../lib/lib_ft/libft.h"
 
 //--------------------------//
 //			define			//
 //--------------------------//
+
+# define PATH 0
 
 # define SET_IN 1
 # define SET_OUT 2
@@ -35,9 +37,9 @@ typedef struct s_cmd
 
 /*
 ◦ < doit rediriger l’entrée.
-◦ > doit rediriger la sortie.
 ◦ << doit recevoir un délimiteur et lire l’input donné jusqu’à rencontrer une ligne
 contenant le délimiteur. Cependant, l’historique n’a pas à être mis à jour !
+◦ > doit rediriger la sortie.
 ◦ >> doit rediriger la sortie en mode append.
 */
 
