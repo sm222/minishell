@@ -6,6 +6,11 @@
 //			include			//
 //--------------------------//
 
+//https://stackoverflow.com/questions/142508/how-do-i-check-os-with-a-preprocessor-directive
+
+# ifdef unix
+#  include <sys/wait.h>
+# endif
 # include "../include/err.h"
 # include "../lib/lib_ft/libft.h"
 

@@ -13,6 +13,8 @@ int	run_cmd(t_cmd *in)
 		return (BAD_ARGS);
 	find_path(in->command[0], &cmd, path);
 	f = fork();
+	if (f == -1)
+		return (FORK_FAIL);
 	if (f == 0)
 		execve(cmd, in->command, NULL);
 	else

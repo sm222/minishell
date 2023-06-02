@@ -7,6 +7,8 @@
 		"minishell.h": "c",
 		"err.h": "c",
 		"c_tool.h": "c",
-		"execution.h": "c"
+		"execution.h": "c",
+		"types.h": "c",
+		"unistd.h": "c"
 	}
 }

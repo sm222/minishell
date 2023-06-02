@@ -16,12 +16,12 @@ int	main(int ac, char **av, char **en)
 	while (s)
 	{
 		s = readline(PROMPT);
+		in = NULL;
 		if (s && *s)
 		{
 			cmd_make_node_last(&in, ft_split(s, ' '), 0);
 			run_cmd(in);
 			cmd_free(in);
-			in = NULL;
 			add_history(s);
 		}
 		ft_free(s);
