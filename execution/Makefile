@@ -9,7 +9,8 @@ LIBFT_DIR	=	../lib/lib_ft/
 
 SRCS	=	build_cmd.c\
 			run.c\
-			find_cmd.c
+			find_cmd.c\
+			wait_pid.c
 
 OBJS	=	$(SRCS:.c=.o)
 

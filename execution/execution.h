@@ -36,9 +36,16 @@ typedef struct s_cmd
 	char			**command;
 	int				order;
 	int				pipe[2];
-	char			mode;
+	char			buildin;
 	char			*in_file;
 }	t_cmd;
+
+typedef struct s_waitp
+{
+	pid_t			pid;
+	struct s_waitp	*next;
+}t_waitp;
+
 
 /*
 ◦ < doit rediriger l’entrée.
@@ -58,6 +65,11 @@ size_t	cmd_node_len(t_cmd *list);
 t_cmd	*cmd_make_node(char **cmd, int order);
 int		find_path(char *name, char **out, char **list);
 short	cmd_make_node_last(t_cmd **list, char **cmd, int order);
+
+// pid
+int		wait_make_node_last(t_waitp **in, pid_t pid);
+short	wait_pids(t_waitp *in, short free_f);
+
 
 
 #endif // EXECUTION_H
