@@ -1,15 +1,33 @@
 
 #include "execution.h"
 
-short	ft_execution(t_cmd *in)
+int	run_and_close()
+
+short	ft_execution(t_cmd *in, t_waitp **wait, char **path)
 {
-	(void)in;
-	return (0);
+	int		dup_err;
+	char	*out;
+	pid_t	pid;
+
+	dup_err = 0;
+	if (pipe(in->pipe) == -1)
+		return (FAIL);
+	dup_err += dup2(in->in_file, STDIN_FILENO);
+	if (in->next)
+		dup_err += dup2(in->pipe[1], STDOUT_FILENO);
+	pid = fork();
+	if (pid == -1)
+		return (FORK_FAIL);
+	out = NULL;
+	if (pid == 0)
+
+	else
+		wait_make_node_last(wait, pid);
+	return (SUCCESS);
 }
 
 int	run_cmd(t_cmd *in)
 {
-	char	*cmd;
 	char	**path;
 	t_waitp	*wait;
 	int		err;
@@ -20,14 +38,12 @@ int	run_cmd(t_cmd *in)
 		return (BAD_ARGS);
 	while (in)
 	{
-		err = find_path(in->command[0], &cmd, path);
-		if (err == FAIL)
-		{
+		if (in->buildin == 0)
+			err = ft_execution(in, &wait);
+		if (err <= FAIL)
 			perror(in->command[0]);
-			in = in->next;
-			continue ;
-		}
+		in = in->next;
 	}
 	wait_pids(wait, 1);
-	return (0);
+	return (err);
 }

@@ -34,10 +34,10 @@ typedef struct s_cmd
 	struct s_cmd	*prev;
 	struct s_cmd	*next;
 	char			**command;
-	int				order;
 	int				pipe[2];
+	int				order;
 	char			buildin;
-	char			*in_file;
+	int				in_file;
 }	t_cmd;
 
 typedef struct s_waitp
