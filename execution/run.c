@@ -8,16 +8,15 @@ void	close_all_fd(t_cmd *in)
 	tmp = in;
 	while (tmp)
 	{
-		close(tmp->pipe[0]);
-		close(tmp->pipe[1]);
-		close(tmp->in_file);
+		ft_printf(2, "%d > %d\n", tmp->pipe[0] ,close(tmp->pipe[0]));
+		ft_printf(2, "%d > %d\n", tmp->pipe[1] ,close(tmp->pipe[1]));
 		tmp = tmp->next;
 	}
 	tmp = in->prev;
 	while (tmp)
 	{
-		close(tmp->pipe[0]);
-		close(tmp->pipe[1]);
+		ft_printf(2, "%d > %d\n", tmp->pipe[0] ,close(tmp->pipe[0]));
+		ft_printf(2, "%d > %d\n", tmp->pipe[1] ,close(tmp->pipe[1]));
 		tmp = tmp->prev;
 	}
 }
@@ -26,12 +25,17 @@ void	close_all_fd(t_cmd *in)
 int	run_and_close(t_cmd *in, char **path)
 {
 	char	*out;
+	int		err;
 
 	out = NULL;
 	close_all_fd(in);
-	if (find_path(in->command[0], &out, path) <= FAIL)
+	err = find_path(in->command[0], &out, path);
+	if (err <= FAIL)
 	{
-		perror(in->command[0]);
+		if (err == FAIL)
+			perror(in->command[0]);
+		else
+			ft_printf(2, "MALLOC FAIL\n");
 		return (FAIL);
 	}
 	execve(out, in->command, path);
@@ -46,7 +50,11 @@ short	ft_execution(t_cmd *in, t_waitp **wait, char **path)
 	dup_err = 0;
 	if (pipe(in->pipe) == -1)
 		return (FAIL);
-	dup_err += dup2(in->in_file, STDIN_FILENO);
+	if (in->prev)
+	{
+		dup_err += dup2(in->prev->pipe[0], STDIN_FILENO);
+		ft_putendl_fd("here", 2);
+	}
 	if (in->next)
 		dup_err += dup2(in->pipe[1], STDOUT_FILENO);
 	pid = fork();
@@ -71,12 +79,14 @@ int	run_cmd(t_cmd *in)
 		return (BAD_ARGS);
 	while (in)
 	{
+		ft_printf(2, "%s\n", in->command[0]);
 		if (in->buildin == 0)
 			err = ft_execution(in, &wait, path);
 		if (err <= FAIL)
 			perror(in->command[0]);
 		in = in->next;
 	}
-	wait_pids(wait, 1);
+	ft_printf(2, "ici\n");
+	wait_pids(wait, 0);
 	return (err);
 }

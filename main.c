@@ -13,6 +13,12 @@ int	main(int ac, char **av, char **en)
 		return (127);
 	fr_return_ptr(shell.path, PATH);
 	s = PROMPT;
+	in = NULL;
+	cmd_make_node_last(&in, ft_split("ls -la", ' '), 0);
+	cmd_make_node_last(&in, ft_split("cat -e", ' '), 0);
+	run_cmd(in);
+	cmd_free(in);
+	in = NULL;
 	while (s)
 	{
 		s = readline(PROMPT);
