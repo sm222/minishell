@@ -13,12 +13,6 @@ int	main(int ac, char **av, char **en)
 		return (127);
 	fr_return_ptr(shell.path, PATH);
 	s = PROMPT;
-	in = NULL;
-	cmd_make_node_last(&in, ft_split("ls -la", ' '), 0);
-	cmd_make_node_last(&in, ft_split("cat -e", ' '), 0);
-	run_cmd(in);
-	cmd_free(in);
-	in = NULL;
 	while (s)
 	{
 		s = readline(PROMPT);
@@ -26,7 +20,9 @@ int	main(int ac, char **av, char **en)
 		if (s && *s)
 		{
 			cmd_make_node_last(&in, ft_split(s, ' '), 0);
-			run_cmd(in);
+			cmd_make_node_last(&in, ft_split("cat -e", ' '), PIPE);
+			//cmd_make_node_last(&in, ft_split("wc", ' '), 0);
+			run_cmd(&in);
 			cmd_free(in);
 			add_history(s);
 		}

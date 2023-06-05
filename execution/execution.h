@@ -21,7 +21,7 @@
 # define PATH 0
 
 # define SET_IN 1
-# define SET_OUT 2
+# define PIPE 2
 # define SET_HERE_DOC 3
 # define SET_APPEND 4
 
@@ -35,7 +35,7 @@ typedef struct s_cmd
 	struct s_cmd	*next;
 	char			**command;
 	int				pipe[2];
-	int				order;
+	int				mode;
 	char			buildin;
 	int				in_file;
 }	t_cmd;
@@ -59,13 +59,12 @@ contenant le délimiteur. Cependant, l’historique n’a pas à être mis à jo
 //			fontion			//
 //--------------------------//
 
-int		run_cmd(t_cmd *in);
+int		run_cmd(t_cmd **in);
 void	cmd_free(t_cmd *in);
 size_t	cmd_node_len(t_cmd *list);
 t_cmd	*cmd_make_node(char **cmd, int order);
 int		find_path(char *name, char **out, char **list);
-short	cmd_make_node_last(t_cmd **list, char **cmd, int order);
-
+short	cmd_make_node_last(t_cmd **list, char **cmd, int mode);
 // pid
 int		wait_make_node_last(t_waitp **in, pid_t pid);
 short	wait_pids(t_waitp *in, short free_f);

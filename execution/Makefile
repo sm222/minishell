@@ -1,7 +1,7 @@
 NAME	=	execution.a
 
 CC		=	gcc
-CFLAGS	=	-Wall -Werror -Wextra
+CFLAGS	=	-Wall -Werror -Wextra -g
 RM		=	rm -f
 
 LIBFT		=	libft.a

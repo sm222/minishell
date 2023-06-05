@@ -1,6 +1,6 @@
 #include "execution.h"
 
-t_cmd	*cmd_make_node(char **cmd, int order)
+t_cmd	*cmd_make_node(char **cmd, int mode)
 {
 	t_cmd	*new;
 
@@ -8,7 +8,7 @@ t_cmd	*cmd_make_node(char **cmd, int order)
 	if (!new)
 		return (NULL);
 	new->command = ft_cpy_double_char(cmd);
-	new->order = order;
+	new->mode = mode;
 	return (new);
 }
 
@@ -28,9 +28,9 @@ size_t	cmd_node_len(t_cmd *list)
 /// @brief add a node at the end of the list
 /// @param list list input
 /// @param cmd argument
-/// @param order of execution
+/// @param mode type of action
 /// @return return negatif nuber if fail, else return the size of the list
-short	cmd_make_node_last(t_cmd **list, char **cmd, int order)
+short	cmd_make_node_last(t_cmd **list, char **cmd, int mode)
 {
 	t_cmd	*tmp;
 	size_t	len;
@@ -40,20 +40,18 @@ short	cmd_make_node_last(t_cmd **list, char **cmd, int order)
 	tmp = (*list);
 	if (!tmp)
 	{
-		*list = cmd_make_node(cmd, order);
+		*list = cmd_make_node(cmd, mode);
 		if (!*list)
 			return (M_FAIL);
-		(*list)->order = 1;
 		return (1);
 	}
 	while (tmp->next)
 		tmp = tmp->next;
-	tmp->next = cmd_make_node(cmd, order);
+	tmp->next = cmd_make_node(cmd, mode);
 	if (!tmp->next)
 		return (M_FAIL);
 	tmp->next->prev = tmp;
 	len = cmd_node_len(*list);
-	tmp->next->order = len + 1;
 	return (len);
 }
 
