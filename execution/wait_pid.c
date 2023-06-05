@@ -65,4 +65,3 @@ int	wait_make_node_last(t_waitp **in, pid_t pid)
 		return (M_FAIL);
 	return (SUCCESS + len);
 }
-

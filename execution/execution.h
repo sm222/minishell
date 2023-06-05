@@ -11,6 +11,7 @@
 # ifdef unix
 #  include <sys/wait.h>
 # endif
+# include "token.h"
 # include "../include/err.h"
 # include "../lib/lib_ft/libft.h"
 
@@ -35,9 +36,7 @@ typedef struct s_cmd
 	struct s_cmd	*next;
 	char			**command;
 	int				pipe[2];
-	int				mode;
-	char			buildin;
-	int				in_file;
+	t_token			*tok;
 }	t_cmd;
 
 typedef struct s_waitp
@@ -59,12 +58,13 @@ contenant le délimiteur. Cependant, l’historique n’a pas à être mis à jo
 //			fontion			//
 //--------------------------//
 
-int		run_cmd(t_cmd **in);
-void	cmd_free(t_cmd *in);
+int		run_cmd(t_cmd *in);
+void	cmd_free(t_cmd **in);
 size_t	cmd_node_len(t_cmd *list);
-t_cmd	*cmd_make_node(char **cmd, int order);
+t_cmd	*cmd_make_node(char **cmd, t_token *tok);
 int		find_path(char *name, char **out, char **list);
-short	cmd_make_node_last(t_cmd **list, char **cmd, int mode);
+short	cmd_make_node_last(t_cmd **list, char **cmd, t_token *tok);
+
 // pid
 int		wait_make_node_last(t_waitp **in, pid_t pid);
 short	wait_pids(t_waitp *in, short free_f);

@@ -38,6 +38,7 @@ typedef struct s_mshell
 {
 	char	**en;
 	char	**path;
+	int		fd[2];
 
 }	t_mshell;
 

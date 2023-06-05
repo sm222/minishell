@@ -21,7 +21,6 @@ void	close_all_fd(t_cmd *in)
 	}
 }
 
-
 int	run_and_close(t_cmd *in, char **path)
 {
 	char	*out;
@@ -42,6 +41,8 @@ int	run_and_close(t_cmd *in, char **path)
 	return (FAIL);
 }
 
+
+
 short	ft_execution(t_cmd *in, t_waitp **wait, char **path)
 {
 	int		dup_err;
@@ -55,11 +56,6 @@ short	ft_execution(t_cmd *in, t_waitp **wait, char **path)
 		return (FORK_FAIL);
 	if (pid == 0)
 	{
-		if (in->in_file)
-			dup_err += dup2(in->in_file, STDIN_FILENO);
-		if (in->mode)
-			dup_err += dup2(in->pipe[1], STDOUT_FILENO);
-		ft_printf(2, "%d\n", dup_err);
 		run_and_close(in, path);
 	}
 	else
@@ -67,27 +63,34 @@ short	ft_execution(t_cmd *in, t_waitp **wait, char **path)
 	return (SUCCESS);
 }
 
-int	run_cmd(t_cmd **in)
+int	run_cmd(t_cmd *in)
 {
 	char	**path;
-	t_waitp	*wait;
 	int		err;
+	t_waitp	*wait;
 	t_cmd	*tmp;
 
 	wait = NULL;
 	path = fr_return_ptr(NULL, PATH);
-	if (!in || !*in || !path)
+	if (!in || !path)
 		return (BAD_ARGS);
-	tmp = (*in);
+	tmp = in;
 	while (tmp)
 	{
-		if (tmp->buildin == 0)
+		err = 0;
+		if (tmp->tok && tmp->tok->build_in == 0)
 			err = ft_execution(tmp, &wait, path);
+		else
+		{
+			tmp = tmp->next;
+			continue ;
+		}
 		if (err <= FAIL)
 			perror(tmp->command[0]);
 		tmp = tmp->next;
 	}
-	close_all_fd(*in);
-	wait_pids(wait, 0);
+	close_all_fd(in);
+	wait_pids(wait, 1);
+	cmd_free(&in);
 	return (err);
 }

@@ -1,5 +1,13 @@
 #include "minishell.h"
 
+void	free_shell(t_mshell *shell)
+{
+	if (!shell)
+		return ;
+	ft_double_sfree((void **)shell->path);
+	ft_double_sfree((void **)shell->en);
+}
+
 int	main(int ac, char **av, char **en)
 {
 	char		*s;
@@ -19,16 +27,14 @@ int	main(int ac, char **av, char **en)
 		in = NULL;
 		if (s && *s)
 		{
-			cmd_make_node_last(&in, ft_split(s, ' '), 0);
-			cmd_make_node_last(&in, ft_split("cat -e", ' '), PIPE);
-			//cmd_make_node_last(&in, ft_split("wc", ' '), 0);
-			run_cmd(&in);
-			cmd_free(in);
+			cmd_make_node_last(&in, ft_split(s, ' '), make_token(-1, -1 ,0));
+			cmd_make_node_last(&in, ft_split("cat", ' '), make_token(-1, -1 ,0));
+			run_cmd(in);
 			add_history(s);
 		}
 		ft_free(s);
 	}
-	ft_double_sfree((void **)shell.en);
 	rl_clear_history();
+	free_shell(&shell);
 	return (0);
 }
