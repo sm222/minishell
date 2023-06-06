@@ -19,7 +19,7 @@
 //			define			//
 //--------------------------//
 
-# define PATH 0
+# define PATH 1
 
 # define SET_IN 1
 # define PIPE 2
@@ -64,6 +64,8 @@ size_t	cmd_node_len(t_cmd *list);
 t_cmd	*cmd_make_node(char **cmd, t_token *tok);
 int		find_path(char *name, char **out, char **list);
 short	cmd_make_node_last(t_cmd **list, char **cmd, t_token *tok);
+// pipe
+int	ft_redir(t_cmd *in);
 
 // pid
 int		wait_make_node_last(t_waitp **in, pid_t pid);

@@ -1,5 +1,6 @@
 
 #include "execution.h"
+#include "../minishell.h"
 
 void	close_all_fd(t_cmd *in)
 {
@@ -8,55 +9,57 @@ void	close_all_fd(t_cmd *in)
 	tmp = in;
 	while (tmp)
 	{
-		close(tmp->pipe[0]);
-		close(tmp->pipe[1]);
+		if (tmp->pipe[0])
+			close(tmp->pipe[0]);
+		if (tmp->pipe[1])
+			close(tmp->pipe[1]);
 		tmp = tmp->next;
 	}
 	tmp = in->prev;
 	while (tmp)
 	{
-		close(tmp->pipe[0]);
-		close(tmp->pipe[1]);
+		if (tmp->pipe[0])
+			close(tmp->pipe[0]);
+		if (tmp->pipe[1])
+			close(tmp->pipe[1]);
 		tmp = tmp->prev;
 	}
 }
 
-int	run_and_close(t_cmd *in, char **path)
+int	run_and_close(t_cmd *in, char **path, char *cmd)
 {
-	char	*out;
 	int		err;
 
-	out = NULL;
-	err = find_path(in->command[0], &out, path);
-	if (err <= FAIL)
-	{
-		if (err == FAIL)
-			perror(in->command[0]);
-		else
-			ft_printf(2, "MALLOC FAIL\n");
-		return (FAIL);
-	}
 	close_all_fd(in);
-	execve(out, in->command, path);
+	err = execve(cmd, in->command, path);
 	return (FAIL);
 }
 
 
 
-short	ft_execution(t_cmd *in, t_waitp **wait, char **path)
+short	ft_execution(t_cmd *in, t_waitp **wait)
 {
-	int		dup_err;
-	pid_t	pid;
+	int			err;
+	char		*ft_path;
+	pid_t		pid;
+	t_mshell	*shell;
 
-	dup_err = 0;
-	if (pipe(in->pipe) == -1)
+	shell = fr_return_ptr(NULL, SYS);
+	if (!shell || pipe(in->pipe) == -1)
 		return (FAIL);
+	err = find_path(in->command[0], &ft_path, shell->path);
+	if (err <= FAIL)
+	{
+		perror(in->command[0]);
+		return (err);
+	}
 	pid = fork();
 	if (pid == -1)
 		return (FORK_FAIL);
 	if (pid == 0)
 	{
-		run_and_close(in, path);
+		ft_redir(in);
+		run_and_close(in, shell->path, ft_path);
 	}
 	else
 		wait_make_node_last(wait, pid);
@@ -65,26 +68,21 @@ short	ft_execution(t_cmd *in, t_waitp **wait, char **path)
 
 int	run_cmd(t_cmd *in)
 {
-	char	**path;
 	int		err;
 	t_waitp	*wait;
 	t_cmd	*tmp;
 
 	wait = NULL;
-	path = fr_return_ptr(NULL, PATH);
-	if (!in || !path)
+	if (!in)
 		return (BAD_ARGS);
 	tmp = in;
+	err = 0;
 	while (tmp)
 	{
-		err = 0;
 		if (tmp->tok && tmp->tok->build_in == 0)
-			err = ft_execution(tmp, &wait, path);
+			err = ft_execution(tmp, &wait);
 		else
-		{
-			tmp = tmp->next;
-			continue ;
-		}
+			err = ft_execution(tmp, &wait);
 		if (err <= FAIL)
 			perror(tmp->command[0]);
 		tmp = tmp->next;

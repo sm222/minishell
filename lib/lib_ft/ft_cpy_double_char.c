@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 13:53:12 by anboisve          #+#    #+#             */
-/*   Updated: 2023/05/26 10:18:55 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/06/06 10:52:18 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,18 @@ char	**ft_cpy_double_char(char **str)
 	new = NULL;
 	if (!str)
 		return (NULL);
-	while (str[i])
-		i++;
+	i = ft_strlen_double(str);
 	new = ft_calloc(i + 1, sizeof(char *));
+	if (!new)
+		return (NULL);
 	while (j < i)
 	{
 		new[j] = ft_strdup(str[j]);
+		if (!new[j])
+		{
+			ft_double_sfree((void **)new);
+			return (NULL);
+		}
 		j++;
 	}
 	return (new);
