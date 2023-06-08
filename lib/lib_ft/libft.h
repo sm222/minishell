@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 11:07:18 by anboisve          #+#    #+#             */
-/*   Updated: 2023/06/01 15:54:01 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/06/08 13:23:09 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	ft_striteri(char *s, void (*f)(unsigned int, char *));
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 char	*ft_strnstr(const char *haystack, const char *needle, size_t len);
 char	**ft_cpy_double_char(char **str);
-char	*ft_combine(char *s, ...);
+char	*ft_combine(char *s, va_list arg);
 
 //memory										\manipulation
 

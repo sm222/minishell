@@ -10,7 +10,7 @@ static int	test_local(char *name, char **out)
 	char	*tmp;
 
 	tmp = NULL;
-	tmp = ft_combine("./%s", name);
+	ft_printf(-1, "%o./%s", &tmp ,name);
 	if (!tmp)
 		return (M_FAIL);
 	if (access(tmp, F_OK | X_OK) == 0)
@@ -48,7 +48,7 @@ int	find_path(char *name, char **out, char **list)
 		return (local);
 	while (list[i])
 	{
-		tmp = ft_combine("%s/%s", list[i], name);
+		ft_printf(-1, "%o%s/%s", &tmp, list[i], name);
 		if (!tmp)
 			return (M_FAIL);
 		if (access(tmp, F_OK | X_OK) == 0)

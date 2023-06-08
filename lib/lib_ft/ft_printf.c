@@ -6,22 +6,33 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 13:12:13 by anboisve          #+#    #+#             */
-/*   Updated: 2023/05/31 19:10:57 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/06/08 16:18:57 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
+static int	print_free(char *s, char c, int fd)
+{
+	int	len;
+
+	len = ft_strlen(s);
+	write(fd, s, len);
+	if (c == 'S')
+		free(s);
+	return (len);
+}
+
 static int	ft_print_select(va_list list, char c, int fd)
 {
 	char	*s;
 
-	if (c == 's')
+	if (c == 's' || c == 'S')
 	{
 		s = va_arg(list, char *);
 		if (!s)
 			return (ft_putstr_fd("(null)", fd));
-		return (ft_putstr_fd(s, fd));
+		return (print_free(s, c, fd));
 	}
 	else if (c == 'i' || c == 'd')
 		return (ft_putnbr_fd(va_arg(list, int), fd));
@@ -38,35 +49,48 @@ static int	ft_print_select(va_list list, char c, int fd)
 	return (0);
 }
 
-/// @brief
-/// @param str 
-/// @param  
-/// @return 
-int	ft_printf(int fd, const char *str, ...)
+void	make_new_str(char *s, va_list arg, char **out)
 {
-	va_list	arg;
-	size_t	i;
-	int		total;
+	*out = NULL;
+	*out = ft_combine(s + 2, arg);
+}
 
-	total = 0;
-	i = 0;
+/// @brief use 
+/// @brief make a news string like a printf and return it
+/// @param s flag like a printf
+/// @details s = str 
+/// @details S = str but will free it for you
+/// @details d || i for int
+/// @details x = hexadecimal
+/// @details %% = add one %
+/// @return new str
+int	ft_printf(int fd, char *str, ...)
+{
+	t_printf	pf;
+
+	ft_bzero(&pf, sizeof(t_printf));
 	if (!str)
 		return (0);
-	va_start(arg, str);
-	while (str[i])
+	va_start(pf.arg, str);
+	if (ft_strncmp(str, "%o", 2) == 0)
 	{
-		if (str[i] != '%')
-			total += ft_putchar_fd(str[i], fd);
+		make_new_str(str, pf.arg, va_arg(pf.arg, char **));
+		return (0);
+	}
+	while (str[pf.i])
+	{
+		if (str[pf.i] != '%')
+			pf.total += ft_putchar_fd(str[pf.i], fd);
 		else
 		{
-			if (str[++i] == 0)
+			if (str[++pf.i] == 0)
 				continue ;
-			total += ft_print_select(arg, str[i], fd);
+			pf.total += ft_print_select(pf.arg, str[pf.i], fd);
 		}
-		i++;
+		pf.i++;
 	}
-	va_end(arg);
-	return (total);
+	va_end(pf.arg);
+	return (pf.total);
 }
 
 /*
