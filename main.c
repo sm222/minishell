@@ -1,6 +1,6 @@
 #include "minishell.h"
 
-/*
+
 static void	free_shell(t_mshell *shell)
 {
 	if (!shell)
@@ -22,27 +22,25 @@ static int	start_shell(t_mshell *shell, char **en)
 	fr_return_ptr(shell, SYS);
 	return (SUCCESS);
 }
-*/
 
-/*
 int	main(int ac, char **av, char **en)
 {
 	t_mshell	shell;
 	t_cmd		*in;
 	int		loop_test;
 
-	(void) ac;
+	(void)ac;
 	(void)av;
-	loop_test = 10;
+	loop_test = 1;
 	start_shell(&shell, en);
-	ft_printf(2, "%S", ft_strdup("test"));
 	while (loop_test)
 	{
-		shell.s = readline(PROMPT);
+		shell.s = ft_strdup("ls");
+		//shell.s = readline(PROMPT);
 		in = NULL;
 		if (shell.s && *shell.s)
 		{
-			cmd_make_node_last(&in, ft_split("ls", ' '), make_token(-1, -1 ,0));
+			cmd_make_node_last(&in, ft_split(shell.s, ' '), make_token(-1, -1 ,0));
 			run_cmd(in);
 			add_history(shell.s);
 		}
@@ -53,12 +51,4 @@ int	main(int ac, char **av, char **en)
 	rl_clear_history();
 	free_shell(&shell);
 	return (0);
-}
-*/
-
-int	main(void)
-{
-	char *s;
-	ft_printf(2, "%o%s", &s, "test");
-	ft_printf(2, "%s", s);
 }

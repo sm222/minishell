@@ -32,7 +32,8 @@ RM		=	rm -f
 
 # Sources are all .c files
 SRCS	=	main.c\
-			env.c
+			env.c\
+			include/err.c
 
 
 

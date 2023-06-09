@@ -4,7 +4,6 @@
 /// @param name of the fontion
 /// @param out return the path with name of the fontion
 /// @return 1 if local, 2 if ./ fail FAIL, else M_FAIL
-/// @ref
 static int	test_local(char *name, char **out)
 {
 	char	*tmp;
@@ -18,6 +17,7 @@ static int	test_local(char *name, char **out)
 		*out = tmp;
 		return (2);
 	}
+	ft_free(tmp);
 	if (access(name, F_OK | X_OK) == 0)
 	{
 		*out = ft_strdup(name);

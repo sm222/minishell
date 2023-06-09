@@ -10,7 +10,9 @@
 		"execution.h": "c",
 		"types.h": "c",
 		"unistd.h": "c",
-		"token.h": "c"
+		"token.h": "c",
+		"__locale": "c",
+		"ios": "c"
 	},
 	"C_Cpp.errorSquiggles": "disabled"
 }

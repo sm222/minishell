@@ -49,13 +49,10 @@ short	ft_execution(t_cmd *in, t_waitp **wait)
 		return (FAIL);
 	err = find_path(in->command[0], &ft_path, shell->path);
 	if (err <= FAIL)
-	{
-		perror(in->command[0]);
-		return (err);
-	}
+		return (err_msg(PERROR, err, in->command[0]));
 	pid = fork();
 	if (pid == -1)
-		return (FORK_FAIL);
+		return (err_msg(NO_FREE, FORK_FAIL, "fork fail"));
 	if (pid == 0)
 	{
 		ft_redir(in);
@@ -63,6 +60,7 @@ short	ft_execution(t_cmd *in, t_waitp **wait)
 	}
 	else
 		wait_make_node_last(wait, pid);
+	ft_free(ft_path);
 	return (SUCCESS);
 }
 
@@ -83,8 +81,6 @@ int	run_cmd(t_cmd *in)
 			err = ft_execution(tmp, &wait);
 		else
 			err = ft_execution(tmp, &wait);
-		if (err <= FAIL)
-			perror(tmp->command[0]);
 		tmp = tmp->next;
 	}
 	close_all_fd(in);

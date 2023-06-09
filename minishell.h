@@ -2,7 +2,6 @@
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
-
 //--------------------------//
 //			include			//
 //--------------------------//
@@ -45,16 +44,13 @@ typedef struct s_mshell
 
 }	t_mshell;
 
-
 //--------------------------//
 //			fontion			//
 //--------------------------//
 
 int	get_env_path(t_mshell *data);
 
-
 #endif // MINISHELL_H
-
 
 /*
 readline, rl_clear_history, rl_on_new_line,
