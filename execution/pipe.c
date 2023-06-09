@@ -1,5 +1,10 @@
 #include "execution.h"
 
+void	swich_redir(int mode, )
+{
+	if ()
+}
+
 int	ft_redir(t_cmd *in)
 {
 	if (!in || !in->tok)
