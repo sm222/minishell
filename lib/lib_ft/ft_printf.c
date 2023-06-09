@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 13:12:13 by anboisve          #+#    #+#             */
-/*   Updated: 2023/06/08 16:18:57 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/06/09 10:07:34 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,21 +49,22 @@ static int	ft_print_select(va_list list, char c, int fd)
 	return (0);
 }
 
-void	make_new_str(char *s, va_list arg, char **out)
+int	make_new_str(char *s, va_list arg, char **out)
 {
 	*out = NULL;
 	*out = ft_combine(s + 2, arg);
+	return (ft_strlen(*out));
 }
 
-/// @brief use 
+/// @brief use to print like printf, "%o" give a adresse of a char *
 /// @brief make a news string like a printf and return it
-/// @param s flag like a printf
+/// @param fd chose output
 /// @details s = str 
 /// @details S = str but will free it for you
 /// @details d || i for int
 /// @details x = hexadecimal
 /// @details %% = add one %
-/// @return new str
+/// @return len
 int	ft_printf(int fd, char *str, ...)
 {
 	t_printf	pf;
@@ -73,10 +74,7 @@ int	ft_printf(int fd, char *str, ...)
 		return (0);
 	va_start(pf.arg, str);
 	if (ft_strncmp(str, "%o", 2) == 0)
-	{
-		make_new_str(str, pf.arg, va_arg(pf.arg, char **));
-		return (0);
-	}
+		return (make_new_str(str, pf.arg, va_arg(pf.arg, char **)));
 	while (str[pf.i])
 	{
 		if (str[pf.i] != '%')

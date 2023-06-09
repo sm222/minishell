@@ -58,5 +58,7 @@ int	main(int ac, char **av, char **en)
 
 int	main(void)
 {
-	ft_printf(2, "%s", "trsad");
+	char *s;
+	ft_printf(2, "%o%s", &s, "test");
+	ft_printf(2, "%s", s);
 }
