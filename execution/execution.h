@@ -45,6 +45,13 @@ typedef struct s_waitp
 	struct s_waitp	*next;
 }t_waitp;
 
+typedef struct s_exe
+{
+	int			err;
+	char		*ft_path;
+	pid_t		pid;
+	
+}	t_exe;
 
 /*
 ◦ < doit rediriger l’entrée.

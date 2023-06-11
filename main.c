@@ -40,7 +40,9 @@ int	main(int ac, char **av, char **en)
 		in = NULL;
 		if (shell.s && *shell.s)
 		{
-			cmd_make_node_last(&in, ft_split(shell.s, ' '), make_token(-1, -1 ,0));
+			debug(SUCCESS, shell.s);
+			cmd_make_node_last(&in, ft_split(shell.s, ' '), make_token(-1, -1 ,0, 0));
+			cmd_make_node_last(&in, ft_split("cat -e", ' '), make_token(-1, -1 ,0, 0));
 			run_cmd(in);
 			add_history(shell.s);
 		}

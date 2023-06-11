@@ -6,8 +6,25 @@
 //			include			//
 //--------------------------//
 
+# include <stdbool.h>
 # include "../include/err.h"
 # include "../lib/lib_ft/libft.h"
+
+//--------------------------//
+//			define			//
+//--------------------------//
+
+# ifndef  TRUE
+#  define TRUE 1
+# endif
+# ifndef FALSE
+#  define FALSE 0
+# endif
+
+# define PIPE_NO 0
+# define PIPE_IN 1
+# define PIPE_OUT 2
+# define PIPE_IN_OUT 3
 
 //--------------------------//
 //			struct			//
@@ -16,6 +33,7 @@
 typedef struct s_token
 {
 	char	build_in;
+	char	mode;
 	int		pipe_in;
 	int		pipe_out;
 }	t_token;
@@ -24,7 +42,7 @@ typedef struct s_token
 //			fontion			//
 //--------------------------//
 
-t_token	*make_token(int in, int out, char build_in);
+t_token	*make_token(int in, int out, char build_in, int mode);
 
 
 /*

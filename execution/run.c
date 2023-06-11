@@ -34,33 +34,37 @@ int	run_and_close(t_cmd *in, char **path, char *cmd)
 	err = execve(cmd, in->command, path);
 	return (FAIL);
 }
-
+int	free_exe(int err, t_exe *exe)
+{
+	if (!exe)
+		return (debug(BAD_ARGS,"bad args in free_exe"));
+	ft_free(exe->ft_path);
+	return (err);
+}
 
 
 short	ft_execution(t_cmd *in, t_waitp **wait)
 {
-	int			err;
-	char		*ft_path;
-	pid_t		pid;
+	t_exe		exe;
 	t_mshell	*shell;
 
 	shell = fr_return_ptr(NULL, SYS);
-	if (!shell || pipe(in->pipe) == -1)
-		return (FAIL);
-	err = find_path(in->command[0], &ft_path, shell->path);
-	if (err <= FAIL)
-		return (err_msg(PERROR, err, in->command[0]));
-	pid = fork();
-	if (pid == -1)
+	if (!shell)
+		return (debug(BAD_ARGS,"bad args in ft_execution"));
+	exe.err = find_path(in->command[0], &exe.ft_path, shell->path);
+	if (exe.err <= FAIL)
+		return (err_msg(PERROR, exe.err, in->command[0]));
+	exe.pid = fork();
+	if (exe.pid == -1)
 		return (err_msg(NO_FREE, FORK_FAIL, "fork fail"));
-	if (pid == 0)
+	if (exe.pid == 0)
 	{
 		ft_redir(in);
-		run_and_close(in, shell->path, ft_path);
+		run_and_close(in, shell->path, exe.ft_path);
 	}
 	else
-		wait_make_node_last(wait, pid);
-	ft_free(ft_path);
+		wait_make_node_last(wait, exe.pid);
+	ft_free(exe.ft_path);
 	return (SUCCESS);
 }
 
@@ -81,6 +85,7 @@ int	run_cmd(t_cmd *in)
 			err = ft_execution(tmp, &wait);
 		else
 			err = ft_execution(tmp, &wait);
+		debug(err, "run_cmd");
 		tmp = tmp->next;
 	}
 	close_all_fd(in);
