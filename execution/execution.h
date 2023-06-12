@@ -74,6 +74,7 @@ short	cmd_make_node_last(t_cmd **list, char **cmd, t_token *tok);
 
 // pipe
 
+int		swich_redir(t_cmd *in);
 int		ft_redir(t_cmd *in);
 
 // pid

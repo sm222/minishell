@@ -54,6 +54,8 @@ short	ft_execution(t_cmd *in, t_waitp **wait)
 	exe.err = find_path(in->command[0], &exe.ft_path, shell->path);
 	if (exe.err <= FAIL)
 		return (err_msg(PERROR, exe.err, in->command[0]));
+	if (swich_redir(in) <= FAIL)
+		return (debug(FAIL, "ft_redir"));
 	exe.pid = fork();
 	if (exe.pid == -1)
 		return (err_msg(NO_FREE, FORK_FAIL, "fork fail"));

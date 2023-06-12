@@ -35,19 +35,19 @@ int	main(int ac, char **av, char **en)
 	start_shell(&shell, en);
 	while (loop_test)
 	{
+		debug(SUCCESS, "-	-	-	-");
 		shell.s = ft_strdup("ls");
 		//shell.s = readline(PROMPT);
 		in = NULL;
 		if (shell.s && *shell.s)
 		{
 			debug(SUCCESS, shell.s);
-			cmd_make_node_last(&in, ft_split(shell.s, ' '), make_token(-1, -1 ,0, 0));
-			cmd_make_node_last(&in, ft_split("cat -e", ' '), make_token(-1, -1 ,0, 0));
+			cmd_make_node_last(&in, ft_split(shell.s, ' '), make_token(-1, -1 ,0,  PIPE_OUT));
+			cmd_make_node_last(&in, ft_split("cat -e", ' '), make_token(-1, -1 ,0, PIPE_IN));
 			run_cmd(in);
 			add_history(shell.s);
 		}
 		ft_free(shell.s);
-		printf("%d\n", loop_test);
 		loop_test--;
 	}
 	rl_clear_history();
