@@ -10,6 +10,7 @@ int	get_env_path(t_mshell *data)
 	size_t	i;
 
 	i = 0;
+	Ct_debug(0, "test", FILE_DEF);
 	while (data->en[i])
 	{
 		if (ft_strncmp(data->en[i], "PATH=", 5) == 0)

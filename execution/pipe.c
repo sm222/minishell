@@ -1,5 +1,18 @@
 #include "execution.h"
 
+int	get_nb_pipe(t_cmd *in)
+{
+	int	i;
+
+	i = 0;
+	while (in)
+	{
+		if (in->tok->pipe_out)
+			return (1);
+	}
+	return (0);
+}
+
 int	swich_redir(t_cmd *in)
 {
 	if (!in)
@@ -29,13 +42,11 @@ int	ft_redir(t_cmd *in)
 	{
 		debug(in->tok->pipe_in, "dup2 in", FILE_DEF);
 		debug(dup2(in->tok->pipe_in, STDIN_FILENO), "dup in --", FILE_DEF);
-		perror("pipe in");
 	}
 	if (in->tok->mode == PIPE_OUT || in->tok->mode == PIPE_IN_OUT)
 	{
 		debug(in->tok->pipe_out, "dup2 out", FILE_DEF);
 		debug(dup2(in->tok->pipe_out, STDOUT_FILENO), "dup out --", FILE_DEF);
-		perror("pipe out");
 	}
 	return (debug(SUCCESS, "ft_redir", FILE_DEF));
 }

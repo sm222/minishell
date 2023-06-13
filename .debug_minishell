@@ -1,0 +1,499 @@
+1 ls
+1 open pipe
+1 swich_redir
+1 run_cmd
+4 dup2 out
+1 open swich infile
+1 dup out --
+1 open pipe
+1 ft_redir
+1 swich_redir
+1 run_cmd
+3 dup2 in
+1 open swich infile
+0 dup in --
+6 dup2 out
+1 open pipe
+1 dup out --
+1 swich_redir
+1 ft_redir
+1 run_cmd
+5 dup2 in
+1 open swich infile
+0 dup in --
+8 dup2 out
+1 open pipe
+1 dup out --
+1 swich_redir
+1 ft_redir
+1 run_cmd
+7 dup2 in
+1 open swich infile
+0 dup in --
+1 open pipe
+10 dup2 out
+1 swich_redir
+1 dup out --
+1 run_cmd
+9 dup2 in
+1 ft_redir
+1 open swich infile
+0 dup in --
+1 open pipe
+13 dup2 out
+1 swich_redir
+1 dup out --
+1 run_cmd
+11 dup2 in
+1 ft_redir
+0 dup in --
+1 open swich infile
+15 dup2 out
+1 open pipe
+1 dup out --
+1 swich_redir
+1 ft_redir
+1 run_cmd
+14 dup2 in
+1 open swich infile
+0 dup in --
+1 open pipe
+17 dup2 out
+1 swich_redir
+1 dup out --
+1 run_cmd
+16 dup2 in
+1 ft_redir
+1 open swich infile
+0 dup in --
+1 open pipe
+19 dup2 out
+1 swich_redir
+1 dup out --
+1 run_cmd
+1 ft_redir
+18 dup2 in
+1 open swich infile
+0 dup in --
+1 open pipe
+21 dup2 out
+1 swich_redir
+1 dup out --
+1 run_cmd
+20 dup2 in
+1 ft_redir
+1 open swich infile
+1 open pipe
+0 dup in --
+1 swich_redir
+23 dup2 out
+1 run_cmd
+22 dup2 in
+1 dup out --
+1 open swich infile
+1 ft_redir
+0 dup in --
+1 open pipe
+37 dup2 out
+1 swich_redir
+1 dup out --
+1 run_cmd
+24 dup2 in
+1 ft_redir
+0 dup in --
+1 open swich infile
+39 dup2 out
+1 open pipe
+1 dup out --
+1 swich_redir
+1 ft_redir
+1 run_cmd
+38 dup2 in
+0 dup in --
+1 open swich infile
+41 dup2 out
+1 open pipe
+1 dup out --
+1 swich_redir
+1 run_cmd
+40 dup2 in
+1 ft_redir
+1 open swich infile
+0 dup in --
+1 open pipe
+43 dup2 out
+1 swich_redir
+1 dup out --
+1 run_cmd
+42 dup2 in
+1 ft_redir
+0 dup in --
+1 open swich infile
+45 dup2 out
+1 dup out --
+1 open pipe
+1 ft_redir
+1 swich_redir
+1 run_cmd
+44 dup2 in
+1 open swich infile
+0 dup in --
+1 open pipe
+47 dup2 out
+1 swich_redir
+1 run_cmd
+1 dup out --
+46 dup2 in
+1 ft_redir
+0 dup in --
+1 open swich infile
+49 dup2 out
+1 open pipe
+1 dup out --
+1 swich_redir
+1 ft_redir
+1 run_cmd
+48 dup2 in
+1 open swich infile
+0 dup in --
+51 dup2 out
+1 open pipe
+1 dup out --
+1 swich_redir
+1 ft_redir
+1 run_cmd
+50 dup2 in
+0 dup in --
+1 open swich infile
+53 dup2 out
+1 open pipe
+1 dup out --
+1 swich_redir
+1 ft_redir
+1 run_cmd
+52 dup2 in
+0 dup in --
+1 open swich infile
+55 dup2 out
+1 open pipe
+1 dup out --
+1 ft_redir
+1 swich_redir
+1 run_cmd
+54 dup2 in
+1 open swich infile
+0 dup in --
+1 swich_redir
+57 dup2 out
+1 run_cmd
+56 dup2 in
+1 dup out --
+0 dup in --
+1 ft_redir
+1 ft_redir
+1 -	-	-	-
+1 q
+0 run_cmd
+1 open swich infile
+1 open pipe
+1 swich_redir
+1 run_cmd
+0 dup2 in
+1 open swich infile
+0 dup in --
+1 open pipe
+4 dup2 out
+1 swich_redir
+1 dup out --
+1 run_cmd
+3 dup2 in
+1 ft_redir
+0 dup in --
+1 open swich infile
+6 dup2 out
+1 open pipe
+1 dup out --
+1 swich_redir
+1 ft_redir
+1 run_cmd
+5 dup2 in
+1 open swich infile
+0 dup in --
+1 open pipe
+8 dup2 out
+1 swich_redir
+1 dup out --
+1 run_cmd
+7 dup2 in
+1 ft_redir
+0 dup in --
+1 open swich infile
+10 dup2 out
+1 open pipe
+1 dup out --
+1 swich_redir
+1 ft_redir
+1 run_cmd
+9 dup2 in
+1 open swich infile
+0 dup in --
+1 open pipe
+13 dup2 out
+1 swich_redir
+1 dup out --
+1 run_cmd
+11 dup2 in
+0 dup in --
+1 open swich infile
+1 ft_redir
+15 dup2 out
+1 open pipe
+1 dup out --
+1 swich_redir
+1 ft_redir
+1 run_cmd
+14 dup2 in
+1 open swich infile
+0 dup in --
+1 open pipe
+17 dup2 out
+1 swich_redir
+1 dup out --
+1 ft_redir
+1 run_cmd
+16 dup2 in
+0 dup in --
+1 open swich infile
+19 dup2 out
+1 open pipe
+1 swich_redir
+1 dup out --
+1 ft_redir
+1 run_cmd
+18 dup2 in
+1 open swich infile
+0 dup in --
+1 open pipe
+21 dup2 out
+1 swich_redir
+1 dup out --
+1 run_cmd
+20 dup2 in
+1 ft_redir
+1 open swich infile
+0 dup in --
+1 open pipe
+23 dup2 out
+1 swich_redir
+1 dup out --
+1 run_cmd
+22 dup2 in
+1 ft_redir
+1 open swich infile
+0 dup in --
+1 open pipe
+37 dup2 out
+1 swich_redir
+1 dup out --
+1 run_cmd
+24 dup2 in
+1 ft_redir
+1 open swich infile
+0 dup in --
+1 open pipe
+39 dup2 out
+1 swich_redir
+1 dup out --
+1 run_cmd
+38 dup2 in
+1 ft_redir
+0 dup in --
+1 open swich infile
+41 dup2 out
+1 dup out --
+1 open pipe
+1 ft_redir
+1 swich_redir
+1 run_cmd
+40 dup2 in
+1 open swich infile
+0 dup in --
+1 open pipe
+43 dup2 out
+1 swich_redir
+1 dup out --
+1 run_cmd
+42 dup2 in
+1 ft_redir
+1 open swich infile
+0 dup in --
+1 open pipe
+45 dup2 out
+1 swich_redir
+1 run_cmd
+1 dup out --
+44 dup2 in
+1 ft_redir
+1 open swich infile
+0 dup in --
+1 open pipe
+47 dup2 out
+1 swich_redir
+1 dup out --
+1 ft_redir
+1 run_cmd
+46 dup2 in
+1 open swich infile
+0 dup in --
+1 open pipe
+49 dup2 out
+1 swich_redir
+1 dup out --
+1 ft_redir
+1 run_cmd
+48 dup2 in
+1 open swich infile
+0 dup in --
+1 open pipe
+51 dup2 out
+1 swich_redir
+1 dup out --
+1 run_cmd
+1 ft_redir
+50 dup2 in
+1 open swich infile
+0 dup in --
+1 open pipe
+53 dup2 out
+1 swich_redir
+1 dup out --
+1 ft_redir
+1 run_cmd
+52 dup2 in
+1 open swich infile
+0 dup in --
+1 swich_redir
+55 dup2 out
+1 run_cmd
+54 dup2 in
+0 dup in --
+1 ft_redir
+1 dup out --
+1 ft_redir
+0 test
+1 -	-	-	-
+1 q
+0 run_cmd
+1 open swich infile
+1 open pipe
+1 swich_redir
+1 run_cmd
+0 dup2 in
+1 open swich infile
+0 dup in --
+4 dup2 out
+1 swich_redir
+1 dup out --
+1 run_cmd
+3 dup2 in
+1 ft_redir
+0 dup in --
+1 ft_redir
+0 test
+1 -	-	-	-
+1 q
+0 run_cmd
+1 open swich infile
+1 open pipe
+1 swich_redir
+1 run_cmd
+0 dup2 in
+1 open swich infile
+0 dup in --
+1 swich_redir
+3 dup2 out
+1 dup out --
+1 run_cmd
+0 dup2 in
+1 ft_redir
+0 dup in --
+1 ft_redir
+0 test
+1 -	-	-	-
+1 r
+0 run_cmd
+1 open swich infile
+1 open pipe
+1 swich_redir
+1 run_cmd
+0 dup2 in
+1 open swich infile
+0 dup in --
+1 swich_redir
+3 dup2 out
+1 run_cmd
+0 dup2 in
+1 dup out --
+0 dup in --
+1 ft_redir
+1 ft_redir
+0 test
+1 -	-	-	-
+1 q
+0 run_cmd
+1 open swich infile
+1 open pipe
+1 swich_redir
+1 run_cmd
+0 dup2 in
+1 open swich infile
+0 dup in --
+1 swich_redir
+4 dup2 out
+1 run_cmd
+3 dup2 in
+1 dup out --
+0 dup in --
+1 ft_redir
+1 ft_redir
+1 -	-	-	-
+1 make fclean
+1 open pipe
+1 swich_redir
+1 run_cmd
+4 dup2 out
+1 open swich infile
+1 dup out --
+1 ft_redir
+1 open pipe
+1 swich_redir
+1 run_cmd
+3 dup2 in
+1 open swich infile
+1 swich_redir
+0 dup in --
+1 run_cmd
+5 dup2 in
+6 dup2 out
+0 dup in --
+1 ft_redir
+1 dup out --
+1 ft_redir
+1 -	-	-	-
+1 q
+0 run_cmd
+1 open swich infile
+1 open pipe
+1 swich_redir
+1 run_cmd
+0 dup2 in
+1 open swich infile
+0 dup in --
+4 dup2 out
+1 swich_redir
+1 dup out --
+1 run_cmd
+3 dup2 in
+1 ft_redir
+0 dup in --
+1 ft_redir

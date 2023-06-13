@@ -43,7 +43,8 @@ int	main(int ac, char **av, char **en)
 		{
 			debug(SUCCESS, shell.s, FILE_DEF);
 			cmd_make_node_last(&in, ft_split(shell.s, ' '), make_token(-1, -1 ,0,  PIPE_OUT));
-			cmd_make_node_last(&in, ft_split("cat -e", ' '), make_token(-1, -1 ,0, PIPE_IN));
+			cmd_make_node_last(&in, ft_split("cat", ' '), make_token(-1, -1 ,0, PIPE_IN_OUT));
+			cmd_make_node_last(&in, ft_split("wc", ' '), make_token(-1, -1 ,0, PIPE_IN));
 			run_cmd(in);
 			add_history(shell.s);
 		}
