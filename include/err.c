@@ -12,12 +12,12 @@ int	err_msg(short type, int err, char *msg)
 	return(err);
 }
 
-int	debug(int err, char *msg)
+int	debug(int err, char *msg, char *file)
 {
 	int		fd;
 	char	*t;
 
-	fd = open(".debug_minishell", O_CREAT | O_APPEND | O_RDWR, 0644);
+	fd = open(file, O_CREAT | O_APPEND | O_RDWR, 0644);
 	if (fd == -1)
 	{
 		ft_putstr_fd("can't, make debug file\n", 2);

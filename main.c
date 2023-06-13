@@ -31,17 +31,17 @@ int	main(int ac, char **av, char **en)
 
 	(void)ac;
 	(void)av;
-	loop_test = 1;
+	loop_test = 5;
 	start_shell(&shell, en);
 	while (loop_test)
 	{
-		debug(SUCCESS, "-	-	-	-");
-		shell.s = ft_strdup("ls");
-		//shell.s = readline(PROMPT);
+		debug(SUCCESS, "-	-	-	-", FILE_DEF);
+		//shell.s = ft_strdup("ls -la");
+		shell.s = readline(PROMPT);
 		in = NULL;
 		if (shell.s && *shell.s)
 		{
-			debug(SUCCESS, shell.s);
+			debug(SUCCESS, shell.s, FILE_DEF);
 			cmd_make_node_last(&in, ft_split(shell.s, ' '), make_token(-1, -1 ,0,  PIPE_OUT));
 			cmd_make_node_last(&in, ft_split("cat -e", ' '), make_token(-1, -1 ,0, PIPE_IN));
 			run_cmd(in);
