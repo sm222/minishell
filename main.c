@@ -31,20 +31,24 @@ int	main(int ac, char **av, char **en)
 
 	(void)ac;
 	(void)av;
-	loop_test = 5;
+	loop_test = 1;
 	start_shell(&shell, en);
 	while (loop_test)
 	{
 		debug(SUCCESS, "-	-	-	-", FILE_DEF);
-		//shell.s = ft_strdup("ls -la");
 		shell.s = readline(PROMPT);
 		in = NULL;
 		if (shell.s && *shell.s)
 		{
 			debug(SUCCESS, shell.s, FILE_DEF);
 			cmd_make_node_last(&in, ft_split(shell.s, ' '), make_token(-1, -1 ,0,  PIPE_OUT));
-			cmd_make_node_last(&in, ft_split("cat", ' '), make_token(-1, -1 ,0, PIPE_IN_OUT));
-			cmd_make_node_last(&in, ft_split("wc", ' '), make_token(-1, -1 ,0, PIPE_IN));
+			cmd_make_node_last(&in, ft_split("cat -e", ' '), make_token(-1, -1 ,0, PIPE_IN_OUT));
+			cmd_make_node_last(&in, ft_split("ls", ' '), make_token(-1, -1 ,0, PIPE_IN_OUT));
+			cmd_make_node_last(&in, ft_split("a -e", ' '), make_token(-1, -1 ,0, PIPE_IN_OUT));
+			cmd_make_node_last(&in, ft_split("cat -e", ' '), make_token(-1, -1 ,0, PIPE_IN));
+			run_cmd(in);
+			in = NULL;
+			cmd_make_node_last(&in, ft_split("ls", ' '), make_token(-1, -1 ,0, PIPE_NO));
 			run_cmd(in);
 			add_history(shell.s);
 		}

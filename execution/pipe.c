@@ -42,11 +42,13 @@ int	ft_redir(t_cmd *in)
 	{
 		debug(in->tok->pipe_in, "dup2 in", FILE_DEF);
 		debug(dup2(in->tok->pipe_in, STDIN_FILENO), "dup in --", FILE_DEF);
+		close(in->tok->pipe_in);
 	}
 	if (in->tok->mode == PIPE_OUT || in->tok->mode == PIPE_IN_OUT)
 	{
 		debug(in->tok->pipe_out, "dup2 out", FILE_DEF);
 		debug(dup2(in->tok->pipe_out, STDOUT_FILENO), "dup out --", FILE_DEF);
+		close(in->tok->pipe_out);
 	}
 	return (debug(SUCCESS, "ft_redir", FILE_DEF));
 }

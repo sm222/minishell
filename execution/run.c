@@ -70,6 +70,9 @@ short	ft_execution(t_cmd *in, t_waitp **wait)
 	return (SUCCESS);
 }
 
+/// @brief use after 'cmd_make_node_last'
+/// @param in give list of cmd 't_cmd *'
+/// @return 
 int	run_cmd(t_cmd *in)
 {
 	int		err;
