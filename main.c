@@ -47,9 +47,6 @@ int	main(int ac, char **av, char **en)
 			cmd_make_node_last(&in, ft_split("a -e", ' '), make_token(-1, -1 ,0, PIPE_IN_OUT));
 			cmd_make_node_last(&in, ft_split("cat -e", ' '), make_token(-1, -1 ,0, PIPE_IN));
 			run_cmd(in);
-			in = NULL;
-			cmd_make_node_last(&in, ft_split("ls", ' '), make_token(-1, -1 ,0, PIPE_NO));
-			run_cmd(in);
 			add_history(shell.s);
 		}
 		ft_free(shell.s);
