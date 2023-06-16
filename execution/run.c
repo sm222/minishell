@@ -30,10 +30,13 @@ int	run_and_close(t_cmd *in, char **path, char *cmd)
 {
 	int		err;
 
+	(void)err;
 	close_all_fd(in);
 	err = execve(cmd, in->command, path);
+	exit(1);
 	return (FAIL);
 }
+
 int	free_exe(int err, t_exe *exe)
 {
 	if (!exe)
@@ -52,10 +55,12 @@ short	ft_execution(t_cmd *in, t_waitp **wait)
 	if (!shell)
 		return (debug(BAD_ARGS,"bad args in ft_execution", FILE_DEF));
 	exe.err = find_path(in->command[0], &exe.ft_path, shell->path);
-	if (exe.err <= FAIL)
-		return (err_msg(PERROR, exe.err, in->command[0]));
+	if (exe.err == FAIL)
+		err_msg(PERROR, exe.err, in->command[0]);
 	if (swich_redir(in) <= FAIL)
 		return (debug(FAIL, "ft_redir", FILE_DEF));
+	else if (exe.err == M_FAIL)
+		return (M_FAIL);
 	exe.pid = fork();
 	if (exe.pid == -1)
 		return (err_msg(NO_FREE, FORK_FAIL, "fork fail"));

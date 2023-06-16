@@ -1,18 +1,5 @@
 #include "execution.h"
 
-int	get_nb_pipe(t_cmd *in)
-{
-	int	i;
-
-	i = 0;
-	while (in)
-	{
-		if (in->tok->pipe_out)
-			return (1);
-	}
-	return (0);
-}
-
 int	swich_redir(t_cmd *in)
 {
 	if (!in)
@@ -21,8 +8,8 @@ int	swich_redir(t_cmd *in)
 		return (debug(SUCCESS, "swich_redir", FILE_DEF));
 	if (in->tok->mode == PIPE_IN || in->tok->mode == PIPE_IN_OUT)
 	{
-		ft_printf(2, "%d\n", in->prev->pipe[0]);
-		in->tok->pipe_in = in->prev->pipe[0];
+		if (in->prev->pipe[0])
+			in->tok->pipe_in = in->prev->pipe[0];
 		debug(SUCCESS, "open swich infile", FILE_DEF);
 	}
 	if (in->tok->mode == PIPE_OUT || in->tok->mode == PIPE_IN_OUT)

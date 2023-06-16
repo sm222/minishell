@@ -33,7 +33,7 @@ int	main(int ac, char **av, char **en)
 	(void)av;
 	loop_test = 1;
 	start_shell(&shell, en);
-	while (loop_test)
+	while (loop_test--)
 	{
 		debug(SUCCESS, "-	-	-	-", FILE_DEF);
 		shell.s = readline(PROMPT);
@@ -41,16 +41,12 @@ int	main(int ac, char **av, char **en)
 		if (shell.s && *shell.s)
 		{
 			debug(SUCCESS, shell.s, FILE_DEF);
-			cmd_make_node_last(&in, ft_split(shell.s, ' '), make_token(-1, -1 ,0,  PIPE_OUT));
-			cmd_make_node_last(&in, ft_split("cat -e", ' '), make_token(-1, -1 ,0, PIPE_IN_OUT));
-			cmd_make_node_last(&in, ft_split("ls", ' '), make_token(-1, -1 ,0, PIPE_IN_OUT));
-			cmd_make_node_last(&in, ft_split("a -e", ' '), make_token(-1, -1 ,0, PIPE_IN_OUT));
-			cmd_make_node_last(&in, ft_split("cat -e", ' '), make_token(-1, -1 ,0, PIPE_IN));
+			cmd_make_node_last(&in, ft_split(shell.s, ' '), make_token(-1, -1 ,0, PIPE_OUT));
+			cmd_make_node_last(&in, ft_split("ls   ", ' '), make_token(-1, -1 ,0, PIPE_IN));
 			run_cmd(in);
 			add_history(shell.s);
 		}
 		ft_free(shell.s);
-		loop_test--;
 	}
 	rl_clear_history();
 	free_shell(&shell);
