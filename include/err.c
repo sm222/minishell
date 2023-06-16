@@ -17,15 +17,20 @@ int	debug(int err, char *msg, char *file)
 	int		fd;
 	char	*t;
 
-	fd = open(file, O_CREAT | O_APPEND | O_RDWR, 0644);
-	if (fd == -1)
-	{
-		ft_putstr_fd("can't, make debug file\n", 2);
-		return (DEBUG_ERR);
-	}
 	ft_printf(-1, "%o%d %s\n", &t, err ,msg);
-	ft_putstr_fd(t, fd);
+	if (file)
+	{
+	fd = open(file, O_CREAT | O_APPEND | O_RDWR, 0644);
+		if (fd == -1)
+		{
+			ft_putstr_fd("can't, make debug file\n", 2);
+			return (DEBUG_ERR);
+		}
+		ft_putstr_fd(t, fd);
+		close(fd);
+	}
+	else
+		ft_putstr_fd(t, 2);
 	ft_free(t);
-	close(fd);
 	return (err);
 }

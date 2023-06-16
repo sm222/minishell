@@ -91,6 +91,7 @@ int	run_cmd(t_cmd *in)
 	err = 0;
 	while (tmp)
 	{
+		debug(0, "--cmd--", FILE_DEF);
 		if (tmp->tok && tmp->tok->build_in == 0)
 			err = ft_execution(tmp, &wait);
 		else
@@ -101,5 +102,5 @@ int	run_cmd(t_cmd *in)
 	close_all_fd(in);
 	wait_pids(wait, 1);
 	cmd_free(&in);
-	return (err);
+	return (SUCCESS);
 }
