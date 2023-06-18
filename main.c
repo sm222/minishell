@@ -13,6 +13,7 @@ static int	start_shell(t_mshell *shell, char **en)
 {
 	if (!shell)
 		return (BAD_ARGS);
+	shell->cmd_list = NULL;
 	shell->en = ft_cpy_double_char(en);
 	if (!shell->en)
 		return (M_FAIL);
@@ -26,7 +27,6 @@ static int	start_shell(t_mshell *shell, char **en)
 int	main(int ac, char **av, char **en)
 {
 	t_mshell	shell;
-	t_cmd		*in;
 	int		loop_test;
 
 	(void)ac;
@@ -36,14 +36,15 @@ int	main(int ac, char **av, char **en)
 	while (loop_test--)
 	{
 		debug(SUCCESS, "-	-	-	-", FILE_DEF);
-		shell.s = readline(PROMPT);
-		in = NULL;
+		//shell.s = readline(PROMPT);
+		shell.s = ft_strdup("cat Makefile");
+		shell.cmd_list = NULL;
 		if (shell.s && *shell.s)
 		{
 			debug(SUCCESS, shell.s, FILE_DEF);
-			cmd_make_node_last(&in, ft_split(shell.s, ' '), make_token(-1, -1 ,0, PIPE_OUT));
-			cmd_make_node_last(&in, ft_split("echo test", ' '), make_token(-1, -1 ,0, PIPE_IN));
-			run_cmd(in);
+			cmd_make_node_last(&shell.cmd_list, ft_split(shell.s, ' '),  make_token(0, PIPE_OUT, NO_FILE, NO_FILE));
+			cmd_make_node_last(&shell.cmd_list, ft_split("cat -e", ' '), make_token(0, PIPE_IN, open("note.txt", O_RDONLY), open("test", O_CREAT | O_RDWR | O_TRUNC, dev_chmod)));
+			run_cmd(shell.cmd_list);
 			add_history(shell.s);
 		}
 		ft_free(shell.s);

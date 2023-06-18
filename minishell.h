@@ -22,6 +22,7 @@
 //--------------------------//
 
 # include "C_tools/C_tool.h"
+# define dev_chmod 0644
 
 //--------------------------//
 //			define			//
@@ -40,7 +41,7 @@ typedef struct s_mshell
 	char	*s;
 	char	**en;
 	char	**path;
-	int		fd[2];
+	t_cmd	*cmd_list;
 
 }	t_mshell;
 

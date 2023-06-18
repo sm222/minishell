@@ -1,0 +1,17 @@
+0 test
+1 -	-	-	-
+1 cat Makefile
+0 --cmd--
+1 open pipe
+1 set_redir
+1 run_cmd
+6 dup2 out
+0 --cmd--
+1 dup out --
+1 dup_in_out
+1 open swich infile
+1 set_redir
+1 run_cmd
+4 dup2 in
+0 dup in --
+1 dup_in_out
