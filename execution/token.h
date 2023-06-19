@@ -39,8 +39,8 @@ typedef struct s_token
 	char	mode;
 	int		pipe_in;
 	int		pipe_out;
-	int		redi_in;
-	int		redi_out;
+	char	*redi_in;
+	char	*redi_out;
 }	t_token;
 
 //--------------------------//
