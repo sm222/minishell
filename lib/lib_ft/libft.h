@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 11:07:18 by anboisve          #+#    #+#             */
-/*   Updated: 2023/06/08 13:23:09 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/06/19 10:56:09 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,13 @@ int		ft_putchar_fd(char c, int fd);
 int		ft_putstr_fd(char *s, int fd);
 int		ft_putnbr_fd(int n, int fd);
 int		ft_putendl_fd(char *s, int fd);
+
+//b_flag								//
+
+void	ft_b_print(int f, int fd);
+short	ft_b_flag_read(int flag, int byte);
+void	ft_b_toggle_flag(int *flag, int pos);
+void	ft_b_set_flag(int *flag, int pos, char tf);
 
 //conversion							//
 

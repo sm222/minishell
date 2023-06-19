@@ -26,6 +26,9 @@
 # define PIPE_OUT 2
 # define PIPE_IN_OUT 3
 
+# define F_MODE 1
+
+
 # define NO_FILE 0
 
 
@@ -48,7 +51,7 @@ typedef struct s_token
 //--------------------------//
 
 //t_token	*make_token(int in, int out, char build_in, int mode);
-t_token	*make_token(char build_in, int mode, int redi_in, int redi_out);
+t_token	*make_token(int flag, char *redi_in, char *redi_out);
 
 /*
 ◦ < doit rediriger l’entrée.

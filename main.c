@@ -28,7 +28,6 @@ int	main(int ac, char **av, char **en)
 {
 	t_mshell	shell;
 	int		loop_test;
-	int		fd[2];
 
 	(void)ac;
 	(void)av;
@@ -43,7 +42,7 @@ int	main(int ac, char **av, char **en)
 		if (shell.s && *shell.s)
 		{
 			debug(SUCCESS, shell.s, FILE_DEF);
-			cmd_make_node_last(&shell.cmd_list, ft_split("cat -e", ' '), make_token(0, PIPE_NO, fd[1], fd[0]));
+			cmd_make_node_last(&shell.cmd_list, ft_split("cat -e", ' '), make_token(0, NULL, NULL));
 			run_cmd(shell.cmd_list);
 			add_history(shell.s);
 		}

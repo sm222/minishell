@@ -1,13 +1,27 @@
 #include "execution.h"
 
+int	set_pipe(t_cmd **in)
+{
+	t_cmd	*tmp;
+
+	if (!in || !*in)
+		return (BAD_ARGS);
+	tmp = (*in);
+	if (cmd_node_len(tmp) == 1)
+	{
+		printf("");
+	}
+	return (SUCCESS);
+}
+
 int	redir_file(t_cmd *in)
 {
 	if (!in || !in->tok)
 		return(debug(BAD_ARGS, "redir_file", FILE_DEF));
 	if (in->tok->redi_in)
-		in->tok->pipe_in = in->tok->redi_in;
+		in->tok->pipe_in = open(in->tok->redi_in, O_RDONLY);
 	if (in->tok->redi_out)
-		in->tok->pipe_out = in->tok->redi_out;
+		in->tok->pipe_out = open(in->tok->redi_out, O_CREAT | O_RDWR | O_TRUNC, 0644);
 	return (SUCCESS);
 }
 
