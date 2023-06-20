@@ -43,9 +43,6 @@ int	find_path(char *name, char **out, char **list)
 	i = 0;
 	tmp = NULL;
 	*out = NULL;
-	local = test_local(name, out);
-	if (local > 0 || local == M_FAIL)
-		return (local);
 	while (list[i])
 	{
 		ft_printf(-1, "%o%s/%s", &tmp, list[i], name);
@@ -59,5 +56,8 @@ int	find_path(char *name, char **out, char **list)
 		tmp = ft_free(tmp);
 		i++;
 	}
+	local = test_local(name, out);
+	if (local > 0 || local == M_FAIL)
+		return (local);
 	return (FAIL);
 }

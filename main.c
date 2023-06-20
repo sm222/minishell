@@ -33,17 +33,17 @@ int	main(int ac, char **av, char **en)
 	(void)av;
 	loop_test = 1;
 	start_shell(&shell, en);
-	while (loop_test--)
+	while (1)
 	{
 		debug(SUCCESS, "-	-	-	-", FILE_DEF);
-		//shell.s = readline(PROMPT);
-		shell.s = ft_strdup("cat Makefile");
+		shell.s = readline(PROMPT);
 		shell.cmd_list = NULL;
 		if (shell.s && *shell.s)
 		{
 			debug(SUCCESS, shell.s, FILE_DEF);
-			cmd_make_node_last(&shell.cmd_list, ft_split("ls", ' '), make_token(0, 0, 0));
-			cmd_make_node_last(&shell.cmd_list, ft_split("cat -e", ' '), make_token(0, 0, 0));
+			cmd_make_node_last(&shell.cmd_list, ft_split(shell.s, ' '), make_token(0, 0, 0));
+			cmd_make_node_last(&shell.cmd_list, ft_split("ls ", ' '), make_token(0, 0, 0));
+			cmd_make_node_last(&shell.cmd_list, ft_split("cat  ", ' '), make_token(0, 0, 0));
 			run_cmd(shell.cmd_list);
 			add_history(shell.s);
 		}

@@ -5,17 +5,25 @@ int	set_pipe(t_cmd **in)
 	t_cmd	*tmp;
 
 	if (!in || !*in)
-		return (BAD_ARGS);
-	debug(1, "set_pipe", FILE_DEF);
+		return (debug(BAD_ARGS, "set_pipe", FILE_DEF));
 	tmp = (*in);
-	if (cmd_node_len(tmp) == 1)
-		return (SUCCESS);
 	if (cmd_node_len(tmp) == 2)
 	{
 		ft_b_set_flag(&tmp->tok->mode, PIPE_OUT, TRUE);
 		ft_b_set_flag(&tmp->next->tok->mode, PIPE_IN, TRUE);
 	}
-	
+	if (cmd_node_len(tmp) > 2)
+	{
+		ft_b_set_flag(&tmp->tok->mode, PIPE_OUT, TRUE);
+		tmp = tmp->next;
+		while (tmp->next)
+		{
+			ft_b_set_flag(&tmp->tok->mode, PIPE_OUT, TRUE);
+			ft_b_set_flag(&tmp->tok->mode, PIPE_IN, TRUE);
+			tmp = tmp->next;
+		}
+		ft_b_set_flag(&tmp->tok->mode, PIPE_IN, TRUE);
+	}
 	return (SUCCESS);
 }
 
