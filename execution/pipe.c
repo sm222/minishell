@@ -9,7 +9,7 @@ int	set_pipe(t_cmd **in)
 	tmp = (*in);
 	if (cmd_node_len(tmp) == 1)
 	{
-		printf("");
+		printf(" ");
 	}
 	return (SUCCESS);
 }

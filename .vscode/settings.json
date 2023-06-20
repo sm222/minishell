@@ -60,7 +60,8 @@
 		"utility": "c",
 		"vector": "c",
 		"stdio.h": "c",
-		"__config": "c"
+		"__config": "c",
+		"ct_printf.h": "c"
 	},
 	"C_Cpp.errorSquiggles": "disabled"
 }
