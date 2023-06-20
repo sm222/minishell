@@ -74,6 +74,7 @@ short	cmd_make_node_last(t_cmd **list, char **cmd, t_token *tok);
 
 // pipe
 
+int		set_pipe(t_cmd **in);
 int		set_redir(t_cmd *in);
 int		dup_in_out(t_cmd *in);
 

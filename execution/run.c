@@ -89,6 +89,7 @@ int	run_cmd(t_cmd *in)
 		return (BAD_ARGS);
 	tmp = in;
 	err = 0;
+	set_pipe(&in);
 	while (tmp)
 	{
 		debug(0, "--cmd--", FILE_DEF);

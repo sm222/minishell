@@ -39,11 +39,11 @@
 typedef struct s_token
 {
 	char	build_in;
-	char	mode;
+	int		mode;
 	int		pipe_in;
 	int		pipe_out;
-	char	*redi_in;
-	char	*redi_out;
+	int		redi_in;
+	int		redi_out;
 }	t_token;
 
 //--------------------------//
@@ -51,7 +51,7 @@ typedef struct s_token
 //--------------------------//
 
 //t_token	*make_token(int in, int out, char build_in, int mode);
-t_token	*make_token(int flag, char *redi_in, char *redi_out);
+t_token	*make_token(int flag, int redi_in, int redi_out);
 
 /*
 ◦ < doit rediriger l’entrée.
