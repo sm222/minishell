@@ -42,7 +42,6 @@ typedef struct s_cmd
 	t_token			*tok;
 }	t_cmd;
 
-/// @brief pec = prosess exit code
 typedef struct s_waitp
 {
 	pid_t			pid;

@@ -38,6 +38,7 @@
 //			struct			//
 //--------------------------//
 
+/// @brief pec = prosess exit code
 typedef struct s_mshell
 {
 	char	*s;

@@ -2,6 +2,8 @@
 #include "execution.h"
 #include "../minishell.h"
 
+/// @brief run in all link list of 't_cmd'and close pipe
+/// @param in link list
 void	close_all_fd(t_cmd *in)
 {
 	t_cmd	*tmp;
@@ -26,6 +28,11 @@ void	close_all_fd(t_cmd *in)
 	}
 }
 
+/// @brief use to run the cmd (need to add stuff)
+/// @param in t_cmd link list
+/// @param path env of system
+/// @param cmd relatif path of the cmd ex: /bin/ls
+/// @return 
 int	run_and_close(t_cmd *in, char **path, char *cmd)
 {
 	int		err;
@@ -33,10 +40,11 @@ int	run_and_close(t_cmd *in, char **path, char *cmd)
 	(void)err;
 	close_all_fd(in);
 	err = execve(cmd, in->command, path);
-	exit(1);
+	exit(1); //meaby rm later
 	return (FAIL);
 }
 
+//
 int	free_exe(int err, t_exe *exe)
 {
 	if (!exe)
@@ -45,14 +53,19 @@ int	free_exe(int err, t_exe *exe)
 	return (err);
 }
 
-
+/// @brief use to find the cmd and run it
+/// @param in 't_cmd' to run
+/// @param wait adrres of the 't_waip' list
+/// @return FORK_FAIL if fork did't work
+/// @return FAIL if can't find a cmd,
+/// @return else SUCCESS
 short	ft_execution(t_cmd *in, t_waitp **wait)
 {
 	t_exe		exe;
 	t_mshell	*shell;
 
 	shell = fr_return_ptr(NULL, SYS);
-	if (!shell)
+	if (!shell || !in || !wait)
 		return (debug(BAD_ARGS,"bad args in ft_execution", FILE_DEF));
 	exe.err = find_path(in->command[0], &exe.ft_path, shell->path);
 	if (exe.err == FAIL)
@@ -93,7 +106,7 @@ int	run_cmd(t_cmd *in)
 	while (tmp)
 	{
 		debug(0, "--cmd--", FILE_DEF);
-		if (tmp->tok && tmp->tok->build_in == 0)
+		if (tmp->tok && ft_b_flag_read(tmp->tok->mode, BUILD_IN))
 			err = ft_execution(tmp, &wait);
 		else
 			err = ft_execution(tmp, &wait);

@@ -1,5 +1,8 @@
 #include "execution.h"
 
+/// @brief use to set the value of the flag in tok 
+/// @param in adrres of the 't_cmd' list
+/// @return SUCCESS if good, else BAD_ARGS
 int	set_pipe(t_cmd **in)
 {
 	t_cmd	*tmp;
@@ -27,6 +30,9 @@ int	set_pipe(t_cmd **in)
 	return (SUCCESS);
 }
 
+/// @brief use to set the file in the redirection
+/// @param in list link of the 't_cmd'
+/// @return SUCCESS, else BAD_ARGS
 int	redir_file(t_cmd *in)
 {
 	if (!in || !in->tok)
@@ -38,6 +44,9 @@ int	redir_file(t_cmd *in)
 	return (SUCCESS);
 }
 
+/// @brief 
+/// @param in 
+/// @return 
 int	set_redir(t_cmd *in)
 {
 	if (!in || !in->tok)

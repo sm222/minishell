@@ -38,6 +38,10 @@ int	echo(char **av)
 
 int	main(int ac, char **av)
 {
-	(void)ac;
+	if (ac == 1)
+	{
+		ft_printf(1, "\n");
+		return (0);
+	}
 	return(echo(av));
 }

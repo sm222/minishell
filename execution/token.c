@@ -1,6 +1,11 @@
 
 #include "token.h"
 
+/// @brief create a new node
+/// @param flag binary
+/// @param redi_in in file
+/// @param redi_out out file
+/// @return new node
 t_token	*make_token(int flag, int redi_in, int redi_out)
 {
 	t_token	*new;

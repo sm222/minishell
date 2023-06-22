@@ -26,6 +26,9 @@ short	wait_pids(t_waitp *in, short free_f)
 	return (SUCCESS);
 }
 
+/// @brief make new node
+/// @param pid new pid
+/// @return new node
 static t_waitp *wait_make_node(pid_t pid)
 {
 	t_waitp	*new;
@@ -40,7 +43,9 @@ static t_waitp *wait_make_node(pid_t pid)
 /// @brief add a pid to a list 
 /// @param in link list
 /// @param pid pid to add to the list
-/// @return 
+/// @return SUCCESS + len
+/// @return BAD_ARGS if miss some argument
+/// @return M_FAIL if malloc fail
 int	wait_make_node_last(t_waitp **in, pid_t pid)
 {
 	t_waitp	*tmp;

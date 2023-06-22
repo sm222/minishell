@@ -25,6 +25,7 @@
 # define PIPE_IN 1
 # define PIPE_OUT 2
 # define PIPE_IN_OUT 3
+# define BUILD_IN 4
 
 # define F_MODE 1
 
@@ -38,7 +39,6 @@
 
 typedef struct s_token
 {
-	char	build_in;
 	int		mode;
 	int		pipe_in;
 	int		pipe_out;

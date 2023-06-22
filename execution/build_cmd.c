@@ -16,6 +16,12 @@ t_cmd	*cmd_make_node(char **cmd, t_token *tok)
 		return (NULL);
 	}
 	new->command = ft_cpy_double_char(cmd);
+	if (!new->command)
+	{
+		ft_free(new);
+		ft_free(tok);
+		debug(M_FAIL, "malloc fail in cmd_make_node", FILE_DEF);
+	}
 	new->tok = tok;
 	return (new);
 }
