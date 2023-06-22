@@ -20,6 +20,9 @@
 //--------------------------//
 
 # define PATH 1
+# define PEC 2
+
+
 
 # define SET_IN 1
 # define PIPE 2
@@ -39,6 +42,7 @@ typedef struct s_cmd
 	t_token			*tok;
 }	t_cmd;
 
+/// @brief pec = prosess exit code
 typedef struct s_waitp
 {
 	pid_t			pid;
@@ -50,7 +54,6 @@ typedef struct s_exe
 	int			err;
 	char		*ft_path;
 	pid_t		pid;
-	
 }	t_exe;
 
 /*

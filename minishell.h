@@ -30,6 +30,8 @@
 
 # define SYS 0
 
+
+
 # define PROMPT "$ "
 
 //--------------------------//
@@ -39,6 +41,7 @@
 typedef struct s_mshell
 {
 	char	*s;
+	int		pec;
 	char	**en;
 	char	**path;
 	t_cmd	*cmd_list;

@@ -30,7 +30,7 @@ int	set_pipe(t_cmd **in)
 int	redir_file(t_cmd *in)
 {
 	if (!in || !in->tok)
-		return(debug(BAD_ARGS, "redir_file", FILE_DEF));
+		return (debug(BAD_ARGS, "redir_file", FILE_DEF));
 	if (in->tok->redi_in)
 		in->tok->pipe_in = in->tok->redi_in;
 	if (in->tok->redi_out)
@@ -41,9 +41,10 @@ int	redir_file(t_cmd *in)
 int	set_redir(t_cmd *in)
 {
 	if (!in || !in->tok)
-		return(debug(BAD_ARGS, "set_redir", FILE_DEF));
+		return (debug(BAD_ARGS, "set_redir", FILE_DEF));
 	ft_b_print(in->tok->mode, 2);
-	if (ft_b_flag_read(in->tok->mode, PIPE_IN) == FALSE && ft_b_flag_read(in->tok->mode, PIPE_OUT) == FALSE)
+	if (ft_b_flag_read(in->tok->mode, PIPE_IN) == FALSE && \
+		ft_b_flag_read(in->tok->mode, PIPE_OUT) == FALSE)
 		return (debug(SUCCESS, "set_redir", FILE_DEF));
 	if ((ft_b_flag_read(in->tok->mode, PIPE_IN) == TRUE))
 	{

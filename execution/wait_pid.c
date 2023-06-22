@@ -8,14 +8,17 @@
 short	wait_pids(t_waitp *in, short free_f)
 {
 	t_waitp *tmp;
+	int		*pec;
 
 	tmp = NULL;
 	if (!in)
 		return (BAD_ARGS);
+	pec = fr_return_ptr(NULL, PEC);
 	while (in)
 	{
 		tmp = in->next;
-		waitpid(in->pid, NULL, 0);
+		waitpid(in->pid, pec, 0);
+		debug(*pec, "pec", FILE_DEF);
 		if (free_f)
 			ft_free(in);
 		in = tmp;
