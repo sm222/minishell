@@ -9,4 +9,10 @@
 # include "../../lib/lib_ft/libft.h"
 # include <sysexits.h>
 
+# ifndef ECHO
+#  define ECHO "echo"
+#  define ECHO_PATH "build_in/echo/"
+# endif
+
+
 #endif // ECHO_H

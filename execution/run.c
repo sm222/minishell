@@ -128,7 +128,7 @@ int	run_cmd(t_cmd *in)
 	{
 		close_old_fd(tmp);
 		if (tmp->tok && ft_b_flag_read(tmp->tok->mode, BUILD_IN))
-			err = ft_execution(tmp, &wait);
+			err = ft_execution_buildin(tmp, &wait);
 		else
 			err = ft_execution(tmp, &wait);
 		tmp = tmp->next;

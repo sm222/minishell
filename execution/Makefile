@@ -12,7 +12,8 @@ SRCS	=	build_cmd.c\
 			find_cmd.c\
 			wait_pid.c\
 			token.c\
-			pipe.c
+			pipe.c\
+			exe_build_in.c
 
 OBJS	=	$(SRCS:.c=.o)
 
