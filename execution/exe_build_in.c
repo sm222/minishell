@@ -11,12 +11,14 @@ static char	*find_build_in(char *name)
 	return (NULL);
 }
 
-int	ft_execution_buildin(t_cmd *in, t_waitp **wait)
+int	ft_execution_buildin(t_cmd *in, t_waitp **wait, int cmd_len)
 {
 	char	*name;
 
 	name =  find_build_in(in->command[0]);
 	ft_free(in->command[0]);
 	in->command[0] = name;
-	return(ft_execution(in, wait));
+	if (cmd_len > 1)
+		return(ft_execution(in, wait));
+	return (0);
 }

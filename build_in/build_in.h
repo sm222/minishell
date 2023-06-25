@@ -8,9 +8,6 @@
 
 #include "echo/echo.h"
 #include "pwd/pwd.h"
-
-
-
-
+#include "cd/cd.h"
 
 #endif // BUILD_IN_H

@@ -74,7 +74,7 @@ int		find_path(char *name, char **out, char **list);
 short	cmd_make_node_last(t_cmd **list, char **cmd, t_token *tok);
 
 short	ft_execution(t_cmd *in, t_waitp **wait);
-int		ft_execution_buildin(t_cmd *in, t_waitp **wait);
+int		ft_execution_buildin(t_cmd *in, t_waitp **wait, int cmd_len);
 
 // pipe
 

@@ -46,7 +46,8 @@ int	main(int ac, char **av, char **en)
 			//debug(SUCCESS, shell.s, FILE_DEF);
 			//cmd_make_node_last(&shell.cmd_list, ft_split("echo  test", ' '), make_token(0, 0, 0));
 			//cmd_make_node_last(&shell.cmd_list, ft_split("cat", ' '), make_token(0, 0, 0));
-			cmd_make_node_last(&shell.cmd_list, ft_split("pwd ", ' '), make_token(flag, 0, 0));
+			cmd_make_node_last(&shell.cmd_list, ft_split("pwd", ' '), make_token(flag, 0, 0));
+			cmd_make_node_last(&shell.cmd_list, ft_split("pwd", ' '), make_token(flag, 0, 0));
 			run_cmd(shell.cmd_list);
 			//add_history(shell.s);
 		}

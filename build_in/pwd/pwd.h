@@ -10,6 +10,4 @@
 #  define PWD_PATH "build_in/pwd/"
 # endif
 
-
-
 #endif // PWD_H
