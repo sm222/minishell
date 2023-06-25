@@ -26,7 +26,6 @@ t_cmd	*cmd_make_node(char **cmd, t_token *tok)
 	return (new);
 }
 
-
 /// @brief get len of the list
 /// @param list input
 /// @return len of the list

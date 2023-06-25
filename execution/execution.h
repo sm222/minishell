@@ -22,8 +22,6 @@
 # define PATH 1
 # define PEC 2
 
-
-
 # define SET_IN 1
 # define PIPE 2
 # define SET_HERE_DOC 3

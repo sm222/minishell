@@ -27,7 +27,7 @@ C_TOOL_DIR	=	C_tools/
 
 # Compiler and flags
 CC		=	gcc
-CFLAGS	=	-Wall -Werror -Wextra -g
+CFLAGS	=	-Wall -Werror -Wextra
 RM		=	rm -f
 
 # Sources are all .c files
@@ -35,7 +35,7 @@ SRCS	=	main.c\
 			env.c\
 			include/err.c
 
-
+#env -i ./minishell
 
 OBJS	=	$(SRCS:.c=.o)
 

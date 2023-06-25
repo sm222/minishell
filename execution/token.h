@@ -29,9 +29,7 @@
 
 # define F_MODE 1
 
-
 # define NO_FILE 0
-
 
 //--------------------------//
 //			struct			//
@@ -60,6 +58,5 @@ contenant le délimiteur. Cependant, l’historique n’a pas à être mis à jo
 ◦ > doit rediriger la sortie.
 ◦ >> doit rediriger la sortie en mode append.
 */
-
 
 #endif // TOKEN_H

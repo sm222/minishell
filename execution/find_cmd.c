@@ -9,7 +9,7 @@ static int	test_local(char *name, char **out)
 	char	*tmp;
 
 	tmp = NULL;
-	ft_printf(-1, "%o./%s", &tmp ,name);
+	ft_printf(-1, "%o./%s", &tmp, name);
 	if (!tmp)
 		return (M_FAIL);
 	if (access(tmp, F_OK | X_OK) == 0)
@@ -33,7 +33,7 @@ static int	test_local(char *name, char **out)
 /// @param out return name + path, NULL if fail
 /// @param list path of the system
 /// @return -1 if M_FAIL, FAIL if can't find path
-/// @return else return 1 or 2 for local file, 3 and plus for the index were it find it 
+/// @return else return 1 or 2 for local file, 3 and plus for the index were it find it
 int	find_path(char *name, char **out, char **list)
 {
 	char	*tmp;
