@@ -52,11 +52,9 @@ libft:
 	@echo $(GRN)making libft$(WHT)
 	@$(MAKE) -C $(LIBFT_DIR)
 
-echo:
-	@make -C build_in/echo
-buildin: echo
+buildin:
 	@echo $(GRN)making buildin$(WHT)
-	echo
+	make -C build_in
 
 exe:
 	@echo $(GRN)execution buildin$(WHT)
@@ -72,6 +70,7 @@ clean:
 	@make -C $(LIBFT_DIR) clean
 	@make -C $(EXECUTION_DIR) clean
 	@make -C $(C_TOOL_DIR) clean
+	@make -C build_in clean
 	@echo $(shell clear)
 	@echo -n $(GRN)
 	@echo clean *.o$(RESET)
@@ -80,6 +79,7 @@ clean:
 fclean: clean
 	@$(RM) $(NAME)
 	@$(RM) $(B_NAME)
+	@make -C build_in fclean
 	@make -C $(LIBFT_DIR) fclean
 	@make -C $(C_TOOL_DIR) fclean
 	@make -C $(EXECUTION_DIR) fclean

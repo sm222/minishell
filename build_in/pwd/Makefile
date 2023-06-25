@@ -8,7 +8,7 @@ WHT		=	"\x1B[37m"
 RESET	=	"\x1B[0m"
 CLE 	=	\e[1;1H\e[2J
 
-NAME	=	echo
+NAME	=	pwd
 
 LIBFT		=	libft.a
 LIBFT_DIR	=	../../lib/lib_ft/
@@ -20,7 +20,7 @@ CFLAGS	=	-Wall -Werror -Wextra
 RM		=	rm -f
 
 # Sources are all .c files
-SRCS	=	echo.c
+SRCS	=	pwd.c
 
 
 OBJS	=	$(SRCS:.c=.o)
@@ -34,18 +34,13 @@ $(NAME): $(OBJS)
 clean:
 	@$(RM) $(OBJS)
 	@echo $(shell clear)
-	@echo $(GRN) clean *.o$(RESET)
+	@echo $(GRN)clean *.o$(RESET)
 
 # Removes objects and executables
 fclean: clean
 	@$(RM) $(NAME)
 	@$(RM) $(B_NAME)
 	@echo $(shell clear)$(GRN)clean all$(RESET)
-
-
-run: all
-	@./$(NAME) -n test rrr
-
 
 mc: all clean
 
