@@ -8,7 +8,7 @@ WHT		=	"\x1B[37m"
 RESET	=	"\x1B[0m"
 CLE 	=	\e[1;1H\e[2J
 
-NAME	=	pwd
+NAME	=	ft_pwd
 
 LIBFT		=	libft.a
 LIBFT_DIR	=	../../lib/lib_ft/
@@ -20,7 +20,8 @@ CFLAGS	=	-Wall -Werror -Wextra
 RM		=	rm -f
 
 # Sources are all .c files
-SRCS	=	pwd.c
+SRCS	=	pwd.c\
+			main.c
 
 
 OBJS	=	$(SRCS:.c=.o)
