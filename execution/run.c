@@ -131,6 +131,8 @@ int	run_cmd(t_cmd *in)
 			err = ft_execution_buildin(tmp, &wait, cmd_node_len(in));
 		else
 			err = ft_execution(tmp, &wait);
+		if (err < SUCCESS)
+			err_msg(PERROR, err, "ft_execution");
 		tmp = tmp->next;
 	}
 	close_all_fd(in);
