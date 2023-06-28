@@ -3,9 +3,6 @@
 
 int	open_redi_flag(t_cmd *in)
 {
-	t_cmd	*tmp;
-
-	tmp  = in;
 	while (in)
 	{
 		if (in->tok->redi_in)
