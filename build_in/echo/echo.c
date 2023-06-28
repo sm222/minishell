@@ -1,16 +1,16 @@
 
 #include "echo.h"
 
-void	print_loop(char **av, size_t i)
+void	print_loop(char **av, size_t i, int fd)
 {
 	size_t	len;
 
 	len = ft_strlen_double(av);
 	while (i < len)
 	{
-		ft_printf(1, "%s", av[i]);
+		ft_putstr_fd(av[i], fd);
 		if (av[i + 1])
-			ft_printf(1, " ");
+			ft_putchar_fd(' ', fd);
 		i++;
 	}
 }
@@ -22,12 +22,12 @@ size_t	skip_args(char **av)
 	tmp = 1;
 	if (!av[1])
 		return (0);
-	while (ft_strncmp("-n", av[tmp], 2) == 0)
+	while (av[tmp] && ft_strncmp("-n", av[tmp], 2) == 0)
 	{
 		i = 2;
 		while (av[tmp][i] && av[tmp][i] == 'n')
 			i++;
-		if (av[tmp][i] && av[tmp][i] == '\0')
+		if (av[tmp][i] == '\0')
 			tmp++;
 		else
 			break ;
@@ -46,9 +46,8 @@ int	ft_echo(char **av, int re_in, int re_out)
 		ft_putchar_fd('\n', re_out);
 		return (EX_OK);
 	}
-	
-	print_loop(av, i);
-	if (i > 1)
+	print_loop(av, i, re_out);
+	if (i == 1)
 		ft_putchar_fd('\n', re_out);
 	return (EX_OK);
 }
