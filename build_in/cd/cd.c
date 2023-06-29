@@ -1,14 +1,14 @@
 
 #include "cd.h"
 
-static int	get_to_use(void)
+static int	get_to_user(void)
 {
 	char	*env;
 	char	*tmp;
 	int		err;
 
 	env = getenv("HOME");
-	if (!env)
+	if (!env || !*env)
 	{
 		ft_putstr_fd("cd: HOME not set\n",2);
 		return (1);
@@ -16,18 +16,29 @@ static int	get_to_use(void)
 	err = chdir(env);
 	if (err)
 	{
-		ft_printf(-1, "%ocd : %s :%s", &tmp, sys_errlist[errno], env);
+		ft_printf(-1, "%ocd: %s: %s\n", &tmp, sys_errlist[errno], env);
 		ft_putstr_fd(tmp, STDERR_FILENO);
+		ft_free(tmp);
 	}
 	return (err);
 }
 
-/*
 static int	goto_dir(char *dir)
 {
+	int	err;
+	char	*tmp;
 
+	err = chdir(dir);
+	if (err)
+	{
+		ft_printf(-1, "%ocd: %s: %s\n", &tmp, sys_errlist[errno], dir);
+		ft_putstr_fd(tmp, STDERR_FILENO);
+		ft_free(tmp);
+		exit(EXIT_FAILURE);
+	}
+	return(err);
 }
-*/
+
 
 int	ft_cd(char **av, int re_in, int re_out)
 {
@@ -37,13 +48,6 @@ int	ft_cd(char **av, int re_in, int re_out)
 	(void)re_out;
 	len = ft_strlen_double(av);
 	if (len == 1)
-	{
-		printf("%d\n", get_to_use());
-	}
-	else
-	{
-		if (chdir(av[1]))
-			return (0);
-	}
-	return (0);
+		return (get_to_user());
+	return (goto_dir(av[1]));
 }
