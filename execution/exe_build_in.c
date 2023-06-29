@@ -5,9 +5,9 @@
 static char	*find_build_in(char *name)
 {
 	if (ft_strncmp(name, ECHO, ft_strlen(ECHO) + 1) == 0)
-		return (ft_strdup(ECHO_PATH ECHO));
+		return (ft_strdup(ECHO_PATH "ft_"ECHO));
 	if (ft_strncmp(name, PWD, ft_strlen(PWD) + 1) == 0)
-		return (ft_strdup(PWD_PATH PWD));
+		return (ft_strdup(PWD_PATH "ft_"PWD));
 	return (NULL);
 }
 
