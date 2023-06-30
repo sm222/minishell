@@ -7,7 +7,7 @@
 /// @return SUCCESS
 short	wait_pids(t_waitp *in, short free_f)
 {
-	t_waitp *tmp;
+	t_waitp	*tmp;
 	int		*pec;
 
 	tmp = NULL;
@@ -18,7 +18,6 @@ short	wait_pids(t_waitp *in, short free_f)
 	{
 		tmp = in->next;
 		waitpid(in->pid, pec, 0);
-		debug(*pec, "pec", FILE_DEF);
 		if (free_f)
 			ft_free(in);
 		in = tmp;
@@ -29,7 +28,7 @@ short	wait_pids(t_waitp *in, short free_f)
 /// @brief make new node
 /// @param pid new pid
 /// @return new node
-static t_waitp *wait_make_node(pid_t pid)
+static t_waitp	*wait_make_node(pid_t pid)
 {
 	t_waitp	*new;
 

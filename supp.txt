@@ -46,4 +46,19 @@
 	...
 	obj:/bin/*
 }
-
+{
+   add_history
+   Memcheck:Leak
+   match-leak-kinds: all
+   ...
+   fun:add_history
+   ...
+}
+{
+   readline
+   Memcheck:Leak
+   match-leak-kinds: all
+   ...
+   fun:readline
+   ...
+}

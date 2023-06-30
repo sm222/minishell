@@ -33,6 +33,9 @@
 
 
 # define PROMPT "$ "
+# define MS_NAME "Minishell: "
+
+//TODO: zsh: command not found:
 
 //--------------------------//
 //			struct			//
@@ -46,6 +49,8 @@ typedef struct s_mshell
 	char	**en;
 	char	**path;
 	t_cmd	*cmd_list;
+	char	*info;
+	char	*tmp;
 
 }	t_mshell;
 

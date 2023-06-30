@@ -20,12 +20,11 @@ t_cmd	*cmd_make_node(char **cmd, t_token *tok)
 	{
 		ft_free(new);
 		ft_free(tok);
-		debug(M_FAIL, "malloc fail in cmd_make_node", FILE_DEF);
+		return (NULL);
 	}
 	new->tok = tok;
 	return (new);
 }
-
 
 /// @brief get len of the list
 /// @param list input

@@ -14,6 +14,7 @@
 # include "token.h"
 # include "../include/err.h"
 # include "../lib/lib_ft/libft.h"
+# include "../build_in/build_in.h"
 
 //--------------------------//
 //			define			//
@@ -21,8 +22,6 @@
 
 # define PATH 1
 # define PEC 2
-
-
 
 # define SET_IN 1
 # define PIPE 2
@@ -73,6 +72,9 @@ size_t	cmd_node_len(t_cmd *list);
 t_cmd	*cmd_make_node(char **cmd, t_token *tok);
 int		find_path(char *name, char **out, char **list);
 short	cmd_make_node_last(t_cmd **list, char **cmd, t_token *tok);
+
+short	ft_execution(t_cmd *in, t_waitp **wait);
+int		ft_execution_buildin(t_cmd *in, t_waitp **wait, int cmd_len);
 
 // pipe
 

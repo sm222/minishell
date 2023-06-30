@@ -2,6 +2,13 @@
 #include "execution.h"
 #include "../minishell.h"
 
+int	close_fd(int fd)
+{
+	if (fd)
+		return (close(fd));
+	return (0);
+}
+
 /// @brief run in all link list of 't_cmd'and close pipe
 /// @param in link list
 void	close_all_fd(t_cmd *in)
@@ -11,19 +18,19 @@ void	close_all_fd(t_cmd *in)
 	tmp = in;
 	while (tmp)
 	{
-		if (tmp->pipe[0])
-			close(tmp->pipe[0]);
-		if (tmp->pipe[1])
-			close(tmp->pipe[1]);
+		close_fd(tmp->pipe[0]);
+		close_fd(tmp->pipe[1]);
+		close_fd(tmp->tok->redi_in);
+		close_fd(tmp->tok->redi_out);
 		tmp = tmp->next;
 	}
 	tmp = in->prev;
 	while (tmp)
 	{
-		if (tmp->pipe[0])
-			close(tmp->pipe[0]);
-		if (tmp->pipe[1])
-			close(tmp->pipe[1]);
+		close_fd(tmp->pipe[0]);
+		close_fd(tmp->pipe[1]);
+		close_fd(tmp->tok->redi_in);
+		close_fd(tmp->tok->redi_out);
 		tmp = tmp->prev;
 	}
 }
@@ -33,14 +40,15 @@ void	close_all_fd(t_cmd *in)
 /// @param path env of system
 /// @param cmd relatif path of the cmd ex: /bin/ls
 /// @return 
-int	run_and_close(t_cmd *in, char **path, char *cmd)
+int	run_and_close(t_cmd *in, char **env, char *cmd)
 {
 	int		err;
 
 	(void)err;
 	close_all_fd(in);
-	err = execve(cmd, in->command, path);
-	exit(1); //meaby rm later
+	err = execve(cmd, in->command, env);
+	ft_free(cmd);
+	exit(1);
 	return (FAIL);
 }
 
@@ -48,7 +56,7 @@ int	run_and_close(t_cmd *in, char **path, char *cmd)
 int	free_exe(int err, t_exe *exe)
 {
 	if (!exe)
-		return (debug(BAD_ARGS,"bad args in free_exe", FILE_DEF));
+		return (BAD_ARGS);
 	ft_free(exe->ft_path);
 	return (err);
 }
@@ -66,12 +74,12 @@ short	ft_execution(t_cmd *in, t_waitp **wait)
 
 	shell = fr_return_ptr(NULL, SYS);
 	if (!shell || !in || !wait)
-		return (debug(BAD_ARGS,"bad args in ft_execution", FILE_DEF));
+		return (BAD_ARGS);
 	exe.err = find_path(in->command[0], &exe.ft_path, shell->path);
 	if (exe.err == FAIL)
-		err_msg(PERROR, exe.err, in->command[0]);
+		err_msg(DO_FREE, exe.err, ft_strjoin(MS_NAME ERR_CNF, in->command[0]));
 	if (set_redir(in) <= FAIL)
-		return (debug(FAIL, "ft_redir", FILE_DEF));
+		return (FAIL);
 	else if (exe.err == M_FAIL)
 		return (M_FAIL);
 	exe.pid = fork();
@@ -80,11 +88,23 @@ short	ft_execution(t_cmd *in, t_waitp **wait)
 	if (exe.pid == 0)
 	{
 		dup_in_out(in);
-		run_and_close(in, shell->path, exe.ft_path);
+		run_and_close(in, shell->en, exe.ft_path);
 	}
 	else
 		wait_make_node_last(wait, exe.pid);
 	ft_free(exe.ft_path);
+	return (SUCCESS);
+}
+
+int	close_old_fd(t_cmd *in)
+{
+	if (!in)
+		return (BAD_ARGS);
+	if (in->prev && in->prev->prev)
+	{
+		close_fd(in->prev->prev->pipe[0]);
+		close_fd(in->prev->prev->pipe[1]);
+	}
 	return (SUCCESS);
 }
 
@@ -105,12 +125,13 @@ int	run_cmd(t_cmd *in)
 	set_pipe(&in);
 	while (tmp)
 	{
-		debug(0, "--cmd--", FILE_DEF);
+		close_old_fd(tmp);
 		if (tmp->tok && ft_b_flag_read(tmp->tok->mode, BUILD_IN))
-			err = ft_execution(tmp, &wait);
+			err = ft_execution_buildin(tmp, &wait, cmd_node_len(in));
 		else
 			err = ft_execution(tmp, &wait);
-		debug(err, "run_cmd", FILE_DEF);
+		if (err < SUCCESS)
+			err_msg(PERROR, err, "ft_execution");
 		tmp = tmp->next;
 	}
 	close_all_fd(in);

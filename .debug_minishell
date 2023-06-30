@@ -1,0 +1,82 @@
+0 test
+1 -	-	-	-
+1 ls
+0 --cmd--
+1 open pipe
+1 set_redir
+1 run_cmd
+4 dup2 out
+0 --cmd--
+1 dup out --
+1 open swich infile
+1 dup_in_out
+1 open pipe
+1 set_redir
+1 run_cmd
+3 dup2 in
+0 --cmd--
+1 open swich infile
+0 dup in --
+1 open pipe
+6 dup2 out
+1 set_redir
+1 dup out --
+1 run_cmd
+5 dup2 in
+1 dup_in_out
+0 --cmd--
+0 dup in --
+1 open swich infile
+8 dup2 out
+1 set_redir
+1 dup out --
+1 run_cmd
+7 dup2 in
+1 dup_in_out
+0 pec
+0 dup in --
+0 pec
+1 dup_in_out
+0 pec
+0 pec
+0 test
+1 -	-	-	-
+1 cat
+0 --cmd--
+1 open pipe
+1 set_redir
+1 run_cmd
+4 dup2 out
+0 --cmd--
+1 dup out --
+1 open swich infile
+1 dup_in_out
+1 open pipe
+1 set_redir
+1 run_cmd
+3 dup2 in
+0 --cmd--
+0 dup in --
+1 open swich infile
+6 dup2 out
+1 open pipe
+1 dup out --
+1 set_redir
+1 dup_in_out
+1 run_cmd
+5 dup2 in
+0 --cmd--
+0 dup in --
+1 open swich infile
+8 dup2 out
+1 dup out --
+1 set_redir
+1 dup_in_out
+1 run_cmd
+7 dup2 in
+0 dup in --
+1 dup_in_out
+13 pec
+0 pec
+0 pec
+0 pec
