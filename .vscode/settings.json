@@ -61,7 +61,8 @@
 		"vector": "c",
 		"stdio.h": "c",
 		"__config": "c",
-		"ct_printf.h": "c"
+		"ct_printf.h": "c",
+		"errno.h": "c"
 	},
 	"C_Cpp.errorSquiggles": "disabled"
 }

@@ -16,6 +16,7 @@
 /*/*//*/*//*/*//*/*//*/*//*/*/
 
 # define FILE_DEF ".debug_minishell"
+# define ERR_CNF "command not found: "
 
 # define DEBUG_ERR -1
 

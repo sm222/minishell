@@ -10,6 +10,8 @@ static int	get_to_user(void)
 	env = getenv("HOME");
 	if (!env || !*env)
 	{
+		ft_putstr_fd(env, 2);
+		ft_putstr_fd("rr\n", 2);
 		ft_putstr_fd("cd: HOME not set\n",2);
 		return (1);
 	}

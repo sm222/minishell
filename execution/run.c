@@ -40,14 +40,13 @@ void	close_all_fd(t_cmd *in)
 /// @param path env of system
 /// @param cmd relatif path of the cmd ex: /bin/ls
 /// @return 
-int	run_and_close(t_cmd *in, char **path, char *cmd)
+int	run_and_close(t_cmd *in, char **env, char *cmd)
 {
 	int		err;
 
 	(void)err;
 	close_all_fd(in);
-	err = execve(cmd, in->command, path);
-	perror(path[0]);
+	err = execve(cmd, in->command, env);
 	ft_free(cmd);
 	exit(1);
 	return (FAIL);
@@ -78,7 +77,7 @@ short	ft_execution(t_cmd *in, t_waitp **wait)
 		return (BAD_ARGS);
 	exe.err = find_path(in->command[0], &exe.ft_path, shell->path);
 	if (exe.err == FAIL)
-		err_msg(PERROR, exe.err, in->command[0]);
+		err_msg(DO_FREE, exe.err, ft_strjoin(MS_NAME ERR_CNF, in->command[0]));
 	if (set_redir(in) <= FAIL)
 		return (FAIL);
 	else if (exe.err == M_FAIL)
@@ -89,7 +88,7 @@ short	ft_execution(t_cmd *in, t_waitp **wait)
 	if (exe.pid == 0)
 	{
 		dup_in_out(in);
-		run_and_close(in, shell->path, exe.ft_path);
+		run_and_close(in, shell->en, exe.ft_path);
 	}
 	else
 		wait_make_node_last(wait, exe.pid);

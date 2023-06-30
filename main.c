@@ -33,25 +33,26 @@ int	main(int ac, char **av, char **en)
 
 	(void)ac;
 	(void)av;
-	loop_test = 1;
+	loop_test = 10;
 	start_shell(&shell, en);
 	ft_b_set_flag(&flag, BUILD_IN, TRUE);
 	while (loop_test--)
 	{
-		debug(SUCCESS, "-	-	-	-", FILE_DEF);
-		shell.s = readline(PROMPT);
+		shell.info = getcwd(NULL, 0);
+		ft_printf(-1, "%o%s $ ", &shell.tmp, ft_strrchr(shell.info, '/'));
+		shell.s = readline(shell.tmp);
 		shell.cmd_list = NULL;
 		if (shell.s && *shell.s)
 		{
 			//debug(SUCCESS, shell.s, FILE_DEF);
-			//cmd_make_node_last(&shell.cmd_list, ft_split("echo  test", ' '), make_token(0, 0, 0));
-			//cmd_make_node_last(&shell.cmd_list, ft_split("cat", ' '), make_token(0, 0, 0));
-			cmd_make_node_last(&shell.cmd_list, ft_split("pwd", ' '), make_token(flag, 0, 0));
-			cmd_make_node_last(&shell.cmd_list, ft_split("pwd", ' '), make_token(flag, 0, 0));
+			cmd_make_node_last(&shell.cmd_list, ft_split(shell.s, ' '), make_token(0, 0, 0));
+			cmd_make_node_last(&shell.cmd_list, ft_split("cat -e", ' '), make_token(0, 0, 0));
 			run_cmd(shell.cmd_list);
-			//add_history(shell.s);
+			add_history(shell.s);
 		}
 		ft_free(shell.s);
+		ft_free(shell.info);
+		ft_free(shell.tmp);
 	}
 	rl_clear_history();
 	free_shell(&shell);

@@ -68,7 +68,6 @@ int	set_redir(t_cmd *in)
 {
 	if (!in || !in->tok)
 		return (BAD_ARGS);
-	ft_b_print(in->tok->mode, 2);
 	if (ft_b_flag_read(in->tok->mode, PIPE_IN) == FALSE && \
 		ft_b_flag_read(in->tok->mode, PIPE_OUT) == FALSE)
 		return (SUCCESS);
