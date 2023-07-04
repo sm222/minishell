@@ -33,7 +33,6 @@
 
 
 # define PROMPT "$ "
-# define MS_NAME "Minishell: "
 
 //TODO: zsh: command not found:
 

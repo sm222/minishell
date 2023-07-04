@@ -33,7 +33,7 @@ int	main(int ac, char **av, char **en)
 
 	(void)ac;
 	(void)av;
-	loop_test = 10;
+	loop_test = 1;
 	start_shell(&shell, en);
 	ft_b_set_flag(&flag, BUILD_IN, TRUE);
 	while (loop_test--)
@@ -45,7 +45,8 @@ int	main(int ac, char **av, char **en)
 		if (shell.s && *shell.s)
 		{
 			//debug(SUCCESS, shell.s, FILE_DEF);
-			cmd_make_node_last(&shell.cmd_list, ft_split(shell.s, ' '), make_token(flag, 0, 0));
+			cmd_make_node_last(&shell.cmd_list, ft_split(shell.s, ' '), make_token(0, 0, 0));
+			cmd_make_node_last(&shell.cmd_list, ft_split(shell.s, ' '), make_token(0, 0, 0));
 			run_cmd(shell.cmd_list);
 			add_history(shell.s);
 		}

@@ -1,14 +1,21 @@
 
 #include "execution.h"
 
-static char	*find_build_in(char *name)
+static char	*find_build_in(char *name, int *f)
 {
-	if (ft_strncmp(name, ECHO, ft_strlen(ECHO) + 1) == 0)
-		return (ft_strdup(ECHO_PATH "ft_"ECHO));
-	if (ft_strncmp(name, PWD, ft_strlen(PWD) + 1) == 0)
-		return (ft_strdup(PWD_PATH "ft_"PWD));
-	if (ft_strncmp(name, CD, ft_strlen(CD) + 1) == 0)
-		return (ft_strdup(CD_PATH "ft_"CD));
+	if (f)
+	{
+		*f = SUCCESS;
+		if (ft_strncmp(name, ECHO, ft_strlen(ECHO) + 1) == 0)
+			return (ft_strdup(ECHO_PATH "ft_"ECHO));
+		if (ft_strncmp(name, PWD, ft_strlen(PWD) + 1) == 0)
+			return (ft_strdup(PWD_PATH "ft_"PWD));
+		if (ft_strncmp(name, CD, ft_strlen(CD) + 1) == 0)
+			return (ft_strdup(CD_PATH "ft_"CD));
+		*f = FAIL;
+		return (NULL);
+	}
+	*f = BAD_ARGS;
 	return (NULL);
 }
 
@@ -34,17 +41,26 @@ static	int	run_local(int(*ft)(char **, int , int), t_cmd *in)
 	return (SUCCESS);
 }
 
+/// @brief take a cmd and redirect it to a buildin, if can't find it try to run a bash one
+/// @param in 
+/// @param wait 
+/// @param cmd_len 
+/// @return 
 int	ft_execution_buildin(t_cmd *in, t_waitp **wait, int cmd_len)
 {
+	int		f;
 	char	*name;
 
 	if (cmd_len > 1)
 	{
-		name = find_build_in(in->command[0]);
-		if (!name)
-			return (M_FAIL);
-		ft_free(in->command[0]);
-		in->command[0] = name;
+		name = find_build_in(in->command[0], &f);
+		if (!name && f == SUCCESS)
+			return (err_msg(NO_FREE, M_FAIL, MS_NAME "Malloc fail : ft_execution_buildin"));
+		if (f != FAIL)
+		{
+			ft_free(in->command[0]);
+			in->command[0] = name;
+		}
 		return(ft_execution(in, wait));
 	}
 	else if (cmd_len == 1)
