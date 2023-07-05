@@ -42,12 +42,24 @@ void	close_all_fd(t_cmd *in)
 /// @return 
 int	run_and_close(t_cmd *in, char **env, char *cmd)
 {
-	int		err;
+	int			err;
+	t_mshell	*shell;
 
 	(void)err;
+	shell = NULL;
+	dup_in_out(in);
 	close_all_fd(in);
 	err = execve(cmd, in->command, env);
 	ft_free(cmd);
+	cmd_free(&in);
+	shell = fr_return_ptr(NULL, SYS);
+	cmd_free(&in);
+	ft_double_sfree((void **)shell->path);
+	ft_double_sfree((void **)shell->en);
+	ft_free(shell->s);
+	ft_free(shell->tmp);
+	ft_free(shell->info);
+	ft_putstr_fd("ici\n", 2);
 	exit(1);
 	return (FAIL);
 }
@@ -86,10 +98,7 @@ short	ft_execution(t_cmd *in, t_waitp **wait)
 	if (exe.pid == -1)
 		return (err_msg(NO_FREE, FORK_FAIL, "fork fail"));
 	if (exe.pid == 0)
-	{
-		dup_in_out(in);
 		run_and_close(in, shell->en, exe.ft_path);
-	}
 	else
 		wait_make_node_last(wait, exe.pid);
 	ft_free(exe.ft_path);
