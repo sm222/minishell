@@ -51,6 +51,7 @@ int	ft_execution_buildin(t_cmd *in, t_waitp **wait, int cmd_len)
 	int		f;
 	char	*name;
 
+	name = NULL;
 	if (cmd_len > 1)
 	{
 		name = find_build_in(in->command[0], &f);

@@ -13,18 +13,15 @@ SRCS	=	build_cmd.c\
 			wait_pid.c\
 			token.c\
 			pipe.c\
-			exe_build_in.c
+			exe_build_in.c\
 
 OBJS	=	$(SRCS:.c=.o)
 
-all: $(NAME)
-
 $(NAME): $(OBJS) $(LIBFT_DIR)$(LIBFT)
-	@cp $(LIBFT_DIR)$(LIBFT) $(NAME)
-	@ar -rcs $(NAME) $(OBJS)
+	cp $(LIBFT_DIR)$(LIBFT) $(NAME)
+	ar rcs $(NAME) $(OBJS)
 
-$(OBJS): $(SRCS)
-	@$(CC) $(CFLAGS) -c $(SRCS)
+all: $(LDIR)$(LIBFT) $(NAME)
 
 clean:
 	@$(RM) $(OBJS)
