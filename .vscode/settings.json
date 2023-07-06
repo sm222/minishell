@@ -62,7 +62,8 @@
 		"stdio.h": "c",
 		"__config": "c",
 		"ct_printf.h": "c",
-		"errno.h": "c"
+		"errno.h": "c",
+		"exit.h": "c"
 	},
 	"C_Cpp.errorSquiggles": "disabled"
 }

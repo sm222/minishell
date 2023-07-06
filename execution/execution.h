@@ -8,7 +8,7 @@
 
 //https://stackoverflow.com/questions/142508/how-do-i-check-os-with-a-preprocessor-directive
 
-# ifdef unix
+# ifdef _WIN32
 #  include <sys/wait.h>
 # endif
 # include "token.h"
@@ -20,13 +20,13 @@
 //			define			//
 //--------------------------//
 
-# define PATH 1
-# define PEC 2
-
-# define SET_IN 1
-# define PIPE 2
-# define SET_HERE_DOC 3
-# define SET_APPEND 4
+# define PATH 1			// path split with the ':'
+# define PEC 2			// pid exit code
+//	byte flag			//
+# define SET_IN 1		//
+# define PIPE 2			//
+# define SET_HERE_DOC 3	//
+# define SET_APPEND 4	//
 
 //--------------------------//
 //			struct			//
