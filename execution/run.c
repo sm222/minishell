@@ -1,6 +1,5 @@
 
 #include "execution.h"
-#include "../minishell.h"
 
 /// @brief use to run the cmd (need to add stuff)
 /// @param in t_cmd link list

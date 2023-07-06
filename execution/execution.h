@@ -8,30 +8,22 @@
 
 //https://stackoverflow.com/questions/142508/how-do-i-check-os-with-a-preprocessor-directive
 
-# ifdef _WIN32
+# ifndef _WIN32
 #  include <sys/wait.h>
 # endif
-# include "token.h"
-# include "../include/err.h"
-# include "../lib/lib_ft/libft.h"
+# include "../include/minishell.h"
 # include "../build_in/build_in.h"
 
 //--------------------------//
 //			define			//
 //--------------------------//
 
-# define PATH 1			// path split with the ':'
-# define PEC 2			// pid exit code
-//	byte flag			//
-# define SET_IN 1		//
-# define PIPE 2			//
-# define SET_HERE_DOC 3	//
-# define SET_APPEND 4	//
-
 //--------------------------//
 //			struct			//
 //--------------------------//
 
+# ifndef EXE_STRUC
+#  define EXE_STRUC
 typedef struct s_cmd
 {
 	struct s_cmd	*prev;
@@ -40,6 +32,7 @@ typedef struct s_cmd
 	int				pipe[2];
 	t_token			*tok;
 }	t_cmd;
+#endif
 
 typedef struct s_waitp
 {

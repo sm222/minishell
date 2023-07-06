@@ -1,4 +1,4 @@
-#include "minishell.h"
+#include "include/minishell.h"
 
 /// @brief make the path double array in 'data->path'
 /// @param data take 'mshell' struct

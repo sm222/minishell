@@ -11,9 +11,9 @@
 
 int	ft_exit(char **av);
 
-# ifndef ECHO
-#  define ECHO "exit"
-#  define ECHO_PATH "build_in/exit/"
+# ifndef EXIT
+#  define EXIT "exit"
+#  define EXIT_PATH "build_in/exit/"
 # endif
 
 

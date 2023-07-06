@@ -1,4 +1,4 @@
-#include "minishell.h"
+#include "include/minishell.h"
 
 
 static void	free_shell(t_mshell *shell)
