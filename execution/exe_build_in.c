@@ -33,7 +33,7 @@ static void	*find_build_in_l(char *name)
 static	int	run_local(int(*ft)(char **, int , int), t_cmd *in)
 {
 	int	*err;
-	
+
 	if (!ft)
 		return (FAIL);
 	err = fr_return_ptr(NULL, PEC);
@@ -65,6 +65,10 @@ int	ft_execution_buildin(t_cmd *in, t_waitp **wait, int cmd_len)
 		return(ft_execution(in, wait));
 	}
 	else if (cmd_len == 1)
-		return (run_local(find_build_in_l(in->command[0]), in));
+	{
+		if (run_local(find_build_in_l(in->command[0]), in) == FAIL)
+			return(ft_execution(in, wait));
+		return (SUCCESS);
+	}
 	return (FAIL);
 }

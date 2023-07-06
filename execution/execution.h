@@ -76,6 +76,11 @@ short	cmd_make_node_last(t_cmd **list, char **cmd, t_token *tok);
 short	ft_execution(t_cmd *in, t_waitp **wait);
 int		ft_execution_buildin(t_cmd *in, t_waitp **wait, int cmd_len);
 
+// fd
+int		close_fd(int fd);
+void	close_all_fd(t_cmd *in);
+int		close_old_fd(t_cmd *in);
+
 // pipe
 
 int		set_pipe(t_cmd **in);
@@ -86,5 +91,9 @@ int		dup_in_out(t_cmd *in);
 
 int		wait_make_node_last(t_waitp **in, pid_t pid);
 short	wait_pids(t_waitp *in, short free_f);
+
+//free
+
+int		free_exe(int err, t_exe *exe);
 
 #endif // EXECUTION_H

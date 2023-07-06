@@ -2,39 +2,6 @@
 #include "execution.h"
 #include "../minishell.h"
 
-int	close_fd(int fd)
-{
-	if (fd)
-		return (close(fd));
-	return (0);
-}
-
-/// @brief run in all link list of 't_cmd'and close pipe
-/// @param in link list
-void	close_all_fd(t_cmd *in)
-{
-	t_cmd	*tmp;
-
-	tmp = in;
-	while (tmp)
-	{
-		close_fd(tmp->pipe[0]);
-		close_fd(tmp->pipe[1]);
-		close_fd(tmp->tok->redi_in);
-		close_fd(tmp->tok->redi_out);
-		tmp = tmp->next;
-	}
-	tmp = in->prev;
-	while (tmp)
-	{
-		close_fd(tmp->pipe[0]);
-		close_fd(tmp->pipe[1]);
-		close_fd(tmp->tok->redi_in);
-		close_fd(tmp->tok->redi_out);
-		tmp = tmp->prev;
-	}
-}
-
 /// @brief use to run the cmd (need to add stuff)
 /// @param in t_cmd link list
 /// @param path env of system
@@ -59,18 +26,8 @@ int	run_and_close(t_cmd *in, char **env, char *cmd)
 	ft_free(shell->s);
 	ft_free(shell->tmp);
 	ft_free(shell->info);
-	ft_putstr_fd("ici\n", 2);
-	exit(1);
+	exit(ENOTRECOVERABLE);
 	return (FAIL);
-}
-
-//
-int	free_exe(int err, t_exe *exe)
-{
-	if (!exe)
-		return (BAD_ARGS);
-	ft_free(exe->ft_path);
-	return (err);
 }
 
 /// @brief use to find the cmd and run it
@@ -105,17 +62,6 @@ short	ft_execution(t_cmd *in, t_waitp **wait)
 	return (SUCCESS);
 }
 
-int	close_old_fd(t_cmd *in)
-{
-	if (!in)
-		return (BAD_ARGS);
-	if (in->prev && in->prev->prev)
-	{
-		close_fd(in->prev->prev->pipe[0]);
-		close_fd(in->prev->prev->pipe[1]);
-	}
-	return (SUCCESS);
-}
 
 /// @brief use after 'cmd_make_node_last'
 /// @param in give list of cmd 't_cmd *'
