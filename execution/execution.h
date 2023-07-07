@@ -11,7 +11,7 @@
 # ifndef _WIN32
 #  include <sys/wait.h>
 # endif
-# include "../include/minishell.h"
+# include "token.h"
 # include "../build_in/build_in.h"
 
 //--------------------------//
@@ -21,31 +21,6 @@
 //--------------------------//
 //			struct			//
 //--------------------------//
-
-# ifndef EXE_STRUC
-#  define EXE_STRUC
-typedef struct s_cmd
-{
-	struct s_cmd	*prev;
-	struct s_cmd	*next;
-	char			**command;
-	int				pipe[2];
-	t_token			*tok;
-}	t_cmd;
-#endif
-
-typedef struct s_waitp
-{
-	pid_t			pid;
-	struct s_waitp	*next;
-}t_waitp;
-
-typedef struct s_exe
-{
-	int			err;
-	char		*ft_path;
-	pid_t		pid;
-}	t_exe;
 
 /*
 ◦ < doit rediriger l’entrée.

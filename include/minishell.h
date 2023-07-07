@@ -7,7 +7,6 @@
 //--------------------------//
 
 # include "err.h"
-# include "../execution/token.h"
 
 //--------------------------//
 //			lib				//
@@ -25,51 +24,7 @@
 # include "../C_tools/C_tool.h"
 # define dev_chmod 0644
 
-//--------------------------//
-//			define			//
-//--------------------------//
-
-# define SYS 0			//
-# define PATH 1			// path split with the ':'
-# define PEC 2			// pid exit code
-//	byte flag			//
-# define SET_IN 1		//
-# define PIPE 2			//
-# define SET_HERE_DOC 3	//
-# define SET_APPEND 4	//
-
-# define PROMPT "$ "
-
 //TODO: zsh: command not found:
-
-//--------------------------//
-//			struct			//
-//--------------------------//
-
-# ifndef EXE_STRUC
-#  define EXE_STRUC
-typedef struct s_cmd
-{
-	struct s_cmd	*prev;
-	struct s_cmd	*next;
-	char			**command;
-	int				pipe[2];
-	t_token			*tok;
-}	t_cmd;
-# endif
-
-/// @brief pec = prosess exit code
-typedef struct s_mshell
-{
-	char	*s;
-	int		pec;
-	char	**en;
-	char	**path;
-	t_cmd	*cmd_list;
-	char	*info;
-	char	*tmp;
-
-}	t_mshell;
 
 //--------------------------//
 //			fontion			//

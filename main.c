@@ -5,6 +5,7 @@ static void	free_shell(t_mshell *shell)
 {
 	if (!shell)
 		return ;
+	ft_putstr_fd("end\n", 2);
 	ft_double_sfree((void **)shell->path);
 	ft_double_sfree((void **)shell->en);
 }
@@ -15,8 +16,6 @@ static int	start_shell(t_mshell *shell, char **en)
 		return (BAD_ARGS);
 	shell->cmd_list = NULL;
 	shell->en = ft_cpy_double_char(en);
-	if (!shell->en)
-		return (M_FAIL);
 	if (get_env_path(shell) <= FAIL)
 		return (127);
 	fr_return_ptr(shell, SYS);
@@ -33,26 +32,32 @@ int	main(int ac, char **av, char **en)
 
 	(void)ac;
 	(void)av;
-	loop_test = 100;
-	start_shell(&shell, en);
+	ft_bzero(&shell, sizeof(t_mshell));
+	loop_test = 10;
+	if (start_shell(&shell, en) != SUCCESS)
+		return (FAIL);
 	ft_b_set_flag(&flag, BUILD_IN, TRUE);
 	while (loop_test--)
 	{
-		shell.info = getcwd(NULL, 0);
-		ft_printf(-1, "%o%s $ ", &shell.tmp, shell.info);
-		shell.s = readline(shell.tmp);
+		//shell.info = getcwd(NULL, 0);
+		//ft_printf(-1, "%o%s $ ", &shell.tmp, shell.info);
+		//shell.s = readline(shell.tmp);
+		shell.s = ft_strdup("s");
 		shell.cmd_list = NULL;
 		if (shell.s && *shell.s)
 		{
-			cmd_make_node_last(&shell.cmd_list, ft_split(shell.s, ' '), make_token(flag, 0, 0));
+			cmd_make_node_last(&shell.cmd_list, ft_split(shell.s, ' '), make_token(0, 0, 0));
 			run_cmd(shell.cmd_list);
 			add_history(shell.s);
 		}
 		ft_free(shell.s);
 		ft_free(shell.info);
 		ft_free(shell.tmp);
+		if (!shell.s)
+			break ;
 	}
 	rl_clear_history();
+	ft_putstr_fd("exit\n", 2);
 	free_shell(&shell);
 	return (0);
 }

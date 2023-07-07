@@ -10,8 +10,7 @@ int	get_env_path(t_mshell *data)
 	size_t	i;
 
 	i = 0;
-	//Ct_debug(0, "test", 0, FILE_DEF);
-	//Ct_debug_pro(0, FILE_DEF, 0, "this is a test %s %d", "ah", 9754);
+	data->path = NULL;
 	while (data->en[i])
 	{
 		if (ft_strncmp(data->en[i], "PATH=", 5) == 0)
@@ -23,5 +22,8 @@ int	get_env_path(t_mshell *data)
 		}
 		i++;
 	}
-	return (FAIL);
+//	data->path = ft_split(" ", ':');
+//	if (!data->path)
+	return (SUCCESS);
+//	return (SUCCESS);
 }
