@@ -6,6 +6,7 @@
 //			include			//
 //--------------------------//
 
+# include "../../include/structure.h"
 # include "../../lib/lib_ft/libft.h"
 # include <sysexits.h>
 
