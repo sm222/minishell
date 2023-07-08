@@ -6,52 +6,25 @@
 //			include			//
 //--------------------------//
 
-# include "include/err.h"
+# include "err.h"
 
 //--------------------------//
 //			lib				//
 //--------------------------//
 
-# include "lib/lib_ft/libft.h"
-# include "readline/history.h"
-# include "readline/readline.h"
-# include "execution/execution.h"
+# include "../lib/lib_ft/libft.h"
+# include "../readline/history.h"
+# include "../readline/readline.h"
+# include "../execution/execution.h"
 
 //--------------------------//
 //			tools			//
 //--------------------------//
 
-# include "C_tools/C_tool.h"
+# include "../C_tools/C_tool.h"
 # define dev_chmod 0644
 
-//--------------------------//
-//			define			//
-//--------------------------//
-
-# define SYS 0
-
-
-
-# define PROMPT "$ "
-
 //TODO: zsh: command not found:
-
-//--------------------------//
-//			struct			//
-//--------------------------//
-
-/// @brief pec = prosess exit code
-typedef struct s_mshell
-{
-	char	*s;
-	int		pec;
-	char	**en;
-	char	**path;
-	t_cmd	*cmd_list;
-	char	*info;
-	char	*tmp;
-
-}	t_mshell;
 
 //--------------------------//
 //			fontion			//

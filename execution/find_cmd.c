@@ -43,7 +43,7 @@ int	find_path(char *name, char **out, char **list)
 	i = 0;
 	tmp = NULL;
 	*out = NULL;
-	while (list[i])
+	while (list && list[i])
 	{
 		ft_printf(-1, "%o%s/%s", &tmp, list[i], name);
 		if (!tmp)
