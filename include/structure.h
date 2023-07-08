@@ -2,6 +2,11 @@
 #ifndef STRUCTURE_H
 # define STRUCTURE_H
 
+
+# ifndef _WIN32
+#  include <sys/wait.h>
+# endif
+
 //--------------------------//
 //			define			//
 //--------------------------//

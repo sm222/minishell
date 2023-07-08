@@ -63,7 +63,8 @@
 		"__config": "c",
 		"ct_printf.h": "c",
 		"errno.h": "c",
-		"exit.h": "c"
+		"exit.h": "c",
+		"build_in.h": "c"
 	},
 	"C_Cpp.errorSquiggles": "disabled"
 }

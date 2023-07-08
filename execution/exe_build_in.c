@@ -12,6 +12,8 @@ static char	*find_build_in(char *name, int *f)
 			return (ft_strdup(PWD_PATH "ft_"PWD));
 		if (ft_strncmp(name, CD, ft_strlen(CD) + 1) == 0)
 			return (ft_strdup(CD_PATH "ft_"CD));
+		if (ft_strncmp(name, EXIT, ft_strlen(EXIT) + 1) == 0)
+			return (ft_strdup(EXIT_PATH "ft_"EXIT));
 		*f = FAIL;
 		return (NULL);
 	}
@@ -27,10 +29,12 @@ static void	*find_build_in_l(char *name)
 		return (&ft_pwd);
 	if (ft_strncmp(name, CD, ft_strlen(CD) + 1) == 0)
 		return (&ft_cd);
+	if (ft_strncmp(name, EXIT, ft_strlen(EXIT) + 1) == 0)
+		return (&ft_exit);
 	return (NULL);
 }
 
-static	int	run_local(int(*ft)(char **, int , int), t_cmd *in)
+static	int	run_local(int(*ft)(char **, int, int), t_cmd *in)
 {
 	int	*err;
 

@@ -39,14 +39,14 @@ int	main(int ac, char **av, char **en)
 	ft_b_set_flag(&flag, BUILD_IN, TRUE);
 	while (loop_test--)
 	{
-		//shell.info = getcwd(NULL, 0);
-		//ft_printf(-1, "%o%s $ ", &shell.tmp, shell.info);
-		//shell.s = readline(shell.tmp);
-		shell.s = ft_strdup("s");
+		shell.info = getcwd(NULL, 0);
+		ft_printf(-1, "%o%s $ ", &shell.tmp, shell.info);
+		shell.s = readline(shell.tmp);
 		shell.cmd_list = NULL;
 		if (shell.s && *shell.s)
 		{
-			cmd_make_node_last(&shell.cmd_list, ft_split(shell.s, ' '), make_token(0, 0, 0));
+			cmd_make_node_last(&shell.cmd_list, ft_split(shell.s, ' '), make_token(flag, 0, 0));
+			cmd_make_node_last(&shell.cmd_list, ft_split("exit", ' '), make_token(flag, 0, 0));
 			run_cmd(shell.cmd_list);
 			add_history(shell.s);
 		}

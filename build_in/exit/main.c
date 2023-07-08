@@ -3,5 +3,5 @@
 int	main(int ac, char **av)
 {
 	(void)ac;
-	return (ft_exit(av));
+	return (ft_exit(av, 0, 0));
 }
