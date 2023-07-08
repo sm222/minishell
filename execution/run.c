@@ -18,7 +18,7 @@ int	run_and_close(t_cmd *in, char **env, char *cmd)
 	err = execve(cmd, in->command, env);
 	ft_free(cmd);
 	cmd_free(&in);
-	shell = fr_return_ptr(NULL, SYS);
+	shell = ft_return_ptr(NULL, SYS);
 	cmd_free(&in);
 	ft_double_sfree((void **)shell->path);
 	ft_double_sfree((void **)shell->en);
@@ -40,7 +40,7 @@ short	ft_execution(t_cmd *in, t_waitp **wait)
 	t_exe		exe;
 	t_mshell	*shell;
 
-	shell = fr_return_ptr(NULL, SYS);
+	shell = ft_return_ptr(NULL, SYS);
 	if (!shell || !in || !wait)
 		return (BAD_ARGS);
 	exe.err = find_path(in->command[0], &exe.ft_path, shell->path);

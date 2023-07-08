@@ -13,7 +13,7 @@ short	wait_pids(t_waitp *in, short free_f)
 	tmp = NULL;
 	if (!in)
 		return (BAD_ARGS);
-	pec = fr_return_ptr(NULL, PEC);
+	pec = ft_return_ptr(NULL, PEC);
 	while (in)
 	{
 		tmp = in->next;

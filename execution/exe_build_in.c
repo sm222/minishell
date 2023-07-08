@@ -36,11 +36,21 @@ static void	*find_build_in_l(char *name)
 
 static	int	run_local(int(*ft)(char **, int, int), t_cmd *in)
 {
-	int	*err;
+	int		*err;
+	char	*s;
 
 	if (!ft)
 		return (FAIL);
-	err = fr_return_ptr(NULL, PEC);
+	err = ft_return_ptr(NULL, PEC);
+	if (ft_strncmp(in->command[0], EXIT, ft_strlen(EXIT) + 1) == 0)
+	{
+		s = ft_itoa(*err);
+		if (s)
+		{
+			free(in->command[0]);
+			in->command[0] = s;
+		}
+	}
 	*err = ft(in->command, in->tok->redi_in, in->tok->redi_out);
 	return (SUCCESS);
 }

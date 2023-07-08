@@ -18,9 +18,9 @@ static int	start_shell(t_mshell *shell, char **en)
 	shell->en = ft_cpy_double_char(en);
 	if (get_env_path(shell) <= FAIL)
 		return (127);
-	fr_return_ptr(shell, SYS);
-	fr_return_ptr(shell->path, PATH);
-	fr_return_ptr(&shell->pec, PEC);
+	ft_return_ptr(shell, SYS);
+	ft_return_ptr(shell->path, PATH);
+	ft_return_ptr(&shell->pec, PEC);
 	return (SUCCESS);
 }
 
@@ -46,7 +46,6 @@ int	main(int ac, char **av, char **en)
 		if (shell.s && *shell.s)
 		{
 			cmd_make_node_last(&shell.cmd_list, ft_split(shell.s, ' '), make_token(flag, 0, 0));
-			cmd_make_node_last(&shell.cmd_list, ft_split("exit", ' '), make_token(flag, 0, 0));
 			run_cmd(shell.cmd_list);
 			add_history(shell.s);
 		}
@@ -57,7 +56,6 @@ int	main(int ac, char **av, char **en)
 			break ;
 	}
 	rl_clear_history();
-	ft_putstr_fd("exit\n", 2);
 	free_shell(&shell);
 	return (0);
 }

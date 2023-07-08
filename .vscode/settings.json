@@ -64,7 +64,8 @@
 		"ct_printf.h": "c",
 		"errno.h": "c",
 		"exit.h": "c",
-		"build_in.h": "c"
+		"build_in.h": "c",
+		"ctlib.h": "c"
 	},
 	"C_Cpp.errorSquiggles": "disabled"
 }
