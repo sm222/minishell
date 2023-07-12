@@ -65,7 +65,9 @@
 		"errno.h": "c",
 		"exit.h": "c",
 		"build_in.h": "c",
-		"ctlib.h": "c"
+		"ctlib.h": "c",
+		"env.h": "c",
+		"xutility": "c"
 	},
 	"C_Cpp.errorSquiggles": "disabled"
 }

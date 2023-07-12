@@ -1,11 +1,15 @@
 #include "include/minishell.h"
+#include <fcntl.h>
 
 
 static void	free_shell(t_mshell *shell)
 {
 	if (!shell)
 		return ;
-	ft_putstr_fd("end\n", 2);
+	ft_putstr_fd("test end\n", 2);
+	ft_free(shell->info);
+	ft_free(shell->s);
+	ft_free(shell->tmp);
 	ft_double_sfree((void **)shell->path);
 	ft_double_sfree((void **)shell->en);
 }

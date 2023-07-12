@@ -38,6 +38,7 @@ SRCS	=	main.c\
 			build_in/pwd/pwd.c\
 			build_in/echo/echo.c\
 			build_in/exit/ft_exit.c\
+			build_in/env/ft_env.c\
 
 #env -i ./minishell
 
