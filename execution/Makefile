@@ -20,8 +20,8 @@ SRCS	=	build_cmd.c\
 OBJS	=	$(SRCS:.c=.o)
 
 $(NAME): $(OBJS) $(LIBFT_DIR)$(LIBFT)
-	cp $(LIBFT_DIR)$(LIBFT) $(NAME)
-	ar rcs $(NAME) $(OBJS)
+	@cp $(LIBFT_DIR)$(LIBFT) $(NAME)
+	@ar rcs $(NAME) $(OBJS)
 
 all: $(LDIR)$(LIBFT) $(NAME)
 

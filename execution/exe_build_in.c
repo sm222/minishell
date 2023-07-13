@@ -28,9 +28,9 @@ static char	*find_build_in(char *name, int *f)
 	return (NULL);
 }
 
-/// @brief 
-/// @param name 
-/// @return 
+/// @brief return the addres of the built in
+/// @param name	char* name of the cmd you look for
+/// @return	void* of the ft
 static void	*find_build_in_l(char *name)
 {
 	if (ft_strncmp(name, ECHO, ft_strlen(ECHO) + 1) == 0)
@@ -106,6 +106,7 @@ int	ft_execution_buildin(t_cmd *in, t_waitp **wait, int cmd_len)
 			ft_free(in->command[0]);
 			in->command[0] = name;
 		}
+		change_arg(in, FALSE);
 		return(ft_execution(in, wait));
 	}
 	else if (cmd_len == 1)

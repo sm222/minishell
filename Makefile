@@ -1,11 +1,11 @@
-RED				=	"\x1B[31m"
-GRN				=	"\x1B[32m"
-YEL				=	"\x1B[33m"
-BLU				=	"\x1B[34m"
-MAG				=	"\x1B[35m"
-CYN				=	"\x1B[36m"
-WHT				=	"\x1B[37m"
-RESET			=	"\x1B[0m"
+RED				=	\x1B[31m
+GRN				=	\x1B[32m
+YEL				=	\x1B[33m
+BLU				=	\x1B[34m
+MAG				=	\x1B[35m
+CYN				=	\x1B[36m
+WHT				=	\x1B[37m
+RESET			=	\x1B[0m
 CLE 			=	\e[1;1H\e[2J
 
 NAME			=	minishell
@@ -47,23 +47,23 @@ OBJS	=	$(SRCS:.c=.o)
 USER = $(shell whoami)
 
 all: tools libft buildin exe $(NAME)
-	@echo $(CYN) "\n\n			correction is made by $(USER)\n\n " $(RESET)
+	@printf '$(CYN) \n\n			correction is made by $(USER)\n\n  $(RESET)'
 	
 $(NAME): $(OBJS) $(C_TOOL)
-	$(CC) $(CFLAGS) $(OBJS) $(LIBFT_DIR)$(LIBFT) -l readline -l ncurses \
+	@$(CC) $(CFLAGS) $(OBJS) $(LIBFT_DIR)$(LIBFT) -l readline -l ncurses \
 	$(RL_DIR)$(RL_H) $(RL_DIR)$(RL_L) $(C_TOOL) $(EXECUTION_DIR)$(EXECUTION_LIB) \
 	-o $(NAME)
 
 libft:
-	@echo $(GRN)making libft$(WHT)
+	@printf '$(GRN)making libft$(WHT)\n'
 	@$(MAKE) -C $(LIBFT_DIR)
 
 buildin:
-	@echo $(GRN)making buildin$(WHT)
-	make -C build_in
+	@printf '$(GRN)making buildin$(WHT)\n'
+	@make -C build_in
 
 exe:
-	@echo $(GRN)execution buildin$(WHT)
+	@printf '$(GRN)execution buildin$(WHT)\n'
 	@make -C $(EXECUTION_DIR)
 
 mem: all
@@ -71,7 +71,7 @@ mem: all
 
 #https://github.com/sm222/C_tools
 tools:
-	make -C $(C_TOOL_DIR)
+	@make -C $(C_TOOL_DIR)
 # Removes objects
 clean:
 	@$(RM) $(OBJS)
@@ -80,8 +80,7 @@ clean:
 	@make -C $(C_TOOL_DIR) clean
 	@make -C build_in clean
 	@echo $(shell clear)
-	@echo -n $(GRN)
-	@echo clean *.o$(RESET)
+	@printf '$(GRN)clean *.o$(RESET)\n'
 
 # Removes objects and executables
 fclean: clean
@@ -91,7 +90,8 @@ fclean: clean
 	@make -C $(LIBFT_DIR) fclean
 	@make -C $(C_TOOL_DIR) fclean
 	@make -C $(EXECUTION_DIR) fclean
-	@echo $(shell clear)$(GRN)clean all$(RESET)
+	@echo $(shell clear)
+	@printf '$(GRN)clean all$(RESET)\n'
 
 run: all
 	@./$(NAME)
