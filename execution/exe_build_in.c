@@ -7,19 +7,15 @@
 /// @return 
 static char	*find_build_in(char *name, int *f)
 {
+	char	*s;
+
 	if (f && name)
 	{
 		*f = SUCCESS;
-		if (ft_strncmp(name, ECHO, ft_strlen(ECHO) + 1) == 0)
-			return (ft_strdup(ECHO_PATH "ft_"ECHO));
-		if (ft_strncmp(name, PWD, ft_strlen(PWD) + 1) == 0)
-			return (ft_strdup(PWD_PATH "ft_"PWD));
-		if (ft_strncmp(name, CD, ft_strlen(CD) + 1) == 0)
-			return (ft_strdup(CD_PATH "ft_"CD));
-		if (ft_strncmp(name, ENV, ft_strlen(EXIT) + 1) == 0)
-			return (ft_strdup(ENV_PATH "ft_"ENV));
-		if (ft_strncmp(name, EXIT, ft_strlen(EXIT) + 1) == 0)
-			return (ft_strdup(EXIT_PATH "ft_"EXIT));
+		ft_printf(-1, "%o%sft_%s", &s, PATH_BIN, name);
+		if (s && access(s, F_OK | X_OK) == 0)
+			return(s);
+		ft_free(s);
 		*f = FAIL;
 		return (NULL);
 	}
