@@ -15,10 +15,6 @@
 # define PATH 1			// path split with the ':'
 # define PEC 2			// pid exit code
 //	byte flag			//
-# define SET_IN 1		//
-# define PIPE 2			//
-# define SET_HERE_DOC 3	//
-# define SET_APPEND 4	//
 
 //--------------------------//
 //			define			//
