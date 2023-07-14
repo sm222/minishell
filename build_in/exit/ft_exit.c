@@ -9,7 +9,6 @@ int	ft_exit(char **av, int re_in, int re_out)
 		ft_putstr_fd("exit don't take args\n", 2);
 		return (2);
 	}
-	ft_putstr_fd("exit\n", 2);
 	exit(ft_atoi(av[0]));
 	return (2);
 }

@@ -18,10 +18,6 @@
 //			define			//
 //--------------------------//
 
-//--------------------------//
-//			struct			//
-//--------------------------//
-
 /*
 ◦ < doit rediriger l’entrée.
 ◦ << doit recevoir un délimiteur et lire l’input donné jusqu’à rencontrer une ligne
@@ -40,6 +36,10 @@ size_t	cmd_node_len(t_cmd *list);
 t_cmd	*cmd_make_node(char **cmd, t_token *tok);
 int		find_path(char *name, char **out, char **list);
 short	cmd_make_node_last(t_cmd **list, char **cmd, t_token *tok);
+
+void	free_t_mshell(t_mshell *shell);
+void	change_name(int pec, t_cmd *in);
+short	change_av_for_en(t_cmd *in);
 
 short	ft_execution(t_cmd *in, t_waitp **wait);
 int		ft_execution_buildin(t_cmd *in, t_waitp **wait, int cmd_len);

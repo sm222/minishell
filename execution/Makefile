@@ -14,13 +14,14 @@ SRCS	=	build_cmd.c\
 			token.c\
 			pipe.c\
 			exe_build_in.c\
-			run_util.c
+			run_util.c\
+			exe_utils.c
 
 OBJS	=	$(SRCS:.c=.o)
 
 $(NAME): $(OBJS) $(LIBFT_DIR)$(LIBFT)
-	cp $(LIBFT_DIR)$(LIBFT) $(NAME)
-	ar rcs $(NAME) $(OBJS)
+	@cp $(LIBFT_DIR)$(LIBFT) $(NAME)
+	@ar rcs $(NAME) $(OBJS)
 
 all: $(LDIR)$(LIBFT) $(NAME)
 

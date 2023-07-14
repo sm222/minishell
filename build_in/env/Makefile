@@ -1,5 +1,5 @@
 
-NAME	=	../ft_exit
+NAME	=	../ft_env
 
 LIBFT		=	libft.a
 LIBFT_DIR	=	../../lib/lib_ft/
@@ -11,7 +11,7 @@ CFLAGS	=	-Wall -Werror -Wextra -g
 RM		=	rm -f
 
 # Sources are all .c files
-SRCS	=	ft_exit.c\
+SRCS	=	ft_env.c\
 			main.c
 
 OBJS	=	$(SRCS:.c=.o)

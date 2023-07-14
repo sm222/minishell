@@ -1,11 +1,11 @@
 
 #include "execution.h"
 
-/// @brief use to run the cmd (need to add stuff)
-/// @param in t_cmd link list
-/// @param path env of system
-/// @param cmd relatif path of the cmd ex: /bin/ls
-/// @return 
+/// @brief	use to run the cmd (need to add stuff)
+/// @param in	t_cmd link list
+/// @param path	env of system
+/// @param cmd	relatif path of the cmd ex: /bin/ls
+/// @return
 int	run_and_close(t_cmd *in, char **env, char *cmd)
 {
 	int			err;
@@ -29,12 +29,12 @@ int	run_and_close(t_cmd *in, char **env, char *cmd)
 	return (FAIL);
 }
 
-/// @brief use to find the cmd and run it
-/// @param in 't_cmd' to run
-/// @param wait adrres of the 't_waip' list
-/// @return FORK_FAIL if fork did't work
-/// @return FAIL if can't find a cmd,
-/// @return else SUCCESS
+/// @brief	use to find the cmd and run it
+/// @param in	t_cmd to run
+/// @param wait	adrres of the 't_waip' list
+/// @return		FORK_FAIL if fork did't work
+/// @return		FAIL if can't find a cmd,
+/// @return		else SUCCESS
 short	ft_execution(t_cmd *in, t_waitp **wait)
 {
 	t_exe		exe;
@@ -62,8 +62,8 @@ short	ft_execution(t_cmd *in, t_waitp **wait)
 }
 
 
-/// @brief use after 'cmd_make_node_last'
-/// @param in give list of cmd 't_cmd *'
+/// @brief	use after 'cmd_make_node_last'
+/// @param in	t_cmd list of cmd 't_cmd *'
 /// @return 
 int	run_cmd(t_cmd *in)
 {
