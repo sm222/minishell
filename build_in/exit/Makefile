@@ -1,9 +1,7 @@
-
 NAME	=	../ft_exit
 
 LIBFT		=	libft.a
 LIBFT_DIR	=	../../lib/lib_ft/
-
 
 # Compiler and flags
 CC		=	gcc
@@ -15,7 +13,6 @@ SRCS	=	ft_exit.c\
 			main.c
 
 OBJS	=	$(SRCS:.c=.o)
-
 
 all: $(NAME)
 $(NAME): $(OBJS)
