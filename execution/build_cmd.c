@@ -1,10 +1,9 @@
 #include "execution.h"
 
-
-/// @brief make a node of command
-/// @param cmd command in double array
-/// @param tok token
-/// @return new cmd node
+/// @brief	make a node of command
+/// @param	cmd	command in double array
+/// @param	tok	token
+/// @return	new cmd node
 t_cmd	*cmd_make_node(char **cmd, t_token *tok)
 {
 	t_cmd	*new;
@@ -26,9 +25,9 @@ t_cmd	*cmd_make_node(char **cmd, t_token *tok)
 	return (new);
 }
 
-/// @brief get len of the list
-/// @param list input
-/// @return len of the list
+/// @brief	get len of the list
+/// @param	list	input
+/// @return	len of the list
 size_t	cmd_node_len(t_cmd *list)
 {
 	size_t	i;
@@ -42,12 +41,12 @@ size_t	cmd_node_len(t_cmd *list)
 	return (i);
 }
 
-/// @brief add a node at the end of the list
-/// @param list list input
-/// @param cmd argument, need to be malloc
-/// @param tok type of action
-/// @return return negatif nuber if fail, else return the size of the list
-/// @return envent if fail (bad args it will free cmd)
+/// @brief	add a node at the end of the list
+/// @param	list	t_cmd** list input
+/// @param	cmd		argument, need to be malloc
+/// @param	tok		type of action
+/// @return	return negatif nuber if fail, else return the size of the list
+/// @return	envent if fail (bad args it will free cmd)
 short	cmd_make_node_last(t_cmd **list, char **cmd, t_token *tok)
 {
 	t_cmd	*tmp;
@@ -76,8 +75,8 @@ short	cmd_make_node_last(t_cmd **list, char **cmd, t_token *tok)
 	return (cmd_node_len(*list));
 }
 
-/// @brief free the list
-/// @param in input
+/// @brief	free the list
+/// @param	in	t_cmd** input
 void	cmd_free(t_cmd **in)
 {
 	t_cmd	*ptr;

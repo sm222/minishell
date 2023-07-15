@@ -1,5 +1,8 @@
 #include "execution.h"
 
+/// @brief	use to close a file descriptor
+/// @param	fd	file descriptor
+/// @return	0 or the close value
 int	close_fd(int fd)
 {
 	if (fd)
@@ -7,8 +10,8 @@ int	close_fd(int fd)
 	return (0);
 }
 
-/// @brief run in all link list of 't_cmd'and close pipe
-/// @param in link list
+/// @brief	run in all link list of 't_cmd'and close pipe
+/// @param	in	link list t_cmd* intput
 void	close_all_fd(t_cmd *in)
 {
 	t_cmd	*tmp;
@@ -33,6 +36,10 @@ void	close_all_fd(t_cmd *in)
 	}
 }
 
+/// @brief	use to free t_exe
+/// @param	err	err code
+/// @param	exe	t_exe* struct
+/// @return	BAD_ARGS, or err variable
 int	free_exe(int err, t_exe *exe)
 {
 	if (!exe)
@@ -41,9 +48,9 @@ int	free_exe(int err, t_exe *exe)
 	return (err);
 }
 
-/// @brief 
-/// @param in 
-/// @return 
+/// @brief	use to close old file descriptor open by pipe
+/// @param	in	t_cmd* input
+/// @return	BAD_ARGS, SUCCESS
 int	close_old_fd(t_cmd *in)
 {
 	if (!in)

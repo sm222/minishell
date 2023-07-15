@@ -1,7 +1,7 @@
 #include "execution.h"
 
-/// @brief 
-/// @param shell 
+/// @brief	use to free data of the shell
+/// @param	shell	t_mshell*
 void	free_t_mshell(t_mshell *shell)
 {
 	ft_free(shell->info);
@@ -11,9 +11,9 @@ void	free_t_mshell(t_mshell *shell)
 	ft_double_sfree((void **)shell->en);
 }
 
-/// @brief 
-/// @param pec 
-/// @param in 
+/// @brief	chnage the argv[0] in the t_cmd for the last pec
+/// @param	pec	process exit code
+/// @param	in	t_cmd* input
 void	change_name(int pec, t_cmd *in)
 {
 	char	*s;
@@ -26,9 +26,9 @@ void	change_name(int pec, t_cmd *in)
 	}
 }
 
-/// @brief 
-/// @param in 
-/// @return 
+/// @brief	chnage the argv for the env
+/// @param	in	t_cmd input
+/// @return	err code
 short	change_av_for_en(t_cmd *in)
 {
 	t_mshell	*shell;

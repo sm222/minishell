@@ -30,21 +30,23 @@ contenant le délimiteur. Cependant, l’historique n’a pas à être mis à jo
 //			fonction		//
 //--------------------------//
 
+// cmd
+
 int		run_cmd(t_cmd *in);
 void	cmd_free(t_cmd **in);
 size_t	cmd_node_len(t_cmd *list);
 t_cmd	*cmd_make_node(char **cmd, t_token *tok);
-int		find_path(char *name, char **out, char **list);
 short	cmd_make_node_last(t_cmd **list, char **cmd, t_token *tok);
 
-void	free_t_mshell(t_mshell *shell);
-void	change_name(int pec, t_cmd *in);
 short	change_av_for_en(t_cmd *in);
+void	change_name(int pec, t_cmd *in);
 
 short	ft_execution(t_cmd *in, t_waitp **wait);
+int		find_path(char *name, char **out, char **list);
 int		ft_execution_buildin(t_cmd *in, t_waitp **wait, int cmd_len);
 
 // fd
+
 int		close_fd(int fd);
 void	close_all_fd(t_cmd *in);
 int		close_old_fd(t_cmd *in);
@@ -63,5 +65,6 @@ short	wait_pids(t_waitp *in, short free_f);
 //free
 
 int		free_exe(int err, t_exe *exe);
+void	free_t_mshell(t_mshell *shell);
 
 #endif // EXECUTION_H

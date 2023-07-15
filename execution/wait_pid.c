@@ -1,10 +1,10 @@
 
 #include "execution.h"
 
-/// @brief run a waitpid on a list of pid_t
-/// @param in linklist waitp
-/// @param free_f free the list or not
-/// @return SUCCESS
+/// @brief	run a waitpid on a list of pid_t
+/// @param	in	linklist waitp
+/// @param	free_f	free the list or not
+/// @return	SUCCESS, BAD_ARGS
 short	wait_pids(t_waitp *in, short free_f)
 {
 	t_waitp	*tmp;
@@ -25,9 +25,9 @@ short	wait_pids(t_waitp *in, short free_f)
 	return (SUCCESS);
 }
 
-/// @brief make new node
-/// @param pid new pid
-/// @return new node
+/// @brief	make new node
+/// @param	pid	new pid
+/// @return	new node
 static t_waitp	*wait_make_node(pid_t pid)
 {
 	t_waitp	*new;
@@ -39,12 +39,12 @@ static t_waitp	*wait_make_node(pid_t pid)
 	return (new);
 }
 
-/// @brief add a pid to a list 
-/// @param in link list
-/// @param pid pid to add to the list
-/// @return SUCCESS + len
-/// @return BAD_ARGS if miss some argument
-/// @return M_FAIL if malloc fail
+/// @brief	add a pid to a list 
+/// @param	in	link list
+/// @param	pid	pid to add to the list
+/// @return	SUCCESS + len
+/// @return	BAD_ARGS if miss some argument
+/// @return	M_FAIL if malloc fail
 int	wait_make_node_last(t_waitp **in, pid_t pid)
 {
 	t_waitp	*tmp;

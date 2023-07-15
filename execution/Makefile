@@ -28,7 +28,6 @@ all: $(LDIR)$(LIBFT) $(NAME)
 clean:
 	@$(RM) $(OBJS)
 
-
 fclean: clean
 	@$(RM) $(NAME)
 

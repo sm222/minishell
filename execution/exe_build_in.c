@@ -1,10 +1,10 @@
 
 #include "execution.h"
 
-/// @brief 			try to find the cmd adrres
-/// @param name		name of the cmd
-/// @param f		flag
-/// @return 
+/// @brief	try to find the cmd adrres
+/// @param	name	name of the cmd
+/// @param	f		flag
+/// @return			find the file in the local folder
 static char	*find_build_in(char *name, int *f)
 {
 	char	*s;
@@ -14,7 +14,7 @@ static char	*find_build_in(char *name, int *f)
 		*f = SUCCESS;
 		ft_printf(-1, "%o%sft_%s", &s, PATH_BIN, name);
 		if (s && access(s, F_OK | X_OK) == 0)
-			return(s);
+			return (s);
 		ft_free(s);
 		*f = FAIL;
 		return (NULL);
@@ -24,8 +24,8 @@ static char	*find_build_in(char *name, int *f)
 	return (NULL);
 }
 
-/// @brief return the addres of the built in
-/// @param name	char* name of the cmd you look for
+/// @brief	return the addres of the built in
+/// @param	name	char* name of the cmd you look for
 /// @return	void* of the ft
 static void	*find_build_in_l(char *name)
 {
@@ -42,9 +42,9 @@ static void	*find_build_in_l(char *name)
 	return (NULL);
 }
 
-/// @brief 
-/// @param in 
-/// @param local 
+/// @brief	chnage the argument for exit and env
+/// @param	in		input t_cmd*
+/// @param	local	if it run in the fork or not
 static void	change_arg(t_cmd *in, short local)
 {
 	t_mshell	*shell;
@@ -65,13 +65,13 @@ static void	change_arg(t_cmd *in, short local)
 			err_msg(PERROR, M_FAIL, "change_av_for_en");
 }
 
-/// @brief 
-/// @param ft 
-/// @param in 
-/// @return 
-static	int	run_local(int(*ft)(char **, int, int), t_cmd *in)
+/// @brief	use to run a built in
+/// @param	ft	address of the function
+/// @param	in	t_cmd* data of the function
+/// @return	return the err code of the function
+static int	run_local(int (*ft)(char **, int, int), t_cmd *in)
 {
-	int		*err;
+	int	*err;
 
 	err = ft_return_ptr(NULL, PEC);
 	if (!ft)
@@ -81,11 +81,12 @@ static	int	run_local(int(*ft)(char **, int, int), t_cmd *in)
 	return (SUCCESS);
 }
 
-/// @brief take a cmd and redirect it to a buildin, if can't find it try to run a bash one
-/// @param in 
-/// @param wait 
-/// @param cmd_len 
-/// @return 
+/// @brief	take a cmd and redirect it to a buildin,
+/// @brief	if can't find it try to run a bash one
+/// @param	in		t_cmd* input
+/// @param	wait	t_waitp* address of the list of pid
+/// @param	cmd_len	len of the number of cmd
+/// @return	err code
 int	ft_execution_buildin(t_cmd *in, t_waitp **wait, int cmd_len)
 {
 	int		f;
@@ -96,19 +97,20 @@ int	ft_execution_buildin(t_cmd *in, t_waitp **wait, int cmd_len)
 	{
 		name = find_build_in(in->command[0], &f);
 		if (!name && f == SUCCESS)
-			return (err_msg(NO_FREE, M_FAIL, MS_NAME "Malloc fail : ft_execution_buildin"));
+			return (err_msg(NO_FREE, M_FAIL, MS_NAME \
+				"Malloc fail : ft_execution_buildin"));
 		if (f != FAIL)
 		{
 			ft_free(in->command[0]);
 			in->command[0] = name;
 		}
 		change_arg(in, FALSE);
-		return(ft_execution(in, wait));
+		return (ft_execution(in, wait));
 	}
 	else if (cmd_len == 1)
 	{
 		if (run_local(find_build_in_l(in->command[0]), in) == FAIL)
-			return(ft_execution(in, wait));
+			return (ft_execution(in, wait));
 		return (SUCCESS);
 	}
 	return (FAIL);

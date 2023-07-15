@@ -1,8 +1,12 @@
 #include "execution.h"
 
-
+/// @brief	look if the is redirection need to be open
+/// @param	in	t_cmd* input
+/// @return	SUCCESS
 int	open_redi_flag(t_cmd *in)
 {
+	if (!in || !in->tok)
+		return (BAD_ARGS);
 	while (in)
 	{
 		if (in->tok->redi_in)
@@ -14,17 +18,15 @@ int	open_redi_flag(t_cmd *in)
 	return (SUCCESS);
 }
 
-
-/// @brief use to set the value of the flag in tok 
-/// @param in adrres of the 't_cmd' list
-/// @return SUCCESS if good, else BAD_ARGS
+/// @brief	use to set the value of the flag in tok 
+/// @param	in	adrres of the 't_cmd' list
+/// @return	SUCCESS if good, else BAD_ARGS
 int	set_pipe(t_cmd **in)
 {
 	t_cmd	*tmp;
 
 	if (!in || !*in)
 		return (BAD_ARGS);
-	//	return (debug(BAD_ARGS, "set_pipe", FILE_DEF));
 	tmp = (*in);
 	if (cmd_node_len(tmp) == 2)
 	{
@@ -47,9 +49,9 @@ int	set_pipe(t_cmd **in)
 	return (SUCCESS);
 }
 
-/// @brief use to set the file in the redirection
-/// @param in list link of the 't_cmd'
-/// @return SUCCESS, else BAD_ARGS
+/// @brief	use to set the file in the redirection
+/// @param	in	list link of the 't_cmd'
+/// @return	SUCCESS, else BAD_ARGS
 int	redir_file(t_cmd *in)
 {
 	if (!in || !in->tok)
@@ -61,9 +63,9 @@ int	redir_file(t_cmd *in)
 	return (SUCCESS);
 }
 
-/// @brief 
-/// @param in 
-/// @return 
+/// @brief	use to swich the the in and out
+/// @param	in	input t_cmd*
+/// @return	BAD_ARGS, PIPE_FAIL, SUCCESS
 int	set_redir(t_cmd *in)
 {
 	if (!in || !in->tok)
@@ -86,6 +88,9 @@ int	set_redir(t_cmd *in)
 	return (SUCCESS);
 }
 
+/// @brief	use the dup fonction to change the in and out
+/// @param	in	t_cmd* input
+/// @return	BAD_ARGS, SUCCESS
 int	dup_in_out(t_cmd *in)
 {
 	if (!in || !in->tok)

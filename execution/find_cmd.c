@@ -1,9 +1,9 @@
 # include "execution.h"
 
-/// @brief try to find the file in local folder
-/// @param name of the fontion
-/// @param out return the path with name of the fontion
-/// @return 1 if local, 2 if ./ fail FAIL, else M_FAIL
+/// @brief	try to find the file in local folder
+/// @param	name	of the fontion
+/// @param	out		return the path with name of the fontion
+/// @return	1 if local, 2 if ./ fail FAIL, else M_FAIL
 static int	test_local(char *name, char **out)
 {
 	char	*tmp;
@@ -28,12 +28,13 @@ static int	test_local(char *name, char **out)
 	return (FAIL);
 }
 
-/// @brief try to find the cmd
-/// @param name name of the cmd
-/// @param out return name + path, NULL if fail
-/// @param list path of the system
-/// @return -1 if M_FAIL, FAIL if can't find path
-/// @return else return 1 or 2 for local file, 3 and plus for the index were it find it
+/// @brief	try to find the cmd
+/// @param	name	name of the cmd
+/// @param	out		return name + path, NULL if fail
+/// @param	list	path of the system
+/// @return	-1 if M_FAIL, FAIL if can't find path
+/// @return	else return 1 or 2 for local file,
+/// @return	3 and plus for the index were it find it
 int	find_path(char *name, char **out, char **list)
 {
 	char	*tmp;

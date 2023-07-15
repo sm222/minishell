@@ -13,7 +13,7 @@
 
 # define SYS 0			//
 # define PATH 1			// path split with the ':'
-# define PEC 2			// pid exit code
+# define PEC 2			// process exit code
 //	byte flag			//
 
 //--------------------------//
