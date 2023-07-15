@@ -79,8 +79,8 @@ int	run_cmd(t_cmd *in)
 	while (tmp)
 	{
 		close_old_fd(tmp);
-		if (tmp->tok && ft_b_flag_read(tmp->tok->mode, BUILD_IN))
-			err = ft_execution_buildin(tmp, &wait, cmd_node_len(in));
+		if (tmp->tok && ft_b_flag_read(tmp->tok->mode, BUILT_IN))
+			err = ft_execution_built_in(tmp, &wait, cmd_node_len(in));
 		else
 			err = ft_execution(tmp, &wait);
 		if (err < SUCCESS)

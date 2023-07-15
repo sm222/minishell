@@ -1,6 +1,6 @@
 
-#ifndef ECHO_H
-# define ECHO_H
+#ifndef CD_H
+# define CD_H
 
 //--------------------------//
 //			include			//
@@ -8,20 +8,21 @@
 
 # include "../../lib/lib_ft/libft.h"
 # include <sysexits.h>
+# include <errno.h>
 
 //--------------------------//
 //			fonction		//
 //--------------------------//
 
-int	ft_echo(char **av, int re_in, int re_out);
+int	ft_cd(char **av, int re_in, int re_out);
 
 //--------------------------//
 //			define			//
 //--------------------------//
 
-# ifndef ECHO
-#  define ECHO "echo"
-#  define ECHO_PATH "build_in/echo/"
+# ifndef CD
+#  define CD "cd"
+#  define CD_PATH "BUILT_IN/cd/"
 # endif
 
-#endif // ECHO_H
+#endif // CD_H

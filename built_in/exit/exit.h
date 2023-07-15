@@ -22,7 +22,7 @@ int	ft_exit(char **av, int re_in, int re_out);
 
 # ifndef EXIT
 #  define EXIT "exit"
-#  define EXIT_PATH "build_in/exit/"
+#  define EXIT_PATH "BUILT_IN/exit/"
 # endif
 
 #endif // EXIT_H

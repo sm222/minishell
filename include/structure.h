@@ -30,7 +30,7 @@
 # define PIPE_IN		1
 # define PIPE_OUT		2
 # define PIPE_IN_OUT	3
-# define BUILD_IN		4
+# define BUILT_IN		4
 
 # define PROMPT "$ "
 

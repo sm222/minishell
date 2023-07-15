@@ -22,7 +22,7 @@ int	ft_env(char **av, int re_in, int re_out);
 
 # ifndef ENV
 #  define ENV "env"
-#  define ENV_PATH "build_in/env/"
+#  define ENV_PATH "BUILT_IN/env/"
 # endif
 
 #endif // ENV_H

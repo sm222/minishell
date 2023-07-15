@@ -21,7 +21,7 @@ int		ft_pwd(char **av, int re_in, int re_out);
 
 # ifndef PWD
 #  define PWD "pwd"
-#  define PWD_PATH "build_in/pwd/"
+#  define PWD_PATH "BUILT_IN/pwd/"
 # endif
 
 #endif // PWD_H

@@ -1,6 +1,6 @@
 
-#ifndef BUILD_IN_H
-# define BUILD_IN_H
+#ifndef BUILT_IN_H
+# define BUILT_IN_H
 
 //--------------------------//
 //			include			//
@@ -16,8 +16,8 @@
 //			define			//
 //--------------------------//
 
-# define PATH_BIN "build_in/"
+# define PATH_BIN "BUILT_IN/"
 
-#endif // BUILD_IN_H
+#endif // BUILT_IN_H
 
 

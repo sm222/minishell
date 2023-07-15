@@ -34,11 +34,11 @@ RM				=	rm -f
 SRCS	=	main.c\
 			env.c\
 			include/err.c\
-			build_in/cd/cd.c\
-			build_in/pwd/pwd.c\
-			build_in/echo/echo.c\
-			build_in/exit/ft_exit.c\
-			build_in/env/ft_env.c\
+			built_in/cd/cd.c\
+			built_in/pwd/pwd.c\
+			built_in/echo/echo.c\
+			built_in/exit/ft_exit.c\
+			built_in/env/ft_env.c\
 
 #env -i ./minishell
 
@@ -46,7 +46,7 @@ OBJS	=	$(SRCS:.c=.o)
 
 USER = $(shell whoami)
 
-all: tools libft buildin exe $(NAME)
+all: tools libft builtin exe $(NAME)
 	@printf '$(CYN) \n\n			correction is made by $(USER)\n\n  $(RESET)'
 	
 $(NAME): $(OBJS) $(C_TOOL)
@@ -58,9 +58,9 @@ libft:
 	@printf '$(GRN)making libft$(WHT)\n'
 	@$(MAKE) -C $(LIBFT_DIR)
 
-buildin:
+builtin:
 	@printf '$(GRN)making buildin$(WHT)\n'
-	@make -C build_in
+	@make -C built_in
 
 exe:
 	@printf '$(GRN)execution buildin$(WHT)\n'
@@ -78,7 +78,7 @@ clean:
 	@make -C $(LIBFT_DIR) clean
 	@make -C $(EXECUTION_DIR) clean
 	@make -C $(C_TOOL_DIR) clean
-	@make -C build_in clean
+	@make -C built_in clean
 	@echo $(shell clear)
 	@printf '$(GRN)clean *.o$(RESET)\n'
 
@@ -86,7 +86,7 @@ clean:
 fclean: clean
 	@$(RM) $(NAME)
 	@$(RM) $(B_NAME)
-	@make -C build_in fclean
+	@make -C built_in fclean
 	@make -C $(LIBFT_DIR) fclean
 	@make -C $(C_TOOL_DIR) fclean
 	@make -C $(EXECUTION_DIR) fclean
@@ -101,4 +101,4 @@ mc: all clean
 # Removes objects and executables and remakes
 re: fclean all
 
-.PHONY: all bonus libft
+.PHONY: all libft

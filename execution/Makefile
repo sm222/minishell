@@ -8,14 +8,14 @@ LIBFT		=	libft.a
 LIBFT_DIR	=	../lib/lib_ft/
 
 SRCS	=	build_cmd.c\
-			run.c\
+			exe_built_in.c\
+			exe_utils.c\
 			find_cmd.c\
-			wait_pid.c\
-			token.c\
 			pipe.c\
-			exe_build_in.c\
+			run.c\
 			run_util.c\
-			exe_utils.c
+			token.c\
+			wait_pid.c
 
 OBJS	=	$(SRCS:.c=.o)
 

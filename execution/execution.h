@@ -12,7 +12,7 @@
 #  include <sys/wait.h>
 # endif
 # include "token.h"
-# include "../build_in/build_in.h"
+# include "../built_in/built_in.h"
 
 //--------------------------//
 //			define			//
@@ -43,7 +43,7 @@ void	change_name(int pec, t_cmd *in);
 
 short	ft_execution(t_cmd *in, t_waitp **wait);
 int		find_path(char *name, char **out, char **list);
-int		ft_execution_buildin(t_cmd *in, t_waitp **wait, int cmd_len);
+int		ft_execution_built_in(t_cmd *in, t_waitp **wait, int cmd_len);
 
 // fd
 

@@ -1,11 +1,10 @@
-
 #include "execution.h"
 
 /// @brief	try to find the cmd adrres
 /// @param	name	name of the cmd
 /// @param	f		flag
 /// @return			find the file in the local folder
-static char	*find_build_in(char *name, int *f)
+static char	*find_built_in(char *name, int *f)
 {
 	char	*s;
 
@@ -27,7 +26,7 @@ static char	*find_build_in(char *name, int *f)
 /// @brief	return the addres of the built in
 /// @param	name	char* name of the cmd you look for
 /// @return	void* of the ft
-static void	*find_build_in_l(char *name)
+static void	*find_built_in_l(char *name)
 {
 	if (ft_strncmp(name, ECHO, ft_strlen(ECHO) + 1) == 0)
 		return (&ft_echo);
@@ -87,7 +86,7 @@ static int	run_local(int (*ft)(char **, int, int), t_cmd *in)
 /// @param	wait	t_waitp* address of the list of pid
 /// @param	cmd_len	len of the number of cmd
 /// @return	err code
-int	ft_execution_buildin(t_cmd *in, t_waitp **wait, int cmd_len)
+int	ft_execution_built_in(t_cmd *in, t_waitp **wait, int cmd_len)
 {
 	int		f;
 	char	*name;
@@ -95,7 +94,7 @@ int	ft_execution_buildin(t_cmd *in, t_waitp **wait, int cmd_len)
 	name = NULL;
 	if (cmd_len > 1)
 	{
-		name = find_build_in(in->command[0], &f);
+		name = find_built_in(in->command[0], &f);
 		if (!name && f == SUCCESS)
 			return (err_msg(NO_FREE, M_FAIL, MS_NAME \
 				"Malloc fail : ft_execution_buildin"));
@@ -109,7 +108,7 @@ int	ft_execution_buildin(t_cmd *in, t_waitp **wait, int cmd_len)
 	}
 	else if (cmd_len == 1)
 	{
-		if (run_local(find_build_in_l(in->command[0]), in) == FAIL)
+		if (run_local(find_built_in_l(in->command[0]), in) == FAIL)
 			return (ft_execution(in, wait));
 		return (SUCCESS);
 	}

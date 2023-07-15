@@ -40,7 +40,7 @@ int	main(int ac, char **av, char **en)
 	loop_test = 1000;
 	if (start_shell(&shell, en) != SUCCESS)
 		return (FAIL);
-	ft_b_set_flag(&flag, BUILD_IN, TRUE);
+	ft_b_set_flag(&flag, BUILT_IN, TRUE);
 	while (loop_test--)
 	{
 		shell.info = getcwd(NULL, 0);
