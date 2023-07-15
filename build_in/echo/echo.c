@@ -1,6 +1,10 @@
 
 #include "echo.h"
 
+/// @brief	use to print every argv
+/// @param	av	argv
+/// @param	i	index to start
+/// @param	fd	file descriptor
 void	print_loop(char **av, size_t i, int fd)
 {
 	size_t	len;
@@ -14,6 +18,10 @@ void	print_loop(char **av, size_t i, int fd)
 		i++;
 	}
 }
+
+/// @brief	use to skip -n
+/// @param	av	argv
+/// @return	index
 size_t	skip_args(char **av)
 {
 	size_t	tmp;
@@ -32,9 +40,14 @@ size_t	skip_args(char **av)
 		else
 			break ;
 	}
-	return(tmp);
+	return (tmp);
 }
 
+/// @brief	use to print args
+/// @param	av		argv
+/// @param	re_in	redirect in
+/// @param	re_out	redirect out
+/// @return 2 if fail, else err code
 int	ft_echo(char **av, int re_in, int re_out)
 {
 	size_t	i;

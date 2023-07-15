@@ -1,9 +1,7 @@
-
 NAME	=	../ft_echo
 
 LIBFT		=	libft.a
 LIBFT_DIR	=	../../lib/lib_ft/
-
 
 # Compiler and flags
 CC		=	gcc
@@ -14,9 +12,7 @@ RM		=	rm -f
 SRCS	=	echo.c\
 			main.c
 
-
 OBJS	=	$(SRCS:.c=.o)
-
 
 all: $(NAME)
 $(NAME): $(OBJS)
@@ -32,7 +28,6 @@ fclean: clean
 
 run: all
 	@./$(NAME) -n test rrr
-
 
 mc: all clean
 
