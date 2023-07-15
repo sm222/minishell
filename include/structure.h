@@ -2,7 +2,6 @@
 #ifndef STRUCTURE_H
 # define STRUCTURE_H
 
-
 # ifndef _WIN32
 #  include <sys/wait.h>
 # endif
@@ -11,7 +10,7 @@
 //			define			//
 //--------------------------//
 
-# define SYS 0			//
+# define SYS 0			// t_mshell struct
 # define PATH 1			// path split with the ':'
 # define PEC 2			// process exit code
 //	byte flag			//
@@ -21,20 +20,17 @@
 //--------------------------//
 
 # ifndef  TRUE
-#  define TRUE 1
+#  define TRUE			1
 # endif
 # ifndef FALSE
-#  define FALSE 0
+#  define FALSE			0
 # endif
 
-# define PIPE_NO 0
-# define PIPE_IN 1
-# define PIPE_OUT 2
-# define PIPE_IN_OUT 3
-# define BUILD_IN 4
-
-# define F_MODE 1	//free mode
-# define NO_FILE 0
+# define PIPE_NO		0
+# define PIPE_IN		1
+# define PIPE_OUT		2
+# define PIPE_IN_OUT	3
+# define BUILD_IN		4
 
 # define PROMPT "$ "
 
@@ -44,11 +40,11 @@
 
 typedef struct s_token
 {
-	int		mode;
-	int		pipe_in;
-	int		pipe_out;
-	int		redi_in;
-	int		redi_out;
+	int				mode;
+	int				pipe_in;
+	int				pipe_out;
+	int				redi_in;
+	int				redi_out;
 }	t_token;
 
 typedef struct s_waitp
@@ -59,9 +55,9 @@ typedef struct s_waitp
 
 typedef struct s_exe
 {
-	int			err;
-	char		*ft_path;
-	pid_t		pid;
+	int				err;
+	char			*ft_path;
+	pid_t			pid;
 }	t_exe;
 
 typedef struct s_cmd
@@ -76,15 +72,13 @@ typedef struct s_cmd
 /// @brief pec = prosess exit code
 typedef struct s_mshell
 {
-	char	*s;
-	int		pec;
-	char	**en;
-	char	**path;
-	t_cmd	*cmd_list;
-	char	*info;
-	char	*tmp;
-
+	char			*s;
+	int				pec;
+	char			**en;
+	char			**path;
+	t_cmd			*cmd_list;
+	char			*info;
+	char			*tmp;
 }	t_mshell;
-
 
 #endif // STRUCTURE_H

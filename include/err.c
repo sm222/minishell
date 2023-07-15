@@ -1,6 +1,13 @@
 #include "err.h"
 #include "../lib/lib_ft/libft.h"
 
+/// @brief	use to print err msg
+/// @param	type	PERROR	use perror
+/// @param	type	NO_FREE	use ft_printf
+/// @param	type	DO_FREE	use ft_printf and free it
+/// @param	err	
+/// @param	msg	
+/// @return	err code
 int	err_msg(short type, int err, char *msg)
 {
 	if (type == PERROR)
@@ -9,7 +16,7 @@ int	err_msg(short type, int err, char *msg)
 		ft_printf(2, "%s\n", msg);
 	if (type == DO_FREE)
 		ft_printf(2, "%S\n", msg);
-	return(err);
+	return (err);
 }
 
 int	debug(int err, char *msg, char *file)
@@ -17,7 +24,7 @@ int	debug(int err, char *msg, char *file)
 	int		fd;
 	char	*t;
 
-	ft_printf(-1, "%o%d %s\n", &t, err ,msg);
+	ft_printf(-1, "%o%d %s\n", &t, err, msg);
 	if (file)
 	{
 	fd = open(file, O_CREAT | O_APPEND | O_RDWR, 0644);
