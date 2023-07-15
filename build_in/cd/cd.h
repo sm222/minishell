@@ -11,7 +11,7 @@
 # include <errno.h>
 
 //--------------------------//
-//			fontion			//
+//			fonction		//
 //--------------------------//
 
 int	ft_cd(char **av, int re_in, int re_out);

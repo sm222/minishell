@@ -11,7 +11,7 @@
 # include <sysexits.h>
 
 //--------------------------//
-//			fontion			//
+//			fonction		//
 //--------------------------//
 
 int	ft_env(char **av, int re_in, int re_out);

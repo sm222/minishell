@@ -1,5 +1,10 @@
 #include "pwd.h"
 
+/// @brief	
+/// @param	av		argv
+/// @param	re_in	redirect in
+/// @param	re_out	redirect out
+/// @return 2 if fail, else err code
 int	ft_pwd(char **av, int re_in, int re_out)
 {
 	char	*tmp;
@@ -8,11 +13,9 @@ int	ft_pwd(char **av, int re_in, int re_out)
 	(void)re_in;
 	if (ft_strlen_double(av) > 1)
 	{
-		ft_putstr_fd("pwd: too many arguments\n",2);
+		ft_putstr_fd("pwd: too many arguments\n", 2);
 		return (EXIT_FAILURE);
 	}
-	if (re_out < 0)
-		re_out = STDOUT_FILENO;
 	tmp = getcwd(NULL, 0);
 	if (!tmp)
 		return (EX_SOFTWARE);
