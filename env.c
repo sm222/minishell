@@ -22,8 +22,5 @@ int	get_env_path(t_mshell *data)
 		}
 		i++;
 	}
-//	data->path = ft_split(" ", ':');
-//	if (!data->path)
 	return (SUCCESS);
-//	return (SUCCESS);
 }

@@ -37,7 +37,7 @@ int	main(int ac, char **av, char **en)
 	(void)ac;
 	(void)av;
 	ft_bzero(&shell, sizeof(t_mshell));
-	loop_test = 10;
+	loop_test = 1000;
 	if (start_shell(&shell, en) != SUCCESS)
 		return (FAIL);
 	ft_b_set_flag(&flag, BUILD_IN, TRUE);
@@ -47,17 +47,17 @@ int	main(int ac, char **av, char **en)
 		ft_printf(-1, "%o%s $ ", &shell.tmp, shell.info);
 		shell.s = readline(shell.tmp);
 		shell.cmd_list = NULL;
+		if (!shell.s)
+			break ;
 		if (shell.s && *shell.s)
 		{
 			cmd_make_node_last(&shell.cmd_list, ft_split(shell.s, ' '), make_token(flag, 0, 0));
 			run_cmd(shell.cmd_list);
 			add_history(shell.s);
 		}
-		ft_free(shell.s);
-		ft_free(shell.info);
-		ft_free(shell.tmp);
-		if (!shell.s)
-			break ;
+		shell.s = ft_free(shell.s);
+		shell.info = ft_free(shell.info);
+		shell.tmp = ft_free(shell.tmp);
 	}
 	rl_clear_history();
 	free_shell(&shell);
