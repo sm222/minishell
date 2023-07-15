@@ -10,8 +10,15 @@
 # include "../../lib/lib_ft/libft.h"
 # include <sysexits.h>
 
+//--------------------------//
+//			fontion			//
+//--------------------------//
+
 int	ft_env(char **av, int re_in, int re_out);
 
+//--------------------------//
+//			define			//
+//--------------------------//
 
 # ifndef ENV
 #  define ENV "env"

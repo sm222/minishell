@@ -7,5 +7,5 @@ int	main(int ac, char **av, char **en)
 		ft_env(NULL, 0, 1);
 	else
 		ft_env(en, 0, 1);
-	return(0);
+	return (0);
 }
