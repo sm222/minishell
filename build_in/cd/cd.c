@@ -1,6 +1,8 @@
 
 #include "cd.h"
 
+/// @brief	try to move in the HOME path
+/// @return	2 if fail, or chdir value
 static int	get_to_user(void)
 {
 	char	*env;
@@ -10,8 +12,8 @@ static int	get_to_user(void)
 	env = getenv("HOME");
 	if (!env || !*env)
 	{
-		ft_putstr_fd("cd: HOME not set\n",2);
-		return (1);
+		ft_putstr_fd("cd: HOME not set\n", 2);
+		return (2);
 	}
 	err = chdir(env);
 	if (err)
@@ -23,9 +25,12 @@ static int	get_to_user(void)
 	return (err);
 }
 
+/// @brief		try to go to char* dir
+/// @param	dir	directory
+/// @return		err code
 static int	goto_dir(char *dir)
 {
-	int	err;
+	int		err;
 	char	*tmp;
 
 	err = chdir(dir);
@@ -34,12 +39,16 @@ static int	goto_dir(char *dir)
 		ft_printf(-1, "%ocd: %s: %s\n", &tmp, sys_errlist[errno], dir);
 		ft_putstr_fd(tmp, STDERR_FILENO);
 		ft_free(tmp);
-		exit(EXIT_FAILURE);
+		return (EXIT_FAILURE);
 	}
-	return(err);
+	return (err);
 }
 
-
+/// @brief		move to a dir
+/// @param	av		argv
+/// @param	re_in	redirect in
+/// @param	re_out	redirect out
+/// @return 2 if fail, else err code
 int	ft_cd(char **av, int re_in, int re_out)
 {
 	size_t	len;
@@ -49,5 +58,10 @@ int	ft_cd(char **av, int re_in, int re_out)
 	len = ft_strlen_double(av);
 	if (len == 1)
 		return (get_to_user());
+	else if (len > 2)
+	{
+		ft_putstr_fd("cd: too many arguments\n", 2);
+		return (2);
+	}
 	return (goto_dir(av[1]));
 }

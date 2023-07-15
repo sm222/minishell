@@ -1,9 +1,7 @@
-
 NAME	=	../ft_cd
 
 LIBFT		=	libft.a
 LIBFT_DIR	=	../../lib/lib_ft/
-
 
 # Compiler and flags
 CC		=	gcc
@@ -14,9 +12,7 @@ RM		=	rm -f
 SRCS	=	cd.c\
 			main.c
 
-
 OBJS	=	$(SRCS:.c=.o)
-
 
 all: $(NAME)
 $(NAME): $(OBJS)
