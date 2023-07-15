@@ -33,7 +33,7 @@
 # define DO_FREE	2
 
 /*/*//*/*//*/*//*/*//*/*//*/*/
-//			fontion			//
+//			fonction		//
 /*/*//*/*//*/*//*/*//*/*//*/*/
 
 int	err_msg(short type, int err, char *msg);

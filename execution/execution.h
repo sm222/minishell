@@ -27,7 +27,7 @@ contenant le délimiteur. Cependant, l’historique n’a pas à être mis à jo
 */
 
 //--------------------------//
-//			fontion			//
+//			fonction		//
 //--------------------------//
 
 int		run_cmd(t_cmd *in);

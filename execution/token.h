@@ -11,7 +11,7 @@
 # include "../lib/lib_ft/libft.h"
 
 //--------------------------//
-//			fontion			//
+//			fonction		//
 //--------------------------//
 
 t_token	*make_token(int flag, int redi_in, int redi_out);

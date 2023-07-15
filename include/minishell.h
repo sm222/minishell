@@ -27,7 +27,7 @@
 //TODO: zsh: command not found:
 
 //--------------------------//
-//			fontion			//
+//			fonction		//
 //--------------------------//
 
 int	get_env_path(t_mshell *data);

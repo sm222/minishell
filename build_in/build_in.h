@@ -12,6 +12,10 @@
 # include "env/env.h"
 # include "cd/cd.h"
 
+//--------------------------//
+//			define			//
+//--------------------------//
+
 # define PATH_BIN "build_in/"
 
 #endif // BUILD_IN_H
