@@ -14,7 +14,7 @@
 //			fonction		//
 //--------------------------//
 
-int	ft_cd(char **av, int re_in, int re_out);
+int	ft_cd(char **av, int re_in, int re_out, char **en);
 
 //--------------------------//
 //			define			//

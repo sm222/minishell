@@ -6,7 +6,7 @@
 /// @param	re_in	redirect in
 /// @param	re_out	redirect out
 /// @return	errcode
-int	ft_env(char **av, int re_in, int re_out)
+int	ft_env(char **av, int re_in, int re_out, char **en)
 {
 	size_t	i;
 
@@ -17,9 +17,9 @@ int	ft_env(char **av, int re_in, int re_out)
 		ft_putstr_fd("env: too many arguments\n", 2);
 		return (2);
 	}
-	while (av && av[i])
+	while (en && en[i])
 	{
-		ft_putstr_fd(av[i++], re_out);
+		ft_putstr_fd(en[i++], re_out);
 		ft_putchar_fd('\n', re_out);
 	}
 	return (EXIT_SUCCESS);

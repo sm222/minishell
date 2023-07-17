@@ -49,12 +49,13 @@ static int	goto_dir(char *dir)
 /// @param	re_in	redirect in
 /// @param	re_out	redirect out
 /// @return 2 if fail, else err code
-int	ft_cd(char **av, int re_in, int re_out)
+int	ft_cd(char **av, int re_in, int re_out, char **en)
 {
 	size_t	len;
 
 	(void)re_in;
 	(void)re_out;
+	(void)en;
 	len = ft_strlen_double(av);
 	if (len == 1)
 		return (get_to_user());

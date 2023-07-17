@@ -10,9 +10,10 @@
 //			define			//
 //--------------------------//
 
-# define SYS 0			// t_mshell struct
-# define PATH 1			// path split with the ':'
-# define PEC 2			// process exit code
+# define SYS   0		// t_mshell struct
+# define PATH  1		// path split with the ':'
+# define PEC   2		// process exit code
+# define ENV_C 3		// copy of the env
 //	byte flag			//
 
 //--------------------------//

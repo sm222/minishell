@@ -5,10 +5,11 @@
 /// @param	re_in	redirect in
 /// @param	re_out	redirect out
 /// @return 2 if fail, else err code
-int	ft_exit(char **av, int re_in, int re_out)
+int	ft_exit(char **av, int re_in, int re_out, char **en)
 {
 	(void)re_in;
 	(void)re_out;
+	(void)en;
 	if (ft_strlen_double(av) > 1)
 	{
 		ft_putstr_fd("exit don't take args\n", 2);

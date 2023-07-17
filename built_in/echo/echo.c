@@ -48,11 +48,12 @@ size_t	skip_args(char **av)
 /// @param	re_in	redirect in
 /// @param	re_out	redirect out
 /// @return 2 if fail, else err code
-int	ft_echo(char **av, int re_in, int re_out)
+int	ft_echo(char **av, int re_in, int re_out, char **en)
 {
 	size_t	i;
 
 	(void)re_in;
+	(void)en;
 	i = skip_args(av);
 	if (i == 0)
 	{

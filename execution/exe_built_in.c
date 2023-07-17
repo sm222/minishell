@@ -68,15 +68,17 @@ static void	change_arg(t_cmd *in, short local)
 /// @param	ft	address of the function
 /// @param	in	t_cmd* data of the function
 /// @return	return the err code of the function
-static int	run_local(int (*ft)(char **, int, int), t_cmd *in)
+static int	run_local(int (*ft)(char **, int, int, char **), t_cmd *in)
 {
-	int	*err;
+	int		*err;
+	char	**en;
 
 	err = ft_return_ptr(NULL, PEC);
+	en = ft_return_ptr(NULL, ENV_C);
 	if (!ft)
 		return (FAIL);
 	change_arg(in, TRUE);
-	*err = ft(in->command, in->tok->redi_in, in->tok->redi_out);
+	*err = ft(in->command, in->tok->redi_in, in->tok->redi_out, en);
 	return (SUCCESS);
 }
 

@@ -25,6 +25,7 @@ static int	start_shell(t_mshell *shell, char **en)
 	ft_return_ptr(shell, SYS);
 	ft_return_ptr(shell->path, PATH);
 	ft_return_ptr(&shell->pec, PEC);
+	ft_return_ptr(shell->en, ENV_C);
 	return (SUCCESS);
 }
 

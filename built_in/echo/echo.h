@@ -13,7 +13,7 @@
 //			fonction		//
 //--------------------------//
 
-int	ft_echo(char **av, int re_in, int re_out);
+int	ft_echo(char **av, int re_in, int re_out, char **en);
 
 //--------------------------//
 //			define			//
