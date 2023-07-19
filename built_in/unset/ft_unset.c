@@ -4,11 +4,18 @@ static short	find_word(char **list, char *word)
 {
 	size_t	i;
 	size_t	len;
+	char	*tmp;
 
 	i = 0;
 	len = ft_strlen(word);
 	if (len == 0)
 		return (FAIL);
+	if (ft_isdigit(word[0]))
+	{
+		ft_printf(-1, "%o"MS_NAME" unset: `%s': not a valid identifier\n", &tmp, word);
+		ft_putstr_fd(tmp, 2);
+		ft_free(tmp);
+	}
 	while (list && list[i])
 	{
 		if (ft_strncmp(list[i], word, len) == 0 && list[i][len] == '=')
