@@ -21,7 +21,6 @@ int	ft_echo(char **av, int re_in, int re_out, char **en);
 
 # ifndef ECHO
 #  define ECHO "echo"
-#  define ECHO_PATH "BUILT_IN/echo/"
 # endif
 
 #endif // ECHO_H

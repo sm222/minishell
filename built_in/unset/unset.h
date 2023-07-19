@@ -6,14 +6,16 @@
 //			include			//
 //--------------------------//
 
+# include "../../include/structure.h"
 # include "../../lib/lib_ft/libft.h"
+# include "../../include/err.h"
 # include <sysexits.h>
 
 //--------------------------//
 //			fonction		//
 //--------------------------//
 
-int		ft_unset(char **av, int re_in, int re_out);
+int	ft_unset(char **av, int re_in, int re_out, char **en);
 
 //--------------------------//
 //			define			//
@@ -21,11 +23,6 @@ int		ft_unset(char **av, int re_in, int re_out);
 
 # ifndef UNSET
 #  define UNSET "unset"
-#  define UNSET_PATH "built_in/pwd/"
 # endif
-
-
-
-
 
 #endif // UNSET_H

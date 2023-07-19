@@ -22,7 +22,6 @@ int	ft_env(char **av, int re_in, int re_out, char **en);
 
 # ifndef ENV
 #  define ENV "env"
-#  define ENV_PATH "BUILT_IN/env/"
 # endif
 
 #endif // ENV_H

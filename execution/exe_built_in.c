@@ -38,6 +38,8 @@ static void	*find_built_in_l(char *name)
 		return (&ft_exit);
 	if (ft_strncmp(name, ENV, ft_strlen(ENV) + 1) == 0)
 		return (&ft_env);
+	if (ft_strncmp(name, UNSET, ft_strlen(UNSET) + 1) == 0)
+		return (&ft_unset);
 	return (NULL);
 }
 
@@ -70,15 +72,14 @@ static void	change_arg(t_cmd *in, short local)
 /// @return	return the err code of the function
 static int	run_local(int (*ft)(char **, int, int, char **), t_cmd *in)
 {
-	int		*err;
-	char	**en;
+	t_mshell	*shell;
 
-	err = ft_return_ptr(NULL, PEC);
-	en = ft_return_ptr(NULL, ENV_C);
+	shell = ft_return_ptr(NULL, SYS);
 	if (!ft)
 		return (FAIL);
 	change_arg(in, TRUE);
-	*err = ft(in->command, in->tok->redi_in, in->tok->redi_out, en);
+	shell->pec = ft(in->command, in->tok->redi_in, in->tok->redi_out, shell->en);
+	shell->en = ft_return_ptr(NULL, ENV_C);
 	return (SUCCESS);
 }
 

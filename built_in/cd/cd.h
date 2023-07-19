@@ -22,7 +22,6 @@ int	ft_cd(char **av, int re_in, int re_out, char **en);
 
 # ifndef CD
 #  define CD "cd"
-#  define CD_PATH "BUILT_IN/cd/"
 # endif
 
 #endif // CD_H
