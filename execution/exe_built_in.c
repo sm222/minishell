@@ -58,6 +58,7 @@ static void	change_arg(t_cmd *in, short local)
 		{
 			free_t_mshell(shell);
 			cmd_free(&in);
+			ft_putstr_fd("exit\n", 1);
 			exit(shell->pec);
 		}
 	}
