@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 12:31:43 by anboisve          #+#    #+#             */
-/*   Updated: 2023/05/26 10:30:40 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/07/20 13:13:04 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static char	*ft_tiny_split(char *s, size_t *cut)
 	return (new);
 }
 
-static char	ft_find(char *s)
+static char	ft_find_gnl(char *s)
 {
 	size_t	i;
 
@@ -58,7 +58,7 @@ char	*get_next_line(int fd)
 		book[fd] = ft_calloc(1, sizeof(char));
 	t_val.tmp = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
 	t_val.rv = 0;
-	while (ft_find(book[fd]) == '0')
+	while (ft_find_gnl(book[fd]) == '0')
 	{
 		ft_bzero(t_val.tmp, BUFFER_SIZE + 1);
 		t_val.rv = read(fd, t_val.tmp, BUFFER_SIZE);

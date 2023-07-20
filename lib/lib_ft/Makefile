@@ -47,6 +47,7 @@ SRCS	=	ft_atoi.c\
 			ft_return_ptr.c\
 			ft_safe_free.c\
 			ft_double_sfree.c\
+			ft_find.c\
 			ft_realloc.c\
 			ft_cpy_double_char.c\
 			get_next_line.c\

@@ -38,14 +38,15 @@ int	main(int ac, char **av, char **en)
 	(void)ac;
 	(void)av;
 	ft_bzero(&shell, sizeof(t_mshell));
-	loop_test = 1000;
+	loop_test = 100;
 	if (start_shell(&shell, en) != SUCCESS)
 		return (FAIL);
+	print_logo();
 	ft_b_set_flag(&flag, BUILT_IN, TRUE);
 	while (loop_test--)
 	{
 		shell.info = getcwd(NULL, 0);
-		ft_printf(-1, "%o%s $ ", &shell.tmp, shell.info);
+		ft_printf(-1, "%o"GRN"%s "WHT"$ ", &shell.tmp, shell.info);
 		shell.s = readline(shell.tmp);
 		shell.cmd_list = NULL;
 		if (!shell.s)

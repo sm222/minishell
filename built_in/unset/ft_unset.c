@@ -10,7 +10,7 @@ static short	find_word(char **list, char *word)
 	len = ft_strlen(word);
 	if (len == 0)
 		return (FAIL);
-	if (ft_isdigit(word[0]))
+	if (ft_isdigit(word[0]) || ft_find(word, BAD_LIST))
 	{
 		ft_printf(-1, "%o"MS_NAME" unset: `%s': not a valid identifier\n", &tmp, word);
 		ft_putstr_fd(tmp, 2);
@@ -76,8 +76,6 @@ int	ft_unset(char **av, int re_in, int re_out, char **en)
 	i = 1;
 	(void)re_in;
 	(void)re_out;
-	if (!en)
-		en = ft_return_ptr(NULL, ENV_C);
 	while (av && av[i])
 	{
 		tmp = unset_val(en, av[i]);
