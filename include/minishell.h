@@ -98,7 +98,7 @@ typedef struct s_logo
 	char	*h[5];
 	char	*e[5];
 	char	*l[5];
-	int		nb[12];
+	int		nb[9];
 }t_logo;
 
 //--------------------------//

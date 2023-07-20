@@ -17,7 +17,7 @@ static void	set_color(char *color[11], int nb[7], char *tmp)
 	color[7] = ORG;
 	color[8] = PIK;
 	color[9] = TOX;
-	while (i < 12)
+	while (i < 10)
 	{
 		if (tmp[0] == '-')
 			nb[i] = ft_atoi(tmp + 1) % j;
@@ -58,8 +58,9 @@ static void	set_m_i_n_s_h(t_logo *logo)
 	logo->h[4] = L4H;
 }
 
-static void	set_e_l(t_logo *logo)
+static void	set_all(t_logo *logo)
 {
+	set_m_i_n_s_h(logo);
 	logo->e[0] = L0E;
 	logo->e[1] = L1E;
 	logo->e[2] = L2E;
@@ -70,6 +71,12 @@ static void	set_e_l(t_logo *logo)
 	logo->l[2] = L2L;
 	logo->l[3] = L3L;
 	logo->l[4] = L4L;
+}
+
+static void	print_seed(t_logo logo)
+{
+	printf("seed	%d%d%d%d%d%d%d%d%d\n", logo.nb[0], logo.nb[1], logo.nb[2] \
+	, logo.nb[3], logo.nb[4], logo.nb[5], logo.nb[6], logo.nb[7], logo.nb[8]);
 }
 
 void	print_logo(void)
@@ -84,9 +91,9 @@ void	print_logo(void)
 	if (!tmp)
 		return ;
 	set_color(logo.color, logo.nb, tmp);
-	set_m_i_n_s_h(&logo);
-	set_e_l(&logo);
+	set_all(&logo);
 	i = 0;
+	print_seed(logo);
 	while (i < 5)
 	{
 		printf("%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s\n", \
