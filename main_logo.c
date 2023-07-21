@@ -7,8 +7,8 @@ static void	set_color(char *color[11], int nb[7], char *tmp)
 	i = 0;
 	color[0] = RED;
 	color[1] = GRN;
-	color[2] = YEL;
-	color[3] = BLU;
+	color[2] = BLU;
+	color[3] = YEL;
 	color[4] = MAG;
 	color[5] = CYN;
 	color[6] = WHT;
@@ -21,6 +21,8 @@ static void	set_color(char *color[11], int nb[7], char *tmp)
 			nb[i] = tmp[i + 1] - '0';
 		else
 			nb[i] = tmp[i] - '0';
+		if (nb[i] < 0)
+			nb[i] = 0;
 		i++;
 	}
 }
@@ -84,7 +86,7 @@ void	print_logo(char *seed)
 		logo.tmp = ft_strdup(seed);
 	else
 	{
-		logo.con = (long long)&print_logo;
+		logo.con = ((long long)&print_logo) + ((long long)&print_seed);
 		logo.tmp = ft_itoa((int)logo.con);
 	}
 	if (!logo.tmp)
