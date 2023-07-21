@@ -56,9 +56,19 @@ static void	set_m_i_n_s_h(t_logo *logo)
 	logo->h[4] = L4H;
 }
 
+static void	print_seed(t_logo *logo)
+{
+	printf("seed	%d|%d|%d|%d|%d|%d|%d|%d|%d\n", \
+	logo->nb[0], logo->nb[1], logo->nb[2], \
+	logo->nb[3], logo->nb[4], logo->nb[5], \
+	logo->nb[6], logo->nb[7], logo->nb[8]);
+}
+
 static void	set_all(t_logo *logo)
 {
+	set_color(logo->color, logo->nb, logo->tmp);
 	set_m_i_n_s_h(logo);
+	print_seed(logo);
 	logo->e[0] = L0E;
 	logo->e[1] = L1E;
 	logo->e[2] = L2E;
@@ -69,12 +79,6 @@ static void	set_all(t_logo *logo)
 	logo->l[2] = L2L;
 	logo->l[3] = L3L;
 	logo->l[4] = L4L;
-}
-
-static void	print_seed(t_logo logo)
-{
-	printf("seed	%d|%d|%d|%d|%d|%d|%d|%d|%d\n", logo.nb[0], logo.nb[1], logo.nb[2] \
-	, logo.nb[3], logo.nb[4], logo.nb[5], logo.nb[6], logo.nb[7], logo.nb[8]);
 }
 
 void	print_logo(char *seed)
@@ -91,11 +95,9 @@ void	print_logo(char *seed)
 	}
 	if (!logo.tmp)
 		return ;
-	set_color(logo.color, logo.nb, logo.tmp);
 	set_all(&logo);
-	i = 0;
-	print_seed(logo);
-	while (i < 5)
+	i = -1;
+	while (++i < 5)
 	{
 		printf("%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s\n", \
 	logo.color[logo.nb[0]], logo.m[i], logo.color[logo.nb[1]], logo.i[i], \
@@ -103,7 +105,6 @@ void	print_logo(char *seed)
 	logo.color[logo.nb[4]], logo.s[i], logo.color[logo.nb[5]], logo.h[i], \
 	logo.color[logo.nb[6]], logo.e[i], logo.color[logo.nb[7]], logo.l[i], \
 	logo.color[logo.nb[8]], logo.l[i]);
-	i++;
 	}
 	ft_free(logo.tmp);
 	ft_putstr_fd("\n"MADE_BY MADE_BY_NANE RESET, 1);
