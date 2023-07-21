@@ -41,7 +41,7 @@
 # define PIK	"\x1b[38;5;176m"
 # define TOX	"\x1b[38;5;190m"
 # define RESET	"\x1B[0m"
-# define CLE 	"\e[1;1H\e[2J"
+# define CLE	"\e[1;1H\e[2J"
 
 # define MADE_BY "		made by		"
 # define MADE_BY_NANE "\x1B[34m anboisve \x1B[32m brheaume\n"
@@ -90,15 +90,17 @@
 
 typedef struct s_logo
 {
-	char	*color[11];
-	char	*m[5];
-	char	*i[5];
-	char	*n[5];
-	char	*s[5];
-	char	*h[5];
-	char	*e[5];
-	char	*l[5];
-	int		nb[9];
+	char		*tmp;
+	long long	con;
+	char		*color[11];
+	char		*m[5];
+	char		*i[5];
+	char		*n[5];
+	char		*s[5];
+	char		*h[5];
+	char		*e[5];
+	char		*l[5];
+	int			nb[9];
 }t_logo;
 
 //--------------------------//
@@ -106,7 +108,7 @@ typedef struct s_logo
 //--------------------------//
 
 int		get_env_path(t_mshell *data);
-void	print_logo(void);
+void	print_logo(char *seed);
 
 #endif // MINISHELL_H
 

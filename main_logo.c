@@ -3,10 +3,8 @@
 static void	set_color(char *color[11], int nb[7], char *tmp)
 {
 	int	i;
-	int	j;
 
 	i = 0;
-	j = 10;
 	color[0] = RED;
 	color[1] = GRN;
 	color[2] = YEL;
@@ -20,12 +18,10 @@ static void	set_color(char *color[11], int nb[7], char *tmp)
 	while (i < 10)
 	{
 		if (tmp[0] == '-')
-			nb[i] = ft_atoi(tmp + 1) % j;
+			nb[i] = tmp[i + 1] - '0';
 		else
-			nb[i] = ft_atoi(tmp) % j;
-		if (nb[i] > -1 && nb[i] < 10)
-			i++;
-		j++;
+			nb[i] = tmp[i] - '0';
+		i++;
 	}
 }
 
@@ -75,22 +71,25 @@ static void	set_all(t_logo *logo)
 
 static void	print_seed(t_logo logo)
 {
-	printf("seed	%d%d%d%d%d%d%d%d%d\n", logo.nb[0], logo.nb[1], logo.nb[2] \
+	printf("seed	%d|%d|%d|%d|%d|%d|%d|%d|%d\n", logo.nb[0], logo.nb[1], logo.nb[2] \
 	, logo.nb[3], logo.nb[4], logo.nb[5], logo.nb[6], logo.nb[7], logo.nb[8]);
 }
 
-void	print_logo(void)
+void	print_logo(char *seed)
 {
 	t_logo		logo;
-	char		*tmp;
-	long long	con;
 	int			i;
 
-	con = (long long)&print_logo;
-	tmp = ft_itoa((int)con);
-	if (!tmp)
+	if (seed && !ft_ban(seed, "0123456789"))
+		logo.tmp = ft_strdup(seed);
+	else
+	{
+		logo.con = (long long)&print_logo;
+		logo.tmp = ft_itoa((int)logo.con);
+	}
+	if (!logo.tmp)
 		return ;
-	set_color(logo.color, logo.nb, tmp);
+	set_color(logo.color, logo.nb, logo.tmp);
 	set_all(&logo);
 	i = 0;
 	print_seed(logo);
@@ -104,6 +103,6 @@ void	print_logo(void)
 	logo.color[logo.nb[8]], logo.l[i]);
 	i++;
 	}
-	ft_free(tmp);
+	ft_free(logo.tmp);
 	ft_putstr_fd("\n"MADE_BY MADE_BY_NANE RESET, 1);
 }

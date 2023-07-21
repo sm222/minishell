@@ -41,7 +41,10 @@ int	main(int ac, char **av, char **en)
 	loop_test = 100;
 	if (start_shell(&shell, en) != SUCCESS)
 		return (FAIL);
-	print_logo();
+	if (av[1] && av[1][0] != 0 && ft_strlen(av[1]) > 8)
+		print_logo(av[1]);
+	else
+		print_logo(NULL);
 	ft_b_set_flag(&flag, BUILT_IN, TRUE);
 	while (loop_test--)
 	{
