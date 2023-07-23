@@ -4,14 +4,10 @@
 void	print_env(char **en, int re_out)
 {
 	size_t	i;
-	char	*new;
 
 	i = 0;
 	while (en && en[i])
-	{
-		ft_printf(re_out, "%odeclare -x %s\n", &new ,en[i++]);
-		printf("%p\n", new);
-	}
+		ft_printf(re_out, "%odeclare -x %s\n", NULL ,en[i++]);
 }
 
 int	ft_export(char **av, int re_in, int re_out, char **en)

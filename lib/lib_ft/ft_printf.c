@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 13:12:13 by anboisve          #+#    #+#             */
-/*   Updated: 2023/07/23 14:25:32 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/07/23 14:59:07 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,12 @@ static int	ft_print_select(va_list list, char c, int fd)
 
 static int	make_new_str(char *s, va_list arg, char **out, int fd)
 {
-	int	len;
+	int		len;
+	char	*tmp;
 
+	tmp = NULL;
+	if (!out)
+		out = &tmp;
 	*out = NULL;
 	*out = ft_combine(s + 2, arg);
 	len = ft_strlen(*out);
@@ -60,22 +64,24 @@ static int	make_new_str(char *s, va_list arg, char **out, int fd)
 		return (-1);
 	if (fd > -1)
 	{
-		ft_putstr_fd(*out, fd);
+		len = ft_putstr_fd(*out, fd);
 		ft_free(*out);
 		*out = NULL;
 	}
+	if (fd < 0)
+		ft_free(tmp);
 	return (len);
 }
 
 /// @brief use to print like printf, "%o" give a adresse of a char *
 /// @brief make a news string like a printf and return it
-/// @param fd chose output
+/// @param fd chose output if '%o' and the fd is > 0, it will print and free
 /// @details s = str 
 /// @details S = str but will free it for you
 /// @details d || i for int
 /// @details x = hexadecimal
 /// @details %% = add one %
-/// @return len
+/// @return len -1 if malloc fait or write fail;
 int	ft_printf(int fd, char *str, ...)
 {
 	t_printf	pf;
