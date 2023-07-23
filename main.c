@@ -38,7 +38,7 @@ int	main(int ac, char **av, char **en)
 	(void)ac;
 	(void)av;
 	ft_bzero(&shell, sizeof(t_mshell));
-	loop_test = 0;
+	loop_test = 1000;
 	if (start_shell(&shell, en) != SUCCESS)
 		return (FAIL);
 	if (av[1] && av[1][0] != 0 && ft_strlen(av[1]) > 8)

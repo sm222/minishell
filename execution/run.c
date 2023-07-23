@@ -15,7 +15,8 @@ int	run_and_close(t_cmd *in, char **env, char *cmd)
 	shell = NULL;
 	dup_in_out(in);
 	close_all_fd(in);
-	err = execve(cmd, in->command, env);
+	if (in->tok->redi_in != -1)
+		err = execve(cmd, in->command, env);
 	ft_free(cmd);
 	cmd_free(&in);
 	shell = ft_return_ptr(NULL, SYS);
