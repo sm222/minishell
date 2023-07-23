@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 15:44:12 by anboisve          #+#    #+#             */
-/*   Updated: 2023/06/08 15:13:31 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/07/23 14:34:40 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,11 @@ static char	*ft_add_c_to_s(char *s, char c)
 
 	i = ft_strlen(s);
 	new = ft_calloc(i + 2, sizeof(char));
+	if (!new)
+	{
+		ft_free(s);
+		return (NULL);
+	}
 	ft_memmove(new, s, i);
 	new[i] = c;
 	ft_free(s);
@@ -47,6 +52,11 @@ static char	*ft_add_str(va_list list, char type, char *s)
 	if (type == 'c')
 		return (ft_add_c_to_s(s, va_arg(list, int)));
 	tmp = ft_add_arg(list, type);
+	if (!tmp)
+	{
+		ft_free(s);
+		return (NULL);
+	}
 	s = ft_strfjoin(s, tmp);
 	if (type != 's')
 		ft_free(tmp);
@@ -60,6 +70,8 @@ char	*ft_combine(char *s, va_list arg)
 
 	i = 0;
 	new = ft_calloc(1, sizeof(char));
+	if (!new)
+		return (NULL);
 	while (s && s[i])
 	{
 		if (s[i] != '%')

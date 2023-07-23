@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 10:25:48 by anboisve          #+#    #+#             */
-/*   Updated: 2023/05/26 10:40:41 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/07/23 14:26:41 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static int	num_s(int n)
 	if (n == -2147483648)
 		return (11);
 	else if (n < 0)
-	{	
+	{
 		n = n * -1;
 		i++;
 	}

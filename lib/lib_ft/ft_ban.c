@@ -28,7 +28,7 @@ short	ft_ban(const char *src, const char *list)
 		while (list[j])
 		{
 			if (src[i] == list[j])
-				break;
+				break ;
 			j++;
 		}
 		if (j == len)
