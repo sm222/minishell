@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 13:13:03 by anboisve          #+#    #+#             */
-/*   Updated: 2023/06/08 14:47:54 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/07/24 10:48:33 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define FT_PRINTF_H
 
 # include "libft.h"
+
+# define NO_PRINT -1
 
 typedef struct s_printf
 {

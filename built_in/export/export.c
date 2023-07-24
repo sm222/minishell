@@ -29,27 +29,37 @@ short	look_for_dup(char **env, char *name)
 	return (-1);
 }
 
-short	export_new(char **en)
+char	**export_new(char **en, char *arg)
 {
-	
+	char	**new;
+
+	if (!en || !arg)
+		return (NULL);
+	new = NULL;
+	if (look_for_dup(en, arg) > -1)
+		printf("www\n");
+	return (new);
 }
 
 
 int	ft_export(char **av, int re_in, int re_out, char **en)
 {
 	size_t	i;
+	char	**tmp;
 
 	i = 1;
 	(void)re_in;
-	if (!en)
-		en = ft_return_ptr(NULL, ENV_C);
-	if (!en)
-		return (2);
 	if (ft_strlen_double(av) == 1)
 		return (print_env(en, re_out));
-	while (av[i])
+	while (av && av[i])
 	{
-
+		tmp = export_new(en, av[i]);
+		if (tmp)
+		{
+			ft_strlen_double((void **)en);
+			en = ft_return_ptr(tmp, ENV_C);
+		}
+		i++;
 	}
 	return (EXIT_SUCCESS);
 }

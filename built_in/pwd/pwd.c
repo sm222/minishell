@@ -20,7 +20,7 @@ int	ft_pwd(char **av, int re_in, int re_out, char **en)
 	tmp = getcwd(NULL, 0);
 	if (!tmp)
 		return (EX_SOFTWARE);
-	ft_printf(-1, "%o%s\n", &new, tmp);
+	ft_printf(NO_PRINT, "%o%s\n", &new, tmp);
 	if (!new)
 	{
 		ft_free(tmp);

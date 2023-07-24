@@ -49,7 +49,7 @@ OBJS	=	$(SRCS:.c=.o)
 USER = $(shell whoami)
 
 all: tools libft builtin exe $(NAME)
-	@printf '$(CYN) \n\n			correction is made by $(USER)\n\n  $(RESET)'
+	@printf "$(CYN) \n\n			correction is made by $(USER)\n\n  $(RESET)"
 	
 $(NAME): $(OBJS) $(C_TOOL)
 	@$(CC) $(CFLAGS) $(OBJS) $(LIBFT_DIR)$(LIBFT) -l readline -l ncurses \
@@ -57,19 +57,19 @@ $(NAME): $(OBJS) $(C_TOOL)
 	-o $(NAME)
 
 libft:
-	@printf '$(GRN)making libft$(WHT)\n'
+	@printf "$(GRN)making libft$(WHT)\n"
 	@$(MAKE) -C $(LIBFT_DIR)
 
 builtin:
-	@printf '$(GRN)making buildin$(WHT)\n'
+	@printf "$(GRN)making buildin$(WHT)\n"
 	@make -C built_in
 
 exe:
-	@printf '$(GRN)execution buildin$(WHT)\n'
+	@printf "$(GRN)execution buildin$(WHT)\n"
 	@make -C $(EXECUTION_DIR)
 
 mem: all
-	valgrind --leak-check=full --show-leak-kinds=all --trace-children=yes --track-fds=yes --suppressions=supp.txt ./minishell
+	valgrind --leak-check=full --show-leak-kinds=all --trace-children=yes --track-fds=yes --suppressions=supp.txt ./minishell 
 
 #https://github.com/sm222/C_tools
 tools:
@@ -82,7 +82,7 @@ clean:
 	@make -C $(C_TOOL_DIR) clean
 	@make -C built_in clean
 	@echo $(shell clear)
-	@printf '$(GRN)clean *.o$(RESET)\n'
+	@printf "$(GRN)clean *.o$(RESET)\n"
 
 # Removes objects and executables
 fclean: clean
@@ -93,7 +93,7 @@ fclean: clean
 	@make -C $(C_TOOL_DIR) fclean
 	@make -C $(EXECUTION_DIR) fclean
 	@echo $(shell clear)
-	@printf '$(GRN)clean all$(RESET)\n'
+	@printf "$(GRN)clean all$(RESET)\n"
 
 run: all
 	@./$(NAME)

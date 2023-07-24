@@ -49,7 +49,7 @@ int	main(int ac, char **av, char **en)
 	while (loop_test--)
 	{
 		shell.info = getcwd(NULL, 0);
-		ft_printf(-1, "%o"GRN"%s "WHT"$ ", &shell.tmp, shell.info);
+		ft_printf(NO_PRINT, "%o"GRN"%s "WHT"$ ", &shell.tmp, shell.info);
 		shell.s = readline(shell.tmp);
 		shell.cmd_list = NULL;
 		if (!shell.s)

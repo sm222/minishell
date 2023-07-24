@@ -12,27 +12,27 @@ all: echo pwd cd env unset exit
 	
 
 echo:
-	@printf '$(GRN)making echo$(WHT)\n'
+	@printf "$(GRN)making echo$(WHT)\n"
 	@make -C echo
 
 pwd:
-	@printf '$(GRN)making pwd$(WHT)\n'
+	@printf "$(GRN)making pwd$(WHT)\n"
 	@make -C pwd
 
 cd:
-	@printf '$(GRN)making cd$(WHT)\n'
+	@printf "$(GRN)making cd$(WHT)\n"
 	@make -C cd
 
 env:
-	@printf '$(GRN)making env$(WHT)\n'
+	@printf "$(GRN)making env$(WHT)\n"
 	@make -C env
 
 unset:
-	@printf '$(GRN)making unset$(WHT)\n'
+	@printf "$(GRN)making unset$(WHT)\n"
 	@make -C unset
 
 exit:
-	@printf '$(GRN)making exit$(WHT)\n'
+	@printf "$(GRN)making exit$(WHT)\n"
 	@make -C exit
 
 clean:

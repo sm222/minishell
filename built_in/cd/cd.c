@@ -20,7 +20,6 @@ static char	*find_home(char **en)
 static int	get_to_user(char **en)
 {
 	char	*env;
-	char	*tmp;
 	int		err;
 
 	env = find_home(en);
@@ -32,9 +31,7 @@ static int	get_to_user(char **en)
 	err = chdir(env);
 	if (err)
 	{
-		ft_printf(-1, "%ocd: %s: %s\n", &tmp, sys_errlist[errno], env);
-		ft_putstr_fd(tmp, STDERR_FILENO);
-		ft_free(tmp);
+		ft_printf(STDERR_FILENO, "%ocd: %s: %s\n", NULL, sys_errlist[errno], env);
 	}
 	return (err);
 }
@@ -44,15 +41,12 @@ static int	get_to_user(char **en)
 /// @return		err code
 static int	goto_dir(char *dir)
 {
-	int		err;
-	char	*tmp;
+	int	err;
 
 	err = chdir(dir);
 	if (err)
 	{
-		ft_printf(-1, "%ocd: %s: %s\n", &tmp, sys_errlist[errno], dir);
-		ft_putstr_fd(tmp, STDERR_FILENO);
-		ft_free(tmp);
+		ft_printf(STDERR_FILENO, "%ocd: %s: %s\n", NULL, sys_errlist[errno], dir);
 		return (EXIT_FAILURE);
 	}
 	return (err);

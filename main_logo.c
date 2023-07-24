@@ -90,8 +90,8 @@ void	print_logo(char *seed)
 		logo.tmp = ft_strdup(seed);
 	else
 	{
-		logo.con = ((long long)&print_logo) + ((long long)&print_seed);
-		logo.tmp = ft_itoa((int)logo.con);
+		logo.con = ((long long)&print_logo);
+		logo.tmp = ft_ulltoa((unsigned long long)logo.con, 10);
 	}
 	if (!logo.tmp)
 		return ;
