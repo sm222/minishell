@@ -19,7 +19,7 @@ int	ft_env(char **av, int re_in, int re_out, char **en)
 	}
 	while (en && en[i])
 	{
-		//if (ft_strchr(en[i], '='))
+		if (ft_strchr(en[i], '='))
 			ft_printf(re_out, "%o%s\n", NULL, en[i]);
 		i++;
 	}

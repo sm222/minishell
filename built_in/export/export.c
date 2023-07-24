@@ -11,7 +11,7 @@ int	print_env(char **en, int re_out)
 	return (EXIT_SUCCESS);
 }
 
-short	look_for_dup(char **env, char *name)
+int	look_for_dup(char **env, char *name)
 {
 	size_t	i;
 	size_t	len;
@@ -32,12 +32,20 @@ short	look_for_dup(char **env, char *name)
 char	**export_new(char **en, char *arg)
 {
 	char	**new;
+	char	*new_str;
+	int		i;
 
 	if (!en || !arg)
 		return (NULL);
 	new = NULL;
-	if (look_for_dup(en, arg) > -1)
-		printf("www\n");
+	i = look_for_dup(en, arg);
+	if (i > -1)
+	{
+		if (ft_printf(NO_PRINT, "%o%s", &new_str, en[i]) == -1)
+			return (NULL);
+		ft_free(en[i]);
+		en[i] = new_str;
+	}
 	return (new);
 }
 
@@ -56,7 +64,7 @@ int	ft_export(char **av, int re_in, int re_out, char **en)
 		tmp = export_new(en, av[i]);
 		if (tmp)
 		{
-			ft_strlen_double((void **)en);
+			ft_double_sfree((void **)en);
 			en = ft_return_ptr(tmp, ENV_C);
 		}
 		i++;

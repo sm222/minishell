@@ -6,6 +6,7 @@
 //			include			//
 //--------------------------//
 
+# include "export/export.h"
 # include "unset/unset.h"
 # include "echo/echo.h"
 # include "exit/exit.h"

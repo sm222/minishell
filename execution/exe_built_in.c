@@ -40,6 +40,8 @@ static void	*find_built_in_l(char *name)
 		return (&ft_env);
 	if (ft_strncmp(name, UNSET, ft_strlen(UNSET) + 1) == 0)
 		return (&ft_unset);
+	if (ft_strncmp(name, EXPORT, ft_strlen(EXPORT) + 1) == 0)
+		return (&ft_export);
 	return (NULL);
 }
 
