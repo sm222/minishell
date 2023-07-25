@@ -9,6 +9,7 @@ void	free_t_mshell(t_mshell *shell)
 	ft_free(shell->tmp);
 	ft_double_sfree((void **)shell->path);
 	ft_double_sfree((void **)shell->en);
+	ft_return_ptr(NULL, -1);
 }
 
 /// @brief	chnage the argv[0] in the t_cmd for the last pec

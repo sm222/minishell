@@ -58,10 +58,13 @@ static void	change_arg(t_cmd *in, short local)
 		change_name(shell->pec, in);
 		if (local)
 		{
-			free_t_mshell(shell);
-			cmd_free(&in);
-			ft_putstr_fd("exit\n", 1);
-			exit(shell->pec);
+			if (ft_exit(in->command, -1, shell->pec, NULL))
+			{
+				cmd_free(&in);
+				free_t_mshell(shell);
+				ft_putstr_fd("exit\n", 2);
+				exit(shell->pec);
+			}
 		}
 	}
 	if (ft_strncmp(in->command[0], ENV, ft_strlen(ENV) + 1) == 0)

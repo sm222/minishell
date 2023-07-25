@@ -67,7 +67,8 @@
 		"build_in.h": "c",
 		"ctlib.h": "c",
 		"env.h": "c",
-		"xutility": "c"
+		"xutility": "c",
+		"fcntl.h": "c"
 	},
 	"C_Cpp.errorSquiggles": "disabled"
 }
