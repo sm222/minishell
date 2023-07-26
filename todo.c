@@ -148,7 +148,6 @@ int	ft_count_flags(char *src)
 	return (flags);
 }
 
-//WIP changer flags et spaces par un char non affichable
 void	ft_flag_op(t_flag **flags, char *cmd)
 {
 	char	*flag;
@@ -164,8 +163,7 @@ void	ft_flag_op(t_flag **flags, char *cmd)
 		flag_count--;
 		printf("flag index: %d\nspace index: %d\n", flag_index, space_index);
 		flag = ft_strslice(cmd, flag_index, space_index);
-		ft_add_flag(cmd, flags);
-		printf("115\n");
+		ft_add_flag(flag, flags);
 		cmd[flag_index] = PASSED_THROUGH;
 		cmd[space_index] = PASSED_THROUGH;
 		flag_index = ft_at_index(cmd, '-');
@@ -300,7 +298,7 @@ int main(int ac, char **av)
 		//ft_add_flag("-a", &flags);
 		//ft_add_flag("-a", &flags);
 		//ft_add_flag("-a", &flags);
-		ft_flag_op(&flags, );
+		ft_flag_op(&flags, ft_strslice(flag_test, FIRST_INDEX, ft_strlen(flag_test)));
 		cmd.flags = flags;
 		cmd.arg = ".";
 		cmd.open_mark = 0;
