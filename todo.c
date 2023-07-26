@@ -103,8 +103,6 @@ void	ft_add_flag(char *src, t_flag **flags)
 	}
 	else
 	{
-		//printf("115\n");
-		//printf("%s\n", src);
 		flag = ft_calloc(NODE_SIZE, sizeof(t_flag));
 		current = *flags;
 		while (current->next)
@@ -198,13 +196,47 @@ int	ft_has_redirect(char *src)
 	return (INCORRECT);
 }
 
-int	ft_redirect_op(char *cmd)
+char	*ft_get_file(char *cmd, char mode)
 {
-	int	fd;
+	char	*res;
 
-	fd = 0;
-	(void) cmd;
-	return (fd);
+	res = NULL;
+	if (mode == 'o')
+	{
+		space_start = ft_at_index(cmd + mode_index, ' ') + mode_index;
+		space_end = ft_at_index(cmd + space_start, ' ') + space_start;
+	}
+	else if (mode == 'i')
+	return (res);
+}
+
+int	ft_file_op(char *cmd, char redirect, char mode)
+{
+	int		fd;
+	int		redirect_index;
+	char	*file_path;
+
+	redirect_index = ft_at_index(cmd, redirect);
+	file_path = ft_get_file(cmd, mode)
+	if (cmd[redirect_index + 1] == redirect)
+	{
+		fd = open(file_path, O_APPEND);
+	}
+	else
+	{
+		fd = open(file_path, O_CREAT);
+	}
+}
+
+t_token	ft_redirect_op(char *cmd)
+{
+	t_token	token;
+
+	if (ft_at_index(cmd, '<') != INVALID)
+		token. = ft_file_op(cmd, '<', 'i');
+	if (ft_at_index(cmd, '>') != INVALID)
+		ft_file_op(cmd, '>', 'o');
+	return (token);
 }
 
 char	**ft_cmd_reconstruct(t_decon decon)
@@ -262,31 +294,29 @@ char	**ft_cmd_reconstruct(t_decon decon)
 
 char	**ft_cmd_deconstruct(char *cmd)
 {
+	t_decon	decon;
+	
 	if (ft_has_redirect(cmd))
-		;
+		ft_redirect_op(cmd);
 	if (ft_has_flags(cmd))
-		;
+	{
+		
+		ft_flag_op();
+	}
 	return (NULL);
 }
 
-void	ft_purge(char *first_cmd, char *sec_cmd)
+void	ft_purge(t_decon *decon)
 {
-	free(first_cmd);
-	free(sec_cmd);
+	free(decon->cmd);
+	//free flags
+	free(decon->arg);
 }
 
 int main(int ac, char **av)
 {
 	if (ac == 2)
-	{
 		printf("%s\n", av[1]);
-		int index1 = ft_at_index(av[1], '_');
-		int index2 = ft_at_index(av[1], ' ');
-		char *s1 = ft_strslice(av[1], index1, index2);
-		char *s2 = ft_strslice(av[1], index2, ft_strlen(av[1]));
-		printf("%s\n", s1);
-		printf("%s\n", s2);
-	}
 	else
 	{
 		int i = 0;
@@ -294,10 +324,6 @@ int main(int ac, char **av)
 		cmd.cmd = "ls";
 		char *flag_test = "-l -a -a -a";
 		t_flag *flags = NULL;
-		//ft_add_flag("-l", &flags);
-		//ft_add_flag("-a", &flags);
-		//ft_add_flag("-a", &flags);
-		//ft_add_flag("-a", &flags);
 		ft_flag_op(&flags, ft_strslice(flag_test, FIRST_INDEX, ft_strlen(flag_test)));
 		cmd.flags = flags;
 		cmd.arg = ".";

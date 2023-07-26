@@ -33,14 +33,19 @@ typedef struct s_decon
 char	*ft_arg_op(char *cmd);
 void	ft_pipe_op(char *cmd);
 int		ft_has_flags(char *src);
-int		ft_redirect_op(char *cmd);
+void	ft_purge(t_decon decon);
+int		ft_count_flags(char *src);
+t_token	ft_redirect_op(char *cmd);
 int		ft_has_redirect(char *src);
+int		ft_list_count(t_flag *head);
 int		ft_at_index(char *src, char c);
 char	**ft_cmd_deconstruct(char *cmd);
+int		ft_at_rev_index(char *src, char c);
+char	*ft_get_file(char *cmd, char mode);
 char	**ft_cmd_reconstruct(t_decon decon);
 void	ft_flag_op(t_flag **flags, char *cmd);
 void	ft_add_flag(char *src, t_flag **flags);
-void	ft_purge(char *first_cmd, char *sec_cmd);
 char	*ft_strslice(char *src, int start, int end);
+int		ft_file_op(char *cmd, char redirect, char mode);
 
 #endif
