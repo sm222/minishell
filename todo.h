@@ -3,7 +3,9 @@
 
 # include <unistd.h>
 # include <stdlib.h>
+# include <fcntl.h>
 # include "libft/libft.h"
+# include "include/structure.h"
 
 #include <stdio.h>
 
@@ -27,13 +29,14 @@ typedef struct s_decon
 	char	*cmd;
 	t_flag	*flags;
 	char	*arg;
+	t_token	token;
 	int		open_mark;
 }	t_decon;
 
 char	*ft_arg_op(char *cmd);
 void	ft_pipe_op(char *cmd);
 int		ft_has_flags(char *src);
-void	ft_purge(t_decon decon);
+void	ft_purge(t_decon *decon);
 int		ft_count_flags(char *src);
 t_token	ft_redirect_op(char *cmd);
 int		ft_has_redirect(char *src);

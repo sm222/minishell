@@ -39,7 +39,6 @@ int	ft_list_count(t_flag *head)
 	{
 		while (current->next)
 		{
-			//printf("%s\n", current->flag);
 			current = current->next;
 			i++;
 		}
@@ -48,6 +47,7 @@ int	ft_list_count(t_flag *head)
 	return (i);
 }
 
+// NEED TESTING
 void	ft_pipe_op(char *cmd)
 {
 	int		pipe_index;
@@ -55,7 +55,7 @@ void	ft_pipe_op(char *cmd)
 	char	*current;
 	char	*temp;
 
-	current = cmd;
+	current = ft_strdup(cmd);
 	while (ft_at_index(current, '|') != INVALID)
 	{
 		temp = current;
@@ -67,8 +67,7 @@ void	ft_pipe_op(char *cmd)
 		free(temp);
 	}
 	ft_cmd_deconstruct(current);
-	if (ft_at_index(cmd, '|') != INVALID)
-		free(current);
+	free(current);
 }
 
 char	*ft_strslice(char *src, int start, int end)
@@ -146,6 +145,17 @@ int	ft_count_flags(char *src)
 	return (flags);
 }
 
+// NEED TESTING
+int	ft_end_flag(char *src, int start)
+{
+	int	end;
+
+	while (ft_at_index(src + start, '-') != INVALID)
+		start = ft_at_index(src + start, '-') + start;
+	end = ft_at_index(src + start, ' ') + start;
+	return (end);
+}
+
 void	ft_flag_op(t_flag **flags, char *cmd)
 {
 	char	*flag;
@@ -172,16 +182,6 @@ void	ft_flag_op(t_flag **flags, char *cmd)
 	}
 }
 
-char	*ft_arg_op(char *cmd)
-{
-	char	*res;
-
-	res = NULL;
-	if (ft_at_index(cmd, '\'') != INVALID || ft_at_index(cmd, '"') != INVALID)
-		;
-	return (res);
-}
-
 int	ft_has_redirect(char *src)
 {
 	int	i;
@@ -196,20 +196,34 @@ int	ft_has_redirect(char *src)
 	return (INCORRECT);
 }
 
+// NEED TESTING
 char	*ft_get_file(char *cmd, char mode)
 {
 	char	*res;
+	int		mode_index;
+	int		space_start;
+	int		space_end;
 
 	res = NULL;
 	if (mode == 'o')
 	{
+		mode_index = ft_at_index(cmd, '>');
 		space_start = ft_at_index(cmd + mode_index, ' ') + mode_index;
-		space_end = ft_at_index(cmd + space_start, ' ') + space_start;
+		if (ft_at_index(cmd + space_start, ' '))
+			space_end = ft_at_index(cmd + space_start, ' ') + space_start;
+		else
+			space_end = ft_strlen(cmd);
+		res = ft_strslice(cmd, space_start, space_end);
 	}
 	else if (mode == 'i')
+	{
+		space_end = ft_at_index(cmd, ' ');
+		res = ft_strslice(cmd, FIRST_INDEX, space_end);
+	}
 	return (res);
 }
 
+// NEED TESTING
 int	ft_file_op(char *cmd, char redirect, char mode)
 {
 	int		fd;
@@ -217,7 +231,7 @@ int	ft_file_op(char *cmd, char redirect, char mode)
 	char	*file_path;
 
 	redirect_index = ft_at_index(cmd, redirect);
-	file_path = ft_get_file(cmd, mode)
+	file_path = ft_get_file(cmd, mode);
 	if (cmd[redirect_index + 1] == redirect)
 	{
 		fd = open(file_path, O_APPEND);
@@ -226,16 +240,18 @@ int	ft_file_op(char *cmd, char redirect, char mode)
 	{
 		fd = open(file_path, O_CREAT);
 	}
+	return (fd);
 }
 
+// NEED TESTING
 t_token	ft_redirect_op(char *cmd)
 {
 	t_token	token;
 
 	if (ft_at_index(cmd, '<') != INVALID)
-		token. = ft_file_op(cmd, '<', 'i');
+		token.redi_in = ft_file_op(cmd, '<', 'i');
 	if (ft_at_index(cmd, '>') != INVALID)
-		ft_file_op(cmd, '>', 'o');
+		token.redi_out = ft_file_op(cmd, '>', 'o');
 	return (token);
 }
 
@@ -248,10 +264,9 @@ char	**ft_cmd_reconstruct(t_decon decon)
 
 	i = 0;
 	flag_count = ft_list_count(decon.flags);
-	printf("flag count: %d\n", flag_count);
 	res = ft_calloc(flag_count + REST_OF_CMD, sizeof(char *));
 	if (!res)
-		printf("oopsie daisy\n");
+		printf("oopsie daisy\n"); //gérer les malloc fail
 	current = decon.flags;
 	res[i++] = decon.cmd;
 	while (current->next)
@@ -264,48 +279,75 @@ char	**ft_cmd_reconstruct(t_decon decon)
 	return (res); 
 }
 
-//
-/*char	**ft_cmd_deconstruct(char *cmd)
+// NEED TESTING
+char	*ft_cmd_op(char *cmd)
 {
-	t_decon decon;
-	char	*temp;
-	char	*current;
-	int		cmd_index;
-	int		space_index;
+	int		start_index;
+	int		end_index;
+	char	*res;
 
-	if (ft_has_redirect(cmd))
-		cmd_index = ft_redirect_op(cmd);
+	if (ft_at_index(cmd, '<') != INVALID)
+	{
+		start_index = ft_at_index(cmd, '<');
+		start_index = ft_at_index(cmd + start_index, ' ') + start_index;
+		end_index = ft_at_index(cmd + start_index, ' ') + start_index;
+	}
 	else
-		cmd_index = FIRST_INDEX;
-	ft_bzero(&decon, sizeof(t_decon));
-	decon.cmd = ft_strslice(cmd, cmd_index, ft_at_index(cmd, ' '));
-	current = ft_strslice(cmd, ft_at_index(cmd, ' '), ft_strlen(cmd));
-	if (ft_has_flags(current))
-		space_index = ft_flag_op(&decon.flags, cmd);
-	else
-		space_index = ft_at_index(current, ' ');
-	temp = current;
-	current = ft_strslice(cmd, space_index, ft_strlen(cmd));
-	free(temp);
-	ft_arg_op(current);
-	free(current);
-	return (ft_cmd_reconstruct(decon));
-}*/
+	{
+		start_index = FIRST_INDEX;
+		end_index = ft_at_index(cmd, ' ');
+	}
+	res = ft_strslice(cmd, start_index, end_index);
+	return (res);
+}
 
+// NEED TESTING
+char	*ft_arg_op(char *cmd)
+{
+	int		start_index;
+	int		end_index;
+	char	*res;
+
+	res = NULL;
+	if (ft_at_index(cmd, '\'') != INVALID || ft_at_index(cmd, '"') != INVALID)
+		start_index = ft_at_index(cmd, '"');
+	else
+		start_index = ft_at_rev_index(cmd, ' ');
+	if (ft_at_index(cmd, '>') != INVALID)
+		end_index = ft_at_index(cmd, '>') - 1;
+	else
+		end_index = ft_strlen(cmd);
+	res = ft_strslice(cmd, start_index, end_index);
+	return (res);
+}
+
+// NEED TESTING
 char	**ft_cmd_deconstruct(char *cmd)
 {
+	char	*flag_slice;
+	int		start_index;
+	int		end_index;
 	t_decon	decon;
 	
+	decon.flags = NULL;
 	if (ft_has_redirect(cmd))
-		ft_redirect_op(cmd);
+		decon.token = ft_redirect_op(cmd);
+	decon.cmd = ft_cmd_op(cmd);
 	if (ft_has_flags(cmd))
 	{
-		
-		ft_flag_op();
+		start_index = ft_at_index(cmd, '-');
+		if (ft_at_index(cmd + start_index, '-') != INVALID)
+			end_index = ft_end_flag(cmd, start_index);
+		else
+			end_index = ft_at_index(cmd + start_index, ' ');
+		flag_slice = ft_strslice(cmd, start_index, end_index);
+		ft_flag_op(&decon.flags, flag_slice);
 	}
+	decon.arg = ft_arg_op(cmd);
 	return (NULL);
 }
 
+// WIP
 void	ft_purge(t_decon *decon)
 {
 	free(decon->cmd);
@@ -316,7 +358,11 @@ void	ft_purge(t_decon *decon)
 int main(int ac, char **av)
 {
 	if (ac == 2)
+	{
 		printf("%s\n", av[1]);
+		char *s1 = ft_strslice(av[1], FIRST_INDEX, ft_at_index(av[1], '>') - 1);
+		printf("%s\n", s1);
+	}
 	else
 	{
 		int i = 0;
