@@ -58,7 +58,7 @@ static void	change_arg(t_cmd *in, short local)
 		change_name(shell->pec, in);
 		if (local)
 		{
-			if (ft_exit(in->command, -1, shell->pec, NULL))
+			if (ft_exit(in->command, -1, shell->pec, NULL) != 2)
 			{
 				cmd_free(&in);
 				free_t_mshell(shell);
