@@ -45,6 +45,14 @@ static char	*get_path(char *new, char *old)
 	return (NULL);
 }
 
+static void	do_logo(char **av)
+{
+	if (av[1] && av[1][0] != 0 && ft_strlen(av[1]) > 8)
+		print_logo(av[1]);
+	else
+		print_logo(NULL);
+}
+
 int	main(int ac, char **av, char **en)
 {
 	t_mshell	shell;
@@ -54,13 +62,10 @@ int	main(int ac, char **av, char **en)
 	(void)ac;
 	(void)av;
 	ft_bzero(&shell, sizeof(t_mshell));
-	loop_test = 1000;
+	loop_test = 100;
 	if (start_shell(&shell, en) != SUCCESS)
 		return (FAIL);
-	if (av[1] && av[1][0] != 0 && ft_strlen(av[1]) > 8)
-		print_logo(av[1]);
-	else
-		print_logo(NULL);
+	do_logo(av);
 	ft_b_set_flag(&flag, BUILT_IN, TRUE);
 	while (loop_test--)
 	{
@@ -75,7 +80,6 @@ int	main(int ac, char **av, char **en)
 			cmd_make_node_last(&shell.cmd_list, ft_split(shell.s, ' '), make_token(flag, 0, 0));
 			run_cmd(shell.cmd_list, &shell.pec);
 			add_history(shell.s);
-			printf("%d\n", shell.pec);
 		}
 		shell.s = ft_free(shell.s);
 		shell.tmp = ft_free(shell.tmp);

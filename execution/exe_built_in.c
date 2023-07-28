@@ -71,7 +71,7 @@ static void	change_arg(t_cmd *in, short local)
 		if (change_av_for_en(in) < SUCCESS)
 			err_msg(PERROR, M_FAIL, "change_av_for_en");
 	if (ft_strncmp(in->command[0], PWD, ft_strlen(PWD) + 1) == 0)
-		if (change_av_pwd(in, shell->tmp) < SUCCESS)
+		if (change_av_pwd(in, shell->info) < SUCCESS)
 			err_msg(PERROR, M_FAIL, "change_av_pwd");
 }
 
