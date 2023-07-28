@@ -42,6 +42,7 @@ short	cmd_make_node_last(t_cmd **list, char **cmd, t_token *tok);
 
 short	change_av_for_en(t_cmd *in);
 void	change_name(int pec, t_cmd *in);
+short	change_av_pwd(t_cmd *in, char *pwd);
 
 short	ft_execution(t_cmd *in, t_waitp **wait);
 int		find_path(char *name, char **out, char **list);

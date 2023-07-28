@@ -19,12 +19,30 @@ void	change_name(int pec, t_cmd *in)
 {
 	char	*s;
 
-	s = ft_itoa(pec);
-	if (s)
+	if (in)
 	{
-		free(in->command[0]);
-		in->command[0] = s;
+		s = ft_itoa(pec);
+		if (s)
+		{
+			free(in->command[0]);
+			in->command[0] = s;
+		}
 	}
+}
+
+short	change_av_pwd(t_cmd *in, char *pwd)
+{
+	char	*tmp;
+	if (!in || !pwd)
+		return (BAD_ARGS);
+	tmp = ft_strdup(pwd);
+	if (tmp)
+	{
+		ft_free(in->command[0]);
+		in->command[0] = tmp;
+		return (SUCCESS);
+	}
+	return (M_FAIL);
 }
 
 /// @brief	chnage the argv for the env
