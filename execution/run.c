@@ -46,7 +46,8 @@ short	ft_execution(t_cmd *in, t_waitp **wait)
 		return (BAD_ARGS);
 	exe.err = find_path(in->command[0], &exe.ft_path, shell->path);
 	if (exe.err == FAIL)
-		err_msg(DO_FREE, exe.err, ft_strjoin(MS_NAME ERR_CNF, in->command[0]));
+		return (err_msg(DO_FREE, exe.err, \
+		ft_strjoin(MS_NAME ERR_CNF, in->command[0])));
 	if (set_redir(in) <= FAIL)
 		return (FAIL);
 	else if (exe.err == M_FAIL)
@@ -65,31 +66,30 @@ short	ft_execution(t_cmd *in, t_waitp **wait)
 /// @brief	use after 'cmd_make_node_last'
 /// @param	in	t_cmd list of cmd 't_cmd *'
 /// @return	BAD_ARGS, else SUCCESS
-int	run_cmd(t_cmd *in)
+int	run_cmd(t_cmd *in, int *pec)
 {
-	int		err;
-	t_waitp	*wait;
-	t_cmd	*tmp;
+	t_run	run;
 
-	wait = NULL;
-	if (!in)
+	ft_bzero(&run, sizeof(t_run));
+	if (!in || !pec)
 		return (BAD_ARGS);
-	tmp = in;
-	err = 0;
+	run.tmp = in;
 	set_pipe(&in);
-	while (tmp)
+	while (run.tmp)
 	{
-		close_old_fd(tmp);
-		if (tmp->tok && ft_b_flag_read(tmp->tok->mode, BUILT_IN))
-			err = ft_execution_built_in(tmp, &wait, cmd_node_len(in));
+		close_old_fd(run.tmp);
+		if (run.tmp->tok && ft_b_flag_read(run.tmp->tok->mode, BUILT_IN))
+			run.err = execution_builtin(run.tmp, &run.wait, cmd_node_len(in));
 		else
-			err = ft_execution(tmp, &wait);
-		if (err < SUCCESS)
-			err_msg(PERROR, err, "ft_execution");
-		tmp = tmp->next;
+			run.err = ft_execution(run.tmp, &run.wait);
+		if (run.err < FAIL)
+			err_msg(PERROR, run.err, "ft_execution");
+		if (run.err == FAIL)
+			*pec = 127;
+		run.tmp = run.tmp->next;
 	}
 	close_all_fd(in);
-	wait_pids(wait, 1);
+	wait_pids(run.wait, 1);
 	cmd_free(&in);
 	return (SUCCESS);
 }

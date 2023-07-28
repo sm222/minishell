@@ -82,4 +82,14 @@ typedef struct s_mshell
 	char			*tmp;
 }	t_mshell;
 
+
+
+typedef struct s_run
+{
+	int		err;
+	t_waitp	*wait;
+	t_cmd	*tmp;
+}t_run;
+
+
 #endif // STRUCTURE_H

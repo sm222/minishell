@@ -93,7 +93,7 @@ static int	run_local(int (*ft)(char **, int, int, char **), t_cmd *in)
 /// @param	wait	t_waitp* address of the list of pid
 /// @param	cmd_len	len of the number of cmd
 /// @return	err code
-int	ft_execution_built_in(t_cmd *in, t_waitp **wait, int cmd_len)
+int	execution_builtin(t_cmd *in, t_waitp **wait, int cmd_len)
 {
 	int		f;
 	char	*name;

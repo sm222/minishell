@@ -18,6 +18,8 @@
 //			define			//
 //--------------------------//
 
+
+
 /*
 ◦ < doit rediriger l’entrée.
 ◦ << doit recevoir un délimiteur et lire l’input donné jusqu’à rencontrer une ligne
@@ -32,7 +34,7 @@ contenant le délimiteur. Cependant, l’historique n’a pas à être mis à jo
 
 // cmd
 
-int		run_cmd(t_cmd *in);
+int		run_cmd(t_cmd *in, int *pec);
 void	cmd_free(t_cmd **in);
 size_t	cmd_node_len(t_cmd *list);
 t_cmd	*cmd_make_node(char **cmd, t_token *tok);
@@ -43,7 +45,7 @@ void	change_name(int pec, t_cmd *in);
 
 short	ft_execution(t_cmd *in, t_waitp **wait);
 int		find_path(char *name, char **out, char **list);
-int		ft_execution_built_in(t_cmd *in, t_waitp **wait, int cmd_len);
+int		execution_builtin(t_cmd *in, t_waitp **wait, int cmd_len);
 
 // fd
 

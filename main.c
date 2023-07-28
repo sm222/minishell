@@ -29,6 +29,22 @@ static int	start_shell(t_mshell *shell, char **en)
 	return (SUCCESS);
 }
 
+static char	*get_path(char *new, char *old)
+{
+	if (!new && old)
+		return (old);
+	else if (new && old)
+	{
+		ft_free(old);
+		return (new);
+	}
+	else if (!new && !old)
+		return (ft_strdup("?"));
+	else if (new && !old)
+		return (new);
+	return (NULL);
+}
+
 int	main(int ac, char **av, char **en)
 {
 	t_mshell	shell;
@@ -48,7 +64,7 @@ int	main(int ac, char **av, char **en)
 	ft_b_set_flag(&flag, BUILT_IN, TRUE);
 	while (loop_test--)
 	{
-		shell.info = getcwd(NULL, 0);
+		shell.info = get_path(getcwd(NULL, 0), shell.info);
 		ft_printf(NO_PRINT, "%o"GRN"%s "WHT"$ ", &shell.tmp, shell.info);
 		shell.s = readline(shell.tmp);
 		shell.cmd_list = NULL;
@@ -57,11 +73,11 @@ int	main(int ac, char **av, char **en)
 		if (shell.s && *shell.s)
 		{
 			cmd_make_node_last(&shell.cmd_list, ft_split(shell.s, ' '), make_token(flag, 0, 0));
-			run_cmd(shell.cmd_list);
+			run_cmd(shell.cmd_list, &shell.pec);
 			add_history(shell.s);
+			printf("%d\n", shell.pec);
 		}
 		shell.s = ft_free(shell.s);
-		shell.info = ft_free(shell.info);
 		shell.tmp = ft_free(shell.tmp);
 	}
 	rl_clear_history();
