@@ -57,6 +57,7 @@ typedef struct s_waitp
 typedef struct s_exe
 {
 	int				err;
+	int				err_redir;
 	char			*ft_path;
 	pid_t			pid;
 }	t_exe;

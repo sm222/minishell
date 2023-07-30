@@ -48,10 +48,9 @@ short	ft_execution(t_cmd *in, t_waitp **wait)
 	if (exe.err == FAIL)
 		return (err_msg(DO_FREE, exe.err, \
 		ft_strjoin(MS_NAME ERR_CNF, in->command[0])));
-	if (set_redir(in) <= FAIL)
-		return (FAIL);
-	else if (exe.err == M_FAIL)
-		return (M_FAIL);
+	exe.err_redir = set_redir(in);
+	if (exe.err_redir < SUCCESS)
+		return (exe.err_redir);
 	exe.pid = fork();
 	if (exe.pid == -1)
 		return (err_msg(NO_FREE, FORK_FAIL, "fork fail"));
