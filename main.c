@@ -18,6 +18,7 @@ static int	start_shell(t_mshell *shell, char **en)
 {
 	if (!shell || !en)
 		return (BAD_ARGS);
+	ft_bzero(shell, sizeof(t_mshell));
 	shell->cmd_list = NULL;
 	shell->en = ft_cpy_double_char(en);
 	if (get_env_path(shell) <= FAIL)
@@ -29,21 +30,6 @@ static int	start_shell(t_mshell *shell, char **en)
 	return (SUCCESS);
 }
 
-static char	*get_path(char *new, char *old)
-{
-	if (!new && old)
-		return (old);
-	else if (new && old)
-	{
-		ft_free(old);
-		return (new);
-	}
-	else if (!new && !old)
-		return (ft_strdup("?"));
-	else if (new && !old)
-		return (new);
-	return (NULL);
-}
 
 static void	do_logo(char **av)
 {
@@ -60,8 +46,6 @@ int	main(int ac, char **av, char **en)
 	int	flag = 0;
 
 	(void)ac;
-	(void)av;
-	ft_bzero(&shell, sizeof(t_mshell));
 	loop_test = 100;
 	if (start_shell(&shell, en) != SUCCESS)
 		return (FAIL);
@@ -69,10 +53,7 @@ int	main(int ac, char **av, char **en)
 	ft_b_set_flag(&flag, BUILT_IN, TRUE);
 	while (loop_test--)
 	{
-		shell.info = get_path(getcwd(NULL, 0), shell.info);
-		ft_printf(NO_PRINT, "%o"GRN"%s "WHT"$ ", &shell.tmp, shell.info);
-		shell.s = readline(shell.tmp);
-		shell.cmd_list = NULL;
+		reset_data_main(&shell);
 		if (!shell.s)
 			break ;
 		if (shell.s && *shell.s)
@@ -81,8 +62,6 @@ int	main(int ac, char **av, char **en)
 			run_cmd(shell.cmd_list, &shell.pec);
 			add_history(shell.s);
 		}
-		shell.s = ft_free(shell.s);
-		shell.tmp = ft_free(shell.tmp);
 	}
 	rl_clear_history();
 	free_shell(&shell);

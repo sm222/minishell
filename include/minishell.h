@@ -107,6 +107,7 @@ typedef struct s_logo
 //			fonction		//
 //--------------------------//
 
+short	reset_data_main(t_mshell *shell);
 int		get_env_path(t_mshell *data);
 void	print_logo(char *seed);
 

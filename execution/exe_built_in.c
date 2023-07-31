@@ -1,4 +1,6 @@
 #include "execution.h"
+#include "../readline/history.h"
+#include "../readline/readline.h"
 
 /// @brief	try to find the cmd adrres
 /// @param	name	name of the cmd
@@ -64,6 +66,7 @@ static void	change_arg(t_cmd *in, short local)
 			cmd_free(&in);
 			free_t_mshell(shell);
 			ft_putstr_fd("exit\n", 1);
+			rl_clear_history();
 			exit(((unsigned char)shell->pec));
 		}
 	}
