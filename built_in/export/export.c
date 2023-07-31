@@ -4,10 +4,24 @@
 int	print_env(char **en, int re_out)
 {
 	size_t	i;
+	char	*tmp;
 
+	i = 0;
+	while (en && en[i + 1])
+	{
+		if (ft_strcmp(en[i], en[i + 1]) > 0)
+		{
+			tmp = en[i + 1];
+			en[i + 1] = en[i];
+			en[i] = tmp;
+			i = -1;
+		}
+		i++;
+	}
 	i = 0;
 	while (en && en[i])
 		ft_printf(re_out, "%odeclare -x %s\n", NULL ,en[i++]);
+	ft_double_sfree((void **)en);
 	return (EXIT_SUCCESS);
 }
 
@@ -32,19 +46,21 @@ int	look_for_dup(char **env, char *name)
 char	**export_new(char **en, char *arg)
 {
 	char	**new;
-	char	*new_str;
 	int		i;
 
 	if (!en || !arg)
 		return (NULL);
 	new = NULL;
 	i = look_for_dup(en, arg);
-	if (i > -1)
+	if (i == -1)
 	{
-		if (ft_printf(NO_PRINT, "%o%s", &new_str, en[i]) == -1)
+		i = ft_strlen_double(en);
+		new = ft_calloc(i + 2, sizeof(char *));
+		if (!new)
 			return (NULL);
-		ft_free(en[i]);
-		en[i] = new_str;
+		new[i] = ft_strdup(arg);
+		while (--i)
+			new[i] = en[i];
 	}
 	return (new);
 }
@@ -55,10 +71,10 @@ int	ft_export(char **av, int re_in, int re_out, char **en)
 	size_t	i;
 	char	**tmp;
 
-	i = 1;
 	(void)re_in;
 	if (ft_strlen_double(av) == 1)
-		return (print_env(en, re_out));
+		return (print_env(ft_cpy_double_char(en), re_out));
+	i = 1;
 	while (av && av[i])
 	{
 		tmp = export_new(en, av[i]);
@@ -66,6 +82,7 @@ int	ft_export(char **av, int re_in, int re_out, char **en)
 		{
 			ft_double_sfree((void **)en);
 			en = ft_return_ptr(tmp, ENV_C);
+			tmp = NULL;
 		}
 		i++;
 	}

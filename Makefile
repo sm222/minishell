@@ -51,7 +51,7 @@ OBJS	=	$(SRCS:.c=.o)
 USER = $(shell whoami)
 
 all: tools libft builtin exe $(NAME)
-	@printf "$(CYN) \n\n			correction is made by $(USER)\n\n  $(RESET)"
+	@printf "$(CYN) \n\n			correction is made by $(USER)\n\n  $(RESET)\n"
 	
 $(NAME): $(OBJS) $(C_TOOL)
 	@$(CC) $(CFLAGS) $(OBJS) $(LIBFT_DIR)$(LIBFT) -l readline -l ncurses \
