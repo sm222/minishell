@@ -69,7 +69,8 @@
 		"env.h": "c",
 		"xutility": "c",
 		"fcntl.h": "c",
-		"structure.h": "c"
+		"structure.h": "c",
+		"export.h": "c"
 	},
 	"C_Cpp.errorSquiggles": "disabled"
 }

@@ -42,6 +42,7 @@ SRCS	=	main.c\
 			built_in/env/ft_env.c\
 			built_in/exit/ft_exit.c\
 			built_in/export/export.c\
+			built_in/export/export_u.c\
 			built_in/unset/ft_unset.c\
 
 #env -i ./minishell

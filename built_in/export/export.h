@@ -15,7 +15,9 @@
 //			fonction		//
 //--------------------------//
 
-int	ft_export(char **av, int re_in, int re_out, char **en);
+int		ft_export(char **av, int re_in, int re_out, char **en);
+char	**change_arg_env(char **en, int i, char *new);
+
 
 //--------------------------//
 //			define			//

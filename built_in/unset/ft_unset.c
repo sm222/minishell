@@ -14,7 +14,8 @@ static short	find_word(char **list, char *word)
 	"%o"MS_NAME" unset: `%s': not a valid identifier\n", NULL, word);
 	while (list && list[i])
 	{
-		if (ft_strncmp(list[i], word, len) == 0 && list[i][len] == '=')
+		if (ft_strncmp(list[i], word, len) == 0 && \
+		(list[i][len] == '=' || list[i][len] == 0))
 			return (SUCCESS);
 		i++;
 	}
@@ -34,15 +35,14 @@ static short	new_arg(char **new, char **old, char *skip)
 	len = ft_strlen(skip);
 	while (old && old[i])
 	{
-		if (ft_strncmp(old[i], skip, len) == 0 && old[i][len] == '=')
+		if (ft_strncmp(old[i], skip, len) == 0 && \
+		(old[i][len] == '=' || old[i][len] == 0))
 			i++;
 		else
 		{
-			new[j] = ft_strdup(old[i]);
-			if (!new[j])
+			new[j] = ft_strdup(old[i++]);
+			if (!new[j++])
 				return (M_FAIL);
-			j++;
-			i++;
 		}
 	}
 	return (SUCCESS);

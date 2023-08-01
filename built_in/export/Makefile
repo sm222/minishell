@@ -10,6 +10,7 @@ RM		=	rm -f
 
 # Sources are all .c files
 SRCS	=	export.c\
+			export_u.c\
 			main.c
 
 OBJS	=	$(SRCS:.c=.o)
