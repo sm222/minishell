@@ -15,6 +15,6 @@ int	ft_pwd(char **av, int re_in, int re_out, char **en)
 		return (EXIT_FAILURE);
 	}
 	else
-		ft_printf(re_out ,"%o%s\n", NULL, av[0]);
+		ft_printf(re_out, "%o%s\n", NULL, av[0]);
 	return (EXIT_SUCCESS);
 }

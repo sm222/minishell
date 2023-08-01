@@ -14,6 +14,7 @@
 # define PATH  1		// path split with the ':'
 # define PEC   2		// process exit code
 # define ENV_C 3		// copy of the env
+# define EX_F  4		// tell if the program end
 //	byte flag			//
 
 //--------------------------//
@@ -76,6 +77,7 @@ typedef struct s_mshell
 {
 	char			*s;
 	int				pec;
+	short			exit;
 	char			**en;
 	char			**path;
 	t_cmd			*cmd_list;

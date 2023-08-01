@@ -21,5 +21,3 @@
 # define PATH_BIN "BUILT_IN/"
 
 #endif // BUILT_IN_H
-
-
