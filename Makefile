@@ -63,11 +63,11 @@ libft:
 	@$(MAKE) -C $(LIBFT_DIR)
 
 builtin:
-	@printf "$(GRN)making buildin$(WHT)\n"
+	@printf "$(GRN)making builtin$(WHT)\n"
 	@make -C built_in
 
 exe:
-	@printf "$(GRN)execution buildin$(WHT)\n"
+	@printf "$(GRN)execution builtin$(WHT)\n"
 	@make -C $(EXECUTION_DIR)
 
 mem: all

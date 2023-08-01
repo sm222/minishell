@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 15:44:12 by anboisve          #+#    #+#             */
-/*   Updated: 2023/07/23 14:34:40 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/08/01 08:51:20 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static char	*ft_add_arg(va_list list, char type)
 		return (ft_itoa(va_arg(list, int)));
 	else if (type == 'u')
 		return (ft_ulltoa(va_arg(list, unsigned int), 10));
-	else if (type == 'x')
+	else if (type == 'x' || type == 'p')
 		return (ft_ulltoa(va_arg(list, unsigned long), 16));
 	else if (type == '%')
 		return (ft_strdup("%"));

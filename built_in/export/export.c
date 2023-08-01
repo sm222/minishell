@@ -7,7 +7,7 @@ int	print_env(char **en, int re_out)
 	char	*tmp;
 
 	i = 0;
-	while (en && en[i + 1])
+	while (en && en[i] && en[i + 1])
 	{
 		if (ft_strcmp(en[i], en[i + 1]) > 0)
 		{
@@ -20,8 +20,10 @@ int	print_env(char **en, int re_out)
 	}
 	i = 0;
 	while (en && en[i])
-		ft_printf(re_out, "%odeclare -x %s\n", NULL ,en[i++]);
-	ft_double_sfree((void **)en);
+	{
+		ft_printf(re_out, "%o%p declare -x %s\n", NULL, en[i] ,en[i]);
+		i++;
+	}
 	return (EXIT_SUCCESS);
 }
 
@@ -47,7 +49,9 @@ char	**export_new(char **en, char *arg)
 {
 	char	**new;
 	int		i;
+	int		j;
 
+	j = 0;
 	if (!en || !arg)
 		return (NULL);
 	new = NULL;
@@ -59,8 +63,11 @@ char	**export_new(char **en, char *arg)
 		if (!new)
 			return (NULL);
 		new[i] = ft_strdup(arg);
-		while (--i)
-			new[i] = en[i];
+		while (j < i)
+		{
+			new[j] = en[j];
+			j++;
+		}
 	}
 	return (new);
 }
@@ -73,14 +80,14 @@ int	ft_export(char **av, int re_in, int re_out, char **en)
 
 	(void)re_in;
 	if (ft_strlen_double(av) == 1)
-		return (print_env(ft_cpy_double_char(en), re_out));
+		return (print_env(en, re_out));
 	i = 1;
 	while (av && av[i])
 	{
 		tmp = export_new(en, av[i]);
 		if (tmp)
 		{
-			ft_double_sfree((void **)en);
+			ft_free(en);
 			en = ft_return_ptr(tmp, ENV_C);
 			tmp = NULL;
 		}
