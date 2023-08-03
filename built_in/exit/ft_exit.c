@@ -1,28 +1,35 @@
 #include "exit.h"
 
-static int	more(char **av, int pec)
+static	void	set_exit_flag(short	flag)
 {
 	short	*ex;
 
 	ex = ft_return_ptr(NULL, EX_F);
 	if (ex)
-		*ex = 1;
+		*ex = flag;
+}
+
+static int	more_arg(char **av, int pec)
+{
 	if (ft_ban(av[1], "0123456789") != 0)
 	{
 		ft_printf(STDERR_FILENO, \
 		"%oMinishell: exit: %s: numeric argument required\n", NULL, av[1]);
 		pec = 255;
+		set_exit_flag(1);
 	}
 	else if (ft_strlen_double(av) >= 3)
 	{
 		ft_printf(STDERR_FILENO, \
 		"%oMinishell: exit: too many arguments\n", NULL);
-		if (ex)
-			*ex = 0;
+		set_exit_flag(0);
 		pec = 1;
 	}
 	else
+	{
+		set_exit_flag(1);
 		pec = ft_atoi(av[1]);
+	}
 	return (pec);
 }
 
@@ -35,7 +42,6 @@ int	ft_exit(char **av, int re_in, int re_out, char **en)
 {
 	unsigned char	pec;
 	int				tmp;
-	short			*ex_code;
 
 	pec = 0;
 	(void)en;
@@ -45,11 +51,9 @@ int	ft_exit(char **av, int re_in, int re_out, char **en)
 	if (ft_strlen_double(av) == 1)
 	{
 		pec = tmp;
-		ex_code = ft_return_ptr(NULL, EX_F);
-		if (ex_code)
-			*ex_code = 1;
+		set_exit_flag(1);
 	}
 	else
-		pec = more(av, tmp);
+		pec = more_arg(av, tmp);
 	return (pec);
 }
