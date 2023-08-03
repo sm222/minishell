@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 13:12:13 by anboisve          #+#    #+#             */
-/*   Updated: 2023/07/23 14:59:07 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/08/03 13:29:00 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,7 @@ static int	make_new_str(char *s, va_list arg, char **out, int fd)
 	if (fd > -1)
 	{
 		len = ft_putstr_fd(*out, fd);
-		ft_free(*out);
-		*out = NULL;
+		*out = ft_free(*out);
 	}
 	if (fd < 0)
 		ft_free(tmp);

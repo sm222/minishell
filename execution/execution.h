@@ -18,8 +18,6 @@
 //			define			//
 //--------------------------//
 
-
-
 /*
 ◦ < doit rediriger l’entrée.
 ◦ << doit recevoir un délimiteur et lire l’input donné jusqu’à rencontrer une ligne

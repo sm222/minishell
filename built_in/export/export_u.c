@@ -1,7 +1,5 @@
 #include "export.h"
 
-
-
 static short	look_new_arg(char *old, char *new)
 {
 	if (ft_strchr(old, '=') && !ft_strchr(new, '='))
@@ -23,6 +21,7 @@ char	**change_arg_env(char **en, int i, char *new)
 	}
 	return (en);
 }
+
 static void	print_type(const char *s, int re_out)
 {
 	size_t	i;
@@ -38,7 +37,8 @@ static void	print_type(const char *s, int re_out)
 			i++;
 		}
 		if (s[i] == '=')
-			ft_printf(re_out, "%odeclare -x %s=\"%s\"\n", NULL, name, s + i + 1);
+			ft_printf(re_out, "%odeclare -x %s=\"%s\"\n", \
+			NULL, name, s + i + 1);
 		else
 			ft_printf(re_out, "%odeclare -x %s\n", NULL, name);
 		free(name);
