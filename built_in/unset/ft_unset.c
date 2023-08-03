@@ -9,7 +9,7 @@ static short	find_word(char **list, char *word)
 	len = ft_strlen(word);
 	if (len == 0)
 		return (FAIL);
-	if (ft_isdigit(word[0]) || ft_find(word, BAD_LIST))
+	if (ft_isdigit(word[0]) || ft_find(word, BAD_LIST_UNSET))
 		ft_printf(STDERR_FILENO, \
 	"%o"MS_NAME" unset: `%s': not a valid identifier\n", NULL, word);
 	while (list && list[i])

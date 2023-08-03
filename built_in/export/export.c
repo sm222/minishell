@@ -1,49 +1,22 @@
 
 #include "export.h"
 
-void	print_type(const char *s, int re_out)
+static short	find_word(char *word)
 {
 	size_t	i;
-	char	*name;
+	size_t	len;
 
 	i = 0;
-	name = ft_calloc(ft_strlen(s), sizeof(char));
-	if (s && name)
+	len = ft_strlen(word);
+	if (len == 0)
+		return (FAIL);
+	if (ft_isdigit(word[0]) || ft_find(word, BAD_LIST_EXPORT))
 	{
-		while (s[i] && s[i] != '=')
-		{
-			name[i] = s[i];
-			i++;
-		}
-		if (s[i] == '=')
-			ft_printf(re_out, "%odeclare -x %s=\"%s\"\n", NULL, name, s + i + 1);
-		else
-			ft_printf(re_out, "%odeclare -x %s\n", NULL, name);
-		free(name);
+		ft_printf(STDERR_FILENO, \
+	"%o"MS_NAME" export: `%s': not a valid identifier\n", NULL, word);
+		return (FAIL);
 	}
-}
-
-int	print_env(char **en, int re_out)
-{
-	size_t	i;
-	char	*tmp;
-
-	i = 0;
-	while (en && en[i] && en[i + 1])
-	{
-		if (ft_strcmp(en[i], en[i + 1]) > 0)
-		{
-			tmp = en[i + 1];
-			en[i + 1] = en[i];
-			en[i] = tmp;
-			i = -1;
-		}
-		i++;
-	}
-	i = 0;
-	while (en && en[i])
-		print_type(en[i++], re_out);
-	return (EXIT_SUCCESS);
+	return (SUCCESS);
 }
 
 int	look_for_dup(char **env, char *name)
@@ -92,10 +65,7 @@ char	**export_new(char **en, char *arg)
 			new[j] = en[j];
 	}
 	else
-	{
 		change_arg_env(en, i, arg);
-		new = NULL;
-	}
 	return (new);
 }
 
@@ -110,6 +80,11 @@ int	ft_export(char **av, int re_in, int re_out, char **en)
 	i = 1;
 	while (av && av[i])
 	{
+		if (find_word(av[i]) == FAIL)
+		{
+			i++;
+			continue ;
+		}
 		tmp = export_new(en, av[i]);
 		if (tmp)
 		{

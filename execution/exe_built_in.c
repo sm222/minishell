@@ -62,7 +62,6 @@ static void	change_arg(t_cmd *in, short local)
 		change_name(shell->pec, in);
 		if (local)
 			ft_putstr_fd("exit\n", 1);
-
 	}
 	if (ft_strncmp(in->command[0], ENV, ft_strlen(ENV) + 1) == 0)
 		if (change_av_for_en(in) < SUCCESS)

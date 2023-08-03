@@ -2,6 +2,8 @@
 //			BUILT_IN		//
 /*/*//*/*//*/*//*/*//*/*//*/*/
 
+chnage exit in the real exit and rm it from excution 
+
 3.7.5 Exit Status
 The exit status of an executed command is the value returned by the waitpid system call or equivalent function. Exit statuses fall between 0 and 255, though,
 as explained below, the shell may use values above 125 specially. Exit statuses from shell builtins and compound commands are also limited to this range.
