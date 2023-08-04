@@ -6,6 +6,15 @@
 #  include <sys/wait.h>
 # endif
 
+/*/*//*/*//*/*//*/*//*/*//*/*/
+//			include			//
+/*/*//*/*//*/*//*/*//*/*//*/*/
+
+# include <unistd.h>
+# include <stdio.h>
+# include <sys/types.h>
+# include <sys/stat.h>
+
 //--------------------------//
 //			define			//
 //--------------------------//
@@ -17,10 +26,6 @@
 # define EX_F  4		// tell if the program end
 # define DOC   5		// here_dock
 //	byte flag			//
-
-//--------------------------//
-//			define			//
-//--------------------------//
 
 # ifndef  TRUE
 #  define TRUE			1
@@ -43,6 +48,7 @@
 
 typedef struct s_doc
 {
+	struct stat		dat;
 	char			*f_name;
 	int				fd;
 	struct s_doc	*next; 

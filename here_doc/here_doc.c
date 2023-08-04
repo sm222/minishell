@@ -4,10 +4,11 @@ short	make_here_doc(int i)
 {
 	t_doc	**doc;
 
+	(void)i;
 	doc = ft_return_ptr(NULL, DOC); 
 	if (!*doc)
 	{
-
+		*doc = new_doc();
 	}
 	
 	return (SUCCESS);

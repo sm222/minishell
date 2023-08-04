@@ -8,6 +8,7 @@ LIBFT		=	libft.a
 LIBFT_DIR	=	../lib/lib_ft/
 
 SRCS	=	here_doc.c\
+			make_here_doc.c
 
 
 OBJS	=	$(SRCS:.c=.o)
