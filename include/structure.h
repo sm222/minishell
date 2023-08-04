@@ -15,6 +15,7 @@
 # define PEC   2		// process exit code
 # define ENV_C 3		// copy of the env
 # define EX_F  4		// tell if the program end
+# define DOC   5		// here_dock
 //	byte flag			//
 
 //--------------------------//
@@ -39,6 +40,14 @@
 //--------------------------//
 //			struct			//
 //--------------------------//
+
+typedef struct s_doc
+{
+	char			*f_name;
+	int				fd;
+	struct s_doc	*next; 
+}		t_doc;
+
 
 typedef struct s_token
 {
@@ -83,6 +92,7 @@ typedef struct s_mshell
 	t_cmd			*cmd_list;
 	char			*info;
 	char			*tmp;
+	t_doc			*doc;
 }	t_mshell;
 
 

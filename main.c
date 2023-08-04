@@ -28,6 +28,7 @@ static int	start_shell(t_mshell *shell, char **en)
 	ft_return_ptr(&shell->pec, PEC);
 	ft_return_ptr(shell->en, ENV_C);
 	ft_return_ptr(&shell->exit, EX_F);
+	ft_return_ptr(&shell->doc, DOC);
 	return (SUCCESS);
 }
 
