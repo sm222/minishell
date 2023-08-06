@@ -3,10 +3,8 @@
 
 static short	find_word(char *word)
 {
-	size_t	i;
 	size_t	len;
 
-	i = 0;
 	len = ft_strlen(word);
 	if (len == 0)
 		return (FAIL);

@@ -18,6 +18,6 @@ t_doc	*new_doc(void)
 		ft_free(new->f_name);
 		return (ft_free(new));
 	}
-	lstat(new->f_name, &new->dat);
+	fstat(new->fd, &new->dat);
 	return (new);
 }

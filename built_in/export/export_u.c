@@ -28,7 +28,7 @@ static void	print_type(const char *s, int re_out)
 	char	*name;
 
 	i = 0;
-	name = ft_calloc(ft_strlen(s), sizeof(char));
+	name = ft_calloc(ft_strlen(s) + 1 , sizeof(char));
 	if (s && name)
 	{
 		while (s[i] && s[i] != '=')
