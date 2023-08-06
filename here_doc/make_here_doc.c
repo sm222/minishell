@@ -8,7 +8,7 @@ t_doc	*new_doc(void)
 	new = ft_calloc(1, sizeof(t_doc));
 	if (!new)
 		return (NULL);
-	if (ft_printf(NO_PRINT, "%o/tmp/here_doc%d", &new->f_name, i++) == -1)
+	if (ft_printf(NO_PRINT, "%o/tmp/.here_doc%d", &new->f_name, i++) == -1)
 		return (ft_free(new));
 	new->fd = open(new->f_name, O_CREAT | O_TRUNC | O_RDWR, 0644);
 	if (new->fd < 0)
