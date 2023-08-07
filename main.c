@@ -76,6 +76,7 @@ int	main(int ac, char **av, char **en)
 			cmd_make_node_last(&shell.cmd_list, ft_split(shell.s, ' '), make_token(flag, 0, 0));
 			run_cmd(shell.cmd_list, &shell.pec);
 			add_history(shell.s);
+			printf("pec %d\n", shell.pec);
 		}
 	}
 	rl_clear_history();

@@ -1,6 +1,18 @@
 
 #include "execution.h"
 
+static int	get_err_code(int pec)
+{
+	int	new_pec;
+
+	new_pec = 0;
+	if (WIFEXITED(pec))
+		new_pec = WEXITSTATUS(pec);
+	else if (WIFSIGNALED(pec))
+		new_pec = (128 + WTERMSIG(pec));
+	return (new_pec);
+}
+
 /// @brief	run a waitpid on a list of pid_t
 /// @param	in	linklist waitp
 /// @param	free_f	free the list or not
@@ -9,6 +21,7 @@ short	wait_pids(t_waitp *in, short free_f)
 {
 	t_waitp	*tmp;
 	int		*pec;
+
 
 	tmp = NULL;
 	if (!in)
@@ -22,6 +35,7 @@ short	wait_pids(t_waitp *in, short free_f)
 			ft_free(in);
 		in = tmp;
 	}
+	*pec = get_err_code(*pec);
 	return (SUCCESS);
 }
 

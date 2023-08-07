@@ -20,6 +20,7 @@ int	ft_exit(char **av, int re_in, int re_out, char **en);
 //			define			//
 //--------------------------//
 
+# define NUMBER "0123456789" 
 # ifndef EXIT
 #  define EXIT "exit"
 # endif

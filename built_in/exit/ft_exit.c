@@ -11,7 +11,7 @@ static	void	set_exit_flag(short	flag)
 
 static int	more_arg(char **av, int pec)
 {
-	if (ft_ban(av[1], "0123456789") != 0)
+	if (ft_ban(av[1], "-" NUMBER) != 0 || ft_ban(av[1] + 1, NUMBER) != 0)
 	{
 		ft_printf(STDERR_FILENO, \
 		"%oMinishell: exit: %s: numeric argument required\n", NULL, av[1]);

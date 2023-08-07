@@ -1,15 +1,18 @@
 
 #include "cd.h"
+#include "../../include/structure.h"
 
-static char	*find_home(char **en)
+static char	*find_name(char **en, char *name)
 {
 	size_t	i;
+	size_t	len;
 
 	i = 0;
+	len = ft_strlen(name);
 	while (en && en[i])
 	{
-		if (ft_strncmp(en[i], "HOME=", 5) == 0)
-			return (en[i] + 5);
+		if (ft_strncmp(en[i], name, len) == 0)
+			return (en[i] + len);
 		i++;
 	}
 	return (NULL);
@@ -23,13 +26,13 @@ static int	get_to_user(char **en)
 	int		err;
 
 	env = NULL;
+	if (en)
+		env = find_name(en, "HOME=");
 	if (!env || !*env)
 	{
 		ft_putstr_fd("cd: HOME not set\n", 2);
 		return (2);
 	}
-	if (en)
-		env = find_home(en);
 	err = chdir(env);
 	if (err)
 		ft_printf(STDERR_FILENO, "%ocd: %s: %s\n", \
