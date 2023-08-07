@@ -22,12 +22,14 @@ static int	get_to_user(char **en)
 	char	*env;
 	int		err;
 
-	env = find_home(en);
+	env = NULL;
 	if (!env || !*env)
 	{
 		ft_putstr_fd("cd: HOME not set\n", 2);
 		return (2);
 	}
+	if (en)
+		env = find_home(en);
 	err = chdir(env);
 	if (err)
 		ft_printf(STDERR_FILENO, "%ocd: %s: %s\n", \

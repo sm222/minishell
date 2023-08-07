@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 12:18:29 by anboisve          #+#    #+#             */
-/*   Updated: 2023/07/31 12:20:02 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/08/07 12:48:44 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,9 @@ int	ft_strcmp(const char *s1, const char *s2)
 	size_t	i;
 
 	i = 0;
-	while (s1[i] && s2[i] && s1[i] == s2[i])
+	if (!s1 || !s2)
+		return (-1);
+	while ((s1[i] && s2[i]) && s1[i] == s2[i])
 		i++;
 	return (s1[i] - s2[i]);
 }

@@ -41,7 +41,7 @@ static void	print_type(const char *s, int re_out)
 			NULL, name, s + i + 1);
 		else
 			ft_printf(re_out, "%odeclare -x %s\n", NULL, name);
-		free(name);
+		ft_free(name);
 	}
 }
 

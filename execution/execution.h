@@ -46,6 +46,8 @@ short	ft_execution(t_cmd *in, t_waitp **wait);
 int		find_path(char *name, char **out, char **list);
 int		execution_builtin(t_cmd *in, t_waitp **wait, int cmd_len);
 
+int		change_env_data(t_mshell *data);
+
 // fd
 
 int		close_fd(int fd);

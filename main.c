@@ -16,11 +16,17 @@ static void	free_shell(t_mshell *shell)
 
 static int	start_shell(t_mshell *shell, char **en)
 {
+	char	*new;
+	char	**spl;
+
 	if (!shell || !en)
 		return (BAD_ARGS);
 	ft_bzero(shell, sizeof(t_mshell));
 	shell->cmd_list = NULL;
-	shell->en = ft_cpy_double_char(en);
+	if (en[0])
+		shell->en = ft_cpy_double_char(en);
+	else
+		shell->en = ft_split("OLDPWD _=", ' ');
 	if (get_env_path(shell) <= FAIL)
 		return (127);
 	ft_return_ptr(shell, SYS);
@@ -29,8 +35,15 @@ static int	start_shell(t_mshell *shell, char **en)
 	ft_return_ptr(shell->en, ENV_C);
 	ft_return_ptr(&shell->exit, EX_F);
 	ft_return_ptr(&shell->doc, DOC);
+	ft_printf(NO_PRINT, "%oex OLDPWD", &new);
+	spl = ft_split(new, ' ');
+	ft_export(spl, 0, 1, shell->en);
+	ft_double_sfree((void **)spl);
+	ft_free(new);
+	shell->en = ft_return_ptr(NULL, ENV_C);
 	return (SUCCESS);
 }
+
 
 
 static void	do_logo(char **av)

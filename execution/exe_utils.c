@@ -69,3 +69,27 @@ short	change_av_for_en(t_cmd *in)
 	}
 	return (SUCCESS);
 }
+
+int	change_env_data(t_mshell *data)
+{
+	char	*new;
+	char	**spl;
+	size_t	i;
+
+	i = 0;
+	while (data->en && data->en[i])
+	{
+		if (ft_strncmp("OLDPWD", data->en[i], 6) == 0 && \
+		(data->en[i][6] == '=' || data->en[i][6] == 0))
+		{
+			ft_printf(NO_PRINT, "%oex OLDPWD=%s", &new, data->info);
+			spl = ft_split(new, ' ');
+			ft_export(spl, 0, 1, data->en);
+			ft_double_sfree((void **)spl);
+			ft_free(new);
+			return (SUCCESS);
+		}
+		i++;
+	}
+	return (FAIL);
+}

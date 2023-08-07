@@ -19,7 +19,7 @@
 # define FILE_DEF ".debug_minishell"
 # define ERR_CNF "command not found: "
 # define BAD_LIST_UNSET "éèÈÉçÇ^.!@#$%?&*()-+=\"\\/;,àÀ||¤{}[]¬"
-# define BAD_LIST_EXPORT "éèÈÉçÇ^.!@#$%?&*()-+\"\\/;,àÀ||¤{}[]¬"
+# define BAD_LIST_EXPORT "éèÈÉçÇ^.!@#$%?&*()-+\";,àÀ||¤{}[]¬"
 
 # define DEBUG_ERR -1
 
