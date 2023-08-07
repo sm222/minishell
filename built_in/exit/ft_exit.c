@@ -1,6 +1,6 @@
 #include "exit.h"
 
-static	void	set_exit_flag(short	flag)
+static void	set_exit_flag(short	flag)
 {
 	short	*ex;
 
