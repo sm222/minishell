@@ -72,5 +72,25 @@
 		"structure.h": "c",
 		"export.h": "c"
 	},
-	"C_Cpp.errorSquiggles": "disabled"
+	"C_Cpp.errorSquiggles": "disabled",
+	"workbench.colorCustomizations": {
+		"activityBar.activeBackground": "#ff6430",
+		"activityBar.background": "#ff6430",
+		"activityBar.foreground": "#15202b",
+		"activityBar.inactiveForeground": "#15202b99",
+		"activityBarBadge.background": "#00ff40",
+		"activityBarBadge.foreground": "#15202b",
+		"commandCenter.border": "#e7e7e799",
+		"sash.hoverBorder": "#ff6430",
+		"statusBar.background": "#fc3f00",
+		"statusBar.foreground": "#e7e7e7",
+		"statusBarItem.hoverBackground": "#ff6430",
+		"statusBarItem.remoteBackground": "#fc3f00",
+		"statusBarItem.remoteForeground": "#e7e7e7",
+		"titleBar.activeBackground": "#fc3f00",
+		"titleBar.activeForeground": "#e7e7e7",
+		"titleBar.inactiveBackground": "#fc3f0099",
+		"titleBar.inactiveForeground": "#e7e7e799"
+	},
+	"peacock.color": "#fc3f00"
 }
