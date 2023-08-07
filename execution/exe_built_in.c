@@ -83,10 +83,10 @@ static int	run_local(int (*ft)(char **, int, int, char **), t_cmd *in)
 	if (!ft)
 		return (FAIL);
 	change_arg(in, TRUE);
-	if (ft == &ft_cd)
-		change_env_data(shell);
 	shell->pec = \
 	ft(in->command, in->tok->redi_in, in->tok->redi_out, shell->en);
+	if (ft == &ft_cd)
+		change_env_data(shell);
 	if (shell->exit)
 	{
 		cmd_free(&in);

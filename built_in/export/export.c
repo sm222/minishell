@@ -1,7 +1,7 @@
 
 #include "export.h"
 
-static short	find_word(char *word)
+static short	find_word(char *word, int *pec)
 {
 	size_t	len;
 
@@ -12,6 +12,7 @@ static short	find_word(char *word)
 	{
 		ft_printf(STDERR_FILENO, \
 	"%o"MS_NAME" export: `%s': not a valid identifier\n", NULL, word);
+		*pec = 1;
 		return (FAIL);
 	}
 	return (SUCCESS);
@@ -70,15 +71,17 @@ char	**export_new(char **en, char *arg)
 int	ft_export(char **av, int re_in, int re_out, char **en)
 {
 	size_t	i;
+	int		pec;
 	char	**tmp;
 
 	(void)re_in;
+	pec = 0;
 	if (ft_strlen_double(av) == 1)
 		return (print_env(en, re_out));
 	i = 1;
 	while (av && av[i])
 	{
-		if (find_word(av[i]) == FAIL)
+		if (find_word(av[i], &pec) == FAIL)
 		{
 			i++;
 			continue ;
@@ -88,9 +91,8 @@ int	ft_export(char **av, int re_in, int re_out, char **en)
 		{
 			ft_free(en);
 			en = ft_return_ptr(tmp, ENV_C);
-			tmp = NULL;
 		}
 		i++;
 	}
-	return (EXIT_SUCCESS);
+	return (pec);
 }

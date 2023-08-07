@@ -4,6 +4,5 @@ int	main(int ac, char **av, char **en)
 {
 	(void)ac;
 	(void)en;
-	ft_cd(av, 0, 0, en);
-	return (0);
+	return (ft_cd(av, 0, 0, en));
 }

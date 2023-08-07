@@ -31,7 +31,7 @@ static int	get_to_user(char **en)
 	if (!env || !*env)
 	{
 		ft_putstr_fd("cd: HOME not set\n", 2);
-		return (2);
+		return (1);
 	}
 	err = chdir(env);
 	if (err)
@@ -43,10 +43,23 @@ static int	get_to_user(char **en)
 /// @brief		try to go to char* dir
 /// @param	dir	directory
 /// @return		err code
-static int	goto_dir(char *dir)
+static int	goto_dir(char *dir, char **en, int re_out)
 {
-	int	err;
+	int		err;
+	char	*t;
 
+	if (ft_strncmp(dir, "-", 2) == 0)
+	{
+		t = find_name(en, "OLDPWD=");
+		ft_printf(re_out, "%o%s\n", NULL, t);
+		if (t)
+			dir = t;
+		else
+		{
+			ft_putstr_fd("cd: OLDPWD not set\n", 2);
+			return (EXIT_FAILURE);
+		}
+	}
 	err = chdir(dir);
 	if (err)
 	{
@@ -67,14 +80,8 @@ int	ft_cd(char **av, int re_in, int re_out, char **en)
 	size_t	len;
 
 	(void)re_in;
-	(void)re_out;
 	len = ft_strlen_double(av);
 	if (len == 1)
 		return (get_to_user(en));
-	else if (len > 2)
-	{
-		ft_putstr_fd("cd: too many arguments\n", 2);
-		return (2);
-	}
-	return (goto_dir(av[1]));
+	return (goto_dir(av[1], en, re_out));
 }

@@ -1,6 +1,6 @@
 #include "unset.h"
 
-static short	find_word(char **list, char *word)
+static short	find_word(char **list, char *word, int *pec)
 {
 	size_t	i;
 	size_t	len;
@@ -10,8 +10,11 @@ static short	find_word(char **list, char *word)
 	if (len == 0)
 		return (FAIL);
 	if (ft_isdigit(word[0]) || ft_find(word, BAD_LIST_UNSET))
+	{
+		*pec = EXIT_FAILURE;
 		ft_printf(STDERR_FILENO, \
 	"%o"MS_NAME" unset: `%s': not a valid identifier\n", NULL, word);
+	}
 	while (list && list[i])
 	{
 		if (ft_strncmp(list[i], word, len) == 0 && \
@@ -48,13 +51,13 @@ static short	new_arg(char **new, char **old, char *skip)
 	return (SUCCESS);
 }
 
-static char	**unset_val(char **en, char *arg)
+static char	**unset_val(char **en, char *arg, int *pec)
 {
 	char	**new;
 
 	if (!en || !arg)
 		return (NULL);
-	if (!find_word(en, arg))
+	if (!find_word(en, arg, pec))
 		return (NULL);
 	new = ft_calloc(ft_strlen_double(en) + 1, sizeof(char *));
 	if (!new)
@@ -68,13 +71,15 @@ int	ft_unset(char **av, int re_in, int re_out, char **en)
 {
 	size_t	i;
 	char	**tmp;
+	int		pec;
 
 	i = 1;
+	pec = EXIT_SUCCESS;
 	(void)re_in;
 	(void)re_out;
 	while (av && av[i])
 	{
-		tmp = unset_val(en, av[i]);
+		tmp = unset_val(en, av[i], &pec);
 		if (tmp)
 		{
 			ft_double_sfree((void **)en);
@@ -82,5 +87,5 @@ int	ft_unset(char **av, int re_in, int re_out, char **en)
 		}
 		i++;
 	}
-	return (EXIT_SUCCESS);
+	return (pec);
 }

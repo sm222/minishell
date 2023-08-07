@@ -15,7 +15,7 @@ int	ft_env(char **av, int re_in, int re_out, char **en)
 	if (!av)
 	{
 		ft_putstr_fd("env: too many arguments\n", 2);
-		return (2);
+		return (1);
 	}
 	while (en && en[i])
 	{

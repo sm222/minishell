@@ -11,7 +11,7 @@ int	ft_pwd(char **av, int re_in, int re_out, char **en)
 	(void)en;
 	if (ft_strlen_double(av) > 1)
 	{
-		ft_putstr_fd("pwd: too many arguments\n", 2);
+		ft_putstr_fd("pwd: too many arguments\n", STDERR_FILENO);
 		return (EXIT_FAILURE);
 	}
 	else
