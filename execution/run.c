@@ -1,6 +1,14 @@
 
 #include "execution.h"
 
+//126
+static int	permission_denied(char *name)
+{
+	ft_printf(STDERR_FILENO, "%ominishell: %s: Permission denied\n", \
+	NULL, name);
+	return (126);
+}
+
 /// @brief	use to run the cmd (need to add stuff)
 /// @param	in		t_cmd link list
 /// @param	path	env of system
@@ -46,8 +54,10 @@ short	ft_execution(t_cmd *in, t_waitp **wait)
 		return (BAD_ARGS);
 	exe.err = find_path(in->command[0], &exe.ft_path, shell->path);
 	if (exe.err == FAIL)
-		return (err_msg(DO_FREE, exe.err, \
+		return (err_msg(DO_FREE, 127, \
 		ft_strjoin(MS_NAME ERR_CNF, in->command[0])));
+	if (exe.err == NO_ASS)
+		return (permission_denied(in->command[0]));
 	exe.err_redir = set_redir(in);
 	if (exe.err_redir < SUCCESS)
 		return (exe.err_redir);
@@ -81,10 +91,10 @@ int	run_cmd(t_cmd *in, int *pec)
 			run.err = execution_builtin(run.tmp, &run.wait, cmd_node_len(in));
 		else
 			run.err = ft_execution(run.tmp, &run.wait);
-		if (run.err < FAIL)
-			err_msg(PERROR, run.err, "ft_execution");
 		if (run.err == FAIL)
-			*pec = 127;
+			err_msg(PERROR, run.err, "ft_execution");
+		else
+			*pec = run.err;
 		run.tmp = run.tmp->next;
 	}
 	close_all_fd(in);

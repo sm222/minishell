@@ -7,6 +7,7 @@
 static int	test_local(char *name, char **out)
 {
 	char	*tmp;
+	//int		err;
 
 	tmp = NULL;
 	ft_printf(-1, "%o./%s", &tmp, name);
@@ -25,6 +26,8 @@ static int	test_local(char *name, char **out)
 			return (M_FAIL);
 		return (1);
 	}
+	if (errno == 13)
+		return (NO_ASS);
 	return (FAIL);
 }
 
@@ -38,7 +41,6 @@ static int	test_local(char *name, char **out)
 int	find_path(char *name, char **out, char **list)
 {
 	char	*tmp;
-	int		local;
 	size_t	i;
 
 	i = 0;
@@ -57,8 +59,5 @@ int	find_path(char *name, char **out, char **list)
 		tmp = ft_free(tmp);
 		i++;
 	}
-	local = test_local(name, out);
-	if (local > 0 || local == M_FAIL)
-		return (local);
-	return (FAIL);
+	return (test_local(name, out));
 }

@@ -15,7 +15,7 @@
 //			define			//
 /*/*//*/*//*/*//*/*//*/*//*/*/
 
-# define MS_NAME "Minishell: "
+# define MS_NAME "Minishell "
 # define FILE_DEF ".debug_minishell"
 # define ERR_CNF "command not found: "
 # define BAD_LIST_UNSET "éèÈÉçÇ^.!@#$%?&*()-+=\"\\/;,àÀ||¤{}[]¬"
@@ -29,6 +29,7 @@
 # define BAD_ARGS	-2
 # define FORK_FAIL	-3
 # define PIPE_FAIL	-4
+# define NO_ASS	-5
 
 # define PERROR		0
 # define NO_FREE	1

@@ -23,10 +23,7 @@ static int	start_shell(t_mshell *shell, char **en)
 		return (BAD_ARGS);
 	ft_bzero(shell, sizeof(t_mshell));
 	shell->cmd_list = NULL;
-	if (en[0])
-		shell->en = ft_cpy_double_char(en);
-	else
-		shell->en = ft_split("OLDPWD _=", ' ');
+	shell->en = ft_cpy_double_char(en);
 	if (get_env_path(shell) <= FAIL)
 		return (127);
 	ft_return_ptr(shell, SYS);
