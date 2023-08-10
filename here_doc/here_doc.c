@@ -19,7 +19,7 @@ short	make_here_doc(int i)
 	if (!tmp)
 		return (FAIL);
 	else
-		
+		edit_here_doc(tmp);
 	return (SUCCESS);
 }
 

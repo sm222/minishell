@@ -48,7 +48,7 @@
 
 typedef struct s_doc
 {
-	struct stat		dat;
+	//struct stat		dat;
 	char			*f_name;
 	int				i;
 	int				fd;

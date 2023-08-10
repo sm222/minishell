@@ -10,7 +10,7 @@ t_doc	*new_doc(void)
 		return (NULL);
 	if (ft_printf(NO_PRINT, "%o/tmp/.here_doc%d", &new->f_name, i) == -1)
 		return (ft_free(new));
-	new->fd = open(new->f_name, O_CREAT | O_TRUNC | O_RDWR, 0644);
+	new->fd = open(new->f_name, O_CREAT | O_TRUNC, 0644);
 	if (new->fd < 0)
 	{
 		ft_printf(STDERR_FILENO, "%ominishell: can't make %s", \
@@ -19,6 +19,24 @@ t_doc	*new_doc(void)
 		return (ft_free(new));
 	}
 	new->i = i++;
-	fstat(new->fd, &new->dat);
+	close(new->fd);
+	//fstat(new->fd, &new->dat);
 	return (new);
+}
+
+short	edit_here_doc(t_doc *doc)
+{
+	if (doc)
+	{
+		doc->fd = open(doc->f_name, O_CREAT | O_TRUNC | O_RDWR, 0644);
+		if (!doc->fd)
+		{
+			perror("edit_here_doc");
+			return (FAIL);
+		}
+		printf("name %s\n", doc->f_name);
+		close(doc->fd);
+		unlink(doc->f_name);
+	}
+	return (BAD_ARGS);
 }
