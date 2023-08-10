@@ -93,7 +93,7 @@ int	run_cmd(t_cmd *in, int *pec)
 			run.err = ft_execution(run.tmp, &run.wait);
 		if (run.err == FAIL)
 			err_msg(PERROR, run.err, "ft_execution");
-		else
+		else if (errno == 13)
 			*pec = run.err;
 		run.tmp = run.tmp->next;
 	}

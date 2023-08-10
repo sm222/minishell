@@ -9,14 +9,20 @@ static void	set_exit_flag(short	flag)
 		*ex = flag;
 }
 
+//9223372036854775807
 static int	more_arg(char **av, int pec)
 {
-	if (ft_ban(av[1], "-" NUMBER) != 0 || ft_ban(av[1] + 1, NUMBER) != 0)
+	long long data;
+
+	set_exit_flag(1);
+	data = ft_atoll(av[1]);
+	if (ft_ban(av[1], "-+" NUMBER) != 0 || ft_ban(av[1] + 1, NUMBER) != 0 || \
+	ft_strlen(av[1]) > 19 || data > 9223372036854775807 || \
+	data < -9223372036854775807)
 	{
 		ft_printf(STDERR_FILENO, \
 		"%oMinishell: exit: %s: numeric argument required\n", NULL, av[1]);
 		pec = 255;
-		set_exit_flag(1);
 	}
 	else if (ft_strlen_double(av) >= 3)
 	{
@@ -26,10 +32,7 @@ static int	more_arg(char **av, int pec)
 		pec = 1;
 	}
 	else
-	{
-		set_exit_flag(1);
-		pec = ft_atoi(av[1]);
-	}
+		pec = data;
 	return (pec);
 }
 

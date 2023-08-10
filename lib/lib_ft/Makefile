@@ -7,6 +7,7 @@ RM		=	rm -f
 
 # Sources are all .c files
 SRCS	=	ft_atoi.c\
+			ft_atoll.c\
 			ft_b_flag.c\
 			ft_close_fds.c\
 			ft_bzero.c\

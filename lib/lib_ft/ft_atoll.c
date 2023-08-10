@@ -1,25 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcmp.c                                        :+:      :+:    :+:   */
+/*   ft_atoll.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/31 12:18:29 by anboisve          #+#    #+#             */
-/*   Updated: 2023/08/10 09:42:56 by anboisve         ###   ########.fr       */
+/*   Created: 2023/08/10 09:01:27 by anboisve          #+#    #+#             */
+/*   Updated: 2023/08/10 09:41:58 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_strcmp(const char *s1, const char *s2)
+long long	ft_atoll(const char *s)
 {
-	size_t	i;
+	long long	rez;
+	short		min;
+	size_t		i;
 
+	if (!s)
+		return (0);
+	min = 1;
+	rez = 0;
 	i = 0;
-	if (!s1 || !s2)
-		return (-1);
-	while ((s1[i] && s2[i]) && s1[i] == s2[i])
+	if (s[0] == '-' || s[0] == '+')
+	{
+		if (s[0] == '-')
+			min *= -1;
 		i++;
-	return (s1[i] - s2[i]);
+	}
+	while (s[i] >= '0' && s[i] <= '9')
+		rez = rez * 10 + (s[i++] - '0');
+	return (rez * min);
 }
