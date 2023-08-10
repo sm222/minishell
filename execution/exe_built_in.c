@@ -50,7 +50,7 @@ static void	*find_built_in_l(char *name)
 /// @brief	chnage the argument for exit and env
 /// @param	in		input t_cmd*
 /// @param	local	if it run in the fork or not
-static void	change_arg(t_cmd *in, short local)
+static void	change_arg(t_cmd *in)
 {
 	t_mshell	*shell;
 
@@ -60,8 +60,6 @@ static void	change_arg(t_cmd *in, short local)
 	if (ft_strncmp(in->command[0], EXIT, ft_strlen(EXIT) + 1) == 0)
 	{
 		change_name(shell->pec, in);
-		if (local)
-			ft_putstr_fd("exit\n", 1);
 	}
 	if (ft_strncmp(in->command[0], ENV, ft_strlen(ENV) + 1) == 0)
 		if (change_av_for_en(in) < SUCCESS)
@@ -82,7 +80,7 @@ static int	run_local(int (*ft)(char **, int, int, char **), t_cmd *in)
 	shell = ft_return_ptr(NULL, SYS);
 	if (!ft)
 		return (FAIL);
-	change_arg(in, TRUE);
+	change_arg(in);
 	shell->pec = \
 	ft(in->command, in->tok->redi_in, in->tok->redi_out, shell->en);
 	if (ft == &ft_cd)
@@ -92,6 +90,7 @@ static int	run_local(int (*ft)(char **, int, int, char **), t_cmd *in)
 		cmd_free(&in);
 		free_t_mshell(shell);
 		rl_clear_history();
+		ft_putstr_fd("exit\n", 1);
 		exit(((unsigned char)shell->pec));
 	}
 	shell->en = ft_return_ptr(NULL, ENV_C);
@@ -121,7 +120,7 @@ int	execution_builtin(t_cmd *in, t_waitp **wait, int cmd_len)
 			ft_free(in->command[0]);
 			in->command[0] = name;
 		}
-		change_arg(in, FALSE);
+		change_arg(in);
 		return (ft_execution(in, wait));
 	}
 	else if (cmd_len == 1)

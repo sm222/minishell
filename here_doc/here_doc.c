@@ -3,14 +3,23 @@
 short	make_here_doc(int i)
 {
 	t_doc	**doc;
+	t_doc	*tmp;
 
 	(void)i;
 	doc = ft_return_ptr(NULL, DOC); 
 	if (!*doc)
 	{
 		*doc = new_doc();
+		if (!*doc)
+			return (FAIL);
 	}
-	
+	tmp = (*doc);
+	while (tmp->i != i)
+		tmp = tmp->next;
+	if (!tmp)
+		return (FAIL);
+	else
+		
 	return (SUCCESS);
 }
 

@@ -9,6 +9,21 @@ static int	permission_denied(char *name)
 	return (126);
 }
 
+/*
+bash: ./awdawdawd: No such file or directory
+bash-3.2$ /bin/lslsls
+bash: /bin/lslsls: No such file or directory
+bash-3.2$ asdasd
+*/
+static int	no_file(char *name)
+{
+	if (name && (name[0] == '.' || name[0] == '/'))
+		err_msg(DO_FREE, 127, ft_strjoin(MS_NAME ERR_NSFD, name));	
+	else
+		err_msg(DO_FREE, 127, ft_strjoin(MS_NAME ERR_CNF, name));
+	return (127);
+}
+
 /// @brief	use to run the cmd (need to add stuff)
 /// @param	in		t_cmd link list
 /// @param	path	env of system
@@ -54,8 +69,7 @@ short	ft_execution(t_cmd *in, t_waitp **wait)
 		return (BAD_ARGS);
 	exe.err = find_path(in->command[0], &exe.ft_path, shell->path);
 	if (exe.err == FAIL)
-		return (err_msg(DO_FREE, 127, \
-		ft_strjoin(MS_NAME ERR_CNF, in->command[0])));
+		return (no_file(in->command[0]));
 	if (exe.err == NO_ASS)
 		return (permission_denied(in->command[0]));
 	exe.err_redir = set_redir(in);
