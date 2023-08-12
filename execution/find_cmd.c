@@ -6,19 +6,8 @@
 /// @return	1 if local, 2 if ./ fail FAIL, else M_FAIL
 static int	test_local(char *name, char **out)
 {
-	char	*tmp;
 	//int		err;
 
-	tmp = NULL;
-	ft_printf(-1, "%o./%s", &tmp, name);
-	if (!tmp)
-		return (M_FAIL);
-	if (access(tmp, F_OK | X_OK) == 0)
-	{
-		*out = tmp;
-		return (2);
-	}
-	ft_free(tmp);
 	if (access(name, F_OK | X_OK) == 0)
 	{
 		*out = ft_strdup(name);
@@ -26,7 +15,7 @@ static int	test_local(char *name, char **out)
 			return (M_FAIL);
 		return (1);
 	}
-	if (errno == 13)
+	if (errno == EACCES)
 		return (NO_ASS);
 	return (FAIL);
 }

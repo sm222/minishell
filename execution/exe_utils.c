@@ -33,6 +33,7 @@ void	change_name(int pec, t_cmd *in)
 short	change_av_pwd(t_cmd *in, char *pwd)
 {
 	char	*tmp;
+
 	if (!in || !pwd)
 		return (BAD_ARGS);
 	tmp = ft_strdup(pwd);
@@ -40,6 +41,7 @@ short	change_av_pwd(t_cmd *in, char *pwd)
 	{
 		ft_free(in->command[0]);
 		in->command[0] = tmp;
+		printf("new pwd %s\n", tmp);
 		return (SUCCESS);
 	}
 	return (M_FAIL);

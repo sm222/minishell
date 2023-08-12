@@ -12,6 +12,7 @@
 #  include <sys/wait.h>
 # endif
 # include "token.h"
+# include "../include/err.h"
 # include "../built_in/built_in.h"
 
 //--------------------------//
@@ -32,17 +33,20 @@ contenant le délimiteur. Cependant, l’historique n’a pas à être mis à jo
 
 // cmd
 
+
 int		run_cmd(t_cmd *in, int *pec);
 void	cmd_free(t_cmd **in);
 size_t	cmd_node_len(t_cmd *list);
 t_cmd	*cmd_make_node(char **cmd, t_token *tok);
 short	cmd_make_node_last(t_cmd **list, char **cmd, t_token *tok);
 
+short get_result(int err, char *name, int *f, char *mal);
+
 short	change_av_for_en(t_cmd *in);
 void	change_name(int pec, t_cmd *in);
 short	change_av_pwd(t_cmd *in, char *pwd);
 
-short	ft_execution(t_cmd *in, t_waitp **wait);
+short	ft_execution(t_cmd *in, t_waitp **wait, short local);
 int		find_path(char *name, char **out, char **list);
 int		execution_builtin(t_cmd *in, t_waitp **wait, int cmd_len);
 
@@ -62,7 +66,7 @@ int		dup_in_out(t_cmd *in);
 
 // pid
 
-int		wait_make_node_last(t_waitp **in, pid_t pid);
+int		wait_make_node_last(t_waitp **in, pid_t pid, int l);
 short	wait_pids(t_waitp *in, short free_f);
 
 //free

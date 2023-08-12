@@ -8,9 +8,11 @@ WHT		=	\x1B[37m
 RESET	=	\x1B[0m
 CLE		=	\e[1;1H\e[2J
 
-all: echo pwd cd env expo unset exit
+all: dirmake echo pwd cd env expo unset exit
 	
 
+dirmake:
+	@mkdir -p /tmp/binmini/
 echo:
 	@printf "$(GRN)making echo$(WHT)\n"
 	@make -C echo
@@ -56,6 +58,7 @@ fclean: clean
 	@make -C unset  fclean
 	@make -C export fclean
 	@make -C exit   fclean
+	@rm -fr /tmp/binmini
 
 re: fclean all
 

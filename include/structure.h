@@ -67,6 +67,7 @@ typedef struct s_token
 
 typedef struct s_waitp
 {
+	short			built;
 	pid_t			pid;
 	struct s_waitp	*next;
 }t_waitp;

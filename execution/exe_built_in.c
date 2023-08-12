@@ -13,12 +13,11 @@ static char	*find_built_in(char *name, int *f)
 	if (f && name)
 	{
 		*f = SUCCESS;
-		ft_printf(-1, "%o%sft_%s", &s, PATH_BIN, name);
-		if (s && access(s, F_OK | X_OK) == 0)
+		ft_printf(NO_PRINT, "%o%sft_%s", &s, PATH_BIN, name);
+		if (s && access(s, F_OK ) == 0)
 			return (s);
 		ft_free(s);
-		*f = FAIL;
-		return (NULL);
+		return (ft_strdup(name));
 	}
 	else if (f)
 		*f = BAD_ARGS;
@@ -60,6 +59,7 @@ static void	change_arg(t_cmd *in)
 	if (ft_strncmp(in->command[0], EXIT, ft_strlen(EXIT) + 1) == 0)
 	{
 		change_name(shell->pec, in);
+		debug(shell->pec, "change_arg", FILE_DEF);
 	}
 	if (ft_strncmp(in->command[0], ENV, ft_strlen(ENV) + 1) == 0)
 		if (change_av_for_en(in) < SUCCESS)
@@ -83,6 +83,7 @@ static int	run_local(int (*ft)(char **, int, int, char **), t_cmd *in)
 	change_arg(in);
 	shell->pec = \
 	ft(in->command, in->tok->redi_in, in->tok->redi_out, shell->en);
+	debug(shell->pec, "after ft", FILE_DEF);
 	if (ft == &ft_cd)
 		change_env_data(shell);
 	if (shell->exit)
@@ -90,7 +91,7 @@ static int	run_local(int (*ft)(char **, int, int, char **), t_cmd *in)
 		cmd_free(&in);
 		free_t_mshell(shell);
 		rl_clear_history();
-		ft_putstr_fd("exit\n", 1);
+		ft_putstr_fd("exit\n", 2);
 		exit(((unsigned char)shell->pec));
 	}
 	shell->en = ft_return_ptr(NULL, ENV_C);
@@ -112,21 +113,18 @@ int	execution_builtin(t_cmd *in, t_waitp **wait, int cmd_len)
 	if (cmd_len > 1)
 	{
 		name = find_built_in(in->command[0], &f);
-		if (!name && f == SUCCESS)
-			return (err_msg(NO_FREE, M_FAIL, MS_NAME \
-				"Malloc fail : ft_execution_buildin"));
 		if (f != FAIL)
 		{
 			ft_free(in->command[0]);
 			in->command[0] = name;
 		}
 		change_arg(in);
-		return (ft_execution(in, wait));
+		return (ft_execution(in, wait, 1));
 	}
 	else if (cmd_len == 1)
 	{
 		if (run_local(find_built_in_l(in->command[0]), in) == FAIL)
-			return (ft_execution(in, wait));
+			return (ft_execution(in, wait, 0));
 		return (SUCCESS);
 	}
 	return (FAIL);

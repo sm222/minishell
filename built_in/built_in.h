@@ -18,6 +18,6 @@
 //			define			//
 //--------------------------//
 
-# define PATH_BIN "BUILT_IN/"
+# define PATH_BIN "/tmp/binmini/"
 
 #endif // BUILT_IN_H

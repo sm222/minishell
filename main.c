@@ -65,16 +65,19 @@ int	main(int ac, char **av, char **en)
 	ft_b_set_flag(&flag, BUILT_IN, TRUE);
 	while (loop_test--)
 	{
+		debug(123456789, "---debug---", FILE_DEF);
+		printf("b[]%d\n", shell.pec);
 		reset_data_main(&shell);
 		if (!shell.s)
 			break ;
 		if (shell.s && *shell.s)
 		{
-			cmd_make_node_last(&shell.cmd_list, ft_split(shell.s, ' '), make_token(flag, 0, 0));
+			cmd_make_node_last(&shell.cmd_list, ft_split("cat -b", ' '), make_token(0, 0, 0));
+			cmd_make_node_last(&shell.cmd_list, ft_split("pwd", ' '), make_token(flag, 0, 0));
 			run_cmd(shell.cmd_list, &shell.pec);
 			add_history(shell.s);
-			printf("pec %d\n", shell.pec);
 		}
+		printf("a][%d\n", shell.pec);
 	}
 	rl_clear_history();
 	free_shell(&shell);

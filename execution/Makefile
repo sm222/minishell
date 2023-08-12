@@ -15,7 +15,8 @@ SRCS	=	build_cmd.c\
 			run.c\
 			run_util.c\
 			token.c\
-			wait_pid.c
+			wait_pid.c\
+			err_local.c
 
 OBJS	=	$(SRCS:.c=.o)
 

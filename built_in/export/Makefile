@@ -1,4 +1,4 @@
-NAME	=	../ft_export
+NAME	=	/tmp/binmini/ft_export
 
 LIBFT		=	libft.a
 LIBFT_DIR	=	../../lib/lib_ft/

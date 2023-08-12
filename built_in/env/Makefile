@@ -1,4 +1,4 @@
-NAME	=	../ft_env
+NAME	=	/tmp/binmini/ft_env
 
 LIBFT		=	libft.a
 LIBFT_DIR	=	../../lib/lib_ft/

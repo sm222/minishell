@@ -1,4 +1,4 @@
-NAME	=	../ft_cd
+NAME	=	/tmp/binmini/ft_cd
 
 LIBFT		=	libft.a
 LIBFT_DIR	=	../../lib/lib_ft/
