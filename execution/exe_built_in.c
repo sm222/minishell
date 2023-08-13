@@ -59,7 +59,6 @@ static void	change_arg(t_cmd *in)
 	if (ft_strncmp(in->command[0], EXIT, ft_strlen(EXIT) + 1) == 0)
 	{
 		change_name(shell->pec, in);
-		debug(shell->pec, "change_arg", FILE_DEF);
 	}
 	if (ft_strncmp(in->command[0], ENV, ft_strlen(ENV) + 1) == 0)
 		if (change_av_for_en(in) < SUCCESS)
@@ -83,7 +82,6 @@ static int	run_local(int (*ft)(char **, int, int, char **), t_cmd *in)
 	change_arg(in);
 	shell->pec = \
 	ft(in->command, in->tok->redi_in, in->tok->redi_out, shell->en);
-	debug(shell->pec, "after ft", FILE_DEF);
 	if (ft == &ft_cd)
 		change_env_data(shell);
 	if (shell->exit)

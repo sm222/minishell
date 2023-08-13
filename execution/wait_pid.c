@@ -46,7 +46,6 @@ short	wait_pids(t_waitp *in, short free_f)
 	}
 	new_pec = ft_return_ptr(NULL, PEC);
 	*new_pec = get_err_code(pec, last);
-	debug(*new_pec, "last pec", FILE_DEF);
 	return (SUCCESS);
 }
 

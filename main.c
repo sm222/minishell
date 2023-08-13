@@ -73,6 +73,7 @@ int	main(int ac, char **av, char **en)
 		{
 			cmd_make_node_last(&shell.cmd_list, ft_split("cat", ' '), make_token(0, 0, 0));
 			cmd_make_node_last(&shell.cmd_list, ft_split("pwd", ' '), make_token(flag, 0, 0));
+			cmd_make_node_last(&shell.cmd_list, ft_split("cat", ' '), make_token(0, 0, 0));
 			run_cmd(shell.cmd_list, &shell.pec);
 			shell.cmd_list = NULL;
 			cmd_make_node_last(&shell.cmd_list, ft_split("exit", ' '), make_token(flag, 0, 0));

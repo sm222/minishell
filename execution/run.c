@@ -8,7 +8,6 @@ int	permission_denied(char *name)
 
 	pec = ft_return_ptr(NULL, PEC);
 	*pec = 126;
-	ft_putstr_fd("db\n", 2);
 	ft_printf(STDERR_FILENO, "%ominishell: %s: Permission denied\n", \
 	NULL, name);
 	return (126);
@@ -22,7 +21,6 @@ bash-3.2$ asdasd
 */
 int	no_file(char *name)
 {
-	ft_putstr_fd("db\n", 2);
 	if (name && (name[0] == '.' || name[0] == '/'))
 		err_msg(DO_FREE, 127, ft_strjoin(MS_NAME ERR_NSFD, name));	
 	else
@@ -41,7 +39,6 @@ int	run_and_close(t_cmd *in, char **env, char *cmd)
 	t_mshell	*shell;
 
 	(void)err;
-	debug(0, cmd, FILE_DEF);
 	shell = NULL;
 	dup_in_out(in);
 	close_all_fd(in);
