@@ -21,7 +21,7 @@
 //			tools			//
 //--------------------------//
 
-# include "../C_tools/C_tool.h"
+# include "../C_tools/inc/C_tool.h"
 # define DEV_CHMOD	0644
 
 //TODO: zsh: command not found:
