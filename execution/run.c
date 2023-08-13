@@ -2,7 +2,7 @@
 #include "execution.h"
 
 //126
-static int	permission_denied(char *name)
+int	permission_denied(char *name)
 {
 	int	*pec;
 
@@ -20,13 +20,9 @@ bash-3.2$ /bin/lslsls
 bash: /bin/lslsls: No such file or directory
 bash-3.2$ asdasd
 */
-static int	no_file(char *name)
+int	no_file(char *name)
 {
-	int	*pec;
-
-	pec = ft_return_ptr(NULL, PEC);
 	ft_putstr_fd("db\n", 2);
-	*pec = 127;
 	if (name && (name[0] == '.' || name[0] == '/'))
 		err_msg(DO_FREE, 127, ft_strjoin(MS_NAME ERR_NSFD, name));	
 	else
@@ -45,6 +41,7 @@ int	run_and_close(t_cmd *in, char **env, char *cmd)
 	t_mshell	*shell;
 
 	(void)err;
+	debug(0, cmd, FILE_DEF);
 	shell = NULL;
 	dup_in_out(in);
 	close_all_fd(in);
@@ -76,18 +73,17 @@ short	ft_execution(t_cmd *in, t_waitp **wait, short local)
 {
 	t_exe		exe;
 	t_mshell	*shell;
+	int		err;
 
 	shell = ft_return_ptr(NULL, SYS);
 	if (!shell || !in || !wait)
 		return (BAD_ARGS);
-	exe.err_redir = set_redir(in);
-	if (exe.err_redir < SUCCESS)
-		return (exe.err_redir);
-	exe.err = find_path(in->command[0], &exe.ft_path, shell->path);
-	if (exe.err == FAIL)
-		return (no_file(in->command[0]));
-	if (exe.err == NO_ASS)
-		return (permission_denied(in->command[0]));
+	err = set_data_exe(&exe, shell, in);
+	if (err != SUCCESS)
+	{
+		wait_make_node_last(wait, -1, err);
+		return (SUCCESS);
+	}
 	exe.pid = fork();
 	if (exe.pid == -1)
 		return (err_msg(NO_FREE, FORK_FAIL, "fork fail"));
@@ -120,7 +116,6 @@ int	run_cmd(t_cmd *in, int *pec)
 			run.err = ft_execution(run.tmp, &run.wait, 0);
 		if (run.err <= FAIL)
 			err_msg(PERROR, run.err, "ft_execution");
-		debug(run.err, "run_cmd", FILE_DEF);
 		run.tmp = run.tmp->next;
 	}
 	close_all_fd(in);

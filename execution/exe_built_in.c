@@ -14,7 +14,7 @@ static char	*find_built_in(char *name, int *f)
 	{
 		*f = SUCCESS;
 		ft_printf(NO_PRINT, "%o%sft_%s", &s, PATH_BIN, name);
-		if (s && access(s, F_OK ) == 0)
+		if (s)
 			return (s);
 		ft_free(s);
 		return (ft_strdup(name));

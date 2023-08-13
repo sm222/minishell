@@ -1,5 +1,20 @@
 #include "execution.h"
 
+short	set_data_exe(t_exe *data, t_mshell *shell, t_cmd *in)
+{
+	if (!data || !shell || !in)
+		return (BAD_ARGS);
+	data->err_redir = set_redir(in);
+	if (data->err_redir < SUCCESS)
+		return (data->err_redir);
+	data->err = find_path(in->command[0], &data->ft_path, shell->path);
+	if (data->err == FAIL)
+		return (no_file(in->command[0]));
+	if (data->err == NO_ASS)
+		return (permission_denied(in->command[0]));
+	return (SUCCESS);
+}
+
 /// @brief	use to close a file descriptor
 /// @param	fd	file descriptor
 /// @return	0 or the close value

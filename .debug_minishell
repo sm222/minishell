@@ -1,22 +1,16 @@
-1 run_cmd
-126 run_cmd
-18975 pid
-13 wait_pid
-141 wait_pid if
-141 wait_pid2
-123456789 ---debug---
-123456789 ---debug---
-1 run_cmd
-1 run_cmd
-19519 pid
-19520 pid
-0 wait_pid
-0 wait_pid2
-123456789 ---debug---
-1 run_cmd
-126 run_cmd
-19525 pid
-13 wait_pid
-141 wait_pid if
-141 wait_pid2
-123456789 ---debug---
+0  pec ---debug---
+0 /bin/cat
+0 /tmp/binmini/ft_pwd
+0 last pec
+0 change_arg
+0 after ft
+0  pec ---debug---
+0 /bin/cat
+126 last pec
+126 change_arg
+126 after ft
+0  pec ---debug---
+0 /bin/cat
+127 last pec
+127 change_arg
+127 after ft

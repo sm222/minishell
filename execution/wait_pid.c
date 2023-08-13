@@ -1,11 +1,11 @@
 
 #include "execution.h"
 
-static int	get_err_code(int pec, short l)
+int	get_err_code(int pec, short l)
 {
 	int	new_pec;
 
-	if (l == FALSE)
+	if (l > 0)
 	{
 		new_pec = 0;
 		if (WIFEXITED(pec))
@@ -24,30 +24,29 @@ static int	get_err_code(int pec, short l)
 short	wait_pids(t_waitp *in, short free_f)
 {
 	t_waitp	*tmp;
-	int		*pec;
+	int		pec;
+	int		*new_pec;
 	int		last;
 
 	tmp = NULL;
+	last = 0;
 	if (!in)
 		return (BAD_ARGS);
-	pec = ft_return_ptr(NULL, PEC);
 	while (in)
 	{
 		tmp = in->next;
-		last = in->built;
-		debug(in->pid, "pid", FILE_DEF);
-		waitpid(in->pid, pec, 0);
+		if (in->pid >= 0)
+			waitpid(in->pid, &pec, 0);
+		else
+			pec = in->built;
 		if (free_f)
 			ft_free(in);
+		last = in->pid;
 		in = tmp;
 	}
-	debug(*pec, "wait_pid", FILE_DEF);
-	if (last == FALSE)
-	{
-		*pec = get_err_code(*pec, last);
-		debug(*pec, "wait_pid if", FILE_DEF);
-	}
-	debug(*pec, "wait_pid2", FILE_DEF);
+	new_pec = ft_return_ptr(NULL, PEC);
+	*new_pec = get_err_code(pec, last);
+	debug(*new_pec, "last pec", FILE_DEF);
 	return (SUCCESS);
 }
 
@@ -72,7 +71,7 @@ static t_waitp	*wait_make_node(pid_t pid, int local)
 /// @return	SUCCESS + len
 /// @return	BAD_ARGS if miss some argument
 /// @return	M_FAIL if malloc fail
-int	wait_make_node_last(t_waitp **in, pid_t pid, int l)
+int	wait_make_node_last(t_waitp **in, pid_t pid, int flag)
 {
 	t_waitp	*tmp;
 	int		len;
@@ -84,7 +83,7 @@ int	wait_make_node_last(t_waitp **in, pid_t pid, int l)
 	tmp = (*in);
 	if (!tmp)
 	{
-		(*in) = wait_make_node(pid, l);
+		(*in) = wait_make_node(pid, flag);
 		if (!*in)
 			return (M_FAIL);
 		return (SUCCESS);
@@ -94,7 +93,7 @@ int	wait_make_node_last(t_waitp **in, pid_t pid, int l)
 		len++;
 		tmp = tmp->next;
 	}
-	tmp->next = wait_make_node(pid, l);
+	tmp->next = wait_make_node(pid, flag);
 	if (!tmp->next)
 		return (M_FAIL);
 	return (SUCCESS + len);
