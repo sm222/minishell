@@ -1,21 +1,28 @@
-
 #include "export.h"
 
 static short	find_word(char *word, int *pec)
 {
 	size_t	len;
+	short	err;
+	char	*test;
 
+	err = SUCCESS;
 	len = ft_strlen(word);
 	if (len == 0)
 		return (FAIL);
-	if (ft_isdigit(word[0]) || ft_find(word, BAD_LIST_EXPORT))
+	len = 0;
+	while (word[len] && word[len] != '=')
+		len++;
+	test = ft_strncpy(word, len);
+	if (ft_isdigit(word[0]) || ft_find(test, BAD_LIST_EXPORT))
 	{
 		ft_printf(STDERR_FILENO, \
 	"%o"MS_NAME" export: `%s': not a valid identifier\n", NULL, word);
 		*pec = 1;
-		return (FAIL);
+		err = FAIL;
 	}
-	return (SUCCESS);
+	ft_free(test);
+	return (err);
 }
 
 int	look_for_dup(char **env, char *name)

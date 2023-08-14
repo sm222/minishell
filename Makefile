@@ -27,7 +27,7 @@ C_TOOL_DIR		=	C_tools/
 
 # Compiler and flags
 CC				=	gcc
-CFLAGS			=	-Wall -Werror -Wextra -g 
+CFLAGS			=	-Wall -Werror -Wextra
 #-fsanitize=address
 RM				=	rm -f
 

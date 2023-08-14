@@ -1,7 +1,7 @@
 NAME	=	here_doc.a
 
 CC		=	gcc
-CFLAGS	=	-Wall -Werror -Wextra -g
+CFLAGS	=	-Wall -Werror -Wextra
 RM		=	rm -f
 
 LIBFT		=	libft.a

@@ -1,7 +1,7 @@
 NAME	=	execution.a
 
 CC		=	gcc
-CFLAGS	=	-Wall -Werror -Wextra -g
+CFLAGS	=	-Wall -Werror -Wextra
 RM		=	rm -f
 
 LIBFT		=	libft.a
@@ -16,7 +16,8 @@ SRCS	=	build_cmd.c\
 			run_util.c\
 			token.c\
 			wait_pid.c\
-			err_local.c
+			err_local.c\
+			env_path.c
 
 OBJS	=	$(SRCS:.c=.o)
 

@@ -20,7 +20,7 @@
 # define ERR_CNF "command not found: "
 # define ERR_NSFD "No such file or directory: "
 # define BAD_LIST_UNSET "éèÈÉçÇ^.!@#$%?&*()-+=\"\\/;,àÀ||¤{}[]¬"
-# define BAD_LIST_EXPORT "éèÈÉçÇ^.!@#$%?&*()-+\";,àÀ||¤{}[]¬"
+# define BAD_LIST_EXPORT "éèÈÉçÇ^.!@#$%?&*()-+/\";,àÀ||¤{}[]¬"
 
 # define DEBUG_ERR -1
 
@@ -30,7 +30,7 @@
 # define BAD_ARGS	-2
 # define FORK_FAIL	-3
 # define PIPE_FAIL	-4
-# define NO_ASS	-5
+# define NO_ASS		-5
 
 # define PERROR		0
 # define NO_FREE	1

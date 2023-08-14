@@ -41,7 +41,6 @@ short	change_av_pwd(t_cmd *in, char *pwd)
 	{
 		ft_free(in->command[0]);
 		in->command[0] = tmp;
-		printf("new pwd %s\n", tmp);
 		return (SUCCESS);
 	}
 	return (M_FAIL);

@@ -39,6 +39,7 @@ int	run_and_close(t_cmd *in, char **env, char *cmd)
 	t_mshell	*shell;
 
 	(void)err;
+	ex_en_new(env);
 	shell = NULL;
 	dup_in_out(in);
 	close_all_fd(in);
@@ -95,14 +96,16 @@ short	ft_execution(t_cmd *in, t_waitp **wait, short local)
 /// @brief	use after 'cmd_make_node_last'
 /// @param	in	t_cmd list of cmd 't_cmd *'
 /// @return	BAD_ARGS, else SUCCESS
-int	run_cmd(t_cmd *in, int *pec)
+int	run_cmd(t_cmd *in, t_mshell *shell)
 {
 	t_run	run;
 
 	ft_bzero(&run, sizeof(t_run));
-	if (!in || !pec)
+	if (!in || !shell)
 		return (BAD_ARGS);
 	run.tmp = in;
+	if (make_new_path(shell) < SUCCESS)
+		perror("make_new_path");
 	set_pipe(&in);
 	while (run.tmp)
 	{

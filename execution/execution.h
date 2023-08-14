@@ -36,7 +36,10 @@ int		no_file(char *name);
 int		permission_denied(char *name);
 short	set_data_exe(t_exe *data, t_mshell *shell, t_cmd *in);
 
-int		run_cmd(t_cmd *in, int *pec);
+short	make_new_path(t_mshell *shell);
+char	**ex_en_new(char **en);
+
+int		run_cmd(t_cmd *in, t_mshell *shell);
 void	cmd_free(t_cmd **in);
 size_t	cmd_node_len(t_cmd *list);
 t_cmd	*cmd_make_node(char **cmd, t_token *tok);

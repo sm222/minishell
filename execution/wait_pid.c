@@ -39,9 +39,9 @@ short	wait_pids(t_waitp *in, short free_f)
 			waitpid(in->pid, &pec, 0);
 		else
 			pec = in->built;
+		last = in->pid;
 		if (free_f)
 			ft_free(in);
-		last = in->pid;
 		in = tmp;
 	}
 	new_pec = ft_return_ptr(NULL, PEC);

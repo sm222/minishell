@@ -2,7 +2,7 @@ NAME	=	libft.a
 
 # Compiler and flags
 CC		=	gcc
-CFLAGS	=	-Wall -Werror -Wextra -g
+CFLAGS	=	-Wall -Werror -Wextra
 RM		=	rm -f
 
 # Sources are all .c files
@@ -40,6 +40,7 @@ SRCS	=	ft_atoi.c\
 			ft_strlen_double.c\
 			ft_strmapi.c\
 			ft_strncmp.c\
+			ft_strncpy.c\
 			ft_strnstr.c\
 			ft_strrchr.c\
 			ft_strtrim.c\

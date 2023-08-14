@@ -4,7 +4,9 @@ static short	find_word(char **list, char *word, int *pec)
 {
 	size_t	i;
 	size_t	len;
+	short	err;
 
+	err = FAIL;
 	i = 0;
 	len = ft_strlen(word);
 	if (len == 0)
@@ -19,10 +21,10 @@ static short	find_word(char **list, char *word, int *pec)
 	{
 		if (ft_strncmp(list[i], word, len) == 0 && \
 		(list[i][len] == '=' || list[i][len] == 0))
-			return (SUCCESS);
+			err = SUCCESS;
 		i++;
 	}
-	return (FAIL);
+	return (err);
 }
 
 static short	new_arg(char **new, char **old, char *skip)
