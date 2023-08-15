@@ -11,6 +11,7 @@
 # ifndef _WIN32
 #  include <sys/wait.h>
 # endif
+# include <dirent.h>
 # include "token.h"
 # include "../include/err.h"
 # include "../built_in/built_in.h"

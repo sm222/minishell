@@ -1,13 +1,20 @@
 # include "execution.h"
 
+
 /// @brief	try to find the file in local folder
 /// @param	name	of the fontion
 /// @param	out		return the path with name of the fontion
 /// @return	1 if local, 2 if ./ fail FAIL, else M_FAIL
 static int	test_local(char *name, char **out)
 {
-	//int		err;
+	DIR	*d;
 
+	d = opendir(name);
+	if (d)
+	{
+		closedir(d);
+		return (NO_ASS);
+	}
 	if (access(name, F_OK | X_OK) == 0)
 	{
 		*out = ft_strdup(name);

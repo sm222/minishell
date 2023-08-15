@@ -4,10 +4,16 @@
 //126
 int	permission_denied(char *name)
 {
-	int	*pec;
+	DIR	*d;
 
-	pec = ft_return_ptr(NULL, PEC);
-	*pec = 126;
+	d = opendir(name);
+	if (d)
+	{
+		ft_printf(STDERR_FILENO, "%ominishell: %s: is a directory\n", \
+			NULL, name);
+		closedir(d);
+		return (126);
+	}
 	ft_printf(STDERR_FILENO, "%ominishell: %s: Permission denied\n", \
 	NULL, name);
 	return (126);
@@ -22,7 +28,7 @@ bash-3.2$ asdasd
 int	no_file(char *name)
 {
 	if (name && (name[0] == '.' || name[0] == '/'))
-		err_msg(DO_FREE, 127, ft_strjoin(MS_NAME ERR_NSFD, name));	
+		err_msg(DO_FREE, 127, ft_strjoin(MS_NAME ERR_NSFD, name));
 	else
 		err_msg(DO_FREE, 127, ft_strjoin(MS_NAME ERR_CNF, name));
 	return (127);
@@ -57,6 +63,7 @@ int	run_and_close(t_cmd *in, char **env, char *cmd)
 	exit(ENOTRECOVERABLE);
 	return (FAIL);
 }
+
 /*
 	refactor and add a new node with the err code in it if fail
 	ex: if permission_denied , make node with no pid and 126 err code
@@ -71,7 +78,7 @@ short	ft_execution(t_cmd *in, t_waitp **wait, short local)
 {
 	t_exe		exe;
 	t_mshell	*shell;
-	int		err;
+	int			err;
 
 	shell = ft_return_ptr(NULL, SYS);
 	if (!shell || !in || !wait)

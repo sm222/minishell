@@ -12,7 +12,7 @@ static void	set_exit_flag(short	flag)
 //9223372036854775807
 static int	more_arg(char **av, int pec)
 {
-	long long data;
+	long long	data;
 
 	set_exit_flag(1);
 	data = ft_atoll(av[1]);
@@ -53,7 +53,6 @@ int	ft_exit(char **av, int re_in, int re_out, char **en)
 	tmp = ft_atoi(av[0]);
 	if (ft_strlen_double(av) == 1)
 	{
-		ft_putstr_fd("|exit|\n", 2);
 		pec = tmp;
 		set_exit_flag(1);
 	}
