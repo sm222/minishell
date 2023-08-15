@@ -7,22 +7,17 @@
 /// @return	1 if local, 2 if ./ fail FAIL, else M_FAIL
 static int	test_local(char *name, char **out)
 {
-	DIR	*d;
+	struct stat	test;
 
-	d = opendir(name);
-	if (d)
-	{
-		closedir(d);
-		return (NO_ASS);
-	}
 	if (access(name, F_OK | X_OK) == 0)
 	{
+		ft_printf(2, "%o%s\n", NULL, name);
 		*out = ft_strdup(name);
 		if (!*out)
 			return (M_FAIL);
 		return (1);
 	}
-	if (errno == EACCES)
+	if (lstat(name, &test) == -1 || S_ISDIR(test.st_mode))
 		return (NO_ASS);
 	return (FAIL);
 }

@@ -2,20 +2,21 @@
 #include "execution.h"
 
 //126
+//is a directory
 int	permission_denied(char *name)
 {
-	DIR	*d;
+	struct stat	test;
 
-	d = opendir(name);
-	if (d)
+	if (lstat(name, &test) == -1)
 	{
-		ft_printf(STDERR_FILENO, "%ominishell: %s: is a directory\n", \
-			NULL, name);
-		closedir(d);
-		return (126);
+		ft_printf(STDERR_FILENO, "%ominishell: %s: %s\n", \
+		NULL, name, sys_errlist[errno]);
 	}
-	ft_printf(STDERR_FILENO, "%ominishell: %s: Permission denied\n", \
-	NULL, name);
+	else if (S_ISDIR(test.st_mode))
+	{
+		ft_printf(STDERR_FILENO, "%ominishell: %s: %s\n", \
+		NULL, name, ISDIR);
+	}
 	return (126);
 }
 
