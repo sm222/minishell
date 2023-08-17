@@ -3,19 +3,18 @@
 
 //126
 //is a directory
-int	permission_denied(char *name)
+int	permission_denied(char *name, mode_t *err)
 {
-	struct stat	test;
-
-	if (lstat(name, &test) == -1)
-	{
-		ft_printf(STDERR_FILENO, "%ominishell: %s: %s\n", \
-		NULL, name, sys_errlist[errno]);
-	}
-	else if (S_ISDIR(test.st_mode))
+	if (S_ISDIR(*err) || S_ISLNK(*err))
 	{
 		ft_printf(STDERR_FILENO, "%ominishell: %s: %s\n", \
 		NULL, name, ISDIR);
+	}
+	else if (*err == 1)
+	{
+		ft_printf(STDERR_FILENO, "%ominishell: %s: %s\n", \
+		NULL, name, sys_errlist[errno]);
+		return (126);
 	}
 	return (126);
 }
@@ -29,9 +28,8 @@ bash-3.2$ asdasd
 int	no_file(char *name)
 {
 	if (name && (name[0] == '.' || name[0] == '/'))
-		err_msg(DO_FREE, 127, ft_strjoin(MS_NAME ERR_NSFD, name));
-	else
-		err_msg(DO_FREE, 127, ft_strjoin(MS_NAME ERR_CNF, name));
+		return (err_msg(DO_FREE, 126, ft_strjoin(MS_NAME ERR_NSFD, name)));
+	err_msg(DO_FREE, 127, ft_strjoin(MS_NAME ERR_CNF, name));
 	return (127);
 }
 
@@ -45,7 +43,7 @@ int	run_and_close(t_cmd *in, char **env, char *cmd)
 	int			err;
 	t_mshell	*shell;
 
-	(void)err;
+	err = 0;
 	ex_en_new(env);
 	shell = NULL;
 	dup_in_out(in);
@@ -54,7 +52,7 @@ int	run_and_close(t_cmd *in, char **env, char *cmd)
 		err = execve(cmd, in->command, env);
 	ft_free(cmd);
 	cmd_free(&in);
-	shell = ft_return_ptr(NULL, SYS);
+	shell = ft_return_ptr(NULL, SYS); 
 	cmd_free(&in);
 	ft_double_sfree((void **)shell->path);
 	ft_double_sfree((void **)shell->en);

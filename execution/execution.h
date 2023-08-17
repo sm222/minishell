@@ -36,7 +36,7 @@ contenant le délimiteur. Cependant, l’historique n’a pas à être mis à jo
 
 // cmd
 int		no_file(char *name);
-int		permission_denied(char *name);
+int		permission_denied(char *name, mode_t *err);
 short	set_data_exe(t_exe *data, t_mshell *shell, t_cmd *in);
 
 short	make_new_path(t_mshell *shell);
@@ -55,7 +55,7 @@ void	change_name(int pec, t_cmd *in);
 short	change_av_pwd(t_cmd *in, char *pwd);
 
 short	ft_execution(t_cmd *in, t_waitp **wait, short local);
-int		find_path(char *name, char **out, char **list);
+int		find_path(char *name, char **out, char **list, mode_t *err);
 int		execution_builtin(t_cmd *in, t_waitp **wait, int cmd_len);
 
 int		change_env_data(t_mshell *data);
@@ -77,7 +77,7 @@ int		dup_in_out(t_cmd *in);
 int		wait_make_node_last(t_waitp **in, pid_t pid, int flag);
 short	wait_pids(t_waitp *in, short free_f);
 
-//free
+//free 
 
 int		free_exe(int err, t_exe *exe);
 void	free_t_mshell(t_mshell *shell);
