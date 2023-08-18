@@ -45,13 +45,14 @@ int	no_file(char *name)
 int	run_and_close(t_cmd *in, char **env, char *cmd)
 {
 	t_mshell	*shell;
+	char		**new_en;
 
-	ex_en_new(env);
+	new_en = ex_en_new(env);
 	shell = NULL;
 	dup_in_out(in);
 	close_all_fd(in);
 	if (in->tok->redi_in != -1)
-		execve(cmd, in->command, env);
+		execve(cmd, in->command, new_en);
 	perror("minishell ");
 	ft_free(cmd);
 	cmd_free(&in);
@@ -62,6 +63,7 @@ int	run_and_close(t_cmd *in, char **env, char *cmd)
 	ft_free(shell->s);
 	ft_free(shell->tmp);
 	ft_free(shell->info);
+	ft_double_sfree((void **)new_en);
 	exit(0);
 	return (FAIL);
 }

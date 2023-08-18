@@ -1,12 +1,35 @@
 # include "execution.h"
 
+
+static short	new_run_env(char ***env, char **old)
+{
+	size_t	i;
+	size_t	j;
+
+	i = 0;
+	j = 0;
+	while (old && old[i])
+	{
+		if (ft_strchr(old[i], '='))
+		{
+			(*env)[j] = ft_strdup(old[i]);
+			if (!(*env)[j])
+				return (M_FAIL);
+			j++;
+		}
+		i++;
+	}
+	return (SUCCESS);
+}
+
+
 char	**ex_en_new(char **en)
 {
 	char	**new;
 	size_t	i;
 	size_t	j;
 
-	(void)new;
+	(void)new; 
 	new = NULL;
 	i = 0;
 	j = 0;
@@ -16,8 +39,15 @@ char	**ex_en_new(char **en)
 			j++;
 		i++;
 	}
-	ft_printf(2, "%d\n", j);
-	return (NULL);
+	new = ft_calloc(j + 1, sizeof(char *));
+	if (!new)
+	{
+		perror("minishell : ft_calloc");
+		return (NULL);
+	}
+	if (new_run_env(&new, en) == M_FAIL)
+		new = (char **)ft_double_sfree(((void **)new));
+	return (new);
 }
 
 short	make_new_path(t_mshell *shell)
