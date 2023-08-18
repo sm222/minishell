@@ -5,8 +5,7 @@ short	make_here_doc(int i)
 	t_doc	**doc;
 	t_doc	*tmp;
 
-	(void)i;
-	doc = ft_return_ptr(NULL, DOC); 
+	doc = ft_return_ptr(NULL, DOC);
 	if (!*doc)
 	{
 		*doc = new_doc();
@@ -35,7 +34,7 @@ int	free_here_dock(void)
 
 /**
  * @brief 
- *  test
+ * * test
  * ! test
  * ? test
  * TODO: test

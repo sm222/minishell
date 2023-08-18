@@ -73,7 +73,8 @@
 		"export.h": "c",
 		"here_doc.h": "c",
 		"corecrt.h": "c",
-		"stat.h": "c"
+		"stat.h": "c",
+		"readline.h": "c"
 	},
 	"C_Cpp.errorSquiggles": "disabled",
 	"C_Cpp.errorSquiggles": "disabled",

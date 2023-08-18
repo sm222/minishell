@@ -20,9 +20,28 @@ t_doc	*new_doc(void)
 	}
 	new->i = i++;
 	close(new->fd);
-	//fstat(new->fd, &new->dat);
 	return (new);
 }
+
+
+static short	edit_loop(t_doc *doc)
+{
+	struct stat	last;
+	char		*tmp;
+
+	(void)last;
+	if (fstat(doc->fd, &doc->data) == -1)
+		return (NO_ASS);
+	tmp = "t";
+	while (tmp)
+	{
+		tmp = readline("here_doc");
+		if (tmp)
+			free(tmp);
+	}
+	return (SUCCESS);
+}
+
 
 short	edit_here_doc(t_doc *doc)
 {
@@ -34,9 +53,7 @@ short	edit_here_doc(t_doc *doc)
 			perror("edit_here_doc");
 			return (FAIL);
 		}
-		printf("name %s\n", doc->f_name);
-		close(doc->fd);
-		unlink(doc->f_name);
+		edit_loop(doc);
 	}
 	return (BAD_ARGS);
 }

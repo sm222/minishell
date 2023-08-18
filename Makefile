@@ -73,7 +73,7 @@ exe:
 	@make -C $(EXECUTION_DIR)
 
 mem: all
-	valgrind --leak-check=full --show-leak-kinds=all --trace-children=yes --track-fds=yes --suppressions=supp.txt ./minishell 
+	valgrind --leak-check=full --show-leak-kinds=all --trace-children=yes --track-fds=yes --suppressions=/private/tmp/anboisve/val/supp.txt ./minishell 
 
 #https://github.com/sm222/C_tools
 tools:
