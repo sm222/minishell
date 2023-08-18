@@ -27,6 +27,7 @@ bash-3.2$ asdasd
 */
 int	no_file(char *name)
 {
+	ft_printf(2, "%oici\n", NULL);
 	if (name && (name[0] == '.' || name[0] == '/'))
 		return (err_msg(DO_FREE, 126, ft_strjoin(MS_NAME ERR_NSFD, name)));
 	err_msg(DO_FREE, 127, ft_strjoin(MS_NAME ERR_CNF, name));
@@ -40,16 +41,14 @@ int	no_file(char *name)
 /// @return
 int	run_and_close(t_cmd *in, char **env, char *cmd)
 {
-	int			err;
 	t_mshell	*shell;
 
-	err = 0;
 	ex_en_new(env);
 	shell = NULL;
 	dup_in_out(in);
 	close_all_fd(in);
 	if (in->tok->redi_in != -1)
-		err = execve(cmd, in->command, env);
+		execve(cmd, in->command, env);
 	ft_free(cmd);
 	cmd_free(&in);
 	shell = ft_return_ptr(NULL, SYS); 

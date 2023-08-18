@@ -6,6 +6,7 @@ char	**ex_en_new(char **en)
 	size_t	i;
 	size_t	j;
 
+	(void)new;
 	new = NULL;
 	i = 0;
 	j = 0;

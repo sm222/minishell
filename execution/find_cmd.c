@@ -8,9 +8,9 @@
 static int	test_local(char *name, char **out,  mode_t *err)
 {
 	struct stat	test;
-	int			code;
 
-	code = lstat(name, &test);
+	lstat(name, &test);
+	ft_printf(2, "%oici%d\n", NULL , S_ISREG(test.st_mode));
 	*err = test.st_mode;
 	if (access(name, X_OK | F_OK) == 0)
 	{
@@ -21,6 +21,7 @@ static int	test_local(char *name, char **out,  mode_t *err)
 			return (M_FAIL);
 		return (1);
 	}
+	perror("ici ici ici");
 	return (FAIL);
 }
 
@@ -39,7 +40,7 @@ int	find_path(char *name, char **out, char **list, mode_t *err)
 	i = 0;
 	tmp = NULL;
 	*out = NULL;
-	if (name && name[0] == '.')
+	if (name && (name[0] == '.' || name[0] == '/'))
 		return (test_local(name, out, err));
 	while (list && list[i])
 	{
@@ -54,5 +55,5 @@ int	find_path(char *name, char **out, char **list, mode_t *err)
 		tmp = ft_free(tmp);
 		i++;
 	}
-	return (test_local(name, out, err));
+	return (FAIL);
 }
