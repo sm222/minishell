@@ -88,97 +88,79 @@ char	*ft_strslice(char *src, int start, int end)
 	return (NULL);
 }
 
-void	ft_add_flag(char *src, t_flag **flags)
+// NEEDS TESTING
+void	ft_add_slice(char *src, t_decon **decon)
 {
-	t_flag	*flag;
-	t_flag	*current;
+	t_decon	*current;
+	t_decon	*dc;
 
-	if (*flags == NULL)
+	if (*decon == NULL)
 	{
-		*flags = ft_calloc(NODE_SIZE, sizeof(t_flag));
-		(*flags)->flag = src;
-		(*flags)->next = NULL;
-		(*flags)->prev = NULL;
+		*decon = ft_calloc(NODE_SIZE, sizeof(t_flag));
+		(*decon)->src = src;
+		(*decon)->next = NULL;
 	}
 	else
 	{
-		flag = ft_calloc(NODE_SIZE, sizeof(t_flag));
-		current = *flags;
+		dc = ft_calloc(NODE_SIZE, sizeof(t_flag));
+		current = *decon;
 		while (current->next)
 			current = current->next;
-		flag->flag = src;
-		flag->prev = current;
-		flag->next = NULL;
-		current->next = flag;
+		dc->src = src;
+		dc->next = NULL;
+		current->next = dc;
 	}
 }
 
-int	ft_has_flags(char *src)
+int	ft_has_quote(char *src)
 {
 	int	i;
 
 	i = -1;
-	if (src)
+	while (src[++i])
 	{
-		while (src[++i])
-		{
-			if (src[i] == '-')
-				return (CORRECT);
-		}
+		if (src[i] == '"' || src[i] == '\'')
+			return (CORRECT);
 	}
 	return (INCORRECT);
 }
 
-int	ft_count_flags(char *src)
+int	ft_has_meta(char *src)
 {
 	int	i;
-	int	flags;
 
-	flags = 0;
+	i = -1;
+	while (src[++i])
+	{
+		if (src[i] == '$')
+			return (CORRECT);
+	}
+	return (INCORRECT);
+}
+
+// WIP
+char	*ft_meta_op()
+{
+	char	**env;
+	
+	env = ft_return_ptr(NULL, ENV_C);
+}
+
+// WIP
+int	ft_quote_op(char *src, int index)
+{
+	int	open_mark;
+	int	i;
+
 	i = 0;
 	while (src[i])
 	{
-		if (src[i] == '-')
-			flags++;
+		if (src[i] == '"')
+		{
+			if (ft_has_meta(src))
+				ft_meta_op();
+		}
 		i++;
-	}
-	return (flags);
-}
-
-// NEED TESTING
-int	ft_end_flag(char *src, int start)
-{
-	int	end;
-
-	while (ft_at_index(src + start, '-') != INVALID)
-		start = ft_at_index(src + start, '-') + start;
-	end = ft_at_index(src + start, ' ') + start;
-	return (end);
-}
-
-void	ft_flag_op(t_flag **flags, char *cmd)
-{
-	char	*flag;
-	int		flag_index;
-	int		flag_count;
-	int		space_index;
-
-	space_index = ft_at_index(cmd, ' ');
-	flag_index = ft_at_index(cmd, '-');
-	flag_count = ft_count_flags(cmd);
-	while (flag_count)
-	{
-		flag_count--;
-		printf("flag index: %d\nspace index: %d\n", flag_index, space_index);
-		flag = ft_strslice(cmd, flag_index, space_index);
-		ft_add_flag(flag, flags);
-		cmd[flag_index] = PASSED_THROUGH;
-		cmd[space_index] = PASSED_THROUGH;
-		flag_index = ft_at_index(cmd, '-');
-		if (ft_at_index(cmd, ' ') == INVALID)
-			space_index = ft_strlen(cmd);
-		else
-			space_index = ft_at_index(cmd, ' ');
 	}
 }
 
@@ -255,27 +237,28 @@ t_token	ft_redirect_op(char *cmd)
 	return (token);
 }
 
+// NEED TESTING
 char	**ft_cmd_reconstruct(t_decon decon)
 {
 	int		i;
 	char	**res;
-	t_flag	*current;
+	t_decon	*current;
 	int		flag_count;
 
 	i = 0;
-	flag_count = ft_list_count(decon.flags);
-	res = ft_calloc(flag_count + REST_OF_CMD, sizeof(char *));
+	count = ft_list_count(decon);
+	current = &decon;
+	res = ft_calloc(count, sizeof(char *));
 	if (!res)
-		printf("oopsie daisy\n"); //gérer les malloc fail
-	current = decon.flags;
-	res[i++] = decon.cmd;
-	while (current->next)
 	{
-		res[i++] = current->flag;
+		ft_printf("malloc fail");
+		return (NULL);
+	}
+	while (current)
+	{
+		res[i++] = current->src;
 		current = current->next;
 	}
-	res[i++] = current->flag;
-	res[i] = decon.arg;
 	return (res); 
 }
 
@@ -321,38 +304,49 @@ char	*ft_arg_op(char *cmd)
 	return (res);
 }
 
-// NEED TESTING
-char	**ft_cmd_deconstruct(char *cmd)
+// WIP
+t_decon	ft_cmd_deconstruct(char *cmd)
 {
-	char	*flag_slice;
+	char	*current_slice;
 	int		start_index;
 	int		end_index;
 	t_decon	decon;
-	
-	decon.flags = NULL;
-	if (ft_has_redirect(cmd))
-		decon.token = ft_redirect_op(cmd);
-	decon.cmd = ft_cmd_op(cmd);
-	if (ft_has_flags(cmd))
+
+	if (!cmd)
 	{
-		start_index = ft_at_index(cmd, '-');
-		if (ft_at_index(cmd + start_index, '-') != INVALID)
-			end_index = ft_end_flag(cmd, start_index);
-		else
-			end_index = ft_at_index(cmd + start_index, ' ');
-		flag_slice = ft_strslice(cmd, start_index, end_index);
-		ft_flag_op(&decon.flags, flag_slice);
+		ft_printf("");
+		return (NULL);
 	}
-	decon.arg = ft_arg_op(cmd);
-	return (NULL);
+	start_index = FIRST_INDEX;
+	end_index = ft_at_index(cmd, ' ');
+	while (end_index != ft_strlen(cmd) || \
+			end_index != ft_at_rev_index(cmd, PASSED_THROUGH))
+	{
+		current_slice = ft_strslice(cmd, start_index, end_index);
+		if (ft_has_quote(current_slice))
+			current_slice = ft_quote_op(current_slice);
+		ft_add_slice(current_slice, &decon);
+		if (ft_has_redirect(cmd))
+		{
+			if ()
+		}
+		start_index = ft_at_index(cmd + end_index, ' ') + end_index;
+		end_index = ft_at_index(cmd + start_index. ' ') + start_index;
+	}
+	return (decon);
 }
 
-// WIP
+// NEEDS TESTING
 void	ft_purge(t_decon *decon)
 {
-	free(decon->cmd);
-	//free flags
-	free(decon->arg);
+	t_decon	*current;
+
+	current = decon;
+	while (current)
+	{
+		free(current->src);
+		current = current->next;
+	}
 }
 
 int main(int ac, char **av)
@@ -366,15 +360,9 @@ int main(int ac, char **av)
 	else
 	{
 		int i = 0;
-		t_decon cmd;
-		cmd.cmd = "ls";
-		char *flag_test = "-l -a -a -a";
-		t_flag *flags = NULL;
-		ft_flag_op(&flags, ft_strslice(flag_test, FIRST_INDEX, ft_strlen(flag_test)));
-		cmd.flags = flags;
-		cmd.arg = ".";
-		cmd.open_mark = 0;
-		char **src = ft_cmd_reconstruct(cmd);
+		char *cmd = "ls -laal ..";
+		t_decon decon = ft_cmd_deconstruct(cmd);
+		char **src = ft_cmd_reconstruct(decon);
 		while (src[i])
 			printf("%s\n", src[i++]);
 	}
