@@ -1,7 +1,10 @@
 all: libft
-	clang -Wall -Wextra -Werror todo.c libft/libft.a 
+	clang -Wall -Wextra -Werror todo.c printf/libftprintf.a 
+
+test: libft
+	clang -Wall -Wextra -Werror test.c printf/libftprintf.a
 
 libft:
-	$(MAKE) -C libft/
+	$(MAKE) -C printf/
 
-.PHONY: all libft
+.PHONY: all test libft
