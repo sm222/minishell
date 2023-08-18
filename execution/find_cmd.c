@@ -10,7 +10,6 @@ static int	test_local(char *name, char **out,  mode_t *err)
 	struct stat	test;
 
 	lstat(name, &test);
-	ft_printf(2, "%oici%d\n", NULL , S_ISREG(test.st_mode));
 	*err = test.st_mode;
 	if (access(name, X_OK | F_OK) == 0)
 	{
@@ -21,7 +20,6 @@ static int	test_local(char *name, char **out,  mode_t *err)
 			return (M_FAIL);
 		return (1);
 	}
-	perror("ici ici ici");
 	return (FAIL);
 }
 

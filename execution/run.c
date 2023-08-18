@@ -27,9 +27,12 @@ bash-3.2$ asdasd
 */
 int	no_file(char *name)
 {
-	ft_printf(2, "%oici\n", NULL);
 	if (name && (name[0] == '.' || name[0] == '/'))
-		return (err_msg(DO_FREE, 126, ft_strjoin(MS_NAME ERR_NSFD, name)));
+	{
+		ft_printf(STDERR_FILENO, "%o"MS_NAME": %s %s\n", \
+		NULL, name ,sys_errlist[errno]);
+		return (126) ;
+	}
 	err_msg(DO_FREE, 127, ft_strjoin(MS_NAME ERR_CNF, name));
 	return (127);
 }
@@ -49,6 +52,7 @@ int	run_and_close(t_cmd *in, char **env, char *cmd)
 	close_all_fd(in);
 	if (in->tok->redi_in != -1)
 		execve(cmd, in->command, env);
+	perror("minishell ");
 	ft_free(cmd);
 	cmd_free(&in);
 	shell = ft_return_ptr(NULL, SYS); 
@@ -58,7 +62,7 @@ int	run_and_close(t_cmd *in, char **env, char *cmd)
 	ft_free(shell->s);
 	ft_free(shell->tmp);
 	ft_free(shell->info);
-	exit(ENOTRECOVERABLE);
+	exit(0);
 	return (FAIL);
 }
 
