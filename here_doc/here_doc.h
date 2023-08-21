@@ -20,7 +20,7 @@
 //			fonction		//
 //--------------------------//
 
-t_doc	*new_doc(void);
+t_doc	*new_doc(int *f, int *i);
 
 short	make_here_doc(int i);
 int		get_here_doc(int i);

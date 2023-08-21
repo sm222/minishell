@@ -55,14 +55,12 @@ int	main(int ac, char **av, char **en)
 {
 	t_mshell	shell;
 	int		loop_test;
-	int	flag = 0;
 
 	(void)ac;
 	loop_test = 100;
 	if (start_shell(&shell, en) != SUCCESS)
 		return (FAIL);
 	do_logo(av);
-	ft_b_set_flag(&flag, BUILT_IN, TRUE);
 	while (loop_test--)
 	{
 		reset_data_main(&shell);
@@ -70,7 +68,8 @@ int	main(int ac, char **av, char **en)
 			break ;
 		if (shell.s && *shell.s)
 		{
-			cmd_make_node_last(&shell.cmd_list, ft_split(shell.s, ' '), make_token(flag, 0, 0));
+			
+			cmd_make_node_last(&shell.cmd_list, ft_split(shell.s, ' '), make_token(BUILT_IN_FLAG, 0, 0));
 			run_cmd(shell.cmd_list, &shell);
 			add_history(shell.s);
 		}

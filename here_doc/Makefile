@@ -12,7 +12,9 @@ LIBFT		=	libft.a
 LIBFT_DIR	=	../lib/lib_ft/
 
 SRCS	=	here_doc.c\
-			make_here_doc.c
+			make_here_doc.c\
+			edit_here_doc.c\
+			free_here_doc.c
 
 
 OBJS	=	$(SRCS:.c=.o)
@@ -30,6 +32,9 @@ fclean: clean
 	@$(RM) $(NAME)
 
 test:
+	@make
 	gcc main.c here_doc.a -l readline -l ncurses
 
-re: fclean all
+re: fclean 
+
+.PHONY: all clean fclean test re

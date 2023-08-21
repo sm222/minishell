@@ -40,6 +40,8 @@
 # define PIPE_IN_OUT	3
 # define BUILT_IN		4
 
+# define BUILT_IN_FLAG	0B00010000
+
 # define PROMPT "$ "
 
 //--------------------------//
