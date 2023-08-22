@@ -1,6 +1,6 @@
 # include "here_doc.h"
 
-t_doc	*new_doc(int *f, int *i)
+t_doc	*new_doc(int *f, int i)
 {
 	t_doc	*new;
 
@@ -8,7 +8,7 @@ t_doc	*new_doc(int *f, int *i)
 	*f = M_FAIL;
 	if (!new)
 		return (NULL);
-	if (ft_printf(NO_PRINT, "%o/tmp/.here_doc%d", &new->f_name, *i) == -1)
+	if (ft_printf(NO_PRINT, "%o/tmp/.here_doc%d", &new->f_name, i) == -1)
 		return (ft_free(new));
 	*f = SUCCESS;
 	new->fd = open(new->f_name, O_CREAT | O_TRUNC, 0644);
@@ -20,19 +20,17 @@ t_doc	*new_doc(int *f, int *i)
 		ft_free(new->f_name);
 		return (ft_free(new));
 	}
-	new->i = *i += 1;
+	new->i = i;
 	close(new->fd);
 	return (new);
 }
 
 
-static short	make_here_doc_last(t_doc **list, int *f, int *j, int i)
+static short	make_here_doc_last(t_doc **list, int *f, int i, char *stop)
 {
 	t_doc	*tmp;
 	t_doc	*last;
 
-	(void)j;
-	(void)f;
 	tmp = (*list);
 	while (tmp)
 	{
@@ -42,29 +40,40 @@ static short	make_here_doc_last(t_doc **list, int *f, int *j, int i)
 		tmp = tmp->next;
 	}
 	if (tmp)
-		printf("%d][%d\n", i, tmp->i);
+		edit_here_doc(tmp, stop);
 	else
-		printf("%d][%d\n", i, last->i);
-	return (SUCCESS);
+	{
+		last->next = new_doc(f, i);
+		if (*f == SUCCESS)
+			edit_here_doc(last->next, stop);
+	}
+	return (*f);
 }
 
 
-short	make_here_doc(int i)
+short	make_here_doc(int i, char *stop)
 {
-	static int	j = 0;
-	t_doc		**doc;
-	int			err;
+	t_doc	**doc;
+	int		err;
 
 	if (i < 0)
 		return (BAD_ARGS);
 	doc = ft_return_ptr(NULL, DOC);
 	if (!*doc)
 	{
-		*doc = new_doc(&err, &j);
+		*doc = new_doc(&err, i);
 		if (err < SUCCESS)
+		{
+			perror("make_here_doc");
 			return (err);
-		return (edit_here_doc(*doc));
+		}
+		return (edit_here_doc(*doc, stop));
 	}
-	make_here_doc_last(doc, &err, &j, i);
+	make_here_doc_last(doc, &err, i, stop);
+	if (err < SUCCESS)
+	{
+		perror("make_here_doc");
+		return (err);
+	}
 	return (SUCCESS);
 }

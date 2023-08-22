@@ -1,6 +1,6 @@
 # include "here_doc.h"
 
-static short	edit_loop(t_doc *doc)
+static short	edit_loop(t_doc *doc, char *stop)
 {
 	struct stat	last;
 	char		*tmp;
@@ -10,20 +10,23 @@ static short	edit_loop(t_doc *doc)
 		return (NO_ASS);
 	tmp = "t";
 	while (tmp)
-	
 	{
-		tmp = readline("here_doc ");
+		tmp = readline("> ");
+		if (ft_strncmp(stop, tmp, ft_strlen(stop) + 1) == 0)
+		{
+			ft_free(tmp);
+			break ;
+		}
 		if (tmp)
 			ft_putendl_fd(tmp, doc->fd);
 		ft_free(tmp);
 	}
-	ft_printf(2, "%oici\n", NULL);
 	close(doc->fd);
 	exit(0);
 	return (SUCCESS);
 }
 
-short	edit_here_doc(t_doc *doc)
+short	edit_here_doc(t_doc *doc, char *stop)
 {
 	pid_t	pid;
 
@@ -39,7 +42,7 @@ short	edit_here_doc(t_doc *doc)
 		if (pid == -1)
 			return (FORK_FAIL);
 		if (pid == 0)
-			edit_loop(doc);
+			edit_loop(doc, stop);
 		else
 		{
 			waitpid(pid, NULL, 0);
@@ -49,4 +52,3 @@ short	edit_here_doc(t_doc *doc)
 	}
 	return (BAD_ARGS);
 }
-

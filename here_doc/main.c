@@ -6,8 +6,11 @@ int main(void)
 
 	doc = NULL;
 	ft_return_ptr(&doc, DOC);
-	make_here_doc(0);
-	printf("tell me why\n");
-	make_here_doc(0);
+	make_here_doc(0, "here");
+	printf("end1\n");
+	make_here_doc(0, "here2");
+	printf("end2\n");
+	make_here_doc(0, "he");
+	printf("end3\n");
 	free_here_dock();
 }
