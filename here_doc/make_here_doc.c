@@ -11,11 +11,12 @@ t_doc	*new_doc(int *f, int i)
 	if (ft_printf(NO_PRINT, "%o/tmp/.here_doc%d", &new->f_name, i) == -1)
 		return (ft_free(new));
 	*f = SUCCESS;
+	unlink(new->f_name);
 	new->fd = open(new->f_name, O_CREAT | O_TRUNC, 0644);
 	if (new->fd < 0)
 	{
 		*f = OPEN_FAIL;
-		ft_printf(STDERR_FILENO, "%ominishell: can't make %s", \
+		ft_printf(STDERR_FILENO, "%ominishell: can't make %s ", \
 		NULL ,new->f_name);
 		ft_free(new->f_name);
 		return (ft_free(new));
@@ -64,7 +65,7 @@ short	make_here_doc(int i, char *stop)
 		*doc = new_doc(&err, i);
 		if (err < SUCCESS)
 		{
-			perror("make_here_doc");
+			perror("make_here_doc ");
 			return (err);
 		}
 		return (edit_here_doc(*doc, stop));

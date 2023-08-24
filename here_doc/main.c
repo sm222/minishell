@@ -10,7 +10,6 @@ int main(void)
 	printf("end1\n");
 	make_here_doc(0, "here2");
 	printf("end2\n");
-	make_here_doc(0, "he");
-	printf("end3\n");
-	free_here_dock();
+	printf("%d\n", get_here_doc(0));
+	//free_here_dock();
 }

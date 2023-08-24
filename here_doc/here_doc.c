@@ -2,16 +2,12 @@
 
 int	get_here_doc(int i)
 {
-	t_doc	**doc;
-	int		err;
-	t_doc	*tmp;
 	int		fd;
+	t_doc	**doc;
+	t_doc	*tmp;
 
-
-	if (i < 0)
-		return (BAD_ARGS);
 	doc = ft_return_ptr(NULL, DOC);
-	if (!*doc)
+	if (!*doc || i < 0)
 		return (-1);
 	tmp = (*doc);
 	while (tmp)
@@ -22,9 +18,12 @@ int	get_here_doc(int i)
 	}
 	if (tmp)
 	{
-		return()
+		fd = open(tmp->f_name, O_RDONLY);
+		if (fd > 0)
+			return(fd);
+		perror("minishell: open");
 	}
-	return ();
+	return (-1);
 }
 
 

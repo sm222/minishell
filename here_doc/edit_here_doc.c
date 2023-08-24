@@ -1,29 +1,37 @@
 # include "here_doc.h"
 
+static int	close_and_exit(int fd)
+{
+	close(fd);
+	exit(0);
+}
+
+static int	write_fd(int fd, char *stop)
+{
+	char	*tmp;
+
+	tmp = readline("> ");
+	if (ft_strncmp(stop, tmp, ft_strlen(stop) + 1) == 0)
+		return (SUCCESS);
+	if (!tmp)
+	{
+		rl_redisplay();
+		return (M_FAIL);
+	}
+
+}
+
+
 static short	edit_loop(t_doc *doc, char *stop)
 {
 	struct stat	last;
-	char		*tmp;
 
-	(void)last;
-	if (fstat(doc->fd, &doc->data) == -1)
-		return (NO_ASS);
-	tmp = "t";
-	while (tmp)
+	while (1)
 	{
-		tmp = readline("> ");
-		if (ft_strncmp(stop, tmp, ft_strlen(stop) + 1) == 0)
-		{
-			ft_free(tmp);
+		if (write_fd(doc->fd, stop) != 0)
 			break ;
-		}
-		if (tmp)
-			ft_putendl_fd(tmp, doc->fd);
-		ft_free(tmp);
 	}
-	close(doc->fd);
-	exit(0);
-	return (SUCCESS);
+	return (close_and_exit(doc->fd));
 }
 
 short	edit_here_doc(t_doc *doc, char *stop)
