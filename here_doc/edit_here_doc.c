@@ -31,12 +31,18 @@ static short	edit_loop(t_doc *doc, char *stop)
 {
 	struct stat	start;
 	struct stat	last;
+	int			f;
 
-	while (1)
+	f = fstat(doc->fd, &last);
+	while (f == 0)
 	{
-		if (write_fd(doc->fd, stop) != 0)
+		f = fstat(doc->fd, &start);
+		if (write_fd(doc->fd, stop) != 0 || f == -1)
 			break ;
+		f = fstat(doc->fd, &last);
 	}
+	if (f == -1)
+		perror("minishell : here_doc: ");
 	return (close_and_exit(doc->fd));
 }
 
