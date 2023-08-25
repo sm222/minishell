@@ -12,18 +12,24 @@ static int	write_fd(int fd, char *stop)
 
 	tmp = readline("> ");
 	if (ft_strncmp(stop, tmp, ft_strlen(stop) + 1) == 0)
+	{
+		free(tmp);
 		return (SUCCESS);
+	}
 	if (!tmp)
 	{
 		rl_redisplay();
 		return (M_FAIL);
 	}
-
+	ft_putendl_fd(tmp, fd);
+	free(tmp);
+	return (FAIL);
 }
 
 
 static short	edit_loop(t_doc *doc, char *stop)
 {
+	struct stat	start;
 	struct stat	last;
 
 	while (1)
