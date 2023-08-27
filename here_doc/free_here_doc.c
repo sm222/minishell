@@ -1,6 +1,6 @@
 #include "here_doc.h"
 
-int	free_here_dock(void)
+int	free_here_dock(short unlink_f)
 {
 	t_doc	**doc;
 	t_doc	*tmp;
@@ -16,7 +16,7 @@ int	free_here_dock(void)
 	{
 		if (tmp->f_name)
 		{
-			if (unlink(tmp->f_name))
+			if (unlink_f && unlink(tmp->f_name))
 				perror("unlink");
 			ft_free(tmp->f_name);
 		}

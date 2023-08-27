@@ -3,6 +3,7 @@
 static int	close_and_exit(int fd)
 {
 	close(fd);
+	free_here_dock(0);
 	exit(0);
 }
 
@@ -32,17 +33,24 @@ static short	edit_loop(t_doc *doc, char *stop)
 	struct stat	start;
 	struct stat	last;
 	int			f;
+	mode_t		mode;
 
-	f = fstat(doc->fd, &last);
+	f = stat(doc->f_name, &last);
+	mode = last.st_mode;
 	while (f == 0)
 	{
-		f = fstat(doc->fd, &start);
+		f = stat(doc->f_name, &start);
+		if (f != 0 || mode != start.st_mode)
+		{
+			ft_printf(2, "%ominishell: here_doc: file was temperd\n", NULL);
+			break ;
+		}
 		if (write_fd(doc->fd, stop) != 0 || f == -1)
 			break ;
-		f = fstat(doc->fd, &last);
+		f = stat(doc->f_name, &last);
 	}
 	if (f == -1)
-		perror("minishell : here_doc: ");
+		perror("minishell: here_doc");
 	return (close_and_exit(doc->fd));
 }
 
@@ -53,10 +61,10 @@ short	edit_here_doc(t_doc *doc, char *stop)
 	if (doc)
 	{
 		doc->fd = open(doc->f_name, O_CREAT | O_TRUNC | O_RDWR, 0644);
-		if (!doc->fd)
+		if (doc->fd < 0)
 		{
-			perror("edit_here_doc");
-			return (FAIL);
+			unlink(doc->f_name);
+			return (edit_here_doc(doc, stop));
 		}
 		pid = fork();
 		if (pid == -1)

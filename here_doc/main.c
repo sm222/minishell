@@ -6,10 +6,11 @@ int main(void)
 
 	doc = NULL;
 	ft_return_ptr(&doc, DOC);
-	make_here_doc(0, "here");
-	printf("end1\n");
-	make_here_doc(0, "here2");
-	printf("end2\n");
-	printf("%d\n", get_here_doc(0));
-	//free_here_dock();
+	int	i = 0;
+	while (i < 10)
+	{
+		make_here_doc(i, "eof");
+		printf("%dend\n", i++);
+	}
+	free_here_dock(1);
 }
