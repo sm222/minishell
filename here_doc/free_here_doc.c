@@ -6,7 +6,7 @@ int	free_here_dock(short unlink_f)
 	t_doc	*tmp;
 	t_doc	*next;
 
-	doc =  ft_return_ptr(NULL, DOC);
+	doc = ft_return_ptr(NULL, DOC);
 	if (!doc)
 		return (BAD_ARGS);
 	if (!*doc)

@@ -1,5 +1,8 @@
 # include "here_doc.h"
 
+/// @brief use at the end of the edit_here_doc
+/// @param fd of the open here_doc
+/// @return 
 static int	close_and_exit(int fd)
 {
 	close(fd);
@@ -7,6 +10,11 @@ static int	close_and_exit(int fd)
 	exit(0);
 }
 
+/// @brief use readline in a loop to witre in the file
+/// @param fd file
+/// @param stop word to stop on
+/// @return return FAIL while it take input, other wise.
+/// @return SUCCESS at the end or M_fail if control + d
 static int	write_fd(int fd, char *stop)
 {
 	char	*tmp;
@@ -27,7 +35,10 @@ static int	write_fd(int fd, char *stop)
 	return (FAIL);
 }
 
-
+/// @brief use to edit a here_doc
+/// @param doc node of here_duc
+/// @param stop word to stop on
+/// @return err value
 static short	edit_loop(t_doc *doc, char *stop)
 {
 	struct stat	start;
@@ -54,6 +65,10 @@ static short	edit_loop(t_doc *doc, char *stop)
 	return (close_and_exit(doc->fd));
 }
 
+/// @brief modefi a here_doc
+/// @param doc to edit
+/// @param stop word to stop on
+/// @return err code
 short	edit_here_doc(t_doc *doc, char *stop)
 {
 	pid_t	pid;

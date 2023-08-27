@@ -20,13 +20,11 @@ int	get_here_doc(int i)
 	{
 		fd = open(tmp->f_name, O_RDONLY);
 		if (fd > 0)
-			return(fd);
+			return (fd);
 		perror("minishell: open");
 	}
 	return (-1);
 }
-
-
 
 /**
  * @brief 

@@ -1,5 +1,9 @@
-# include "here_doc.h"
+#include "here_doc.h"
 
+/// @brief make a new here_doc node
+/// @param f err flag
+/// @param i index of here_doc
+/// @return new one or NULL if fail
 t_doc	*new_doc(int *f, int i)
 {
 	t_doc	*new;
@@ -16,8 +20,8 @@ t_doc	*new_doc(int *f, int i)
 	if (new->fd < 0)
 	{
 		*f = OPEN_FAIL;
-		ft_printf(STDERR_FILENO, "%ominishell: can't make %s ", \
-		NULL ,new->f_name);
+		ft_printf(STDERR_FILENO, "%ominishell: can't make %s ", NULL, \
+		new->f_name);
 		ft_free(new->f_name);
 		return (ft_free(new));
 	}
@@ -26,7 +30,12 @@ t_doc	*new_doc(int *f, int i)
 	return (new);
 }
 
-
+/// @brief use to add a here_doc node at the end
+/// @param list *list of here_doc
+/// @param f flag to return err code
+/// @param i index of new here_doc, or modefi it if all ready exist
+/// @param stop word to stop on
+/// @return 
 static short	make_here_doc_last(t_doc **list, int *f, int i, char *stop)
 {
 	t_doc	*tmp;
@@ -51,7 +60,10 @@ static short	make_here_doc_last(t_doc **list, int *f, int i, char *stop)
 	return (*f);
 }
 
-
+/// @brief use to add a here_doc
+/// @param i index of the here_doc
+/// @param stop word to stop on
+/// @return err code
 short	make_here_doc(int i, char *stop)
 {
 	t_doc	**doc;
