@@ -98,7 +98,7 @@ short	edit_here_doc(t_doc *doc, char *stop)
 		else
 		{
 			waitpid(pid, NULL, 0);
-			close (doc->fd);
+			close(doc->fd);
 		}
 		return (SUCCESS);
 	}

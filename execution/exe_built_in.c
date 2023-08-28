@@ -1,4 +1,5 @@
 #include "execution.h"
+#include "../here_doc/here_doc.h"
 #include "../readline/history.h"
 #include "../readline/readline.h"
 
@@ -87,6 +88,7 @@ static int	run_local(int (*ft)(char **, int, int, char **), t_cmd *in)
 	if (shell->exit)
 	{
 		cmd_free(&in);
+		free_here_dock(1);
 		free_t_mshell(shell);
 		rl_clear_history();
 		ft_putstr_fd("exit\n", 2);

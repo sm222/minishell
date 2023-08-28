@@ -99,13 +99,13 @@ int	dup_in_out(t_cmd *in)
 	{
 		if (in->tok->pipe_in)
 			dup2(in->tok->pipe_in, STDIN_FILENO);
-		close(in->tok->pipe_in);
+		close_fd(in->tok->pipe_in);
 	}
 	if (ft_b_flag_read(in->tok->mode, PIPE_OUT) || in->tok->redi_out)
 	{
 		if (in->tok->pipe_out)
 			dup2(in->tok->pipe_out, STDOUT_FILENO);
-		close(in->tok->pipe_out);
+		close_fd(in->tok->pipe_out);
 	}
 	return (SUCCESS);
 }

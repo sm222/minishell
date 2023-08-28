@@ -23,7 +23,7 @@ short	set_data_exe(t_exe *data, t_mshell *shell, t_cmd *in)
 /// @return	0 or the close value
 int	close_fd(int fd)
 {
-	if (fd)
+	if (fd > 0)
 		return (close(fd));
 	return (0);
 }
