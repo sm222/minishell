@@ -102,27 +102,34 @@ int ft_output(char *src, int start_index)
 	return 0;
 }
 
+int	ft_redirect_op(char *cmd)
+{
+	int input;
+	int output;
+
+	while (ft_has_redirect(cmd))
+	{
+		input = ft_at_index(cmd, '<');
+		output = ft_at_index(cmd, '>');
+		printf("in_index: %d\n", input);
+		printf("out_index: %d\n", output);
+		if (input != INVALID)
+			ft_input(cmd, input);
+		if (output != INVALID)
+			ft_output(cmd, output);
+	}
+	return 0;
+}
+
 int main(int ac, char **av)
 {
 	if (ac == 2)
 	{
-		int input;
-		int output;
 		char *cmd;
 
-		cmd	= av[1];
+		cmd	= ft_strdup(av[1]);
 		printf("length: %d\n", (int)ft_strlen(cmd));
-		while (ft_has_redirect(cmd))
-		{
-			input = ft_at_index(cmd, '<');
-			output = ft_at_index(cmd, '>');
-			printf("in_index: %d\n", input);
-			printf("out_index: %d\n", output);
-			if (input != INVALID)
-				ft_input(cmd, input);
-			if (output != INVALID)
-				ft_output(cmd, output);
-		}
+		ft_redirect_op(cmd);
 	}
 	else
 		printf("try again\n");
