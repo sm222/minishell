@@ -51,54 +51,54 @@ int	ft_at_index(char *src, char c)
 	return (INVALID);
 }
 
-int ft_input(char **src, int start_index)
+int ft_input(char *src, int start_index)
 {
 	int	end_index;
 	int	current_start;
 
 	current_start = start_index;
-	if ((*src)[start_index + 1] == '<')
+	if (src[start_index + 1] == '<')
 		printf("here_doc\n");
 	else
 		printf("regular input\n");
 	start_index++;
-	if ((*src)[start_index + 1] == ' ')
+	if (src[start_index + 1] == ' ')
 		start_index++;
 	start_index++;
 	end_index = start_index;
-	while ((*src)[end_index] > 32 && src[end_index])
+	while (src[end_index] > 32 && src[end_index])
 		end_index++;
-	printf("%s\n", ft_strslice((*src), start_index, end_index));
+	printf("%s\n", ft_strslice(src, start_index, end_index));
 	while (current_start != end_index)
-		(*src)[current_start++] = 92;
-	printf("%s\n", (*src));
+		src[current_start++] = 92;
+	printf("%s\n", src);
 	return 0;
 }
 
-int ft_output(char **src, int start_index)
+int ft_output(char *src, int start_index)
 {	
 	int	end_index;
 	int	current_start;
 
 	current_start = start_index;
-	if ((*src)[start_index + 1] == '>')
+	if (src[start_index + 1] == '>')
 		printf("append\n");
 	else
 		printf("trunk\n");
 	start_index++;
-	if ((*src)[start_index + 1] == ' ')
+	if (src[start_index + 1] == ' ')
 		start_index++;
 	start_index++;
 	end_index = start_index;
-	while ((*src)[end_index] > 32 && src[end_index])
+	while (src[end_index] > 32 && src[end_index])
 	{
 		end_index++;
 		printf("%d\n", end_index);
 	}
-	printf("%s\n", ft_strslice((*src), start_index, end_index));
+	printf("%s\n", ft_strslice(src, start_index, end_index));
 	while (current_start != end_index)
-		(*src)[current_start++] = 92;
-	printf("%s\n", (*src));
+		src[current_start++] = 92;
+	printf("%s\n", src);
 	return 0;
 }
 
@@ -119,9 +119,9 @@ int main(int ac, char **av)
 			printf("in_index: %d\n", input);
 			printf("out_index: %d\n", output);
 			if (input != INVALID)
-				ft_input(&cmd, input);
+				ft_input(cmd, input);
 			if (output != INVALID)
-				ft_output(&cmd, output);
+				ft_output(cmd, output);
 		}
 	}
 	else
