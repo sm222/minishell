@@ -19,11 +19,9 @@ int	get_here_doc(int i)
 	if (tmp)
 	{
 		fd = open(tmp->f_name, O_RDONLY);
-		if (fd > 0)
-			return (fd);
-		perror("minishell: here_doc:");
+		return (fd);
 	}
-	return (0);
+	return (-1);
 }
 
 /**

@@ -51,7 +51,7 @@ int	run_and_close(t_cmd *in, char **env, char *cmd)
 	shell = NULL;
 	dup_in_out(in);
 	close_all_fd(in);
-	if (in->tok->redi_in != -1)
+	//if (in->tok->redi_in != -1)
 		execve(cmd, in->command, new_en);
 	perror("minishell ");
 	ft_free(cmd);

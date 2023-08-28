@@ -69,7 +69,7 @@ short	make_here_doc(int i, char *stop)
 	t_doc	**doc;
 	int		err;
 
-	if (i < 0)
+	if (i < 0 || !stop)
 		return (BAD_ARGS);
 	doc = ft_return_ptr(NULL, DOC);
 	if (!*doc)
