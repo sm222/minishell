@@ -33,8 +33,11 @@ fclean: clean
 
 test:
 	@make
-	gcc main.c here_doc.a -l readline -l ncurses
+	gcc $(CFLAGS) main.c here_doc.a -l readline -l ncurses
+
+mem: test
+	valgrind --leak-check=full --show-leak-kinds=all --trace-children=yes --track-fds=yes --suppressions=/tmp/supp.txt ./a.out
 
 re: fclean 
 
-.PHONY: all clean fclean test re
+.PHONY: all clean fclean test re mem

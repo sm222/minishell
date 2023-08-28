@@ -68,9 +68,12 @@ int	main(int ac, char **av, char **en)
 			break ;
 		if (shell.s && *shell.s)
 		{
-			cmd_make_node_last(&shell.cmd_list, ft_split(shell.s, ' '), make_token(0, 0, 0));
+			make_here_doc(0, "eof");
+			make_here_doc(0, "eof");
+			cmd_make_node_last(&shell.cmd_list, ft_split(shell.s, ' '), make_token(0, get_here_doc(0), 0));
 			run_cmd(shell.cmd_list, &shell);
 			add_history(shell.s);
+			free_here_dock(1);
 		}
 		printf("a][%d\n", shell.pec);
 	}

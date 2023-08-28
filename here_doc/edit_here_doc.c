@@ -5,6 +5,17 @@
 /// @return 
 static int	close_and_exit(int fd)
 {
+	t_mshell	*shell;
+
+	shell = ft_return_ptr(NULL, SYS);
+	if (shell)
+	{
+		ft_double_sfree((void **)shell->en);
+		ft_double_sfree((void **)shell->path);
+		ft_free(shell->info);
+		ft_free(shell->s);
+		ft_free(shell->tmp);
+	}
 	close(fd);
 	free_here_dock(0);
 	exit(0);
@@ -41,24 +52,22 @@ static int	write_fd(int fd, char *stop)
 /// @return err value
 static short	edit_loop(t_doc *doc, char *stop)
 {
-	struct stat	start;
-	struct stat	last;
 	int			f;
 	mode_t		mode;
 
-	f = stat(doc->f_name, &last);
-	mode = last.st_mode;
+	f = stat(doc->f_name, &doc->last);
+	mode = doc->last.st_mode;
 	while (f == 0)
 	{
-		f = stat(doc->f_name, &start);
-		if (f != 0 || mode != start.st_mode)
+		f = stat(doc->f_name, &doc->start);
+		if (f != 0 || mode != doc->start.st_mode)
 		{
 			ft_printf(2, "%ominishell: here_doc: file was temperd\n", NULL);
 			break ;
 		}
 		if (write_fd(doc->fd, stop) != 0 || f == -1)
 			break ;
-		f = stat(doc->f_name, &last);
+		f = stat(doc->f_name, &doc->last);
 	}
 	if (f == -1)
 		perror("minishell: here_doc");

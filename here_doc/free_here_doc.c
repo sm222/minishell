@@ -16,13 +16,14 @@ int	free_here_dock(short unlink_f)
 	{
 		if (tmp->f_name)
 		{
-			if (unlink_f && unlink(tmp->f_name))
-				perror("unlink");
+			if (unlink_f)
+				unlink(tmp->f_name);
 			ft_free(tmp->f_name);
 		}
 		next = tmp->next;
 		ft_free(tmp);
 		tmp = next;
 	}
+	*doc = NULL;
 	return (SUCCESS);
 }

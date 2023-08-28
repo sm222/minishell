@@ -50,7 +50,8 @@
 
 typedef struct s_doc
 {
-	struct stat		data;
+	struct stat		start;
+	struct stat		last;
 	char			*f_name;
 	int				i;
 	int				fd;

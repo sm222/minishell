@@ -15,7 +15,7 @@
 //			define			//
 /*/*//*/*//*/*//*/*//*/*//*/*/
 
-# define MS_NAME "Minishell "
+# define MS_NAME "minishell "
 # define FILE_DEF ".debug_minishell"
 # define ERR_CNF "command not found: "
 # define ERR_NSFD "No such file or directory: "

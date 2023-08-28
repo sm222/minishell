@@ -16,6 +16,9 @@ LIBFT_DIR		=	lib/lib_ft/
 EXECUTION_LIB	=	execution.a
 EXECUTION_DIR	=	execution/
 
+HERE_DOC_LIB	=	here_doc.a
+HERE_DOC_DIR	=	here_doc/
+
 RL_DIR			=	readline/
 RL_H			=	libhistory.a
 RL_L			=	libreadline.a
@@ -52,17 +55,17 @@ OBJS	=	$(SRCS:.c=.o)
 
 USER = $(shell whoami)
 
-all: tools libft builtin exe $(NAME)
+all: tools libft builtin exe doc $(NAME)
 	@printf "$(CYN) \n\n			correction is made by $(USER)\n\n  $(RESET)\n"
 	
 $(NAME): $(OBJS) $(C_TOOL)
 	@$(CC) $(CFLAGS) $(OBJS) $(LIBFT_DIR)$(LIBFT) -l readline -l ncurses \
 	$(RL_DIR)$(RL_H) $(RL_DIR)$(RL_L) $(C_TOOL) $(EXECUTION_DIR)$(EXECUTION_LIB) \
-	-o $(NAME)
+	$(HERE_DOC_DIR)$(HERE_DOC_LIB) -o $(NAME)
 
 libft:
 	@printf "$(GRN)making libft$(WHT)\n"
-	@$(MAKE) -C $(LIBFT_DIR)
+	@make -C $(LIBFT_DIR)
 
 builtin:
 	@printf "$(GRN)making builtin$(WHT)\n"
@@ -72,8 +75,11 @@ exe:
 	@printf "$(GRN)execution builtin$(WHT)\n"
 	@make -C $(EXECUTION_DIR)
 
+doc:
+	@make -C $(HERE_DOC_DIR)
+
 mem: all
-	valgrind --leak-check=full --show-leak-kinds=all --trace-children=yes --track-fds=yes --suppressions=/private/tmp/anboisve/val/supp.txt ./minishell 
+	valgrind --leak-check=full --show-leak-kinds=all --trace-children=yes --track-fds=yes --suppressions=/tmp/supp.txt ./minishell 
 
 #https://github.com/sm222/C_tools
 tools:
@@ -81,10 +87,11 @@ tools:
 # Removes objects
 clean:
 	@$(RM) $(OBJS)
-	@make -C $(LIBFT_DIR) clean
+	@make -C built_in         clean
+	@make -C $(LIBFT_DIR)     clean
+	@make -C $(C_TOOL_DIR)    clean
+	@make -C $(HERE_DOC_DIR)  clean
 	@make -C $(EXECUTION_DIR) clean
-	@make -C $(C_TOOL_DIR) clean
-	@make -C built_in clean
 	@echo $(shell clear)
 	@printf "$(GRN)clean *.o$(RESET)\n"
 
@@ -92,9 +99,10 @@ clean:
 fclean: clean
 	@$(RM) $(NAME)
 	@$(RM) $(B_NAME)
-	@make -C built_in fclean
-	@make -C $(LIBFT_DIR) fclean
-	@make -C $(C_TOOL_DIR) fclean
+	@make -C built_in         fclean
+	@make -C $(LIBFT_DIR)     fclean
+	@make -C $(C_TOOL_DIR)    fclean
+	@make -C $(HERE_DOC_DIR)  fclean
 	@make -C $(EXECUTION_DIR) fclean
 	@echo $(shell clear)
 	@printf "$(GRN)clean all$(RESET)\n"
@@ -107,4 +115,7 @@ mc: all clean
 # Removes objects and executables and remakes
 re: fclean all
 
-.PHONY: all libft
+cp:
+	cp supp.txt /tmp
+
+.PHONY: all libft run mc

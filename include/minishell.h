@@ -16,6 +16,7 @@
 # include "../readline/history.h"
 # include "../readline/readline.h"
 # include "../execution/execution.h"
+# include "../here_doc/here_doc.h"
 
 //--------------------------//
 //			tools			//

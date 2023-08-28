@@ -20,11 +20,12 @@
 //			fonction		//
 //--------------------------//
 
-t_doc	*new_doc(int *f, int i);
-
-short	make_here_doc(int i, char *stop);
-short	edit_here_doc(t_doc *doc, char *stop);
+//ft you shoud use
 int		get_here_doc(int i);
+short	make_here_doc(int i, char *stop);
 int		free_here_dock(short unlink_f);
+
+t_doc	*new_doc(int *f, int i);
+short	edit_here_doc(t_doc *doc, char *stop);
 
 #endif // HERE_DOC_H
