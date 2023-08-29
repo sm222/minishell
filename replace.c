@@ -66,6 +66,20 @@ int	ft_at_index(char *src, char c)
 	return (INVALID);
 }
 
+void	ft_check_here_doc(char *src)
+{
+	int	i;
+
+	i = FIRST_INDEX;
+	while (src[i])
+	{
+		if (src[i] == '<' && src[i + 1] == '<')
+			;
+		i++;
+	}
+
+}
+
 int ft_input(char *src, int start_index)
 {
 	int	end_index;
@@ -73,13 +87,15 @@ int ft_input(char *src, int start_index)
 
 	current_start = start_index;
 	if (src[start_index + 1] == '<')
+	{
+		start_index++;
 		printf("here_doc\n");
+	}
 	else
 		printf("regular input\n");
 	start_index++;
-	if (src[start_index + 1] == ' ')
+	if (src[start_index] == ' ')
 		start_index++;
-	start_index++;
 	end_index = start_index;
 	while (src[end_index] > 32 && src[end_index])
 		end_index++;
@@ -97,19 +113,18 @@ int ft_output(char *src, int start_index)
 
 	current_start = start_index;
 	if (src[start_index + 1] == '>')
+	{
+		start_index++;
 		printf("append\n");
+	}
 	else
 		printf("trunk\n");
 	start_index++;
-	if (src[start_index + 1] == ' ')
+	if (src[start_index] == ' ')
 		start_index++;
-	start_index++;
 	end_index = start_index;
 	while (src[end_index] > 32 && src[end_index])
-	{
 		end_index++;
-		printf("%d\n", end_index);
-	}
 	printf("%s\n", ft_strslice(src, start_index, end_index));
 	while (current_start != end_index)
 		src[current_start++] = 92;
@@ -147,7 +162,7 @@ int	ft_invalid_pipe(char *cmd)
 		{
 			//ft_check_here_doc(cmd);
 			printf("do here_doc here\n");
-			printf("token error\n");
+			printf("token error near '|'\n");
 			return (CORRECT);
 		}
 		i++;
@@ -172,11 +187,17 @@ void	ft_pipe_op(char *cmd)
 		printf("%s\n", sliced_cmd);
 		cmd[pipe_index] = '/';
 		start_index = pipe_index;
+		free(sliced_cmd);
 	}
 	pipe_index = (int)ft_strlen(cmd);
 	sliced_cmd = ft_strslice(cmd, start_index, pipe_index);
 	ft_redirect_op(sliced_cmd);
 	printf("%s\n", sliced_cmd);
+	free(sliced_cmd);
+}
+
+ft_cmd_deconstruct()
+{
 }
 
 int main(int ac, char **av)
@@ -188,6 +209,7 @@ int main(int ac, char **av)
 		cmd	= ft_strdup(av[1]);
 		printf("length: %d\n", (int)ft_strlen(cmd));
 		ft_pipe_op(cmd);
+		free(cmd);
 	}
 	else
 		printf("try again\n");
