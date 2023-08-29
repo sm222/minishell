@@ -4,6 +4,7 @@
 # define CORRECT 1
 # define INVALID -1 
 # define INCORRECT 0
+# define FIRST_INDEX 0
 
 char	*ft_strslice(char *src, int start, int end)
 {
@@ -32,6 +33,20 @@ int	ft_has_redirect(char *src)
 	{
 		while (src[++i])
 			if (src[i] == '<' || src[i] == '>')
+				return (CORRECT);
+	}
+	return (INCORRECT);
+}
+
+int	ft_has_pipe(char *src)
+{
+	int	i;
+
+	i = -1;
+	if (src)
+	{
+		while (src[++i])
+			if (src[i] == '|')
 				return (CORRECT);
 	}
 	return (INCORRECT);
@@ -121,6 +136,49 @@ int	ft_redirect_op(char *cmd)
 	return 0;
 }
 
+int	ft_invalid_pipe(char *cmd)
+{
+	int	i;
+
+	i = FIRST_INDEX;
+	while (cmd[i])
+	{
+		if (cmd[i] == '|' && cmd[i + 1] == '|')
+		{
+			//ft_check_here_doc(cmd);
+			printf("do here_doc here\n");
+			printf("token error\n");
+			return (CORRECT);
+		}
+		i++;
+	}
+	return (INCORRECT);
+}
+
+void	ft_pipe_op(char *cmd)
+{
+	int		pipe_index;
+	int		start_index;
+	char	*sliced_cmd;
+
+	start_index = FIRST_INDEX;
+	if (ft_invalid_pipe(cmd))
+		return ;
+	while(ft_has_pipe(cmd))
+	{
+		pipe_index = ft_at_index(cmd, '|');
+		sliced_cmd = ft_strslice(cmd, start_index, pipe_index);
+		ft_redirect_op(sliced_cmd);
+		printf("%s\n", sliced_cmd);
+		cmd[pipe_index] = '/';
+		start_index = pipe_index;
+	}
+	pipe_index = (int)ft_strlen(cmd);
+	sliced_cmd = ft_strslice(cmd, start_index, pipe_index);
+	ft_redirect_op(sliced_cmd);
+	printf("%s\n", sliced_cmd);
+}
+
 int main(int ac, char **av)
 {
 	if (ac == 2)
@@ -129,7 +187,7 @@ int main(int ac, char **av)
 
 		cmd	= ft_strdup(av[1]);
 		printf("length: %d\n", (int)ft_strlen(cmd));
-		ft_redirect_op(cmd);
+		ft_pipe_op(cmd);
 	}
 	else
 		printf("try again\n");
