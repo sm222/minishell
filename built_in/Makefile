@@ -62,4 +62,7 @@ fclean: clean
 
 re: fclean all
 
+bonus: all
+	make -C ls_tester
+
 .PHONY: all echo pwd cd env unset exit

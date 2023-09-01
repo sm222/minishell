@@ -25,7 +25,22 @@
 # define ENV_C 3		// copy of the env
 # define EX_F  4		// tell if the program end
 # define DOC   5		// here_dock
-//	byte flag			//
+
+# ifndef COLORS
+#  define COLORS
+#  define RED	"\x1B[31m"
+#  define GRN	"\x1B[32m"
+#  define YEL	"\x1B[33m"
+#  define BLU	"\x1B[34m"
+#  define MAG	"\x1B[35m"
+#  define CYN	"\x1B[36m"
+#  define WHT	"\x1B[37m"
+#  define ORG	"\x1b[38;5;202m"
+#  define PIK	"\x1b[38;5;176m"
+#  define TOX	"\x1b[38;5;190m"
+#  define RESET	"\x1B[0m"
+#  define CLE	"\e[1;1H\e[2J"
+# endif
 
 # ifndef  TRUE
 #  define TRUE			1
@@ -40,6 +55,7 @@
 # define PIPE_IN_OUT	3
 # define BUILT_IN		4
 
+//	byte flag			//
 # define BUILT_IN_FLAG	0B00010000
 
 # define PROMPT "$ "
