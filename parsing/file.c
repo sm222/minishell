@@ -1,18 +1,7 @@
 #include "parsing.h"
 
-char	*ft_file_extract(char *cmd, char redirect)
-{
-	int	redirect_index;
-	int	end_index;
-
-	redirect_index = ft_at_index(cmd, redirect);
-	end_index = ft_at_index(cmd + redirect_index, ' ') + redirect_index;
-	end_index = ft_at_index(cmd + end_index, ' ') + end_index;
-	return (ft_strslice(cmd, redirect_index, end_index))
-}
-
 // WIP
-void	ft_file_op(char *path, t_token *tokens, char redirect, char duplicity)
+int	ft_file_op(char *path, t_token *tokens, char redirect, char duplicity)
 {
 	if (redirect == '<')
 	{

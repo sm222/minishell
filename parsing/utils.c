@@ -28,25 +28,6 @@ int	ft_at_rev_index(char *src, char c)
 	return (INVALID);
 }
 
-int	ft_list_count(t_decon *head)
-{
-	int		i;
-	t_decon	*current;
-
-	i = 0;
-	current = head;
-	if (head)
-	{
-		while (current->next)
-		{
-			current = current->next;
-			i++;
-		}
-		i++;
-	}
-	return (i);
-}
-
 char	*ft_strslice(char *src, int start, int end)
 {
 	char	*res;
@@ -63,27 +44,4 @@ char	*ft_strslice(char *src, int start, int end)
 		return (res);
 	}
 	return (NULL);
-}
-
-void	ft_add_slice(char *src, t_decon **decon)
-{
-	t_decon	*current;
-	t_decon	*dc;
-
-	if (*decon == NULL)
-	{
-		*decon = ft_calloc(NODE_SIZE, sizeof(t_decon));
-		(*decon)->src = src;
-		(*decon)->next = NULL;
-	}
-	else
-	{
-		dc = ft_calloc(NODE_SIZE, sizeof(t_decon));
-		current = *decon;
-		while (current->next)
-			current = current->next;
-		dc->src = src;
-		dc->next = NULL;
-		current->next = dc;
-	}
 }
