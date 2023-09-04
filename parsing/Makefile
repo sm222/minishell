@@ -2,22 +2,32 @@ NAME = parsing.a
 
 SRC = utils.c \
 	  file.c \
+	  main.c \
 	  array.c \
+	  replace.c \
 	  redirect.c \
-	  redi_utils.c \
+	  redi_utils.c
 
 CC = clang
 CFLAGS = -Wall -Wextra -Werror
 
-all: $(NAME) libft
+LIB = ../lib/lib_ft
+LIBNAME = libft.a
+
+all: libft $(NAME)
 
 $(NAME): $(OBJ)
-	$(CC) $(CFLAGS) $(SRC) -o $(NAME)
+	$(CC) $(CFLAGS) $(SRC) -o $(NAME) $(LIB)/$(LIBNAME) -g
 
 test: libft
-	clang -Wall -Wextra -Werror test.c printf/libftprintf.a
+	clang -Wall -Wextra -Werror test.c $(LIB)/$(LIBNAME)
+
+fclean: 
+	rm $(NAME)
+
+re: fclean all
 
 libft:
-	$(MAKE) -C printf/
+	$(MAKE) -C  $(LIB)
 
 .PHONY: all test libft

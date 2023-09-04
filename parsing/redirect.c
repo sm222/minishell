@@ -12,14 +12,13 @@ int	ft_input(char *src, int start_index)
 	if (src[start_index] == ' ')
 		start_index++;
 	end_index = start_index;
-	while (src[end_index] > 32 && src[end_index])
+	while (src[end_index] > CHAR_LIMIT && src[end_index])
 		end_index++;
 	file = ft_strslice(src, start_index, end_index);
 	printf("printf: %s\n", file);
 	free(file);
 	while (current_start != end_index)
-		src[current_start++] = 92; // TO BE CHANGED, REPLACE WITH PASSED_THROUGH
-	printf("printf: %s\n", src);
+		src[current_start++] = PASSED_THROUGH;
 	return 0;
 }
 
@@ -41,14 +40,13 @@ int	ft_output(char *src, int start_index)
 	if (src[start_index] == ' ')
 		start_index++;
 	end_index = start_index;
-	while (src[end_index] > 32 && src[end_index])
+	while (src[end_index] > CHAR_LIMIT && src[end_index])
 		end_index++;
 	file = ft_strslice(src, start_index, end_index);
 	printf("printf: %s\n", file);
 	free(file);
 	while (current_start != end_index)
-		src[current_start++] = 92; // TO BE CHANGED, REPLACE WITH PASSED_THROUGH
-	printf("printf: %s\n", src);
+		src[current_start++] = PASSED_THROUGH;
 	return 0;
 }
 

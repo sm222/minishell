@@ -4,12 +4,12 @@ int	ft_at_index(char *src, char c)
 {
 	int	i;
 
-	i = 0;
+	i = FIRST_INDEX;
 	if (src)
 	{
 		while (src[i])
 			if (src[i++] == c)
-				return (i);
+				return (i - 1);
 	}
 	return (INVALID);
 }
@@ -34,9 +34,9 @@ char	*ft_strslice(char *src, int start, int end)
 	int		i;
 
 	i = 0;
-	if (src)
+	if (src && start != end)
 	{
-		res = ft_calloc(end - start, sizeof(char));
+		res = ft_calloc(end - start + 1, sizeof(char));
 		if (!res)
 			return (NULL);
 		while (start < end)
