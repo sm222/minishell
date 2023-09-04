@@ -1,5 +1,12 @@
 #include "parsing.h"
 
+int	ft_is_valid_char(char c)
+{
+	if (c >= 33 && c <= 126)
+		return (CORRECT);
+	return (INCORRECT);
+}
+
 int	ft_redirect_index(char *src)
 {
 	int	i;

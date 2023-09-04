@@ -1,32 +1,71 @@
 #include "parsing.h"
 
-int	ft_suffix(char **cmd)
+int	ft_input(char *src, int start_index)
 {
+	int		end_index;
+	int		current_start;
+	char	*file;
+
+	current_start = start_index;
+	printf("printf: regular input\n");
+	start_index++;
+	if (src[start_index] == ' ')
+		start_index++;
+	end_index = start_index;
+	while (src[end_index] > 32 && src[end_index])
+		end_index++;
+	file = ft_strslice(src, start_index, end_index);
+	printf("printf: %s\n", file);
+	free(file);
+	while (current_start != end_index)
+		src[current_start++] = 92; // TO BE CHANGED, REPLACE WITH PASSED_THROUGH
+	printf("printf: %s\n", src);
+	return 0;
 }
 
-int ft_prefix(char **cmd)
-{
-}
+int	ft_output(char *src, int start_index)
+{	
+	int		end_index;
+	int		current_start;
+	char	*file;
 
-// WIP
-int	ft_redirect_op(char **cmd, t_token *tokens)
-{
-	int	prefix_index;
-	int	suffix_index;
-	int	redirect_index;
-
-	redirect_index = ft_redirect_index();
-	if (redirect_index != INVALID && redirect_index == FIRST_INDEX)
-		ft_prefix(cmd);
-	if (redirect_index != INVALID && redirect_index > FIRST_INDEX)
-		ft_suffix(cmd);
-	prefix_index = ft_at_index(cmd, PASSED_PREFIX);
-	suffix_index = ft_at_index(cmd, PASSED_SUFFIX);
-	if (prefix_index != INVALID && suffix_index != INVALID)
+	current_start = start_index;
+	if (src[start_index + 1] == '>')
 	{
-		(*cmd)[prefix_index] = PASSED_THROUGH;
-		(*cmd)[suffix_index] = PASSED_THROUGH;
+		start_index++;
+		printf("printf: append\n");
 	}
-
+	else
+		printf("printf: trunk\n");
+	start_index++;
+	if (src[start_index] == ' ')
+		start_index++;
+	end_index = start_index;
+	while (src[end_index] > 32 && src[end_index])
+		end_index++;
+	file = ft_strslice(src, start_index, end_index);
+	printf("printf: %s\n", file);
+	free(file);
+	while (current_start != end_index)
+		src[current_start++] = 92; // TO BE CHANGED, REPLACE WITH PASSED_THROUGH
+	printf("printf: %s\n", src);
+	return 0;
 }
 
+int	ft_redirect_op(char *cmd)
+{
+	int input;
+	int output;
+
+	ft_check_here_doc(cmd);
+	while (ft_has_redirect(cmd))
+	{
+		input = ft_at_index(cmd, '<');
+		output = ft_at_index(cmd, '>');
+		if (input != INVALID)
+			ft_input(cmd, input);
+		if (output != INVALID)
+			ft_output(cmd, output);
+	}
+	return 0;
+}
