@@ -88,3 +88,47 @@ int	change_env_data(t_mshell *data)
 	}
 	return (FAIL);
 }
+
+
+/*
+char	*edit_str(char *s, size_t i, char **en)
+{
+	char	*s1;
+	char	*s2;
+
+	s1 = NULL;
+	s2 = NULL;
+
+}
+
+char	*change_dolar(char *old, char **en)
+{
+	short	mode;
+	char	*new;
+	size_t	i;
+
+	i = 0;
+	new = NULL;
+	mode = 0;
+	while (old && old[i])
+	{
+		if (mode == 0 && (old[i] == '$' && old[i + 1] && old[i + 1] != ' '))
+			new = edit_str(old, i, en);
+	}
+	
+}
+
+int	main(int ac, char **av, char **en)
+{
+	int	i;
+	char	*t;
+
+	i = 1;
+	while (i < ac)
+	{
+		t = change_dolar(av[i], en);
+		printf("%s\n", t);
+		t = ft_free(t);
+	}
+}
+*/
