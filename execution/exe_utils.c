@@ -73,8 +73,6 @@ short	change_av_for_en(t_cmd *in)
 
 int	change_env_data(t_mshell *data)
 {
-	char	*new;
-	char	**spl;
 	size_t	i;
 
 	i = 0;
@@ -82,14 +80,10 @@ int	change_env_data(t_mshell *data)
 	{
 		if (ft_strncmp("OLDPWD", data->en[i], 6) == 0 && \
 		(data->en[i][6] == '=' || data->en[i][6] == 0))
-		{
-			ft_printf(NO_PRINT, "%oex OLDPWD=%s", &new, data->info);
-			spl = ft_split(new, ' ');
-			ft_export(spl, 0, 1, data->en);
-			ft_double_sfree((void **)spl);
-			ft_free(new);
-			return (SUCCESS);
-		}
+			oldpwd(data);
+		if (ft_strncmp("PWD", data->en[i], 3) == 0 && \
+		(data->en[i][3] == '=' || data->en[i][3] == 0))
+			new_pwd(data);
 		i++;
 	}
 	return (FAIL);

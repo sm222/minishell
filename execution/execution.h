@@ -60,6 +60,8 @@ int		find_path(char *name, char **out, char **list, mode_t *err);
 int		execution_builtin(t_cmd *in, t_waitp **wait, int cmd_len);
 
 int		change_env_data(t_mshell *data);
+short	oldpwd(t_mshell *data);
+short	new_pwd(t_mshell *data);
 
 // fd
 
