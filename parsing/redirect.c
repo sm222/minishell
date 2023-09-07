@@ -50,20 +50,25 @@ int	ft_output(char *src, int start_index)
 	return 0;
 }
 
-int	ft_redirect_op(char *cmd)
+t_tokens	ft_redirect_op(char *cmd)
 {
 	int input;
+	int	fd_in;
 	int output;
+	int	fd_out;
+	t_token tokens;
 
+	fd_in = -1;
+	fd_out = -1;
 	ft_check_here_doc(cmd);
 	while (ft_has_redirect(cmd))
 	{
 		input = ft_at_index(cmd, '<');
 		output = ft_at_index(cmd, '>');
 		if (input != INVALID)
-			ft_input(cmd, input);
+			fd_in = ft_input(cmd, input);
 		if (output != INVALID)
-			ft_output(cmd, output);
+			fd_out = ft_output(cmd, output);
 	}
-	return 0;
+	return (tokens);
 }

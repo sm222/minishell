@@ -8,7 +8,7 @@ int	ft_at_index(char *src, char c)
 	if (src)
 	{
 		while (src[i])
-			if (src[i++] == c)
+			if (src[i++] == c && ft_is_not_in_quotes(src, c))
 				return (i - 1);
 	}
 	return (INVALID);
@@ -22,7 +22,7 @@ int	ft_at_rev_index(char *src, char c)
 	{
 		i = ft_strlen(src);
 		while (src[--i])
-			if (src[i] == c)
+			if (src[i] == c && ft_is_not_in_quotes(src, c))
 				return (i);
 	}
 	return (INVALID);

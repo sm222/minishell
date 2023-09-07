@@ -103,19 +103,13 @@ void	ft_pipe_op(char *cmd, t_loc *list)
 	ft_free(sliced_cmd);
 }
 
-char **ft_cmd_deconstruct(char *cmd, t_loc *list) 
+char	**ft_cmd_fragments(char *cmd)
 {
-	t_idx	index;
-	char	*current;
-	char	*quotes;
-	char	**res;
 	int		i;
+	char	**res;
+	char	*current;
 
 	i = FIRST_INDEX;
-	res = NULL;
-	if (!cmd)
-		return res;
-	ft_redirect_op(cmd);
 	while (cmd[i])
 	{
 		while (cmd[i] == PASSED_THROUGH || cmd[i] == ' ')
@@ -128,6 +122,32 @@ char **ft_cmd_deconstruct(char *cmd, t_loc *list)
 		res = ft_arrayjoin(res, current);
 		free(current);
 	}
+	return (res);
+}
+
+char	**ft_cmd_deconstruct(char *cmd, t_loc *list) 
+{
+	t_idx	index;
+	char	*current;
+	char	**quotes;
+	char	**res;
+
+	res = NULL;
+	quotes = NULL;
+	if (!cmd)
+		return res;
+	list.tokens = ft_redirect_op(cmd);
+	while (ft_has_quotes(cmd))
+	{
+		current = ft_quote_op(cmd);
+		ft_arrayjoin(quotes, current);
+		ft_free(current);
+	}
+	res = ft_cmd_fragments(cmd);
+	index.current_start = 0;
+	while (quotes[index.current_start])
+		ft_arrayjoin(res, quotes[index.current_start++]);
+	ft_clear_array(quotes);
 	return (res);
 }
 
