@@ -16,8 +16,8 @@
 # define CHAR_LIMIT 32 // space is the last char not included
 # define FIRST_INDEX 0
 # define PASSED_THROUGH 31
-# define SINGLE_REDIRECT 's'
-# define DOUBLE_REDIRECT 'd'
+# define SINGLE_REDIRECT 115 // ascii value of 's'
+# define DOUBLE_REDIRECT 100 // ascii value of 'd'
 
 typedef struct s_loc
 {
@@ -37,7 +37,9 @@ typedef struct s_idx
 t_loc	*ft_parsing(char *src);
 int		ft_has_pipe(char *src);
 int		ft_arraylen(char **src);
-int		ft_redirect_op(char *cmd);
+char	*ft_quote_op(char *cmd);
+int		ft_has_quotes(char *src);
+t_token	ft_redirect_op(char *cmd);
 int		ft_invalid_pipe(char *cmd);
 int		ft_has_redirect(char *src);
 void	*ft_clear_array(char **src);
@@ -45,6 +47,7 @@ void	ft_check_here_doc(char *src);
 int		ft_redirect_index(char *src);
 int		ft_at_index(char *src, char c);
 int		ft_redirect_rev_index(char *src);
+t_idx	ft_quotes_delimitation(char *src);
 void	ft_purge(char **decon, char *src);
 void	ft_pipe_op(char *cmd, t_loc *list);
 int		ft_at_rev_index(char *src, char c);
@@ -53,6 +56,7 @@ char	**ft_arrayjoin(char **src, char *s);
 void	ft_add_loc(t_loc **list, char **cmd);
 int		ft_input(char *src, int start_index);
 int		ft_output(char *src, int start_index);
+int		ft_is_not_in_quotes(char *src, char c);
 char	*ft_strslice(char *src, int start, int end);
 char	**ft_cmd_deconstruct(char *cmd, t_loc *list);
 void	ft_file_op(char *path, t_token *tokens, char redirect, char duplicity);
@@ -60,6 +64,5 @@ void	ft_file_op(char *path, t_token *tokens, char redirect, char duplicity);
 #endif
 
 /*
- * double quotes & single quotes vont changer en PASSED_THROUGH, garder les quotes pis
- * les ajouter à la fin du char**
+ * checker les tokens errors sur les quotes non-fermées
  */

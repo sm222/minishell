@@ -4,6 +4,7 @@ SRC = utils.c \
 	  file.c \
 	  main.c \
 	  array.c \
+	  quotes.c \
 	  replace.c \
 	  redirect.c \
 	  redi_utils.c
