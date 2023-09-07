@@ -10,7 +10,7 @@ void	ft_add_loc(t_loc **list, char **cmd)
 	current = ft_calloc(NODE, sizeof(t_loc));
 	if (!current)
 	{
-		ft_putendl_fd("error malloc\n" ,2);
+		ft_putendl_fd("error malloc\n", 2);
 		return ;
 	}
 	current->decon_cmd = cmd;
@@ -31,7 +31,7 @@ t_loc	*ft_parsing(char *src)
 
 	list = NULL;
 	if (!src)
-		return NULL;
+		return (NULL);
 	ft_pipe_op(src, list);
 	return (list);
 }

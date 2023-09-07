@@ -107,11 +107,10 @@ char **ft_cmd_deconstruct(char *cmd, t_loc *list)
 {
 	t_idx	index;
 	char	*current;
-	//char	*quotes;
+	char	*quotes;
 	char	**res;
 	int		i;
 
-	(void)list;
 	i = FIRST_INDEX;
 	res = NULL;
 	if (!cmd)
@@ -129,11 +128,6 @@ char **ft_cmd_deconstruct(char *cmd, t_loc *list)
 		res = ft_arrayjoin(res, current);
 		free(current);
 	}
-	/*if (quotes)
-	{
-		res = ft_arrayjoin(res, quotes);
-		
-	}*/
 	return (res);
 }
 

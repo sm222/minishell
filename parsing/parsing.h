@@ -59,7 +59,6 @@ void	ft_file_op(char *path, t_token *tokens, char redirect, char duplicity);
 
 #endif
 
-
 /*
  * double quotes & single quotes vont changer en PASSED_THROUGH, garder les quotes pis
  * les ajouter à la fin du char**
