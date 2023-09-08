@@ -1,19 +1,5 @@
 #include "parsing.h"
 
-int	ft_has_redirect(char *src)
-{
-	int	i;
-
-	i = -1;
-	if (src)
-	{
-		while (src[++i])
-			if (src[i] == '<' || src[i] == '>')
-				return (CORRECT);
-	}
-	return (INCORRECT);
-}
-
 int	ft_has_pipe(char *src)
 {
 	int	i;
@@ -26,26 +12,6 @@ int	ft_has_pipe(char *src)
 				return (CORRECT);
 	}
 	return (INCORRECT);
-}
-
-void	ft_purge(char **decon, char *src)
-{
-	ft_clear_array(decon);
-	ft_free(src);
-}
-
-void	ft_check_here_doc(char *src)
-{
-	int	i;
-
-	i = FIRST_INDEX;
-	while (src[i])
-	{
-		if (src[i] == '<' && src[i + 1] == '<')
-			printf("here_doc\n");
-		i++;
-	}
-
 }
 
 int	ft_invalid_pipe(char *cmd)
@@ -67,39 +33,31 @@ int	ft_invalid_pipe(char *cmd)
 	return (INCORRECT);
 }
 
-void	ft_pass_through(char **decon)
-{
-	int	i;
-	
-	i = FIRST_INDEX;
-	while (decon[i])
-		ft_putendl_fd(decon[i++], 1);
-}
-
 void	ft_pipe_op(char *cmd, t_loc *list)
 {
-	int		pipe_index;
-	int		start_index;
+	t_idx	index;
 	char	*sliced_cmd;
+	t_token	*tokens;
 	char	**decon;
 
-	start_index = FIRST_INDEX;
+	tokens = NULL;
+	index.start_index = FIRST_INDEX;
 	if (ft_invalid_pipe(cmd))
 		return ;
 	while (ft_has_pipe(cmd))
 	{
-		pipe_index = ft_at_index(cmd, '|');
-		sliced_cmd = ft_strslice(cmd, start_index, pipe_index);
-		decon = ft_cmd_deconstruct(sliced_cmd, list);
-		cmd[pipe_index] = PASSED_THROUGH;
-		start_index = pipe_index;
-		ft_add_loc(&list, decon);
+		index.end_index = ft_at_index(cmd, '|');
+		sliced_cmd = ft_strslice(cmd, index.start_index, index.end_index);
+		decon = ft_cmd_deconstruct(sliced_cmd, tokens);
+		cmd[index.end_index] = PASSED_THROUGH;
+		index.start_index = index.end_index;
+		ft_add_loc(&list, decon, tokens);
 		ft_free(sliced_cmd);
 	}
-	pipe_index = (int)ft_strlen(cmd);
-	sliced_cmd = ft_strslice(cmd, start_index, pipe_index);
-	decon = ft_cmd_deconstruct(sliced_cmd, list);
-	ft_add_loc(&list, decon);
+	index.end_index = (int)ft_strlen(cmd);
+	sliced_cmd = ft_strslice(cmd, index.start_index, index.end_index);
+	decon = ft_cmd_deconstruct(sliced_cmd, tokens);
+	ft_add_loc(&list, decon, tokens);
 	ft_free(sliced_cmd);
 }
 
@@ -108,7 +66,9 @@ char	**ft_cmd_fragments(char *cmd)
 	int		i;
 	char	**res;
 	char	*current;
+	t_idx	index;
 
+	res = NULL;
 	i = FIRST_INDEX;
 	while (cmd[i])
 	{
@@ -119,13 +79,14 @@ char	**ft_cmd_fragments(char *cmd)
 			i++;
 		index.end_index = i;
 		current = ft_strslice(cmd, index.start_index, index.end_index);
+		printf("fief %s\n", current);
 		res = ft_arrayjoin(res, current);
 		free(current);
 	}
 	return (res);
 }
 
-char	**ft_cmd_deconstruct(char *cmd, t_loc *list) 
+char	**ft_cmd_deconstruct(char *cmd, t_token *tokens)
 {
 	t_idx	index;
 	char	*current;
@@ -135,8 +96,8 @@ char	**ft_cmd_deconstruct(char *cmd, t_loc *list)
 	res = NULL;
 	quotes = NULL;
 	if (!cmd)
-		return res;
-	list.tokens = ft_redirect_op(cmd);
+		return (res);
+	tokens = ft_redirect_op(cmd);
 	while (ft_has_quotes(cmd))
 	{
 		current = ft_quote_op(cmd);
@@ -145,24 +106,8 @@ char	**ft_cmd_deconstruct(char *cmd, t_loc *list)
 	}
 	res = ft_cmd_fragments(cmd);
 	index.current_start = 0;
-	while (quotes[index.current_start])
+	while (quotes && quotes[index.current_start])
 		ft_arrayjoin(res, quotes[index.current_start++]);
 	ft_clear_array(quotes);
 	return (res);
-}
-
-int main(int ac, char **av)
-{
-	if (ac == 2)
-	{
-		char *cmd;
-		t_loc *list;
-
-		cmd	= ft_strdup(av[1]);
-		list = NULL;
-		ft_pipe_op(cmd, list);
-		free(cmd);
-	}
-	else
-		printf("try again\n");
 }

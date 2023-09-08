@@ -45,3 +45,18 @@ char	*ft_strslice(char *src, int start, int end)
 	}
 	return (NULL);
 }
+
+void	ft_purge(char **decon, char *src)
+{
+	ft_clear_array(decon);
+	ft_free(src);
+}
+
+void	ft_pass_through(char **decon)
+{
+	int	i;
+
+	i = FIRST_INDEX;
+	while (decon[i])
+		ft_putendl_fd(decon[i++], 1);
+}

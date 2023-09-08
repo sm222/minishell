@@ -1,5 +1,5 @@
-#ifndef TODO_H
-# define TODO_H
+#ifndef PARSING_H
+# define PARSING_H
 
 # include <unistd.h>
 # include <stdlib.h>
@@ -7,7 +7,7 @@
 # include "../lib/lib_ft/libft.h"
 # include "../include/structure.h"
 
-#include <stdio.h>
+# include <stdio.h>
 
 # define NODE 1
 # define CORRECT 1
@@ -39,7 +39,7 @@ int		ft_has_pipe(char *src);
 int		ft_arraylen(char **src);
 char	*ft_quote_op(char *cmd);
 int		ft_has_quotes(char *src);
-t_token	ft_redirect_op(char *cmd);
+t_token	*ft_redirect_op(char *cmd);
 int		ft_invalid_pipe(char *cmd);
 int		ft_has_redirect(char *src);
 void	*ft_clear_array(char **src);
@@ -53,16 +53,12 @@ void	ft_pipe_op(char *cmd, t_loc *list);
 int		ft_at_rev_index(char *src, char c);
 char	*ft_get_file(char *cmd, char mode);
 char	**ft_arrayjoin(char **src, char *s);
-void	ft_add_loc(t_loc **list, char **cmd);
 int		ft_input(char *src, int start_index);
 int		ft_output(char *src, int start_index);
 int		ft_is_not_in_quotes(char *src, char c);
 char	*ft_strslice(char *src, int start, int end);
-char	**ft_cmd_deconstruct(char *cmd, t_loc *list);
+char	**ft_cmd_deconstruct(char *cmd, t_token *tokens);
+void	ft_add_loc(t_loc **list, char **cmd, t_token *tokens);
 void	ft_file_op(char *path, t_token *tokens, char redirect, char duplicity);
 
 #endif
-
-/*
- * checker les tokens errors sur les quotes non-fermées
- */

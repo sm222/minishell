@@ -1,7 +1,7 @@
 #include "parsing.h"
 
 // WIP, t_token TO BE ADDED & DEALT WITH
-void	ft_add_loc(t_loc **list, char **cmd)
+void	ft_add_loc(t_loc **list, char **cmd, t_token *tokens)
 {
 	t_loc	*current;
 	t_loc	*last;
@@ -14,6 +14,7 @@ void	ft_add_loc(t_loc **list, char **cmd)
 		return ;
 	}
 	current->decon_cmd = cmd;
+	current->tokens = tokens;
 	current->next = NULL;
 	if (*list == NULL)
 		*list = current;
@@ -34,4 +35,18 @@ t_loc	*ft_parsing(char *src)
 		return (NULL);
 	ft_pipe_op(src, list);
 	return (list);
+}
+
+int	main(int ac, char **av)
+{
+	char	*cmd;
+
+	if (ac == 2)
+	{
+		cmd = ft_strdup(av[1]);
+		ft_parsing(cmd);
+		free(cmd);
+	}
+	else
+		printf("try again\n");
 }

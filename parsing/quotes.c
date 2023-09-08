@@ -65,6 +65,7 @@ char	*ft_quote_op(char *cmd)
 	if (!ft_has_quotes(cmd))
 		return (NULL);
 	index = ft_quotes_delimitation(cmd);
+	printf("wtf\n");
 	res = ft_strslice(cmd, index.start_index, index.end_index);
 	while (index.start_index < index.end_index)
 		cmd[index.start_index++] = PASSED_THROUGH;

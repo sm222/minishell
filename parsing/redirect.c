@@ -1,5 +1,32 @@
 #include "parsing.h"
 
+int	ft_has_redirect(char *src)
+{
+	int	i;
+
+	i = -1;
+	if (src)
+	{
+		while (src[++i])
+			if (src[i] == '<' || src[i] == '>')
+				return (CORRECT);
+	}
+	return (INCORRECT);
+}
+
+void	ft_check_here_doc(char *src)
+{
+	int	i;
+
+	i = FIRST_INDEX;
+	while (src && src[i])
+	{
+		if (src[i] == '<' && src[i + 1] == '<')
+			printf("here_doc\n");
+		i++;
+	}
+}
+
 int	ft_input(char *src, int start_index)
 {
 	int		end_index;
@@ -19,11 +46,11 @@ int	ft_input(char *src, int start_index)
 	free(file);
 	while (current_start != end_index)
 		src[current_start++] = PASSED_THROUGH;
-	return 0;
+	return (0);
 }
 
 int	ft_output(char *src, int start_index)
-{	
+{
 	int		end_index;
 	int		current_start;
 	char	*file;
@@ -47,17 +74,18 @@ int	ft_output(char *src, int start_index)
 	free(file);
 	while (current_start != end_index)
 		src[current_start++] = PASSED_THROUGH;
-	return 0;
+	return (0);
 }
 
-t_tokens	ft_redirect_op(char *cmd)
+t_token	*ft_redirect_op(char *cmd)
 {
-	int input;
-	int	fd_in;
-	int output;
-	int	fd_out;
-	t_token tokens;
+	int		input;
+	int		fd_in;
+	int		output;
+	int		fd_out;
+	t_token	*tokens;
 
+	tokens = NULL;
 	fd_in = -1;
 	fd_out = -1;
 	ft_check_here_doc(cmd);
@@ -70,5 +98,5 @@ t_tokens	ft_redirect_op(char *cmd)
 		if (output != INVALID)
 			fd_out = ft_output(cmd, output);
 	}
-	return (tokens);
+	return (NULL);
 }
