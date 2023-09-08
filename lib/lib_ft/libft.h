@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 11:07:18 by anboisve          #+#    #+#             */
-/*   Updated: 2023/08/14 14:47:23 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/09/07 11:19:54 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ int			ft_toupper(int c);
 char		*ft_strdup(const char *s1);
 char		*ft_strdup_c(const char *str, char c);
 char		*ft_strncpy(const char *str, size_t i);
+char		*ft_strndup(const char *str, size_t len);
 char		*ft_strjoin(char const *s1, char const *s2);
 char		*ft_strtrim(char const *s1, char const *set);
 size_t		ft_strlcat(char *dst, const char *src, size_t dstsize);
