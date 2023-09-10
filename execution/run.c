@@ -86,7 +86,7 @@ short	ft_execution(t_cmd *in, t_waitp **wait, short local)
 	int			err;
 
 	shell = ft_return_ptr(NULL, SYS);
-	if (!shell || !in || !wait)
+	if (!shell || !in || !wait || !in->command[0])
 		return (BAD_ARGS);
 	err = set_data_exe(&exe, shell, in);
 	if (err != SUCCESS)

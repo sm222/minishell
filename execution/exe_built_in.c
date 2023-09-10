@@ -110,6 +110,8 @@ int	execution_builtin(t_cmd *in, t_waitp **wait, int cmd_len)
 	char	*name;
 
 	name = NULL;
+	if (!in || !in->command || !in->command[0] || !wait)
+		return (BAD_ARGS);
 	if (cmd_len > 1)
 	{
 		name = find_built_in(in->command[0], &f);

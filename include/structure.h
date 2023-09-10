@@ -56,7 +56,7 @@
 # define BUILT_IN		4
 
 //	byte flag			//
-# define BUILT_IN_FLAG	0B00010000
+# define BUILT_IN_FLAG	0x10
 
 # define PROMPT "$ "
 
