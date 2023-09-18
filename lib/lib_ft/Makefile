@@ -12,6 +12,7 @@ SRCS	=	ft_atoi.c\
 			ft_close_fds.c\
 			ft_bzero.c\
 			ft_calloc.c\
+			ft_get_env.c\
 			ft_isalnum.c\
 			ft_isalpha.c\
 			ft_isascii.c\
@@ -50,6 +51,7 @@ SRCS	=	ft_atoi.c\
 			ft_toupper.c\
 			ft_return_ptr.c\
 			ft_safe_free.c\
+			ft_change_dolar.c\
 			ft_double_sfree.c\
 			ft_find.c\
 			ft_ban.c\

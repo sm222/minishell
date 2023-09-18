@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 11:07:18 by anboisve          #+#    #+#             */
-/*   Updated: 2023/09/07 11:19:54 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/09/18 17:57:28 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 //made by @sm222
 //char		\verification
 
+short		set_mode(char c);
 int			ft_isalpha(int c);
 int			ft_isdigit(int c);
 int			ft_isascii(int c);
@@ -41,11 +42,13 @@ int			ft_toupper(int c);
 //str												\manipulation
 
 char		*ft_strdup(const char *s1);
+char		*get_env(char **en, char *seed);
 char		*ft_strdup_c(const char *str, char c);
 char		*ft_strncpy(const char *str, size_t i);
 char		*ft_strndup(const char *str, size_t len);
 char		*ft_strjoin(char const *s1, char const *s2);
 char		*ft_strtrim(char const *s1, char const *set);
+void		change_dolar(char **old, char **en, short here_doc);
 size_t		ft_strlcat(char *dst, const char *src, size_t dstsize);
 size_t		ft_strlcpy(char *dst, const char *src, size_t dstsize);
 char		*ft_substr(char const *s, unsigned int start, size_t len);
