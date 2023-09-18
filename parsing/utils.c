@@ -7,9 +7,13 @@ int	ft_at_index(char *src, char c)
 	i = FIRST_INDEX;
 	if (src)
 	{
-		while (src[i])
-			if (src[i++] == c && ft_is_not_in_quotes(src, c))
-				return (i - 1);
+			while (src[i])
+			{
+				if (src[i] == c)
+					if (ft_is_not_in_quotes(src, i))
+						return (i);
+				i++;
+			}
 	}
 	return (INVALID);
 }
@@ -17,13 +21,16 @@ int	ft_at_index(char *src, char c)
 int	ft_at_rev_index(char *src, char c)
 {
 	int	i;
+	int	in_quotes;
 
 	if (src)
 	{
 		i = ft_strlen(src);
-		while (src[--i])
-			if (src[i] == c && ft_is_not_in_quotes(src, c))
-				return (i);
+		in_quotes = ft_is_not_in_quotes(src, c);
+		if (!in_quotes)
+			while (src[--i])
+				if (src[i] == c)
+					return (i);
 	}
 	return (INVALID);
 }

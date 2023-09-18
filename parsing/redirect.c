@@ -9,7 +9,8 @@ int	ft_has_redirect(char *src)
 	{
 		while (src[++i])
 			if (src[i] == '<' || src[i] == '>')
-				return (CORRECT);
+				if (ft_is_not_in_quotes(src, src[i]))
+					return (CORRECT);
 	}
 	return (INCORRECT);
 }
