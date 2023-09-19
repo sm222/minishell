@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 15:06:44 by anboisve          #+#    #+#             */
-/*   Updated: 2023/09/19 09:03:01 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/09/19 09:51:22 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static char	*make_edit_str(char *s, size_t *i, char **en)
 	return (new);
 }
 
-static char	*pros_or_dolar(char *s, size_t i, char c)
+static char	*pros_or_dolar(char *s, size_t i, char c, int err)
 {
 	char	*s1;
 	char	*s2;
@@ -42,7 +42,7 @@ static char	*pros_or_dolar(char *s, size_t i, char c)
 	j++;
 	s2 = ft_strdup(s + j);
 	if (c == '?')
-		ft_printf(NO_PRINT, "%o%S%d%S", &new, s1, 255, s2);
+		ft_printf(NO_PRINT, "%o%S%d%S", &new, s1, err, s2);
 	if (c == '$')
 		ft_printf(NO_PRINT, "%o%S%c%S", &new, s1, '$', s2);
 	ft_free(s);
@@ -73,7 +73,7 @@ static short	look_for_those(char *in, char c1, char c2)
 	return (0);
 }
 
-void	change_dolar(char **old, char **en, short here_doc)
+void	change_dolar(char **old, char **en, short here_doc, int err)
 {
 	char	*new;
 	t_index	index;
@@ -91,7 +91,7 @@ void	change_dolar(char **old, char **en, short here_doc)
 			if (skip_2(new + index.i))
 				index.i++;
 			if (look_for_those(new + index.i, '?', '$'))
-				new = pros_or_dolar(new, index.i, new[index.i + 1]);
+				new = pros_or_dolar(new, index.i, new[index.i + 1], err);
 			else if (new[index.i] == '$')
 				new = make_edit_str(new, &index.i, en);
 		}

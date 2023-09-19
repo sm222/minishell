@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 11:07:18 by anboisve          #+#    #+#             */
-/*   Updated: 2023/09/19 09:02:26 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/09/19 09:51:50 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,10 @@ char		*ft_strncpy(const char *str, size_t i);
 char		*ft_strndup(const char *str, size_t len);
 char		*ft_strjoin(char const *s1, char const *s2);
 char		*ft_strtrim(char const *s1, char const *set);
-void		change_dolar(char **old, char **en, short here_doc);
 size_t		ft_strlcat(char *dst, const char *src, size_t dstsize);
 size_t		ft_strlcpy(char *dst, const char *src, size_t dstsize);
 char		*ft_substr(char const *s, unsigned int start, size_t len);
+void		change_dolar(char **old, char **en, short here_doc, int err);
 
 //str															\compare
 
