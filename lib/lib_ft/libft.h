@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 11:07:18 by anboisve          #+#    #+#             */
-/*   Updated: 2023/09/18 17:57:28 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/09/19 09:02:26 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,13 @@
 //made by @sm222
 //char		\verification
 
-short		set_mode(char c);
 int			ft_isalpha(int c);
 int			ft_isdigit(int c);
 int			ft_isascii(int c);
 int			ft_isalnum(int c);
 int			ft_isprint(int c);
 int			ft_isprint(int c);
+short		ft_set_mode(char c);
 
 //char				\modify
 

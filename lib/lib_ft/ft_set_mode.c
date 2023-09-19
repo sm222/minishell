@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 17:50:32 by anboisve          #+#    #+#             */
-/*   Updated: 2023/09/18 17:51:29 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/09/19 09:02:18 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 /// @brief look if you are in '' or ""
 /// @param c last char inter, if -1 reset, 0 return in what type you are
 /// @return
-short	set_mode(char c)
+short	ft_set_mode(char c)
 {
 	static short	last = 0;
 

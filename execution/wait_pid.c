@@ -3,18 +3,17 @@
 
 int	get_err_code(int pec, short l)
 {
-	int	new_pec;
+	unsigned char	r_val;
 
+	r_val = pec;
 	if (l > 0)
 	{
-		new_pec = 0;
 		if (WIFEXITED(pec))
-			new_pec = WEXITSTATUS(pec);
+			r_val = WEXITSTATUS(pec);
 		else if (WIFSIGNALED(pec))
-			new_pec = (128 + WTERMSIG(pec));
-		return (new_pec);
+			r_val = (128 + WTERMSIG(pec));
 	}
-	return (pec);
+	return (r_val);
 }
 
 /// @brief	run a waitpid on a list of pid_t

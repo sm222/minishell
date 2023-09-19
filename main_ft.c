@@ -24,5 +24,7 @@ short	reset_data_main(t_mshell *shell)
 	ft_printf(NO_PRINT, "%o"GRN"%s "WHT"$ ", &shell->tmp, shell->info);
 	shell->cmd_list = NULL;
 	shell->s = readline(shell->tmp);
+	change_dolar(&shell->s, shell->en, 0);
+	Ct_mprintf(shell->s, ft_strlen(shell->s) + 1, 1, 'A');
 	return (SUCCESS);
 }

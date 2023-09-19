@@ -51,6 +51,7 @@ SRCS	=	ft_atoi.c\
 			ft_toupper.c\
 			ft_return_ptr.c\
 			ft_safe_free.c\
+			ft_set_mode.c\
 			ft_change_dolar.c\
 			ft_double_sfree.c\
 			ft_find.c\

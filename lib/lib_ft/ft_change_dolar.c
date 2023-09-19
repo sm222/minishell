@@ -6,24 +6,24 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 15:06:44 by anboisve          #+#    #+#             */
-/*   Updated: 2023/09/18 17:57:46 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/09/19 09:03:01 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static char	*edit_str(char *s, size_t *i, char **en)
+static char	*make_edit_str(char *s, size_t *i, char **en)
 {
 	char	*s1;
 	char	*s2;
 	char	*new;
 	size_t	j;
 
-	set_mode(s[*i + 1]);
+	ft_set_mode(s[*i + 1]);
 	j = *i + 1;
 	s1 = ft_strndup(s, *i);
 	while (s[j] && ft_isalpha(s[j]))
-		set_mode(s[j++]);
+		ft_set_mode(s[j++]);
 	s2 = ft_strdup(s + j);
 	ft_printf(NO_PRINT, "%o%S%s%S", &new, s1, get_env(en, s + *i + 1), s2);
 	ft_free(s);
@@ -83,17 +83,17 @@ void	change_dolar(char **old, char **en, short here_doc)
 	ft_bzero(&index, sizeof(t_index));
 	new = *old;
 	index.j = ft_strlen(new);
-	set_mode(-1);
+	ft_set_mode(-1);
 	while (index.j > index.i)
 	{
-		if (set_mode(new[index.i]) != 1 || here_doc)
+		if (ft_set_mode(new[index.i]) != 1 || here_doc)
 		{
 			if (skip_2(new + index.i))
 				index.i++;
 			if (look_for_those(new + index.i, '?', '$'))
 				new = pros_or_dolar(new, index.i, new[index.i + 1]);
 			else if (new[index.i] == '$')
-				new = edit_str(new, &index.i, en);
+				new = make_edit_str(new, &index.i, en);
 		}
 		index.i++;
 		index.j = ft_strlen(new);

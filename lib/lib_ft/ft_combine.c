@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 15:44:12 by anboisve          #+#    #+#             */
-/*   Updated: 2023/08/01 08:51:20 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/09/19 09:34:38 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,15 +30,18 @@ static char	*ft_add_c_to_s(char *s, char c)
 	return (new);
 }
 
-static char	*ft_add_arg(va_list list, char type)
+static char	*ft_add_arg(va_list list, char type, short *f)
 {
 	if (type == 's' || type == 'S')
+	{
+		*f = 1;
 		return (va_arg(list, char *));
+	}
 	else if (type == 'd' || type == 'i')
 		return (ft_itoa(va_arg(list, int)));
 	else if (type == 'u')
 		return (ft_ulltoa(va_arg(list, unsigned int), 10));
-	else if (type == 'x' || type == 'p')
+	else if (type == 'x')
 		return (ft_ulltoa(va_arg(list, unsigned long), 16));
 	else if (type == '%')
 		return (ft_strdup("%"));
@@ -48,16 +51,20 @@ static char	*ft_add_arg(va_list list, char type)
 static char	*ft_add_str(va_list list, char type, char *s)
 {
 	char	*tmp;
+	short	f;
 
+	f = 0;
 	if (type == 'c')
 		return (ft_add_c_to_s(s, va_arg(list, int)));
-	tmp = ft_add_arg(list, type);
-	if (!tmp)
+	tmp = ft_add_arg(list, type, &f);
+	if (!tmp && f == 0)
 	{
 		ft_free(s);
 		return (NULL);
 	}
 	s = ft_strfjoin(s, tmp);
+	if (!s && f == 1)
+		return (ft_strdup("\0"));
 	if (type != 's')
 		ft_free(tmp);
 	return (s);
