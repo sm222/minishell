@@ -41,8 +41,6 @@ static int	start_shell(t_mshell *shell, char **en)
 	return (SUCCESS);
 }
 
-
-
 static void	do_logo(char **av)
 {
 	if (av[1] && av[1][0] != 0 && ft_strlen(av[1]) > 8)
@@ -63,12 +61,13 @@ int	main(int ac, char **av, char **en)
 	do_logo(av);
 	while (loop_test--)
 	{
-		reset_data_main(&shell);
+		if (reset_data_main(&shell) == FAIL)
+			continue ;
 		if (!shell.s)
 			break ;
 		if (shell.s && *shell.s)
 		{
-			cmd_make_node_last(&shell.cmd_list, ft_split(shell.s, ' '), make_token(0, 0, 0));
+			cmd_make_node_last(&shell.cmd_list, ft_split(shell.s, ' '), make_token(BUILT_IN_FLAG, 0, 0));
 			run_cmd(shell.cmd_list, &shell);
 			free_here_dock(1);
 		}
