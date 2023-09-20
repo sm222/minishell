@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 11:07:18 by anboisve          #+#    #+#             */
-/*   Updated: 2023/09/19 09:51:50 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/09/20 17:56:18 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include "ft_printf.h"
 
 # define HEX_TABLE "0123456789abcdef"
+# define DOLAR_LIST "_"
 
 //made by @sm222
 //char		\verification
