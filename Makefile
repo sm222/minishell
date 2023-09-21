@@ -23,9 +23,6 @@ RL_DIR			=	readline/
 RL_H			=	libhistory.a
 RL_L			=	libreadline.a
 
-#tools
-C_TOOL			=	C_tools/C_tool.a
-C_TOOL_DIR		=	C_tools/
 #
 
 # Compiler and flags
@@ -55,7 +52,7 @@ OBJS	=	$(SRCS:.c=.o)
 
 USER = $(shell whoami)
 
-all: tools libft builtin exe doc $(NAME)
+all: libft builtin exe parse doc $(NAME)
 	@printf "$(CYN) \n\n			correction is made by $(USER)\n\n  $(RESET)\n"
 	
 $(NAME): $(OBJS) $(C_TOOL)
@@ -66,6 +63,10 @@ $(NAME): $(OBJS) $(C_TOOL)
 libft:
 	@printf "$(GRN)making libft$(WHT)\n"
 	@make -C $(LIBFT_DIR)
+
+parse:
+	@printf "$(GRN)making parsing$(WHT)\n"
+	@make -C parsing
 
 builtin:
 	@printf "$(GRN)making builtin$(WHT)\n"
@@ -82,16 +83,15 @@ mem: all
 	valgrind --leak-check=full --show-leak-kinds=all --trace-children=yes --track-fds=yes --suppressions=/tmp/supp.txt ./minishell 
 
 #https://github.com/sm222/C_tools
-tools:
-	@make -C $(C_TOOL_DIR)
+
 # Removes objects
 clean:
 	@$(RM) $(OBJS)
 	@make -C built_in         clean
 	@make -C $(LIBFT_DIR)     clean
-	@make -C $(C_TOOL_DIR)    clean
 	@make -C $(HERE_DOC_DIR)  clean
 	@make -C $(EXECUTION_DIR) clean
+	@make -C parsing		  clean
 	@echo $(shell clear)
 	@printf "$(GRN)clean *.o$(RESET)\n"
 
@@ -101,9 +101,9 @@ fclean: clean
 	@$(RM) $(B_NAME)
 	@make -C built_in         fclean
 	@make -C $(LIBFT_DIR)     fclean
-	@make -C $(C_TOOL_DIR)    fclean
 	@make -C $(HERE_DOC_DIR)  fclean
 	@make -C $(EXECUTION_DIR) fclean
+	@make -C parsing		  fclean
 	@echo $(shell clear)
 	@printf "$(GRN)clean all$(RESET)\n"
 

@@ -18,11 +18,6 @@
 # include "../execution/execution.h"
 # include "../here_doc/here_doc.h"
 
-//--------------------------//
-//			tools			//
-//--------------------------//
-
-# include "../C_tools/inc/C_tool.h"
 # define DEV_CHMOD	0644
 
 //TODO: zsh: command not found:

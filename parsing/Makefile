@@ -21,24 +21,21 @@ LIBNAME = libft.a
 
 ARCHIVE = ar -rcs $(NAME) $(OBJ)
 
-all: libft $(NAME)
+all: $(NAME)
 
 $(NAME): $(OBJ)
-	cp $(LIB)/$(LIBNAME) $(NAME)
-	$(ARCHIVE)
+	@cp $(LIB)/$(LIBNAME) $(NAME)
+	@$(ARCHIVE)
 
 test: libft
 	clang -Wall -Wextra -Werror $(SRC) todo.c $(LIB)/$(LIBNAME) -l readline -g
 
 clean:
-	rm $(OBJ)
+	@rm -f $(OBJ)
 
 fclean: clean
-	rm $(NAME)
+	@rm -f $(NAME)
 
 re: fclean all
-
-libft:
-	$(MAKE) -C  $(LIB)
 
 .PHONY: all test libft fclean
