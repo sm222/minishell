@@ -37,6 +37,7 @@ t_idx	ft_quotes_delimitation(char *src)
 	int		i;
 	t_idx	index;
 	int		open_quote;
+	char	current_quote;
 
 	i = 0;
 	open_quote = INCORRECT;
@@ -46,8 +47,9 @@ t_idx	ft_quotes_delimitation(char *src)
 		{
 			index.start_index = i;
 			open_quote = CORRECT;
+			current_quote = src[i];
 		}
-		else if ((src[i] == '\'' || src[i] == '"') && open_quote)
+		else if (src[i] == current_quote && open_quote)
 		{
 			index.end_index = i;
 			open_quote = INCORRECT;
@@ -55,6 +57,22 @@ t_idx	ft_quotes_delimitation(char *src)
 		i++;
 	}
 	return (index);
+}
+
+char	**ft_add_quotes(char **res, char **quotes, char *cmd, t_idx *index)
+{
+	int	current;
+	int	current_quote;
+
+	current = index->current;
+	current_quote = index->current_quote;
+	while (cmd[current] && cmd[current] == PASSED_QUOTES)
+		current++;
+	res = ft_arrayjoin(res, quotes[current_quote]);
+	current_quote++;
+	index->current = current;
+	index->current_quote = current_quote;
+	return (res);
 }
 
 char	*ft_quote_op(char *cmd)
@@ -65,9 +83,8 @@ char	*ft_quote_op(char *cmd)
 	if (!ft_has_quotes(cmd))
 		return (NULL);
 	index = ft_quotes_delimitation(cmd);
-	printf("wtf\n");
-	res = ft_strslice(cmd, index.start_index, index.end_index);
-	while (index.start_index < index.end_index)
-		cmd[index.start_index++] = PASSED_THROUGH;
+	res = ft_strslice(cmd, index.start_index + 1, index.end_index);
+	while (index.start_index <= index.end_index)
+		cmd[index.start_index++] = PASSED_QUOTES;
 	return (res);
 }

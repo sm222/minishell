@@ -9,7 +9,7 @@ int	ft_has_redirect(char *src)
 	{
 		while (src[++i])
 			if (src[i] == '<' || src[i] == '>')
-				if (ft_is_not_in_quotes(src, src[i]))
+				if (ft_is_not_in_quotes(src, i))
 					return (CORRECT);
 	}
 	return (INCORRECT);
@@ -94,10 +94,12 @@ t_token	*ft_redirect_op(char *cmd)
 	{
 		input = ft_at_index(cmd, '<');
 		output = ft_at_index(cmd, '>');
+		if (input == ERROR)
+			return (NULL);
 		if (input != INVALID)
 			fd_in = ft_input(cmd, input);
 		if (output != INVALID)
 			fd_out = ft_output(cmd, output);
 	}
-	return (NULL);
+	return (tokens);
 }

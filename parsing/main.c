@@ -33,20 +33,8 @@ t_loc	*ft_parsing(char *src)
 	list = NULL;
 	if (!src)
 		return (NULL);
-	ft_pipe_op(src, list);
+	if (ft_invalid_pipe(src))
+		return (NULL);
+	ft_pipe_op(src, &list);
 	return (list);
-}
-
-int	main(int ac, char **av)
-{
-	char	*cmd;
-
-	if (ac == 2)
-	{
-		cmd = ft_strdup(av[1]);
-		ft_parsing(cmd);
-		free(cmd);
-	}
-	else
-		printf("try again\n");
 }

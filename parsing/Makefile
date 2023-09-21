@@ -2,12 +2,16 @@ NAME = parsing.a
 
 SRC = utils.c \
 	  file.c \
+	  pipe.c \
 	  main.c \
 	  array.c \
+	  verify.c \
 	  quotes.c \
-	  replace.c \
+	  fragment.c \
 	  redirect.c \
 	  redi_utils.c
+
+OBJ = ${SRC:.c=.o}
 
 CC = clang
 CFLAGS = -Wall -Wextra -Werror
@@ -15,15 +19,21 @@ CFLAGS = -Wall -Wextra -Werror
 LIB = ../lib/lib_ft
 LIBNAME = libft.a
 
+ARCHIVE = ar -rcs $(NAME) $(OBJ)
+
 all: libft $(NAME)
 
 $(NAME): $(OBJ)
-	$(CC) $(CFLAGS) $(SRC) -o $(NAME) $(LIB)/$(LIBNAME) -g
+	cp $(LIB)/$(LIBNAME) $(NAME)
+	$(ARCHIVE)
 
 test: libft
-	clang -Wall -Wextra -Werror test.c $(LIB)/$(LIBNAME)
+	clang -Wall -Wextra -Werror $(SRC) todo.c $(LIB)/$(LIBNAME) -l readline -g
 
-fclean: 
+clean:
+	rm $(OBJ)
+
+fclean: clean
 	rm $(NAME)
 
 re: fclean all
@@ -31,4 +41,4 @@ re: fclean all
 libft:
 	$(MAKE) -C  $(LIB)
 
-.PHONY: all test libft
+.PHONY: all test libft fclean

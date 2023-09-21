@@ -7,13 +7,13 @@ int	ft_at_index(char *src, char c)
 	i = FIRST_INDEX;
 	if (src)
 	{
-			while (src[i])
-			{
-				if (src[i] == c)
-					if (ft_is_not_in_quotes(src, i))
-						return (i);
-				i++;
-			}
+		while (src[i])
+		{
+			if (src[i] == c)
+				if (ft_is_not_in_quotes(src, i))
+					return (i);
+			i++;
+		}
 	}
 	return (INVALID);
 }
@@ -64,6 +64,9 @@ void	ft_pass_through(char **decon)
 	int	i;
 
 	i = FIRST_INDEX;
-	while (decon[i])
-		ft_putendl_fd(decon[i++], 1);
+	if (decon)
+	{
+		while (decon[i])
+			ft_putendl_fd(decon[i++], 1);
+	}
 }
