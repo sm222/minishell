@@ -1,9 +1,5 @@
 #include "parsing.h"
 
-void	ft_purge(char **decon, char *cmd);
-char	**ft_cmd_deconstruct(char *cmd);
-void	*ft_clear_array(char **src);
-
 int	ft_has_redirect(char *src)
 {
 	int	i;
@@ -32,24 +28,10 @@ int	ft_has_pipe(char *src)
 	return (INCORRECT);
 }
 
-int	ft_at_index(char *src, char c)
-{
-	int	i;
-
-	i = FIRST_INDEX;
-	if (src)
-	{
-		while (src[i])
-			if (src[i++] == c)
-				return (i - 1);
-	}
-	return (INVALID);
-}
-
 void	ft_purge(char **decon, char *src)
 {
 	ft_clear_array(decon);
-	ft_xfree(src);
+	ft_free(src);
 }
 
 void	ft_check_here_doc(char *src)
@@ -104,28 +86,28 @@ void	ft_pipe_op(char *cmd, t_loc *list)
 	start_index = FIRST_INDEX;
 	if (ft_invalid_pipe(cmd))
 		return ;
-	while(ft_has_pipe(cmd))
+	while (ft_has_pipe(cmd))
 	{
 		pipe_index = ft_at_index(cmd, '|');
 		sliced_cmd = ft_strslice(cmd, start_index, pipe_index);
-		decon = ft_cmd_deconstruct(sliced_cmd);
-		cmd[pipe_index] = 92; // TO BE CHANGED, REPLACE WITH PASSED_THROUGH
+		decon = ft_cmd_deconstruct(sliced_cmd, list);
+		cmd[pipe_index] = PASSED_THROUGH;
 		start_index = pipe_index;
-		ft_pass_through(decon);
-		ft_purge(decon, sliced_cmd);
+		ft_add_loc(&list, decon);
+		ft_free(sliced_cmd);
 	}
 	pipe_index = (int)ft_strlen(cmd);
 	sliced_cmd = ft_strslice(cmd, start_index, pipe_index);
-	decon = ft_cmd_deconstruct(sliced_cmd);
-	ft_pass_through(decon);
-	ft_purge(decon, sliced_cmd);
+	decon = ft_cmd_deconstruct(sliced_cmd, list);
+	ft_add_loc(&list, decon);
+	ft_free(sliced_cmd);
 }
 
 char **ft_cmd_deconstruct(char *cmd, t_loc *list) 
 {
-	int		start_index;
-	int		end_index;
+	t_idx	index;
 	char	*current;
+	char	*quotes;
 	char	**res;
 	int		i;
 
@@ -136,13 +118,13 @@ char **ft_cmd_deconstruct(char *cmd, t_loc *list)
 	ft_redirect_op(cmd);
 	while (cmd[i])
 	{
-		while (cmd[i] == 92 || cmd[i] == ' ') // TO BE CHANGED, REPLACE WITH PASSED_THROUGH
+		while (cmd[i] == PASSED_THROUGH || cmd[i] == ' ')
 			i++;
-		start_index = i;
-		while (cmd[i] != 92 && cmd[i] > 32) // TO BE CHANGED, REPLACE WITH PASSED_THROUGH
+		index.start_index = i;
+		while (cmd[i] != PASSED_THROUGH && cmd[i] > CHAR_LIMIT)
 			i++;
-		end_index = i;
-		current = ft_strslice(cmd, start_index, end_index);
+		index.end_index = i;
+		current = ft_strslice(cmd, index.start_index, index.end_index);
 		res = ft_arrayjoin(res, current);
 		free(current);
 	}

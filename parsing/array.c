@@ -20,10 +20,10 @@ void	*ft_clear_array(char **src)
 	{
 		while (src[i])
 		{
-			src[i] = ft_xfree(src[i]);
+			src[i] = ft_free(src[i]);
 			i++;
 		}
-		src = ft_xfree(src);
+		src = ft_free(src);
 	}
 	return (NULL);
 }
