@@ -26,6 +26,10 @@
 # define EX_F  4		// tell if the program end
 # define DOC   5		// here_dock
 
+//--------------------------//
+//			colors			//
+//--------------------------//
+
 # ifndef COLORS
 #  define COLORS
 #  define RED	"\x1B[31m"
@@ -42,12 +46,14 @@
 #  define CLE	"\e[1;1H\e[2J"
 # endif
 
-# ifndef  TRUE
-#  define TRUE			1
-# endif
-# ifndef FALSE
-#  define FALSE			0
-# endif
+//--------------------------//
+//			bool			//
+//--------------------------//
+
+
+//--------------------------//
+//			pipes			//
+//--------------------------//
 
 # define PIPE_NO		0
 # define PIPE_IN		1
@@ -56,13 +62,14 @@
 # define BUILT_IN		4
 
 //	byte flag			//
-# define BUILT_IN_FLAG	0B00010000
+# define BUILT_IN_FLAG	0x10
 
 # define PROMPT "$ "
 
 //--------------------------//
 //			struct			//
 //--------------------------//
+
 
 typedef struct s_doc
 {
@@ -74,7 +81,12 @@ typedef struct s_doc
 	struct s_doc	*next; 
 }		t_doc;
 
-
+/// @brief use to find if is a built in and redir
+/// @param mode 		byte flag
+/// @param pipe_in 		last cmd output
+/// @param pipe_out 	this cmd output
+/// @param redi_in 		cmd redir input
+/// @param redi_out 	cmd redir output
 typedef struct s_token
 {
 	int				mode;
@@ -84,13 +96,22 @@ typedef struct s_token
 	int				redi_out;
 }	t_token;
 
+/// @brief linklist use for waitpid
+/// @param buildt 		buildin
+/// @param pid 			pid of the prosses
+/// @param next 		next node
 typedef struct s_waitp
 {
 	short			built;
 	pid_t			pid;
 	struct s_waitp	*next;
-}t_waitp;
+}	t_waitp;
 
+/// @brief use in execution 
+/// @param err 			err code
+/// @param err_redir 	
+/// @param ft_path 		path of the cmd
+/// @param pid 			pid of the cmd run
 typedef struct s_exe
 {
 	int				err;
@@ -99,6 +120,12 @@ typedef struct s_exe
 	pid_t			pid;
 }	t_exe;
 
+/// @brief use for linklist of cmd
+/// @param prev 		one before
+/// @param next 		one after
+/// @param commend 		cmd send to exeve
+/// @param pipe 		use to store 2 fd
+/// @param tok 			token use to redir
 typedef struct s_cmd
 {
 	struct s_cmd	*prev;
@@ -108,7 +135,14 @@ typedef struct s_cmd
 	t_token			*tok;
 }	t_cmd;
 
-/// @brief pec = prosess exit code
+/// @brief use in the shell
+/// @param s 		readline output
+/// @param pec 		prosess exit code
+/// @param exit 	bool to know if the shell need to exit
+/// @param en 		enviroment
+/// @param pwd 		prompt dir
+/// @param prompt 	prompt tmp var
+/// @param doc 		link list variable
 typedef struct s_mshell
 {
 	char			*s;
@@ -117,19 +151,20 @@ typedef struct s_mshell
 	char			**en;
 	char			**path;
 	t_cmd			*cmd_list;
-	char			*info;
-	char			*tmp;
+	char			*pwd;
+	char			*prompt;
 	t_doc			*doc;
 }	t_mshell;
 
-
-
+/// @brief use in run_cmd
+/// @param err 		err code
+/// @param wait 	waitpid link list
+/// @param tmp 		use to navigate the link list
 typedef struct s_run
 {
 	int		err;
 	t_waitp	*wait;
 	t_cmd	*tmp;
 }	t_run;
-
 
 #endif // STRUCTURE_H

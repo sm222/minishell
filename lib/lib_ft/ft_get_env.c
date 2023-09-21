@@ -1,31 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncpy.c                                       :+:      :+:    :+:   */
+/*   ft_get_env.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/14 14:19:32 by anboisve          #+#    #+#             */
-/*   Updated: 2023/09/18 17:51:46 by anboisve         ###   ########.fr       */
+/*   Created: 2023/09/18 17:47:27 by anboisve          #+#    #+#             */
+/*   Updated: 2023/09/20 18:03:15 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strncpy(const char *str, size_t i)
+char	*get_env(char **en, char *seed)
 {
-	char	*new;
-	size_t	len;
+	size_t	i;
+	size_t	name;
 
-	if (!str || !i)
-		return (NULL);
-	len = ft_strlen(str);
-	if (len < i)
-		i = len;
-	new = ft_calloc(i + 1, sizeof(char));
-	if (!new)
-		return (NULL);
-	while (i--)
-		new[i] = str[i];
-	return (new);
+	i = 0;
+	while (en && en[i])
+	{
+		name = 0;
+		while (en[i][name] && en[i][name] != '=')
+			name++;
+		if (ft_strncmp(en[i], seed, name) == 0 && (!ft_isalnum(seed[name]) \
+		&& seed[name] != '_'))
+			return (en[i] + name + 1);
+		i++;
+	}
+	return (NULL);
 }

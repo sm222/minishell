@@ -30,6 +30,14 @@ static char	*find_built_in(char *name, int *f)
 /// @return	void* of the ft
 static void	*find_built_in_l(char *name)
 {
+	size_t	i;
+
+	i = 0;
+	while (name && name [i])
+	{
+		name[i] = ft_tolower(name[i]);
+		i++;
+	}
 	if (ft_strncmp(name, ECHO, ft_strlen(ECHO) + 1) == 0)
 		return (&ft_echo);
 	if (ft_strncmp(name, PWD, ft_strlen(PWD) + 1) == 0)
@@ -58,14 +66,12 @@ static void	change_arg(t_cmd *in)
 	if (!shell)
 		err_msg(NO_FREE, 1, "rt_ptr");
 	if (ft_strncmp(in->command[0], EXIT, ft_strlen(EXIT) + 1) == 0)
-	{
 		change_name(shell->pec, in);
-	}
 	if (ft_strncmp(in->command[0], ENV, ft_strlen(ENV) + 1) == 0)
 		if (change_av_for_en(in) < SUCCESS)
 			err_msg(PERROR, M_FAIL, "change_av_for_en");
 	if (ft_strncmp(in->command[0], PWD, ft_strlen(PWD) + 1) == 0)
-		if (change_av_pwd(in, shell->info) < SUCCESS)
+		if (change_av_pwd(in, shell->pwd) < SUCCESS)
 			err_msg(PERROR, M_FAIL, "change_av_pwd");
 }
 
@@ -88,7 +94,7 @@ static int	run_local(int (*ft)(char **, int, int, char **), t_cmd *in)
 	if (shell->exit)
 	{
 		cmd_free(&in);
-		free_here_dock(1);
+		free_here_doc(1);
 		free_t_mshell(shell);
 		rl_clear_history();
 		ft_putstr_fd("exit\n", 2);
@@ -110,6 +116,8 @@ int	execution_builtin(t_cmd *in, t_waitp **wait, int cmd_len)
 	char	*name;
 
 	name = NULL;
+	if (!in || !in->command || !in->command[0] || !wait)
+		return (BAD_ARGS);
 	if (cmd_len > 1)
 	{
 		name = find_built_in(in->command[0], &f);

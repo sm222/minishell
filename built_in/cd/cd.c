@@ -41,8 +41,8 @@ static int	get_to_user(char **en)
 }
 
 /// @brief		try to go to char* dir
-/// @param	dir	directory
-/// @return		err code
+/// @param	dir 	directory
+/// @return			err code
 static int	goto_dir(char *dir, char **en, int re_out)
 {
 	int		err;

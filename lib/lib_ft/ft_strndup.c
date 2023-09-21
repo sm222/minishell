@@ -1,31 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncpy.c                                       :+:      :+:    :+:   */
+/*   ft_strndup.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/14 14:19:32 by anboisve          #+#    #+#             */
-/*   Updated: 2023/09/18 17:51:46 by anboisve         ###   ########.fr       */
+/*   Created: 2023/09/07 10:25:57 by anboisve          #+#    #+#             */
+/*   Updated: 2023/09/07 11:21:38 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strncpy(const char *str, size_t i)
+char	*ft_strndup(const char *str, size_t len)
 {
+	size_t	s_len;
 	char	*new;
-	size_t	len;
 
-	if (!str || !i)
+	new = NULL;
+	if (len == 0 || !str)
 		return (NULL);
-	len = ft_strlen(str);
-	if (len < i)
-		i = len;
-	new = ft_calloc(i + 1, sizeof(char));
+	s_len = ft_strlen(str);
+	if (s_len < len)
+		len = s_len;
+	new = ft_calloc(len + 1, sizeof(char));
 	if (!new)
 		return (NULL);
-	while (i--)
-		new[i] = str[i];
+	while (len--)
+		new[len] = str[len];
 	return (new);
 }
