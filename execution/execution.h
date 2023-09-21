@@ -12,6 +12,7 @@
 #  include <sys/wait.h>
 # endif
 # include <dirent.h>
+# include <stdbool.h>
 # include "token.h"
 # include "../include/err.h"
 # include "../built_in/built_in.h"

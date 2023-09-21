@@ -4,9 +4,9 @@
 /// @param	shell	t_mshell*
 void	free_t_mshell(t_mshell *shell)
 {
-	ft_free(shell->info);
+	ft_free(shell->pwd);
 	ft_free(shell->s);
-	ft_free(shell->tmp);
+	ft_free(shell->prompt);
 	ft_double_sfree((void **)shell->path);
 	ft_double_sfree((void **)shell->en);
 	ft_return_ptr(NULL, -1);

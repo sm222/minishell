@@ -18,16 +18,20 @@ static char	*get_path(char *new, char *old)
 
 short	reset_data_main(t_mshell *shell)
 {
+	char	*logname;
+
+	logname = NULL;
 	shell->s = ft_free(shell->s);
-	shell->tmp = ft_free(shell->tmp);
-	shell->info = get_path(getcwd(NULL, 0), shell->info);
-	if (get_env(shell->en, "LOGNAME"))
-		ft_printf(NO_PRINT, "%o"GRN"%s"WHT"[%s]$ ", &shell->tmp, \
-	shell->info, get_env(shell->en, "LOGNAME"));
+	shell->prompt = ft_free(shell->prompt);
+	shell->pwd = get_path(getcwd(NULL, 0), shell->pwd);
+	logname = get_env(shell->en, "LOGNAME");
+	if (logname)
+		ft_printf(NO_PRINT, "%o"GRN"%s"WHT"[%s]$ ", &shell->prompt, \
+	shell->pwd, logname);
 	else
-		ft_printf(NO_PRINT, "%o"GRN"%s "WHT"$ ", &shell->tmp, shell->info);
+		ft_printf(NO_PRINT, "%o"GRN"%s "WHT"$ ", &shell->prompt, shell->pwd);
 	shell->cmd_list = NULL;
-	shell->s = readline(shell->tmp);
+	shell->s = readline(shell->prompt);
 	if (!shell->s || !shell->s[0])
 		return (FAIL);
 	else

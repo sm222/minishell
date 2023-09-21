@@ -12,12 +12,12 @@ static int	close_and_exit(int fd)
 	{
 		ft_double_sfree((void **)shell->en);
 		ft_double_sfree((void **)shell->path);
-		ft_free(shell->info);
+		ft_free(shell->pwd);
 		ft_free(shell->s);
-		ft_free(shell->tmp);
+		ft_free(shell->prompt);
 	}
 	close(fd);
-	free_here_dock(0);
+	free_here_doc(0);
 	exit(0);
 }
 

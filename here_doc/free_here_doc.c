@@ -1,6 +1,6 @@
 #include "here_doc.h"
 
-int	free_here_dock(short unlink_f)
+int	free_here_doc(short unlink_f)
 {
 	t_doc	**doc;
 	t_doc	*tmp;

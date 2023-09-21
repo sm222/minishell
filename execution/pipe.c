@@ -10,9 +10,9 @@ int	open_redi_flag(t_cmd *in)
 	while (in)
 	{
 		if (in->tok->redi_in)
-			ft_b_set_flag(&in->tok->mode, PIPE_IN, TRUE);
+			ft_b_set_flag(&in->tok->mode, PIPE_IN, true);
 		if (in->tok->redi_out)
-			ft_b_set_flag(&in->tok->mode, PIPE_OUT, TRUE);
+			ft_b_set_flag(&in->tok->mode, PIPE_OUT, true);
 		in = in->next;
 	}
 	return (SUCCESS);
@@ -30,20 +30,20 @@ int	set_pipe(t_cmd **in)
 	tmp = (*in);
 	if (cmd_node_len(tmp) == 2)
 	{
-		ft_b_set_flag(&tmp->tok->mode, PIPE_OUT, TRUE);
-		ft_b_set_flag(&tmp->next->tok->mode, PIPE_IN, TRUE);
+		ft_b_set_flag(&tmp->tok->mode, PIPE_OUT, true);
+		ft_b_set_flag(&tmp->next->tok->mode, PIPE_IN, true);
 	}
 	if (cmd_node_len(tmp) > 2)
 	{
-		ft_b_set_flag(&tmp->tok->mode, PIPE_OUT, TRUE);
+		ft_b_set_flag(&tmp->tok->mode, PIPE_OUT, true);
 		tmp = tmp->next;
 		while (tmp->next)
 		{
-			ft_b_set_flag(&tmp->tok->mode, PIPE_OUT, TRUE);
-			ft_b_set_flag(&tmp->tok->mode, PIPE_IN, TRUE);
+			ft_b_set_flag(&tmp->tok->mode, PIPE_OUT, true);
+			ft_b_set_flag(&tmp->tok->mode, PIPE_IN, true);
 			tmp = tmp->next;
 		}
-		ft_b_set_flag(&tmp->tok->mode, PIPE_IN, TRUE);
+		ft_b_set_flag(&tmp->tok->mode, PIPE_IN, true);
 	}
 	open_redi_flag(*in);
 	return (SUCCESS);
@@ -70,15 +70,15 @@ int	set_redir(t_cmd *in)
 {
 	if (!in || !in->tok)
 		return (BAD_ARGS);
-	if (ft_b_flag_read(in->tok->mode, PIPE_IN) == FALSE && \
-		ft_b_flag_read(in->tok->mode, PIPE_OUT) == FALSE)
+	if (ft_b_flag_read(in->tok->mode, PIPE_IN) == false && \
+		ft_b_flag_read(in->tok->mode, PIPE_OUT) == false)
 		return (SUCCESS);
-	if ((ft_b_flag_read(in->tok->mode, PIPE_IN) == TRUE))
+	if ((ft_b_flag_read(in->tok->mode, PIPE_IN) == true))
 	{
 		if (in->prev && in->prev->pipe[0])
 			in->tok->pipe_in = in->prev->pipe[0];
 	}
-	if ((ft_b_flag_read(in->tok->mode, PIPE_OUT) == TRUE))
+	if ((ft_b_flag_read(in->tok->mode, PIPE_OUT) == true))
 	{
 		if (pipe(in->pipe) != 0)
 			return (PIPE_FAIL);

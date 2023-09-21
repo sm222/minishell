@@ -62,8 +62,8 @@ int	run_and_close(t_cmd *in, char **env, char *cmd)
 	ft_double_sfree((void **)shell->path);
 	ft_double_sfree((void **)shell->en);
 	ft_free(shell->s);
-	ft_free(shell->tmp);
-	ft_free(shell->info);
+	ft_free(shell->prompt);
+	ft_free(shell->pwd);
 	ft_double_sfree((void **)new_en);
 	exit(0);
 	return (FAIL);
@@ -119,7 +119,7 @@ int	run_cmd(t_cmd *in, t_mshell *shell)
 	if (make_new_path(shell) < SUCCESS)
 		perror("make_new_path");
 	set_pipe(&in);
-	while (run.tmp)
+	while (run.tmp && run.tmp->tok)
 	{
 		close_old_fd(run.tmp);
 		if (run.tmp->tok && ft_b_flag_read(run.tmp->tok->mode, BUILT_IN))
@@ -127,7 +127,7 @@ int	run_cmd(t_cmd *in, t_mshell *shell)
 		else
 			run.err = ft_execution(run.tmp, &run.wait, 0);
 		if (run.err <= FAIL)
-			err_msg(PERROR, run.err, "ft_execution");
+			err_msg(PERROR, run.err, "minishell: ft_execution");
 		run.tmp = run.tmp->next;
 	}
 	close_all_fd(in);
