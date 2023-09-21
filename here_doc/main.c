@@ -12,5 +12,5 @@ int main(void)
 		make_here_doc(i, "eof");
 		printf("%dend\n", i++);
 	}
-	free_here_dock(1);
+	free_here_doc(1);
 }

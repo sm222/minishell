@@ -1,31 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncpy.c                                       :+:      :+:    :+:   */
+/*   ft_set_mode.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/14 14:19:32 by anboisve          #+#    #+#             */
-/*   Updated: 2023/09/18 17:51:46 by anboisve         ###   ########.fr       */
+/*   Created: 2023/09/18 17:50:32 by anboisve          #+#    #+#             */
+/*   Updated: 2023/09/19 09:02:18 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strncpy(const char *str, size_t i)
+/// @brief look if you are in '' or ""
+/// @param c last char inter, if -1 reset, 0 return in what type you are
+/// @return
+short	ft_set_mode(char c)
 {
-	char	*new;
-	size_t	len;
+	static short	last = 0;
 
-	if (!str || !i)
-		return (NULL);
-	len = ft_strlen(str);
-	if (len < i)
-		i = len;
-	new = ft_calloc(i + 1, sizeof(char));
-	if (!new)
-		return (NULL);
-	while (i--)
-		new[i] = str[i];
-	return (new);
+	if (c == -1)
+		last = 0;
+	if (c == 0)
+		return (last);
+	if (last == 0 && c == '"')
+		last = 2;
+	else if (last == 2 && c == '"')
+		last = 0;
+	else if (last == 0 && c == '\'')
+		last = 1;
+	else if (last == 1 && c == '\'')
+		last = 0;
+	return (last);
 }
