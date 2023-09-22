@@ -17,3 +17,13 @@ short	get_result(int err, char *name, int *f, char *mal)
 	}
 	return (SUCCESS);
 }
+
+void	free_execution(t_cmd *in, t_mshell *shell)
+{
+	cmd_free(&in);
+	ft_double_sfree((void **)shell->path);
+	ft_double_sfree((void **)shell->en);
+	ft_free(shell->s);
+	ft_free(shell->prompt);
+	ft_free(shell->pwd);
+}

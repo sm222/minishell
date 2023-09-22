@@ -17,6 +17,7 @@
 # include "../readline/readline.h"
 # include "../execution/execution.h"
 # include "../here_doc/here_doc.h"
+# include "../parsing/parsing.h"
 
 # define DEV_CHMOD	0644
 

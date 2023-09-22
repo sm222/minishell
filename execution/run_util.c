@@ -4,12 +4,13 @@ short	set_data_exe(t_exe *data, t_mshell *shell, t_cmd *in)
 {
 	mode_t	err;
 
+	data->ft_path = NULL;
 	err = 0;
 	if (!data || !shell || !in)
 		return (BAD_ARGS);
 	data->err_redir = set_redir(in);
 	if (!in->command)
-		return (FAIL);
+		return (1);
 	if (data->err_redir < SUCCESS)
 		return (data->err_redir);
 	data->err = find_path(in->command[0], &data->ft_path, shell->path, &err);

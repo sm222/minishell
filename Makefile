@@ -19,6 +19,9 @@ EXECUTION_DIR	=	execution/
 HERE_DOC_LIB	=	here_doc.a
 HERE_DOC_DIR	=	here_doc/
 
+PARSE_LIB		=	parsing.a
+PARSE_DIR		=	parsing/
+
 RL_DIR			=	readline/
 RL_H			=	libhistory.a
 RL_L			=	libreadline.a
@@ -27,7 +30,7 @@ RL_L			=	libreadline.a
 
 # Compiler and flags
 CC				=	gcc
-CFLAGS			=	-Wall -Werror -Wextra
+CFLAGS			=	-Wall -Werror -Wextra -g
 #-fsanitize=address
 RM				=	rm -f
 
@@ -58,7 +61,7 @@ all: libft builtin exe parse doc $(NAME)
 $(NAME): $(OBJS) $(C_TOOL)
 	@$(CC) $(CFLAGS) $(OBJS) $(LIBFT_DIR)$(LIBFT) -l readline -l ncurses \
 	$(RL_DIR)$(RL_H) $(RL_DIR)$(RL_L) $(C_TOOL) $(EXECUTION_DIR)$(EXECUTION_LIB) \
-	$(HERE_DOC_DIR)$(HERE_DOC_LIB) -o $(NAME)
+	$(HERE_DOC_DIR)$(HERE_DOC_LIB) $(PARSE_DIR)$(PARSE_LIB) -o $(NAME)
 
 libft:
 	@printf "$(GRN)making libft$(WHT)\n"

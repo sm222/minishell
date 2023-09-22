@@ -38,6 +38,7 @@ l’historique n’a pas à être mis à jour !
 //--------------------------//
 
 // cmd
+
 int		no_file(char *name);
 int		permission_denied(char *name, mode_t *err);
 short	set_data_exe(t_exe *data, t_mshell *shell, t_cmd *in);
@@ -87,5 +88,6 @@ short	wait_pids(t_waitp *in, short free_f);
 
 int		free_exe(int err, t_exe *exe);
 void	free_t_mshell(t_mshell *shell);
+void	free_execution(t_cmd *in, t_mshell *shell);
 
 #endif // EXECUTION_H
