@@ -24,23 +24,22 @@ static int	find_buit_in(char *name)
 
 short	converter(char *in, t_cmd **list)
 {
-	t_loc	*head;
+	t_loc	*tmp;
 	t_loc	*nav;
 	int		flag;
 
 	if (!in || !list)
 		return (BAD_ARGS);
-	head = ft_parsing(in);
-	if (!head)
-		return (M_FAIL);
-	nav = head;
+	nav = ft_parsing(in);
 	while (nav)
 	{
 		flag = 0;
 		if (nav->decon_cmd && nav->decon_cmd[0])
 			flag = find_buit_in(nav->decon_cmd[0]);
 		cmd_make_node_last(list, nav->decon_cmd, make_token(flag, 0, 0));
-		nav = nav->next;
+		tmp = nav->next;
+		ft_free(nav);
+		nav = tmp;
 	}
 	return (SUCCESS);
 }

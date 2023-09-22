@@ -77,10 +77,11 @@ builtin:
 	@make -C built_in
 
 exe:
-	@printf "$(GRN)execution builtin$(WHT)\n"
+	@printf "$(GRN)making execution$(WHT)\n"
 	@make -C $(EXECUTION_DIR)
 
 doc:
+	@printf "$(GRN)making doc$(WHT)\n"
 	@make -C $(HERE_DOC_DIR)
 
 mem: all
