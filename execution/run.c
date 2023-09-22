@@ -30,8 +30,8 @@ int	no_file(char *name)
 	if (name && (name[0] == '.' || name[0] == '/'))
 	{
 		ft_printf(STDERR_FILENO, "%o"MS_NAME": %s %s\n", \
-		NULL, name ,sys_errlist[errno]);
-		return (126) ;
+		NULL, name, sys_errlist[errno]);
+		return (126);
 	}
 	err_msg(DO_FREE, 127, ft_strjoin(MS_NAME ERR_CNF, name));
 	return (127);
@@ -86,7 +86,7 @@ short	ft_execution(t_cmd *in, t_waitp **wait, short local)
 	int			err;
 
 	shell = ft_return_ptr(NULL, SYS);
-	if (!shell || !in || !wait || !in->command[0])
+	if (!shell || !in || !wait)
 		return (BAD_ARGS);
 	err = set_data_exe(&exe, shell, in);
 	if (err != SUCCESS)

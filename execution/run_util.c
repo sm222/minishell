@@ -8,6 +8,8 @@ short	set_data_exe(t_exe *data, t_mshell *shell, t_cmd *in)
 	if (!data || !shell || !in)
 		return (BAD_ARGS);
 	data->err_redir = set_redir(in);
+	if (!in->command)
+		return (FAIL);
 	if (data->err_redir < SUCCESS)
 		return (data->err_redir);
 	data->err = find_path(in->command[0], &data->ft_path, shell->path, &err);

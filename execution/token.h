@@ -18,8 +18,10 @@ t_token	*make_token(int flag, int redi_in, int redi_out);
 
 /*
 ◦ < doit rediriger l’entrée.
-◦ << doit recevoir un délimiteur et lire l’input donné jusqu’à rencontrer une ligne
-contenant le délimiteur. Cependant, l’historique n’a pas à être mis à jour !
+◦ << doit recevoir un délimiteur et 
+lire l’input donné jusqu’à rencontrer une ligne
+contenant le délimiteur. Cependant, 
+l’historique n’a pas à être mis à jour !
 ◦ > doit rediriger la sortie.
 ◦ >> doit rediriger la sortie en mode append.
 */

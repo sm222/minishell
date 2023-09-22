@@ -1,6 +1,6 @@
 #include "execution.h"
 
-short get_result(int err, char *name, int *f, char *mal)
+short	get_result(int err, char *name, int *f, char *mal)
 {
 	if (!mal && err == SUCCESS)
 	{

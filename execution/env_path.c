@@ -1,6 +1,5 @@
 # include "execution.h"
 
-
 static short	new_run_env(char ***env, char **old)
 {
 	size_t	i;
@@ -22,14 +21,12 @@ static short	new_run_env(char ***env, char **old)
 	return (SUCCESS);
 }
 
-
 char	**ex_en_new(char **en)
 {
 	char	**new;
 	size_t	i;
 	size_t	j;
 
-	(void)new; 
 	new = NULL;
 	i = 0;
 	j = 0;

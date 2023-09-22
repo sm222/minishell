@@ -15,7 +15,7 @@ t_cmd	*cmd_make_node(char **cmd, t_token *tok)
 		return (NULL);
 	}
 	new->command = ft_cpy_double_char(cmd);
-	if (!new->command)
+	if (!new->command && cmd)
 	{
 		ft_free(new);
 		ft_free(tok);
@@ -42,6 +42,8 @@ size_t	cmd_node_len(t_cmd *list)
 }
 
 /// @brief	add a node at the end of the list
+/// @test	if you want to send a fail file in a cmd send 
+/// @test	cmd_make_node_last(t_cmd **list, NULL, t_token *tok) 
 /// @param	list	t_cmd** list input
 /// @param	cmd		argument, need to be malloc
 /// @param	tok		type of action
@@ -51,7 +53,7 @@ short	cmd_make_node_last(t_cmd **list, char **cmd, t_token *tok)
 {
 	t_cmd	*tmp;
 
-	if (!list || !cmd)
+	if (!list)
 	{
 		ft_double_sfree((void **)cmd);
 		return (BAD_ARGS);

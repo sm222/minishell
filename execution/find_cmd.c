@@ -1,11 +1,10 @@
 # include "execution.h"
 
-
 /// @brief	try to find the file in local folder
 /// @param	name	of the fontion
 /// @param	out		return the path with name of the fontion
 /// @return	1 if local, 2 if ./ fail FAIL, else M_FAIL
-static int	test_local(char *name, char **out,  mode_t *err)
+static int	test_local(char *name, char **out, mode_t *err)
 {
 	struct stat	test;
 

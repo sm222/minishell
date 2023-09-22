@@ -57,7 +57,7 @@ int	main(int ac, char **av, char **en)
 	int		loop_test;
 
 	(void)ac;
-	loop_test = 100;
+	loop_test = 1;
 	if (start_shell(&shell, en, av) != SUCCESS)
 		return (FAIL);
 	while (loop_test--)
@@ -68,7 +68,7 @@ int	main(int ac, char **av, char **en)
 			break ;
 		if (shell.s && *shell.s)
 		{
-			cmd_make_node_last(&shell.cmd_list, ft_split(shell.s, ' '), make_token(0, 0, 0));
+			cmd_make_node_last(&shell.cmd_list, ft_split(shell.s, ' '), make_token(BUILT_IN_FLAG, 0, 0));
 			run_cmd(shell.cmd_list, &shell);
 			free_here_doc(1);
 		}
