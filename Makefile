@@ -39,6 +39,7 @@ SRCS	=	main.c\
 			main_ft.c\
 			env.c\
 			main_logo.c\
+			converter.c\
 			include/err.c\
 			built_in/cd/cd.c\
 			built_in/pwd/pwd.c\
