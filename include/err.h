@@ -19,8 +19,8 @@
 # define FILE_DEF ".debug_minishell"
 # define ERR_CNF "command not found: "
 # define ERR_NSFD "No such file or directory: "
-# define BAD_LIST_UNSET "éèÈÉçÇ^.!@#$%?&*()-+=\"\\/;,àÀ||¤{}[]¬"
-# define BAD_LIST_EXPORT "éèÈÉçÇ^.!@#$%?&*()-+/\";,àÀ||¤{}[]¬"
+# define BAD_LIST_UNSET "éèÈÉçÇ^.!@#$%?&*()-+=\"\\/;,àÀ||¤{}[]¬ 	"
+# define BAD_LIST_EXPORT "éèÈÉçÇ^.!@#$%?&*()-+/\";,àÀ||¤{}[]¬ 	"
 
 # define DEBUG_ERR -1
 
@@ -36,6 +36,9 @@
 # define PERROR		0
 # define NO_FREE	1
 # define DO_FREE	2
+
+# define NO_UNLINK	0
+# define UNLINK		1
 
 /*/*//*/*//*/*//*/*//*/*//*/*/
 //			fonction		//

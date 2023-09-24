@@ -94,7 +94,7 @@ static int	run_local(int (*ft)(char **, int, int, char **), t_cmd *in)
 	if (shell->exit)
 	{
 		cmd_free(&in);
-		free_here_doc(1);
+		free_here_doc(UNLINK);
 		free_t_mshell(shell);
 		rl_clear_history();
 		ft_putstr_fd("exit\n", 2);

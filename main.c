@@ -69,7 +69,7 @@ int	main(int ac, char **av, char **en)
 		if (shell.s && *shell.s)
 		{
 			run_cmd(shell.cmd_list, &shell);
-			free_here_doc(1);
+			free_here_doc(UNLINK);
 		}
 		printf("last pec == %d\n", shell.pec);
 	}

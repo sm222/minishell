@@ -17,7 +17,7 @@ static int	close_and_exit(int fd)
 		ft_free(shell->prompt);
 	}
 	close(fd);
-	free_here_doc(0);
+	free_here_doc(NO_UNLINK);
 	exit(0);
 }
 

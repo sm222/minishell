@@ -36,8 +36,8 @@ RM				=	rm -f
 
 # Sources are all .c files
 SRCS	=	main.c\
-			main_ft.c\
 			env.c\
+			main_ft.c\
 			main_logo.c\
 			converter.c\
 			include/err.c\
