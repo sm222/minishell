@@ -57,7 +57,7 @@ int	main(int ac, char **av, char **en)
 	int		loop_test;
 
 	(void)ac;
-	loop_test = 1000;
+	loop_test = 1;
 	if (start_shell(&shell, en, av) != SUCCESS)
 		return (FAIL);
 	while (loop_test--)

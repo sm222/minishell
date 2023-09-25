@@ -36,11 +36,13 @@ t_doc	*new_doc(int *f, int i)
 /// @param i index of new here_doc, or modefi it if all ready exist
 /// @param stop word to stop on
 /// @return 
-static short	make_here_doc_last(t_doc **list, int *f, int i, char *stop)
+static short	make_here_doc_last(t_doc **list, short inter, int i, char *stop)
 {
 	t_doc	*tmp;
 	t_doc	*last;
+	int		err;
 
+	err = 0;
 	tmp = (*list);
 	while (tmp)
 	{
@@ -50,25 +52,26 @@ static short	make_here_doc_last(t_doc **list, int *f, int i, char *stop)
 		tmp = tmp->next;
 	}
 	if (tmp)
-		edit_here_doc(tmp, stop);
+		edit_here_doc(tmp, stop, inter);
 	else
 	{
-		last->next = new_doc(f, i);
-		if (*f == SUCCESS)
-			edit_here_doc(last->next, stop);
+		last->next = new_doc(&err, i);
+		if (err == SUCCESS)
+			edit_here_doc(last->next, stop, inter);
 	}
-	return (*f);
+	return (err);
 }
 
 /// @brief use to add a here_doc
 /// @param i index of the here_doc
 /// @param stop word to stop on
 /// @return err code
-short	make_here_doc(int i, char *stop)
+short	make_here_doc(int i, char inter, char *stop)
 {
 	t_doc	**doc;
 	int		err;
 
+	err = 0;
 	if (i < 0 || !stop)
 		return (BAD_ARGS);
 	doc = ft_return_ptr(NULL, DOC);
@@ -80,10 +83,10 @@ short	make_here_doc(int i, char *stop)
 			perror("make_here_doc ");
 			return (err);
 		}
-		return (edit_here_doc(*doc, stop));
+		return (edit_here_doc(*doc, stop, inter));
 	}
-	make_here_doc_last(doc, &err, i, stop);
-	if (err < SUCCESS)
+	
+	if (make_here_doc_last(doc, inter, i, stop))
 	{
 		perror("make_here_doc");
 		return (err);

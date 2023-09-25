@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 15:06:44 by anboisve          #+#    #+#             */
-/*   Updated: 2023/09/20 17:39:34 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/09/25 10:06:34 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ static short	look_for_those(char *in, char c1, char c2)
 	return (0);
 }
 
-void	change_dolar(char **old, char **en, short here_doc, int err)
+void	ft_change_dolar(char **old, char **en, short here_doc, int err)
 {
 	char	*new;
 	t_index	index;

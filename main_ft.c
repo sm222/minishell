@@ -36,7 +36,7 @@ short	reset_data_main(t_mshell *shell)
 		return (FAIL);
 	else
 		add_history(shell->s);
-	change_dolar(&shell->s, shell->en, 0, shell->pec);
+	ft_change_dolar(&shell->s, shell->en, 0, shell->pec);
 	converter(shell->s, &shell->cmd_list);
 	return (SUCCESS);
 }

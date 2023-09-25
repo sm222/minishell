@@ -24,12 +24,15 @@ static int	close_and_exit(int fd)
 /// @brief use readline in a loop to witre in the file
 /// @param fd file
 /// @param stop word to stop on
+/// @param inter look if it need to change dolar singne or not
 /// @return return FAIL while it take input, other wise.
 /// @return SUCCESS at the end or M_fail if control + d
-static int	write_fd(int fd, char *stop)
+static int	write_fd(int fd, char *stop, short inter)
 {
 	char	*tmp;
+	int		*pec;
 
+	pec = ft_return_ptr(NULL, PEC);
 	tmp = readline("> ");
 	if (ft_strncmp(stop, tmp, ft_strlen(stop) + 1) == 0)
 	{
@@ -41,6 +44,8 @@ static int	write_fd(int fd, char *stop)
 		rl_redisplay();
 		return (M_FAIL);
 	}
+	if (inter)
+		ft_change_dolar(&tmp, ft_return_ptr(NULL ,ENV_C), 1, *pec);
 	ft_putendl_fd(tmp, fd);
 	free(tmp);
 	return (FAIL);
@@ -50,7 +55,7 @@ static int	write_fd(int fd, char *stop)
 /// @param doc node of here_duc
 /// @param stop word to stop on
 /// @return err value
-static short	edit_loop(t_doc *doc, char *stop)
+static short	edit_loop(t_doc *doc, char *stop, short inter)
 {
 	int			f;
 	mode_t		mode;
@@ -65,7 +70,7 @@ static short	edit_loop(t_doc *doc, char *stop)
 			ft_printf(2, "%ominishell: here_doc: file was temperd\n", NULL);
 			break ;
 		}
-		if (write_fd(doc->fd, stop) != 0 || f == -1)
+		if (write_fd(doc->fd, stop, inter) != 0 || f == -1)
 			break ;
 		f = stat(doc->f_name, &doc->last);
 	}
@@ -78,7 +83,7 @@ static short	edit_loop(t_doc *doc, char *stop)
 /// @param doc to edit
 /// @param stop word to stop on
 /// @return err code
-short	edit_here_doc(t_doc *doc, char *stop)
+short	edit_here_doc(t_doc *doc, char *stop, short inter)
 {
 	pid_t	pid;
 
@@ -88,13 +93,13 @@ short	edit_here_doc(t_doc *doc, char *stop)
 		if (doc->fd < 0)
 		{
 			unlink(doc->f_name);
-			return (edit_here_doc(doc, stop));
+			return (edit_here_doc(doc, stop, inter));
 		}
 		pid = fork();
 		if (pid == -1)
 			return (FORK_FAIL);
 		if (pid == 0)
-			edit_loop(doc, stop);
+			edit_loop(doc, stop, inter);
 		else
 		{
 			waitpid(pid, NULL, 0);

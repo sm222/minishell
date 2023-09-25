@@ -43,9 +43,9 @@ short	converter(char *in, t_cmd **list)
 		if (nav->decon_cmd && nav->decon_cmd[0])
 			flag = find_buit_in(nav->decon_cmd[0]);
 		cmd_make_node_last(list, nav->decon_cmd, make_token(flag, 0, 0));
-		tmp = nav->next;
-		ft_free(nav);
-		nav = tmp;
+		tmp = nav;
+		nav = nav->next;
+		ft_free(tmp);
 	}
 	return (SUCCESS);
 }
