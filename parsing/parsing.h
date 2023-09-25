@@ -39,6 +39,7 @@ typedef struct s_idx
 	int	current;
 }	t_idx;
 
+int		ft_verify(char *src);
 t_loc	*ft_parsing(char *src);
 int		ft_has_pipe(char *src);
 int		ft_arraylen(char **src);
