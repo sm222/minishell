@@ -1,6 +1,16 @@
 #include "parsing.h"
 
-int	ft_verify(char *src);
+int	ft_verify(char *src)
+{
+	if (ft_invalid_pipe(src))
+		return (INCORRECT);
+	if (ft_quote_error(src))
+	{
+		ft_putendl_fd("token error near quote", 2);
+		return (INCORRECT);
+	}
+	return (CORRECT);
+}
 
 int	ft_invalid_pipe(char *cmd)
 {
@@ -14,7 +24,7 @@ int	ft_invalid_pipe(char *cmd)
 			if (ft_is_not_in_quotes(cmd, i))
 			{
 				ft_check_here_doc(cmd);
-				ft_putendl_fd("token error near '|'\n", 2);
+				ft_putendl_fd("token error near '|'", 2);
 				return (CORRECT);
 			}
 		}
@@ -32,7 +42,7 @@ int	ft_quote_error(char *src)
 	i = FIRST_INDEX;
 	open_mark = INCORRECT;
 	if (!src)
-		return (INVALID);
+		return (INCORRECT);
 	while (src[i])
 	{
 		if (src[i] == '"' || src[i] == '\'')
@@ -47,6 +57,6 @@ int	ft_quote_error(char *src)
 		i++;
 	}
 	if (open_mark)
-		return (INCORRECT);
-	return (CORRECT);
+		return (CORRECT);
+	return (INCORRECT);
 }
