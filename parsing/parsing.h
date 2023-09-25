@@ -44,6 +44,7 @@ int		ft_has_pipe(char *src);
 int		ft_arraylen(char **src);
 char	*ft_quote_op(char *cmd);
 int		ft_has_quotes(char *src);
+int		ft_quote_error(char *src);
 t_token	*ft_redirect_op(char *cmd);
 int		ft_invalid_pipe(char *cmd);
 int		ft_has_redirect(char *src);

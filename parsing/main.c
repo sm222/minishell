@@ -1,6 +1,5 @@
 #include "parsing.h"
 
-// WIP, t_token TO BE ADDED & DEALT WITH
 void	ft_add_loc(t_loc **list, char **cmd, t_token *tokens)
 {
 	t_loc	*current;
@@ -33,7 +32,7 @@ t_loc	*ft_parsing(char *src)
 	list = NULL;
 	if (!src)
 		return (NULL);
-	if (ft_invalid_pipe(src))
+	if (ft_invalid_pipe(src) || ft_quote_error(src))
 		return (NULL);
 	ft_pipe_op(src, &list);
 	return (list);

@@ -1,5 +1,7 @@
 #include "parsing.h"
 
+int	ft_verify(char *src);
+
 int	ft_invalid_pipe(char *cmd)
 {
 	int	i;
@@ -12,7 +14,6 @@ int	ft_invalid_pipe(char *cmd)
 			if (ft_is_not_in_quotes(cmd, i))
 			{
 				ft_check_here_doc(cmd);
-				printf("printf: do here_doc here\n");
 				ft_putendl_fd("token error near '|'\n", 2);
 				return (CORRECT);
 			}
