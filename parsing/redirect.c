@@ -87,8 +87,8 @@ t_token	*ft_redirect_op(char *cmd)
 	t_token	*tokens;
 
 	tokens = NULL;
-	fd_in = -1;
-	fd_out = -1;
+	fd_in = 0;
+	fd_out = 0;
 	ft_check_here_doc(cmd);
 	while (ft_has_redirect(cmd))
 	{

@@ -68,7 +68,10 @@ char	**ft_add_quotes(char **res, char **quotes, char *cmd, t_idx *index)
 	current_quote = index->current_quote;
 	while (cmd[current] && cmd[current] == PASSED_QUOTES)
 		current++;
-	res = ft_arrayjoin(res, quotes[current_quote]);
+	if (quotes)
+		res = ft_arrayjoin(res, quotes[current_quote]);
+	else
+		res = ft_arrayjoin(res, "\0");
 	current_quote++;
 	index->current = current;
 	index->current_quote = current_quote;
@@ -83,6 +86,8 @@ char	*ft_quote_op(char *cmd)
 	if (!ft_has_quotes(cmd))
 		return (NULL);
 	index = ft_quotes_delimitation(cmd);
+	if (index.start_index == index.end_index)
+		return (NULL);
 	res = ft_strslice(cmd, index.start_index + 1, index.end_index);
 	while (index.start_index <= index.end_index)
 		cmd[index.start_index++] = PASSED_QUOTES;
