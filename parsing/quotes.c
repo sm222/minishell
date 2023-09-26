@@ -91,7 +91,7 @@ char	*ft_quote_op(char *cmd)
 		return (NULL);
 	index = ft_quotes_delimitation(cmd);
 	if (index.start_index + 1 == index.end_index)
-		res = "\0";
+		res = ft_strdup("\0");
 	else
 		res = ft_strslice(cmd, index.start_index + 1, index.end_index);
 	while (index.start_index <= index.end_index)
