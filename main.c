@@ -40,7 +40,7 @@ static int	start_shell(t_mshell *shell, char **en, char **av)
 	ft_return_ptr(shell->en, ENV_C);
 	ft_return_ptr(&shell->exit, EX_F);
 	ft_return_ptr(&shell->doc, DOC);
-	ft_printf(NO_PRINT, "%oex OLDPWD", &new);
+	ft_printf(NO_PRINT, "%oex OLDPWD PWD", &new);
 	spl = ft_split(new, ' ');
 	ft_export(spl, 0, 1, shell->en);
 	ft_double_sfree((void **)spl);
@@ -57,7 +57,7 @@ int	main(int ac, char **av, char **en)
 	int		loop_test;
 
 	(void)ac;
-	loop_test = 1;
+	loop_test = 100;
 	if (start_shell(&shell, en, av) != SUCCESS)
 		return (FAIL);
 	while (loop_test--)
