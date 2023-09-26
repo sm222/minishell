@@ -41,6 +41,7 @@ t_idx	ft_quotes_delimitation(char *src)
 
 	i = 0;
 	open_quote = INCORRECT;
+	ft_bzero(&index, sizeof(t_idx));
 	while (src[i])
 	{
 		if ((src[i] == '\'' || src[i] == '"') && !open_quote)
@@ -49,7 +50,7 @@ t_idx	ft_quotes_delimitation(char *src)
 			open_quote = CORRECT;
 			current_quote = src[i];
 		}
-		else if (src[i] == current_quote && open_quote)
+		else if (open_quote && src[i] == current_quote)
 		{
 			index.end_index = i;
 			open_quote = INCORRECT;
@@ -69,7 +70,12 @@ char	**ft_add_quotes(char **res, char **quotes, char *cmd, t_idx *index)
 	while (cmd[current] && cmd[current] == PASSED_QUOTES)
 		current++;
 	if (quotes)
-		res = ft_arrayjoin(res, quotes[current_quote]);
+	{
+		if (quotes[current_quote])
+			res = ft_arrayjoin(res, quotes[current_quote]);
+		else
+			res = ft_arrayjoin(res, "\0");
+	}
 	else
 		res = ft_arrayjoin(res, "\0");
 	current_quote++;
