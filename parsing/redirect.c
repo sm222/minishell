@@ -40,7 +40,7 @@ int	ft_input(char *src, int start_index)
 	if (src[start_index] == ' ')
 		start_index++;
 	end_index = start_index;
-	while (src[end_index] > CHAR_LIMIT && src[end_index])
+	while (src[end_index] && src[end_index] != ' ')
 		end_index++;
 	file = ft_strslice(src, start_index, end_index);
 	printf("printf: %s\n", file);
@@ -68,7 +68,7 @@ int	ft_output(char *src, int start_index)
 	if (src[start_index] == ' ')
 		start_index++;
 	end_index = start_index;
-	while (src[end_index] > CHAR_LIMIT && src[end_index])
+	while (src[end_index] && src[end_index] != ' ')
 		end_index++;
 	file = ft_strslice(src, start_index, end_index);
 	printf("printf: %s\n", file);

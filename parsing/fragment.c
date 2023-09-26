@@ -6,7 +6,7 @@ void	ft_word_delimiter(char *cmd, t_idx *index)
 
 	i = index->current;
 	index->start_index = i;
-	while (cmd[i] != PASSED_THROUGH && cmd[i] > CHAR_LIMIT)
+	while (cmd[i] && cmd[i] != PASSED_THROUGH && cmd[i] != ' ')
 		i++;
 	index->end_index = i;
 	index->current = i;

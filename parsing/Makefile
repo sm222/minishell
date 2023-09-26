@@ -14,7 +14,7 @@ SRC = utils.c \
 OBJ = ${SRC:.c=.o}
 
 CC = clang
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g
 
 LIB = ../lib/lib_ft
 LIBNAME = libft.a
