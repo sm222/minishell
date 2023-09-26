@@ -32,7 +32,7 @@ t_loc	*ft_parsing(char *src)
 	list = NULL;
 	if (!src)
 		return (NULL);
-	if (ft_invalid_pipe(src) || ft_quote_error(src))
+	if (ft_verify(src))
 		return (NULL);
 	ft_pipe_op(src, &list);
 	return (list);
