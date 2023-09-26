@@ -7,14 +7,11 @@ static short	find_word(char *word, int *pec)
 	char	*test;
 
 	err = SUCCESS;
-	len = ft_strlen(word);
-	if (len == 0)
-		return (FAIL);
 	len = 0;
 	while (word[len] && word[len] != '=')
 		len++;
 	test = ft_strncpy(word, len);
-	if (ft_isdigit(word[0]) || ft_find(test, BAD_LIST_EXPORT))
+	if (ft_strlen(word) == 0 || ft_isdigit(word[0]) || ft_find(test, BAD_LIST_EXPORT))
 	{
 		ft_printf(STDERR_FILENO, \
 	"%o"MS_NAME" export: `%s': not a valid identifier\n", NULL, word);

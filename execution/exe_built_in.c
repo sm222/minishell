@@ -65,14 +65,18 @@ static void	change_arg(t_cmd *in)
 	shell = ft_return_ptr(NULL, SYS);
 	if (!shell)
 		err_msg(NO_FREE, 1, "rt_ptr");
-	if (ft_strncmp(in->command[0], EXIT, ft_strlen(EXIT) + 1) == 0)
+	else if (ft_strncmp(in->command[0], EXIT, ft_strlen(EXIT) + 1) == 0)
 		change_name(shell->pec, in);
-	if (ft_strncmp(in->command[0], ENV, ft_strlen(ENV) + 1) == 0)
+	else if (ft_strncmp(in->command[0], ENV, ft_strlen(ENV) + 1) == 0)
+	{
 		if (change_av_for_en(in) < SUCCESS)
 			err_msg(PERROR, M_FAIL, "change_av_for_en");
-	if (ft_strncmp(in->command[0], PWD, ft_strlen(PWD) + 1) == 0)
+	}
+	else if (ft_strncmp(in->command[0], PWD, ft_strlen(PWD) + 1) == 0)
+	{
 		if (change_av_pwd(in, shell->pwd) < SUCCESS)
 			err_msg(PERROR, M_FAIL, "change_av_pwd");
+	}
 }
 
 /// @brief	use to run a built in
