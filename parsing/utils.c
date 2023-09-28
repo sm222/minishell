@@ -39,15 +39,22 @@ char	*ft_strslice(char *src, int start, int end)
 {
 	char	*res;
 	int		i;
+	int		nb_ignore;
 
 	i = 0;
+	nb_ignore = ft_check_ignore(src, start, end);
 	if (src && start != end)
 	{
 		res = ft_calloc(end - start + 1, sizeof(char));
 		if (!res)
 			return (NULL);
 		while (start < end)
-			res[i++] = src[start++];
+		{
+			if (src[start] == IGNORE_QUOTES)
+				start++;
+			else
+				res[i++] = src[start++];
+		}
 		return (res);
 	}
 	return (NULL);

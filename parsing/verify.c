@@ -1,17 +1,5 @@
 #include "parsing.h"
 
-int	ft_verify(char *src)
-{
-	if (ft_invalid_pipe(src))
-		return (INCORRECT);
-	if (ft_quote_error(src))
-	{
-		ft_putendl_fd("token error near quote", 2);
-		return (INCORRECT);
-	}
-	return (CORRECT);
-}
-
 int	ft_invalid_pipe(char *cmd)
 {
 	int	i;
@@ -59,4 +47,43 @@ int	ft_quote_error(char *src)
 	if (open_mark)
 		return (CORRECT);
 	return (INCORRECT);
+}
+
+int	ft_redirect_error(char *src)
+{
+	int		i;
+
+	i = 0;
+	while (src[i])
+	{
+		if (src[i] == '<' || src[i] == '>')
+		{
+			if (src[i + 2] == '<' || src[i + 2] == '>')
+				return (CORRECT);
+		}
+		i++;
+	}
+	return (INCORRECT);
+}
+
+int	ft_verify(char *src)
+{
+	int	res;
+
+	res = CORRECT;
+	if (ft_invalid_pipe(src))
+		res = INCORRECT;
+	if (ft_quote_error(src))
+	{
+		ft_putendl_fd("token error near quote", 2);
+		res = INCORRECT;
+	}
+	if (ft_redirect_error(src))
+	{
+		ft_putendl_fd("token error near redirection", 2);
+		res = INCORRECT;
+	}
+	if (res == INCORRECT)
+		ft_check_here_doc(src);
+	return (res);
 }
