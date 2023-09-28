@@ -9,9 +9,7 @@ static short	find_word(char **list, char *word, int *pec)
 	err = FAIL;
 	i = 0;
 	len = ft_strlen(word);
-	if (len == 0)
-		return (FAIL);
-	if (ft_isdigit(word[0]) || ft_find(word, BAD_LIST_UNSET))
+	if (len == 0 || ft_isdigit(word[0]) || ft_find(word, BAD_LIST_UNSET))
 	{
 		*pec = EXIT_FAILURE;
 		ft_printf(STDERR_FILENO, \

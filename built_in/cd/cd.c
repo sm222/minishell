@@ -48,6 +48,8 @@ static int	goto_dir(char *dir, char **en, int re_out)
 	int		err;
 	char	*t;
 
+	if (ft_strncmp(dir, "", 1) == 0)
+		return (0);
 	if (ft_strncmp(dir, "-", 2) == 0)
 	{
 		t = find_name(en, "OLDPWD=");
