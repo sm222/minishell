@@ -16,27 +16,47 @@ static char	*get_path(char *new, char *old)
 	return (NULL);
 }
 
-short	reset_data_main(t_mshell *shell)
+static	void	get_user(t_mshell *shell)
 {
 	char	*logname;
 
 	logname = NULL;
-	shell->s = ft_free(shell->s);
-	shell->prompt = ft_free(shell->prompt);
-	shell->pwd = get_path(getcwd(NULL, 0), shell->pwd);
 	logname = get_env(shell->en, "LOGNAME");
+	shell->pwd = get_path(getcwd(NULL, 0), shell->pwd);
 	if (logname)
 		ft_printf(NO_PRINT, "%o"GRN"%s"WHT"[%s]$ ", &shell->prompt, \
 	shell->pwd, logname);
 	else
 		ft_printf(NO_PRINT, "%o"GRN"%s "WHT"$ ", &shell->prompt, shell->pwd);
+}
+
+
+short	reset_data_main(t_mshell *shell)
+{
+	size_t	i;
+
+	i = 0;
+	shell->s = ft_free(shell->s);
+	shell->prompt = ft_free(shell->prompt);
+	get_user(shell);
 	shell->cmd_list = NULL;
 	shell->s = readline(shell->prompt);
-	if (!shell->s || !shell->s[0])
+	if (!shell->s)
 		return (FAIL);
-	else
+	else if (shell->s[0])
 		add_history(shell->s);
 	ft_change_dolar(&shell->s, shell->en, 0, shell->pec);
-	converter(shell->s, &shell->cmd_list);
+	while (i < ft_strlen(shell->s))
+	{
+		while (shell->s[i] && shell->s[i] != '&')
+			i++;
+		i += ft_strlen(shell->rest);
+		printf("--%zu-- %s--\n", i ,shell->rest);
+		converter(shell->rest, &shell->cmd_list);
+		run_cmd(shell->cmd_list, shell);
+		shell->cmd_list = NULL;
+		free_here_doc(UNLINK);
+		shell->rest = ft_free(shell->rest);
+	}
 	return (SUCCESS);
 }

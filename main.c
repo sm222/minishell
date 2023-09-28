@@ -1,5 +1,4 @@
 #include "include/minishell.h"
-#include <fcntl.h>
 
 
 static void	free_shell(t_mshell *shell)
@@ -30,7 +29,6 @@ static int	start_shell(t_mshell *shell, char **en, char **av)
 	if (!shell || !en)
 		return (BAD_ARGS);
 	ft_bzero(shell, sizeof(t_mshell));
-	shell->cmd_list = NULL;
 	shell->en = ft_cpy_double_char(en);
 	if (get_env_path(shell) <= FAIL)
 		return (127);
@@ -63,14 +61,7 @@ int	main(int ac, char **av, char **en)
 	while (loop_test--)
 	{
 		if (reset_data_main(&shell) == FAIL)
-			continue ;
-		if (!shell.s)
 			break ;
-		if (shell.s && *shell.s)
-		{
-			run_cmd(shell.cmd_list, &shell);
-			free_here_doc(UNLINK);
-		}
 		printf("last pec == %d\n", shell.pec);
 	}
 	rl_clear_history();

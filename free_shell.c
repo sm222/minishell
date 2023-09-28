@@ -10,5 +10,4 @@ short	clean_shell(void(*f) (void *), void *data)
 	if (!f)
 		return (BAD_ARGS);
 	f(data);
-
 }
