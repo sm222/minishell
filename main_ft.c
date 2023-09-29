@@ -30,6 +30,36 @@ static	void	get_user(t_mshell *shell)
 		ft_printf(NO_PRINT, "%o"GRN"%s "WHT"$ ", &shell->prompt, shell->pwd);
 }
 
+size_t	look_for_type(char *s, short *type)
+{
+	size_t	i;
+
+	i = 0;
+	ft_set_mode(-1);
+	while (s[i])
+	{
+		ft_set_mode(s[i]);
+		while (s[i] && ft_set_mode(0) > 0)
+			ft_set_mode(s[i++]);
+		if (s[i] == '&' || s[i] == '|')
+		{
+			if (s[i + 1] == '&' && s[i] == '&')
+				break ;
+			else if (s[i] == '|' && s[i + 1] != '|')
+			{
+				i++;
+				continue ;
+			}
+			else if ( s[i] == '|' &&  s[i + 1] == '|')
+				break ;
+		}
+		i++;
+	}
+	*type = s[i];
+	O_TRUNC
+	return (i);
+}
+
 static short	ft_caller(t_mshell *shell)
 {
 	size_t	i;
@@ -41,12 +71,17 @@ static short	ft_caller(t_mshell *shell)
 	{
 		shell->cmd_list = NULL;
 		i = 0;
+		short	type;
+		size_t a = look_for_type(shell->s, &type);
+		printf("a = %zu |%c|\n", a , type);
 		while (shell->s[i + j] && shell->s[i + j] != '&' && ft_set_mode(0) == 0)
 		{
 			while (ft_set_mode(shell->s[j + i]) > 0)
 				ft_set_mode(shell->s[j + i++]);
 			i++;
 		}
+		if (shell->s[i + j] == '&' && shell->s[i + j + 1] == '&')
+			ft_printf(2, "good\n");
 		shell->rest = ft_strndup(shell->s + j, i);
 		j += i + 1;
 		if (!shell->rest)
