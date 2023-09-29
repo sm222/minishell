@@ -26,4 +26,5 @@ void	free_execution(t_cmd *in, t_mshell *shell)
 	ft_free(shell->s);
 	ft_free(shell->prompt);
 	ft_free(shell->pwd);
+	ft_free(shell->rest);
 }

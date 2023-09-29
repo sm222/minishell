@@ -30,12 +30,32 @@ static	void	get_user(t_mshell *shell)
 		ft_printf(NO_PRINT, "%o"GRN"%s "WHT"$ ", &shell->prompt, shell->pwd);
 }
 
+static short	ft_caller(t_mshell *shell)
+{
+	size_t	i;
+	size_t	j;
+
+	j = 0;
+	while (j < ft_strlen(shell->s))
+	{
+		shell->cmd_list = NULL;
+		i = 0;
+		while (shell->s[i + j] && shell->s[i + j] != '&')
+			i++;
+		shell->rest = ft_strndup(shell->s + j, i);
+		j += i + 1;
+		if (!shell->rest)
+			break ;
+		converter(shell->rest, &shell->cmd_list);
+		run_cmd(shell->cmd_list, shell);
+		free_here_doc(UNLINK);
+		shell->rest = ft_free(shell->rest);
+	}
+	return (SUCCESS);
+}
 
 short	reset_data_main(t_mshell *shell)
 {
-	size_t	i;
-
-	i = 0;
 	shell->s = ft_free(shell->s);
 	shell->prompt = ft_free(shell->prompt);
 	get_user(shell);
@@ -46,17 +66,6 @@ short	reset_data_main(t_mshell *shell)
 	else if (shell->s[0])
 		add_history(shell->s);
 	ft_change_dolar(&shell->s, shell->en, 0, shell->pec);
-	while (i < ft_strlen(shell->s))
-	{
-		while (shell->s[i] && shell->s[i] != '&')
-			i++;
-		i += ft_strlen(shell->rest);
-		printf("--%zu-- %s--\n", i ,shell->rest);
-		converter(shell->rest, &shell->cmd_list);
-		run_cmd(shell->cmd_list, shell);
-		shell->cmd_list = NULL;
-		free_here_doc(UNLINK);
-		shell->rest = ft_free(shell->rest);
-	}
+	ft_caller(shell);
 	return (SUCCESS);
 }
