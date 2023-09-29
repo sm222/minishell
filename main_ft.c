@@ -38,6 +38,7 @@ size_t	look_for_type(char *s, short *type)
 	ft_set_mode(-1);
 	while (s[i])
 	{
+		ft_printf(2, "-%c\n", s[i]);
 		ft_set_mode(s[i]);
 		while (s[i] && ft_set_mode(0) > 0)
 			ft_set_mode(s[i++]);
@@ -50,13 +51,12 @@ size_t	look_for_type(char *s, short *type)
 				i++;
 				continue ;
 			}
-			else if ( s[i] == '|' &&  s[i + 1] == '|')
+			else if (s[i] == '|' &&  s[i + 1] == '|')
 				break ;
 		}
 		i++;
 	}
 	*type = s[i];
-	O_TRUNC
 	return (i);
 }
 
@@ -72,20 +72,11 @@ static short	ft_caller(t_mshell *shell)
 		shell->cmd_list = NULL;
 		i = 0;
 		short	type;
-		size_t a = look_for_type(shell->s, &type);
-		printf("a = %zu |%c|\n", a , type);
-		while (shell->s[i + j] && shell->s[i + j] != '&' && ft_set_mode(0) == 0)
-		{
-			while (ft_set_mode(shell->s[j + i]) > 0)
-				ft_set_mode(shell->s[j + i++]);
-			i++;
-		}
-		if (shell->s[i + j] == '&' && shell->s[i + j + 1] == '&')
-			ft_printf(2, "good\n");
-		shell->rest = ft_strndup(shell->s + j, i);
-		j += i + 1;
+		size_t a = look_for_type(shell->s + j, &type);
+		shell->rest = ft_strndup(shell->s + j, a);
 		if (!shell->rest)
 			break ;
+		j += a + 1;
 		converter(shell->rest, &shell->cmd_list);
 		run_cmd(shell->cmd_list, shell);
 		free_here_doc(UNLINK); 

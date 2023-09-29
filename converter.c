@@ -42,7 +42,6 @@ short	converter(char *in, t_cmd **list)
 		flag = 0;
 		if (nav->decon_cmd && nav->decon_cmd[0])
 			flag = find_buit_in(nav->decon_cmd[0]);
-		nav->tokens->mode = flag;
 		cmd_make_node_last(list, nav->decon_cmd, make_token(flag, 0, 0));
 		tmp = nav;
 		nav = nav->next;
