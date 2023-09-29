@@ -22,7 +22,8 @@ char	**ft_cmd_fragments(char *cmd)
 	ft_bzero(&idx, sizeof(t_idx));
 	while (cmd[idx.current])
 	{
-		while (cmd[idx.current] && cmd[idx.current] == ' ')
+		while (cmd[idx.current] && (cmd[idx.current] == ' ' || \
+				cmd[idx.current] == PASSED_THROUGH))
 			idx.current++;
 		ft_word_delimiter(cmd, &idx);
 		current = ft_strslice(cmd, idx.start_index, idx.end_index);
@@ -39,7 +40,7 @@ char	**ft_cmd_deconstruct(char *cmd, t_token *tokens)
 	res = NULL;
 	if (!cmd)
 		return (res);
-	if (ft_redirect_op(cmd, tokens))
+	if (ft_redirect_op(cmd, tokens) == CORRECT)
 	{
 		while (ft_has_quotes(cmd))
 			ft_quote_op(cmd);
