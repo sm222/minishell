@@ -31,58 +31,38 @@ void	ft_check_here_doc(char *src)
 	}
 }
 
-int	ft_input(char *src, int start_index)
+int	ft_input(char *src, t_token *tokens, int start_index)
 {
+	int		res;
 	char	*file;
 	char	duplicity;
-	int		end_index;
-	int		current_start;
 
-	current_start = start_index;
+	(void)tokens;
+	res = CORRECT;
 	duplicity = SINGLE_REDIRECT;
-	start_index++;
-	if (src[start_index] == ' ')
-		start_index++;
-	end_index = start_index;
-	while (src[end_index] && src[end_index] != ' ')
-		end_index++;
-	file = ft_strslice(src, start_index, end_index);
+	file = ft_file_extract(src, start_index);
 	printf("printf: %s\n", file);
 	free(file);
-	while (current_start != end_index)
-		src[current_start++] = PASSED_THROUGH;
-	return (0);
+	return (res);
 }
 
-int	ft_output(char *src, int start_index)
+int	ft_output(char *src, t_token *tokens, int start_index)
 {
-	int		fd;
+	int		res;
 	char	*file;
 	char	duplicity;
-	int		end_index;
-	int		current_start;
 
-	fd = 0;
-	current_start = start_index;
+	(void)tokens;
+	res = CORRECT;
 	if (src[start_index + 1] == '>')
-	{
-		start_index++;
 		duplicity = DOUBLE_REDIRECT;
-	}
 	else
 		duplicity = SINGLE_REDIRECT;
-	start_index++;
-	if (src[start_index] == ' ')
-		start_index++;
-	end_index = start_index;
-	while (src[end_index] && src[end_index] != ' ')
-		end_index++;
-	file = ft_strslice(src, start_index, end_index);
+	file = ft_file_extract(src, start_index);
 	printf("printf: file: %s\n", file);
+	res = ft_file_op(file, tokens, '>', duplicity);
 	free(file);
-	while (current_start != end_index)
-		src[current_start++] = PASSED_THROUGH;
-	return (fd);
+	return (res);
 }
 
 int	ft_redirect_op(char *cmd, t_token *tokens)
@@ -103,9 +83,9 @@ int	ft_redirect_op(char *cmd, t_token *tokens)
 		if (input == ERROR)
 			return (ERROR);
 		if (input != INVALID)
-			fd_in = ft_input(cmd, input);
+			fd_in = ft_input(cmd, tokens, input);
 		if (output != INVALID)
-			fd_out = ft_output(cmd, output);
+			fd_out = ft_output(cmd, tokens, output);
 	}
 	return (CORRECT);
 }

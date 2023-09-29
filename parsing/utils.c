@@ -60,10 +60,12 @@ char	*ft_strslice(char *src, int start, int end)
 	return (NULL);
 }
 
-void	ft_purge(char **decon, char *src)
+void	ft_purge(t_token *tokens, char *src)
 {
-	ft_clear_array(decon);
-	ft_free(src);
+	if (tokens)
+		ft_free(tokens);
+	if (src)
+		ft_free(src);
 }
 
 void	ft_pass_through(char **decon)

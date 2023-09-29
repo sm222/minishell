@@ -56,19 +56,20 @@ void	ft_pass_through(char **decon);
 int		ft_at_index(char *src, char c);
 int		ft_redirect_rev_index(char *src);
 t_idx	ft_quotes_delimitation(char *src);
-void	ft_purge(char **decon, char *src);
 int		ft_at_rev_index(char *src, char c);
 char	*ft_get_file(char *cmd, char mode);
 void	ft_pipe_op(char *cmd, t_loc **list);
 char	**ft_arrayjoin(char **src, char *s);
-int		ft_input(char *src, int start_index);
-int		ft_output(char *src, int start_index);
+void	ft_purge(t_token *tokens, char *src);
 int		ft_is_not_in_quotes(char *src, int i);
 int		ft_redirect_op(char *cmd, t_token *tokens);
 char	*ft_strslice(char *src, int start, int end);
+char	*ft_file_extract(char *src, int start_index);
 int		ft_check_ignore(char *src, int start, int end);
 char	**ft_cmd_deconstruct(char *cmd, t_token *tokens);
 void	ft_add_loc(t_loc **list, char **cmd, t_token *tokens);
+int		ft_input(char *src, t_token *tokens, int start_index);
+int		ft_output(char *src, t_token *tokens, int start_index);
 int		ft_file_op(char *path, t_token *tokens, char redirect, char duplicity);
 
 #endif
