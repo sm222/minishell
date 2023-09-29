@@ -36,20 +36,27 @@ static short	ft_caller(t_mshell *shell)
 	size_t	j;
 
 	j = 0;
+	ft_set_mode(-1);
 	while (j < ft_strlen(shell->s))
 	{
 		shell->cmd_list = NULL;
 		i = 0;
-		while (shell->s[i + j] && shell->s[i + j] != '&')
+		while (shell->s[i + j] && shell->s[i + j] != '&' && ft_set_mode(0) == 0)
+		{
+			while (ft_set_mode(shell->s[j + i]) > 0)
+				ft_set_mode(shell->s[j + i++]);
 			i++;
+		}
 		shell->rest = ft_strndup(shell->s + j, i);
 		j += i + 1;
 		if (!shell->rest)
 			break ;
 		converter(shell->rest, &shell->cmd_list);
 		run_cmd(shell->cmd_list, shell);
-		free_here_doc(UNLINK);
+		free_here_doc(UNLINK); 
 		shell->rest = ft_free(shell->rest);
+		if (shell->pec != 0)
+			break ;
 	}
 	return (SUCCESS);
 }
