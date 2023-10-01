@@ -60,6 +60,7 @@ size_t	look_for_type(char *s, short *type)
 	size_t	i;
 
 	i = 0;
+	*type = 0;
 	ft_set_mode(-1);
 	bad_con(s, type);
 	if (*type == -1)
@@ -113,14 +114,11 @@ short	reset_data_main(t_mshell *shell)
 	shell->s = ft_free(shell->s);
 	shell->prompt = ft_free(shell->prompt);
 	get_user(shell);
-	shell->cmd_list = NULL;
 	shell->s = readline(shell->prompt);
 	if (!shell->s)
-		return (FAIL);
+		return (FAIL - 1);
 	else if (shell->s[0])
 		add_history(shell->s);
 	ft_change_dolar(&shell->s, shell->en, 0, shell->pec);
-	if (ft_caller(shell) == FAIL)
-		return (FAIL);
-	return (SUCCESS);
+	return(ft_caller(shell));
 }

@@ -54,6 +54,7 @@ int	run_and_close(t_cmd *in, char **env, char *cmd)
 	close_all_fd(in);
 	if (in->tok->redi_in == -1)
 		close(STDIN_FILENO);
+	in->tok = ft_free(in->tok);
 	if (in->command)
 	{
 		new_en = ex_en_new(env);
