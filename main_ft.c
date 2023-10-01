@@ -70,10 +70,11 @@ size_t	look_for_type(char *s, short *type)
 		ft_set_mode(s[i]);
 		while (s[i] && ft_set_mode(0) > 0)
 			ft_set_mode(s[i++]);
-		if (s[i] == '&' && s[i + 1] == '&')
+		if ((s[i] == '&' && s[i + 1] == '&' && s[i + 2]) || \
+			(s[i] == '|' && s[i + 1] == '|' && s[i + 2]))
+		{
 			break ;
-		if (s[i] == '|' && s[i + 1] == '|')
-			break ;
+		}
 		i++;
 	}
 	*type = s[i];
