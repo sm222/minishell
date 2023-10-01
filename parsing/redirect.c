@@ -23,83 +23,69 @@ void	ft_check_here_doc(char *src)
 	while (src && src[i])
 	{
 		if (src[i] == '<' && src[i + 1] == '<')
-			printf("here_doc\n");
+		{
+			if (!ft_strchr("<>|", src[i + 2]))
+				printf("here_doc\n");
+		}
 		i++;
 	}
 }
 
-int	ft_input(char *src, int start_index)
+int	ft_input(char *src, t_token *tokens, int start_index)
 {
-	int		end_index;
-	int		current_start;
+	int		res;
 	char	*file;
+	char	duplicity;
 
-	current_start = start_index;
-	printf("printf: regular input\n");
-	start_index++;
-	if (src[start_index] == ' ')
-		start_index++;
-	end_index = start_index;
-	while (src[end_index] > CHAR_LIMIT && src[end_index])
-		end_index++;
-	file = ft_strslice(src, start_index, end_index);
+	(void)tokens;
+	res = CORRECT;
+	duplicity = SINGLE_REDIRECT;
+	file = ft_file_extract(src, start_index);
 	printf("printf: %s\n", file);
 	free(file);
-	while (current_start != end_index)
-		src[current_start++] = PASSED_THROUGH;
-	return (0);
+	return (res);
 }
 
-int	ft_output(char *src, int start_index)
+int	ft_output(char *src, t_token *tokens, int start_index)
 {
-	int		end_index;
-	int		current_start;
+	int		res;
 	char	*file;
+	char	duplicity;
 
-	current_start = start_index;
+	(void)tokens;
+	res = CORRECT;
 	if (src[start_index + 1] == '>')
-	{
-		start_index++;
-		printf("printf: append\n");
-	}
+		duplicity = DOUBLE_REDIRECT;
 	else
-		printf("printf: trunk\n");
-	start_index++;
-	if (src[start_index] == ' ')
-		start_index++;
-	end_index = start_index;
-	while (src[end_index] > CHAR_LIMIT && src[end_index])
-		end_index++;
-	file = ft_strslice(src, start_index, end_index);
-	printf("printf: %s\n", file);
+		duplicity = SINGLE_REDIRECT;
+	file = ft_file_extract(src, start_index);
+	printf("printf: file: %s\n", file);
+	res = ft_file_op(file, tokens, '>', duplicity);
 	free(file);
-	while (current_start != end_index)
-		src[current_start++] = PASSED_THROUGH;
-	return (0);
+	return (res);
 }
 
-t_token	*ft_redirect_op(char *cmd)
+int	ft_redirect_op(char *cmd, t_token *tokens)
 {
-	int		input;
-	int		fd_in;
-	int		output;
-	int		fd_out;
-	t_token	*tokens;
+	int	input;
+	int	fd_in;
+	int	output;
+	int	fd_out;
 
-	tokens = NULL;
-	fd_in = -1;
+	fd_in = 0;
 	fd_out = 0;
+	(void)tokens;
 	ft_check_here_doc(cmd);
 	while (ft_has_redirect(cmd))
 	{
 		input = ft_at_index(cmd, '<');
 		output = ft_at_index(cmd, '>');
 		if (input == ERROR)
-			return (NULL);
+			return (ERROR);
 		if (input != INVALID)
-			fd_in = ft_input(cmd, input);
+			fd_in = ft_input(cmd, tokens, input);
 		if (output != INVALID)
-			fd_out = ft_output(cmd, output);
+			fd_out = ft_output(cmd, tokens, output);
 	}
-	return (tokens);
+	return (CORRECT);
 }
