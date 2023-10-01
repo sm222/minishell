@@ -30,30 +30,49 @@ static	void	get_user(t_mshell *shell)
 		ft_printf(NO_PRINT, "%o"GRN"%s "WHT"$ ", &shell->prompt, shell->pwd);
 }
 
+void	bad_con(char *s, short *type)
+{
+	int		*pec;
+	size_t	i;
+
+	i = 0;
+	pec = ft_return_ptr(NULL, PEC);
+	while (s[i])
+	{
+		if (s[i] == '&' || s[i] == '|')
+		{
+			if ((s[i + 1] == '\0') || (s[i] == '&' && s[i + 1] != '&') || \
+				(s[i] == '|' && s[i + 1] == '&'))
+			{
+				ft_printf(2, "%o"MS_NAME"\b: "SENUT" `%c\'\n", NULL, s[i]);
+				*pec = 258;
+				*type = -1;
+				break ;
+			}
+			i++;
+		}
+		i++;
+	}
+}
+
 size_t	look_for_type(char *s, short *type)
 {
 	size_t	i;
 
 	i = 0;
 	ft_set_mode(-1);
+	bad_con(s, type);
+	if (*type == -1)
+		return (FAIL);
 	while (s[i])
 	{
-		ft_printf(2, "-%c\n", s[i]);
 		ft_set_mode(s[i]);
 		while (s[i] && ft_set_mode(0) > 0)
 			ft_set_mode(s[i++]);
-		if (s[i] == '&' || s[i] == '|')
-		{
-			if (s[i + 1] == '&' && s[i] == '&')
-				break ;
-			else if (s[i] == '|' && s[i + 1] != '|')
-			{
-				i++;
-				continue ;
-			}
-			else if (s[i] == '|' &&  s[i + 1] == '|')
-				break ;
-		}
+		if (s[i] == '&' && s[i + 1] == '&')
+			break ;
+		if (s[i] == '|' && s[i + 1] == '|')
+			break ;
 		i++;
 	}
 	*type = s[i];
@@ -64,24 +83,26 @@ static short	ft_caller(t_mshell *shell)
 {
 	size_t	i;
 	size_t	j;
+	short	type;
 
 	j = 0;
 	ft_set_mode(-1);
 	while (j < ft_strlen(shell->s))
 	{
 		shell->cmd_list = NULL;
-		i = 0;
-		short	type;
-		size_t a = look_for_type(shell->s + j, &type);
-		shell->rest = ft_strndup(shell->s + j, a);
+		i = look_for_type(shell->s + j, &type);
+		if (type == -1)
+			return (FAIL);
+		shell->rest = ft_strndup(shell->s + j, i);
 		if (!shell->rest)
 			break ;
-		j += a + 1;
+		j += i + 2;
 		converter(shell->rest, &shell->cmd_list);
 		run_cmd(shell->cmd_list, shell);
-		free_here_doc(UNLINK); 
+		free_here_doc(UNLINK);
 		shell->rest = ft_free(shell->rest);
-		if (shell->pec != 0)
+		if ((shell->pec != 0 && type == '&') || \
+			(shell->pec == 0 && type == '|'))
 			break ;
 	}
 	return (SUCCESS);
@@ -99,6 +120,7 @@ short	reset_data_main(t_mshell *shell)
 	else if (shell->s[0])
 		add_history(shell->s);
 	ft_change_dolar(&shell->s, shell->en, 0, shell->pec);
-	ft_caller(shell);
+	if (ft_caller(shell) == FAIL)
+		return (FAIL);
 	return (SUCCESS);
 }

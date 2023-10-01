@@ -28,6 +28,7 @@
 //--------------------------//
 
 
+# define SENUT "syntax error near unexpected token"
 # define MADE_BY "		made by		"
 # define MADE_BY_NANE "\x1B[34m anboisve \x1B[32m brheaume\n"
 

@@ -60,7 +60,7 @@ int	main(int ac, char **av, char **en)
 		return (FAIL);
 	while (loop_test--)
 	{
-		if (reset_data_main(&shell) == FAIL)
+		if (reset_data_main(&shell) == FAIL -1)
 			break ;
 		printf("last pec == %d\n", shell.pec);
 	}
