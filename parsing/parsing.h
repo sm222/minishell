@@ -4,6 +4,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <fcntl.h>
+# include "../include/err.h"
 # include "../lib/lib_ft/libft.h"
 # include "../include/structure.h"
 # include "../readline/readline.h"
@@ -18,7 +19,7 @@
 # define CHAR_LIMIT 32 // space is the last char not included
 # define FIRST_INDEX 0
 # define PASSED_QUOTES 29
-# define IGNORE_QUOTES 30
+# define IGNORE_QUOTES 92 //30
 # define PASSED_THROUGH 31
 # define SINGLE_REDIRECT 115 // ascii value of 's'
 # define DOUBLE_REDIRECT 100 // ascii value of 'd'
@@ -41,6 +42,7 @@ typedef struct s_idx
 }	t_idx;
 
 int		ft_verify(char *src);
+void	ft_purge(t_loc *list);
 t_loc	*ft_parsing(char *src);
 int		ft_has_pipe(char *src);
 void	ft_quote_op(char *cmd);
@@ -54,13 +56,13 @@ void	ft_check_here_doc(char *src);
 int		ft_redirect_index(char *src);
 void	ft_pass_through(char **decon);
 int		ft_at_index(char *src, char c);
+t_loc	*ft_validate_cmds(t_loc *list);
 int		ft_redirect_rev_index(char *src);
 t_idx	ft_quotes_delimitation(char *src);
 int		ft_at_rev_index(char *src, char c);
 char	*ft_get_file(char *cmd, char mode);
 void	ft_pipe_op(char *cmd, t_loc **list);
 char	**ft_arrayjoin(char **src, char *s);
-void	ft_purge(t_token *tokens, char *src);
 int		ft_is_not_in_quotes(char *src, int i);
 int		ft_redirect_op(char *cmd, t_token *tokens);
 char	*ft_strslice(char *src, int start, int end);

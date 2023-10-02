@@ -2,16 +2,22 @@
 
 int	ft_is_not_in_quotes(char *src, int index)
 {
-	int	i;
-	int	not_in_quote;
+	int		i;
+	int		not_in_quote;
+	char	current_quote;
 
 	i = 0;
 	not_in_quote = CORRECT;
+	current_quote = 0;
 	while (src[i] && i < index)
 	{
-		if ((src[i] == '\'' || src[i] == '"') && not_in_quote)
+		if ((src[i] == '\'' || src[i] == '"' || \
+				src[i] == IGNORE_QUOTES) && not_in_quote)
+		{
 			not_in_quote = INCORRECT;
-		else if ((src[i] == '\'' || src[i] == '"') && !not_in_quote)
+			current_quote = src[i];
+		}
+		else if (src[i] == current_quote && !not_in_quote)
 			not_in_quote = CORRECT;
 		i++;
 	}
@@ -26,7 +32,8 @@ int	ft_has_quotes(char *src)
 	while (src[i])
 	{
 		if (src[i] == '\'' || src[i] == '"')
-			return (CORRECT);
+			if (ft_is_not_in_quotes(src, i))
+				return (CORRECT);
 		i++;
 	}
 	return (INCORRECT);
@@ -45,30 +52,30 @@ int	ft_check_ignore(char *src, int start, int end)
 
 t_idx	ft_quotes_delimitation(char *src)
 {
-	int		i;
-	t_idx	index;
+	t_idx	i;
 	int		open_quote;
 	char	current_quote;
 
-	i = 0;
 	open_quote = INCORRECT;
-	ft_bzero(&index, sizeof(t_idx));
-	while (src[i])
+	ft_bzero(&i, sizeof(t_idx));
+	while (src[i.current_start])
 	{
-		if (!open_quote && (src[i] == '\'' || src[i] == '"'))
+		if (!open_quote && (src[i.current_start] == '\'' || src[i.current_start] == '"'))
 		{
-			index.start_index = i;
+			i.start_index = i.current_start;
 			open_quote = CORRECT;
-			current_quote = src[i];
+			current_quote = src[i.current_start];
 		}
-		else if (open_quote && src[i] == current_quote)
+		else if (open_quote && src[i.current_start] == current_quote)
 		{
-			index.end_index = i;
+			i.end_index = i.current_start;
 			open_quote = INCORRECT;
+			return (i);
 		}
-		i++;
+		i.current_start++;
 	}
-	return (index);
+	ft_bzero(&i, sizeof(t_idx));
+	return (i);
 }
 
 void	ft_quote_op(char *cmd)
@@ -78,4 +85,11 @@ void	ft_quote_op(char *cmd)
 	index = ft_quotes_delimitation(cmd);
 	cmd[index.start_index] = IGNORE_QUOTES;
 	cmd[index.end_index] = IGNORE_QUOTES;
+	index.current_start = index.start_index;
+	while (index.current_start < index.end_index)
+	{
+		if (cmd[index.current_start] == ' ')
+			cmd[index.current_start] = PASSED_QUOTES;
+		index.current_start++;
+	}
 }

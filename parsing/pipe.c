@@ -32,12 +32,12 @@ void	ft_pipe_op(char *cmd, t_loc **list)
 		cmd[index.end_index] = PASSED_THROUGH;
 		index.start_index = index.end_index;
 		ft_add_loc(list, decon, tokens);
-		ft_purge(NULL, sliced_cmd);
+		ft_free(sliced_cmd);
 	}
 	tokens = ft_calloc(NODE, sizeof(t_token));
 	index.end_index = (int)ft_strlen(cmd);
 	sliced_cmd = ft_strslice(cmd, index.start_index, index.end_index);
 	decon = ft_cmd_deconstruct(sliced_cmd, tokens);
 	ft_add_loc(list, decon, tokens);
-	ft_purge(NULL, sliced_cmd);
+	ft_free(sliced_cmd);
 }

@@ -22,6 +22,7 @@ char	**ft_cmd_fragments(char *cmd)
 	ft_bzero(&idx, sizeof(t_idx));
 	while (cmd[idx.current])
 	{
+		printf("radar\n");
 		while (cmd[idx.current] && (cmd[idx.current] == ' ' || \
 				cmd[idx.current] == PASSED_THROUGH))
 			idx.current++;
@@ -38,13 +39,16 @@ char	**ft_cmd_deconstruct(char *cmd, t_token *tokens)
 	char	**res;
 
 	res = NULL;
+	tokens = NULL;
 	if (!cmd)
 		return (res);
 	if (ft_redirect_op(cmd, tokens) == CORRECT)
 	{
+		printf("cmd: %s\n", cmd);
 		while (ft_has_quotes(cmd))
 			ft_quote_op(cmd);
 		res = ft_cmd_fragments(cmd);
+		printf("changed cmd: %s\n", cmd);
 	}
 	return (res);
 }
