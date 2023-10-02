@@ -7,6 +7,7 @@ SRC = utils.c \
 	  array.c \
 	  verify.c \
 	  quotes.c \
+	  validate.c \
 	  fragment.c \
 	  redirect.c \
 	  redi_utils.c

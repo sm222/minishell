@@ -35,5 +35,5 @@ t_loc	*ft_parsing(char *src)
 	if (!ft_verify(src))
 		return (NULL);
 	ft_pipe_op(src, &list);
-	return (list);
+	return (ft_validate_cmds(list));
 }

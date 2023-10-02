@@ -39,10 +39,8 @@ char	*ft_strslice(char *src, int start, int end)
 {
 	char	*res;
 	int		i;
-	int		nb_ignore;
 
 	i = 0;
-	nb_ignore = ft_check_ignore(src, start, end);
 	if (src && start != end)
 	{
 		res = ft_calloc(end - start + 1, sizeof(char));
@@ -52,6 +50,11 @@ char	*ft_strslice(char *src, int start, int end)
 		{
 			if (src[start] == IGNORE_QUOTES)
 				start++;
+			else if (src[start] == PASSED_QUOTES)
+			{
+				res[i++] = ' ';
+				start++;
+			}
 			else
 				res[i++] = src[start++];
 		}
@@ -60,12 +63,22 @@ char	*ft_strslice(char *src, int start, int end)
 	return (NULL);
 }
 
-void	ft_purge(t_token *tokens, char *src)
+void	ft_purge(t_loc *list)
 {
-	if (tokens)
-		ft_free(tokens);
-	if (src)
-		ft_free(src);
+	t_loc	*current;
+	t_loc	*temp;
+
+	current = list;
+	while (current)
+	{
+		if (current->tokens)
+			ft_free(current->tokens);
+		if (current->decon_cmd)
+			ft_clear_array(current->decon_cmd);
+		temp = current;
+		current = current->next;
+		ft_free(temp);
+	}
 }
 
 void	ft_pass_through(char **decon)
