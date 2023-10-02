@@ -27,7 +27,6 @@
 //			define			//
 //--------------------------//
 
-
 # define SENUT "syntax error near unexpected token"
 # define MADE_BY "		made by		"
 # define MADE_BY_NANE "\x1B[34m anboisve \x1B[32m brheaume\n"
@@ -97,6 +96,8 @@ short	reset_data_main(t_mshell *shell);
 int		get_env_path(t_mshell *data);
 void	print_logo(char *seed);
 short	converter(char *in, t_cmd **list);
+short	find_end(char *s, size_t start);
+size_t	look_for_type(char *s, short *type);
 
 #endif // MINISHELL_H
 

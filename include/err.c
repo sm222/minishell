@@ -27,7 +27,7 @@ int	debug(int err, char *msg, char *file)
 	ft_printf(-1, "%o%d %s\n", &t, err, msg);
 	if (file)
 	{
-	fd = open(file, O_CREAT | O_APPEND | O_RDWR, 0644);
+		fd = open(file, O_CREAT | O_APPEND | O_RDWR, 0644);
 		if (fd == -1)
 		{
 			ft_putstr_fd("can't, make debug file\n", 2);

@@ -47,7 +47,7 @@ int	run_and_close(t_cmd *in, char **env, char *cmd)
 	t_mshell	*shell;
 	char		**new_en;
 
-	new_en	= NULL;
+	new_en = NULL;
 	shell = NULL;
 	shell = ft_return_ptr(NULL, SYS); 
 	dup_in_out(in);

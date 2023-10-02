@@ -85,7 +85,6 @@ short	make_here_doc(int i, char inter, char *stop)
 		}
 		return (edit_here_doc(*doc, stop, inter));
 	}
-	
 	if (make_here_doc_last(doc, inter, i, stop))
 	{
 		perror("make_here_doc");

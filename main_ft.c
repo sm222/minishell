@@ -30,57 +30,6 @@ static	void	get_user(t_mshell *shell)
 		ft_printf(NO_PRINT, "%o"GRN"%s "WHT"$ ", &shell->prompt, shell->pwd);
 }
 
-void	bad_con(char *s, short *type)
-{
-	int		*pec;
-	size_t	i;
-
-	i = 0;
-	pec = ft_return_ptr(NULL, PEC);
-	while (s[i])
-	{
-		if (s[i] == '&' || s[i] == '|')
-		{
-			if ((s[i + 1] == '\0') || (s[i] == '&' && s[i + 1] != '&') || \
-				(s[i] == '|' && s[i + 1] == '&'))
-			{
-				ft_printf(2, "%o"MS_NAME"\b: "SENUT" `%c\'\n", NULL, s[i]);
-				*pec = 258;
-				*type = -1;
-				break ;
-			}
-			i++;
-		}
-		i++;
-	}
-}
-
-size_t	look_for_type(char *s, short *type)
-{
-	size_t	i;
-
-	i = 0;
-	*type = 0;
-	ft_set_mode(-1);
-	bad_con(s, type);
-	if (*type == -1)
-		return (FAIL);
-	while (s[i])
-	{
-		ft_set_mode(s[i]);
-		while (s[i] && ft_set_mode(0) > 0)
-			ft_set_mode(s[i++]);
-		if ((s[i] == '&' && s[i + 1] == '&' && s[i + 2]) || \
-			(s[i] == '|' && s[i + 1] == '|' && s[i + 2]))
-		{
-			break ;
-		}
-		i++;
-	}
-	*type = s[i];
-	return (i);
-}
-
 static short	ft_caller(t_mshell *shell)
 {
 	size_t	i;
@@ -121,5 +70,5 @@ short	reset_data_main(t_mshell *shell)
 	else if (shell->s[0])
 		add_history(shell->s);
 	ft_change_dolar(&shell->s, shell->en, 0, shell->pec);
-	return(ft_caller(shell));
+	return (ft_caller(shell));
 }

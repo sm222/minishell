@@ -1,6 +1,5 @@
 #include "include/minishell.h"
 
-
 static void	free_shell(t_mshell *shell)
 {
 	if (!shell)
@@ -12,6 +11,7 @@ static void	free_shell(t_mshell *shell)
 	ft_double_sfree((void **)shell->path);
 	ft_double_sfree((void **)shell->en);
 }
+
 static void	do_logo(char **av)
 {
 	if (av[1] && av[1][0] != 0 && ft_strlen(av[1]) > 8)
@@ -48,11 +48,10 @@ static int	start_shell(t_mshell *shell, char **en, char **av)
 	return (SUCCESS);
 }
 
-
 int	main(int ac, char **av, char **en)
 {
 	t_mshell	shell;
-	int		loop_test;
+	int			loop_test;
 
 	(void)ac;
 	loop_test = 100;

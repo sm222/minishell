@@ -46,7 +46,7 @@ static int	write_fd(int fd, char *stop, short inter)
 		return (M_FAIL);
 	}
 	if (inter)
-		ft_change_dolar(&tmp, ft_return_ptr(NULL ,ENV_C), 1, *pec);
+		ft_change_dolar(&tmp, ft_return_ptr(NULL, ENV_C), 1, *pec);
 	ft_putendl_fd(tmp, fd);
 	free(tmp);
 	return (FAIL);
