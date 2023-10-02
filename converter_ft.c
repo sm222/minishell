@@ -1,4 +1,5 @@
 #include "include/minishell.h"
+#include "parsing/parsing.h"
 
 static void	bad_con(char *s, short *type)
 {
@@ -9,7 +10,7 @@ static void	bad_con(char *s, short *type)
 	pec = ft_return_ptr(NULL, PEC);
 	while (s[i])
 	{
-		if (s[i] == '&' || s[i] == '|')
+		if ((s[i] == '&' || s[i] == '|') && ft_is_not_in_quotes(s, i))
 		{
 			if ((s[i + 1] == '\0') || (s[i] == '&' && s[i + 1] != '&') || \
 				(s[i] == '|' && s[i + 1] == '&') || \
@@ -48,16 +49,20 @@ size_t	look_for_type(char *s, short *type)
 	bad_con(s, type);
 	if (*type == -1)
 		return (FAIL);
-	while (s[i])
+	while (s && i < ft_strlen(s))
 	{
 		ft_set_mode(s[i]);
 		while (s[i] && ft_set_mode(0) > 0)
 			ft_set_mode(s[i++]);
-		if ((s[i] == '&' && s[i + 1] == '&' && s[i + 2]) || \
-			(s[i] == '|' && s[i + 1] == '|' && s[i + 2]))
-			break ;
+		if (s[i] && s[i + 1])
+		{
+			if ((s[i] == '&' && s[i + 1] == '&' && s[i + 2]) || \
+				(s[i] == '|' && s[i + 1] == '|' && s[i + 2]))
+				break ;
+		}
 		i++;
 	}
-	*type = s[i];
+	if (i < ft_strlen(s))
+		*type = s[i];
 	return (i);
 }

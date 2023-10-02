@@ -16,13 +16,13 @@ static int	find_buit_in(char *name)
 		tmp[i] = ft_tolower(tmp[i]);
 		i++;
 	}
-	if (ft_strncmp(tmp, ECHO, ft_strlen(ECHO) + 1) == 0 || \
-		ft_strncmp(tmp, PWD, ft_strlen(PWD) + 1) == 0 || \
-		ft_strncmp(tmp, CD, ft_strlen(CD) + 1) == 0 || \
-		ft_strncmp(tmp, EXIT, ft_strlen(EXIT) + 1) == 0 || \
-		ft_strncmp(tmp, ENV, ft_strlen(ENV) + 1) == 0 || \
+	if (ft_strncmp(tmp, EXPORT, ft_strlen(EXPORT) + 1) == 0 || \
 		ft_strncmp(tmp, UNSET, ft_strlen(UNSET) + 1) == 0 || \
-		ft_strncmp(tmp, EXPORT, ft_strlen(EXPORT) + 1) == 0)
+		ft_strncmp(tmp, ECHO, ft_strlen(ECHO) + 1) == 0 || \
+		ft_strncmp(tmp, EXIT, ft_strlen(EXIT) + 1) == 0 || \
+		ft_strncmp(tmp, PWD, ft_strlen(PWD) + 1) == 0 || \
+		ft_strncmp(tmp, ENV, ft_strlen(ENV) + 1) == 0 || \
+		ft_strncmp(tmp, CD, ft_strlen(CD) + 1) == 0)
 		flag = BUILT_IN_FLAG;
 	free(tmp);
 	return (flag);
