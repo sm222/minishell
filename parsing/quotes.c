@@ -60,7 +60,8 @@ t_idx	ft_quotes_delimitation(char *src)
 	ft_bzero(&i, sizeof(t_idx));
 	while (src[i.current_start])
 	{
-		if (!open_quote && (src[i.current_start] == '\'' || src[i.current_start] == '"'))
+		if (!open_quote && (src[i.current_start] == '\'' \
+			|| src[i.current_start] == '"'))
 		{
 			i.start_index = i.current_start;
 			open_quote = CORRECT;
@@ -74,7 +75,6 @@ t_idx	ft_quotes_delimitation(char *src)
 		}
 		i.current_start++;
 	}
-	ft_bzero(&i, sizeof(t_idx));
 	return (i);
 }
 
