@@ -22,13 +22,13 @@ char	*ft_file_extract(char *src, int start_index)
 
 static int	ft_file_in(char *path, t_token *tokens)
 {
-	if (tokens->redi_in > 3)
+	if (tokens->redi_in > 2)
 		close(tokens->redi_in);
 	if (access(path, F_OK) == 0)
 		tokens->redi_in = open(path, O_RDONLY);
 	else
 	{
-		printf("no such file %s\n", path);
+		ft_printf(2, MS_NAME"\b: %s: no such file or directory\n", path);
 		return (INCORRECT);
 	}
 	return (CORRECT);
@@ -36,27 +36,31 @@ static int	ft_file_in(char *path, t_token *tokens)
 
 static int	ft_file_out(char *path, t_token *tokens, char duplicity)
 {
-	if (tokens->redi_out > 3)
+	if (tokens->redi_out > 2)
 		close(tokens->redi_out);
 	if (duplicity == SINGLE_REDIRECT)
-		tokens->redi_out = open(path, O_CREAT | O_TRUNC, 0644);
+		tokens->redi_out = open(path, O_CREAT | O_TRUNC | O_WRONLY, 0644);
 	else if (duplicity == DOUBLE_REDIRECT)
-		tokens->redi_out = open(path, O_CREAT | O_APPEND, 0644);
+		tokens->redi_out = open(path, O_CREAT | O_APPEND | O_WRONLY, 0644);
+	if (tokens->redi_out == INVALID)
+	{
+		ft_printf(2, MS_NAME"\b: %s: can't access file\n", path);
+		return (INCORRECT);
+	}
 	return (CORRECT);
 }
 
-// WIP
 int	ft_file_op(char *path, t_token *tokens, char redirect, char duplicity)
 {
 	if (redirect == '<')
 	{
 		if (!ft_file_in(path, tokens))
-			return (INCORRECT);
+			return (INVALID);
 	}
 	if (redirect == '>')
 	{
 		if (!ft_file_out(path, tokens, duplicity))
-			return (INCORRECT);
+			return (INVALID);
 	}
 	return (CORRECT);
 }

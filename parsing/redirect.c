@@ -15,33 +15,16 @@ int	ft_has_redirect(char *src)
 	return (INCORRECT);
 }
 
-void	ft_check_here_doc(char *src)
-{
-	int	i;
-
-	i = FIRST_INDEX;
-	while (src && src[i])
-	{
-		if (src[i] == '<' && src[i + 1] == '<')
-		{
-			if (!ft_strchr("<>|", src[i + 2]))
-				printf("here_doc\n");
-		}
-		i++;
-	}
-}
-
 int	ft_input(char *src, t_token *tokens, int start_index)
 {
 	int		res;
 	char	*file;
 	char	duplicity;
 
-	(void)tokens;
 	res = CORRECT;
 	duplicity = SINGLE_REDIRECT;
 	file = ft_file_extract(src, start_index);
-	printf("printf: %s\n", file);
+	res = ft_file_op(file, tokens, '<', duplicity);
 	free(file);
 	return (res);
 }
@@ -52,14 +35,12 @@ int	ft_output(char *src, t_token *tokens, int start_index)
 	char	*file;
 	char	duplicity;
 
-	(void)tokens;
 	res = CORRECT;
 	if (src[start_index + 1] == '>')
 		duplicity = DOUBLE_REDIRECT;
 	else
 		duplicity = SINGLE_REDIRECT;
 	file = ft_file_extract(src, start_index);
-	printf("printf: file: %s\n", file);
 	res = ft_file_op(file, tokens, '>', duplicity);
 	free(file);
 	return (res);
@@ -67,25 +48,24 @@ int	ft_output(char *src, t_token *tokens, int start_index)
 
 int	ft_redirect_op(char *cmd, t_token *tokens)
 {
-	int	input;
-	int	fd_in;
-	int	output;
-	int	fd_out;
+	t_rdct	fd;
 
-	fd_in = 0;
-	fd_out = 0;
-	(void)tokens;
-	ft_check_here_doc(cmd);
+	ft_bzero(&fd, sizeof(t_rdct));
+	fd.fd_doc = ft_check_here_doc(cmd, &fd);
 	while (ft_has_redirect(cmd))
 	{
-		input = ft_at_index(cmd, '<');
-		output = ft_at_index(cmd, '>');
-		if (input == ERROR)
+		fd.input = ft_at_index(cmd, '<');
+		fd.output = ft_at_index(cmd, '>');
+		if (fd.input == ERROR)
 			return (ERROR);
-		if (input != INVALID)
-			fd_in = ft_input(cmd, tokens, input);
-		if (output != INVALID)
-			fd_out = ft_output(cmd, tokens, output);
+		if (fd.input != INVALID)
+			fd.in_succ = ft_input(cmd, tokens, fd.input);
+		if (fd.output != INVALID)
+			fd.out_succ = ft_output(cmd, tokens, fd.output);
 	}
+	if (fd.in_succ == INVALID || fd.out_succ == INVALID)
+		return (INCORRECT);
+	if (fd.last_doc)
+		tokens->redi_in = fd.fd_doc;
 	return (CORRECT);
 }

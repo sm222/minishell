@@ -41,6 +41,16 @@ typedef struct s_idx
 	int	current;
 }	t_idx;
 
+typedef struct s_rdct
+{
+	int	input;
+	int	output;
+	int	fd_doc;
+	int	in_succ;
+	int out_succ;
+	int	last_doc;
+} t_rdct;
+
 int		ft_verify(char *src);
 void	ft_purge(t_loc *list);
 t_loc	*ft_parsing(char *src);
@@ -52,7 +62,6 @@ int		ft_quote_error(char *src);
 int		ft_invalid_pipe(char *cmd);
 int		ft_has_redirect(char *src);
 void	*ft_clear_array(char **src);
-void	ft_check_here_doc(char *src);
 int		ft_redirect_index(char *src);
 void	ft_pass_through(char **decon);
 int		ft_at_index(char *src, char c);
@@ -64,9 +73,11 @@ char	*ft_get_file(char *cmd, char mode);
 void	ft_pipe_op(char *cmd, t_loc **list);
 char	**ft_arrayjoin(char **src, char *s);
 int		ft_is_not_in_quotes(char *src, int i);
+int		ft_check_here_doc(char *src, t_rdct *fd);
 int		ft_redirect_op(char *cmd, t_token *tokens);
 char	*ft_strslice(char *src, int start, int end);
 char	*ft_file_extract(char *src, int start_index);
+int		ft_here_doc(char *src, int start, t_rdct *fd);
 int		ft_check_ignore(char *src, int start, int end);
 char	**ft_cmd_deconstruct(char *cmd, t_token *tokens);
 void	ft_add_loc(t_loc **list, char **cmd, t_token *tokens);
