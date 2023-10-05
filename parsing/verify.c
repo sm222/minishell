@@ -1,6 +1,6 @@
 #include "parsing.h"
 
-int	ft_quote_error(char *src)
+static int	ft_quote_error(char *src)
 {
 	int		i;
 	char	c;
@@ -28,7 +28,7 @@ int	ft_quote_error(char *src)
 	return (INCORRECT);
 }
 
-int	ft_redirect_error(char *src)
+static int	ft_redirect_error(char *src)
 {
 	int		i;
 
@@ -37,8 +37,9 @@ int	ft_redirect_error(char *src)
 	{
 		if (src[i] == '<' || src[i] == '>')
 		{
-			if (src[i + 2] == '<' || src[i + 2] == '>')
-				return (CORRECT);
+			if (i + 2 < (int)ft_strlen(src))
+				if (src[i + 2] == '<' || src[i + 2] == '>')
+					return (CORRECT);
 		}
 		i++;
 	}

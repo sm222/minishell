@@ -51,7 +51,6 @@ int	ft_redirect_op(char *cmd, t_token *tokens)
 	t_rdct	fd;
 
 	ft_bzero(&fd, sizeof(t_rdct));
-	fd.fd_doc = ft_check_here_doc(cmd, &fd);
 	while (ft_has_redirect(cmd))
 	{
 		fd.input = ft_at_index(cmd, '<');
