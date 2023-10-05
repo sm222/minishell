@@ -41,7 +41,7 @@
 #  define WHT	"\x1B[37m"
 #  define ORG	"\x1b[38;5;202m"
 #  define PIK	"\x1b[38;5;176m"
-#  define TOX	"\x1b[38;5;190m"
+#  define TOX	"\x1b[38;5;51m"
 #  define RESET	"\x1B[0m"
 #  define CLE	"\e[1;1H\e[2J"
 # endif
