@@ -1,6 +1,7 @@
 NAME = parsing.a
 
 SRC = utils.c \
+	  doc.c \
 	  file.c \
 	  pipe.c \
 	  main.c \

@@ -61,6 +61,6 @@ int	ft_verify(char *src)
 		res = INCORRECT;
 	}
 	if (res == INCORRECT)
-		ft_check_here_doc(src);
+		ft_check_here_doc(src, NULL);
 	return (res);
 }
