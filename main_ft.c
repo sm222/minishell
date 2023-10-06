@@ -24,7 +24,7 @@ static	void	get_user(t_mshell *shell)
 	logname = get_env(shell->en, "LOGNAME");
 	shell->pwd = get_path(getcwd(NULL, 0), shell->pwd);
 	if (logname)
-		ft_printf(NO_PRINT, "%o"GRN"%s"WHT"[%s]$ ", &shell->prompt, \
+		ft_printf(NO_PRINT, "%o"GRN"%s"WHT"["TOX"%s"WHT"]$ ", &shell->prompt, \
 	shell->pwd, logname);
 	else
 		ft_printf(NO_PRINT, "%o"GRN"%s "WHT"$ ", &shell->prompt, shell->pwd);

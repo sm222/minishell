@@ -11,7 +11,6 @@ SRC = utils.c \
 	  validate.c \
 	  fragment.c \
 	  redirect.c \
-	  redi_utils.c
 
 OBJ = ${SRC:.c=.o}
 
