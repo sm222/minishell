@@ -6,11 +6,7 @@ int main(void)
 
 	doc = NULL;
 	ft_return_ptr(&doc, DOC);
-	int	i = 0;
-	while (i < 10)
-	{
-		make_here_doc(i, "eof");
-		printf("%dend\n", i++);
-	}
+	int fd = make_here_doc(1, ft_strdup("eof"));
+	printf("fd = %d\n", fd);
 	free_here_doc(1);
 }
