@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 11:07:18 by anboisve          #+#    #+#             */
-/*   Updated: 2023/09/25 10:06:56 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/10/08 11:42:11 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ int			ft_putchar_fd(char c, int fd);
 int			ft_putstr_fd(char *s, int fd);
 int			ft_putnbr_fd(int n, int fd);
 int			ft_putendl_fd(char *s, int fd);
+char		*ft_make_color(short r, short g, short b);
 
 //b_flag								//
 
