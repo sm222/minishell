@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 12:31:43 by anboisve          #+#    #+#             */
-/*   Updated: 2023/10/06 21:08:48 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/10/08 12:38:10 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,12 +52,12 @@ char	*get_next_line(int fd)
 	static char	*book;
 	t_info		t_val;
 
+	ft_bzero(&t_val, sizeof(t_info));
 	if (fd < 0 || BUFFER_SIZE <= 0 || fd > INT_MAX / 2)
 		return (NULL);
 	if (!book)
 		book = ft_calloc(1, sizeof(char));
 	t_val.tmp = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
-	t_val.rv = 0;
 	while (ft_find_gnl(book) == '0')
 	{
 		ft_bzero(t_val.tmp, BUFFER_SIZE + 1);
