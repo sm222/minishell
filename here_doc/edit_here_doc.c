@@ -63,11 +63,9 @@ static short	edit_loop(t_doc *doc, char *stop, short inter)
 
 	f = stat(doc->f_name, &doc->last);
 	mode = doc->last.st_mode;
-	printf("ici %d\n", f);
 	while (f == 0)
 	{
 		f = stat(doc->f_name, &doc->start);
-		printf("ici %d\n", f);
 		if (f != 0 || mode != doc->start.st_mode)
 		{
 			ft_printf(2, "%ominishell: here_doc: file was temperd\n", NULL);
@@ -76,7 +74,6 @@ static short	edit_loop(t_doc *doc, char *stop, short inter)
 		if (write_fd(doc->fd, stop, inter) != 0 || f == -1)
 			break ;
 		f = stat(doc->f_name, &doc->last);
-		printf("ici\n");
 	}
 	if (f == -1)
 		perror("minishell: here_doc");
@@ -104,6 +101,7 @@ int	edit_here_doc(t_doc *doc, char *stop, short inter)
 				ft_printf(2, "%o"MS_NAME"\b: can't make file %s\n", \
 			NULL, doc->f_name);
 				free_here_doc(0);
+				ft_free(stop);
 				exit(1);
 			}
 			edit_loop(doc, stop, inter);
