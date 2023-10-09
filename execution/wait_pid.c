@@ -6,7 +6,7 @@ int	get_err_code(int pec, int l)
 	unsigned char	r_val;
 
 	r_val = pec;
-	if (l != 0)
+	if (l > 0)
 	{
 		if (WIFEXITED(pec))
 			r_val = WEXITSTATUS(pec);
