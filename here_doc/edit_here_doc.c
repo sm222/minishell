@@ -3,7 +3,7 @@
 /// @brief use at the end of the edit_here_doc
 /// @param fd of the open here_doc
 /// @return 
-static int	close_and_exit(int fd)
+int	close_and_exit(int fd)
 {
 	t_mshell	*shell;
 
