@@ -40,6 +40,7 @@ SRCS	=	main.c\
 			main_ft.c\
 			main_logo.c\
 			converter.c\
+			free_shell.c\
 			include/err.c\
 			converter_ft.c\
 			signal/signal.c\

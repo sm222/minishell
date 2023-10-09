@@ -27,6 +27,7 @@
 # define DOC   5		// here_dock
 # define SIG   6		// signal_ft
 # define PARSE 7		// t_loc struct
+# define CLEAN 8		// clean_shell ft
 
 //		SIG		//
 
