@@ -36,8 +36,8 @@ int	ft_is_last_in(char *src, int start)
 int	ft_run_here_doc(char *src, t_idx limit, t_rdct *fd)
 {
 	char	*file;
+	int		fd_doc;
 	int		has_quotes;
-	static int	nb_doc = 0;
 
 	limit.start_index++;
 	limit.current_start = limit.start_index;
@@ -54,21 +54,25 @@ int	ft_run_here_doc(char *src, t_idx limit, t_rdct *fd)
 		limit.start_index++;
 	}
 	file = ft_file_extract(src, limit.current_start);
-	//make_here_doc(nb_doc);
-	nb_doc++;
+	fd_doc = make_here_doc(has_quotes, path);
 	free(file);
-	return (CORRECT);
+	return (fd_doc);
 }
 
 int	ft_here_doc(char *src, t_rdct *fd)
 {
 	t_idx	i;
+	int		fd;
 
 	ft_bzero(&i, sizeof(t_idx));
+	if (ft_check_here_doc(src, &i))
+		fd_doc = ();
+	else
+		return (INVALID);
 	if (fd)
 	{
 	}
 	while (src[i.start_index])
 		i.start_index++;
-	return (CORRECT);
+	return ();
 }
