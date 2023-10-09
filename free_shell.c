@@ -3,12 +3,12 @@
 short static	free_data_shell(t_mshell *shell)
 {
 	free_here_doc(UNLINK);
-	ft_free(shell->pwd);
-	ft_free(shell->rest);
-	ft_free(shell->s);
-	ft_free(shell->prompt);
-	ft_double_sfree((void **)shell->path);
-	ft_double_sfree((void **)shell->en);
+	shell->pwd = ft_free(shell->pwd);
+	shell->rest = ft_free(shell->rest);
+	shell->s = ft_free(shell->s);
+	shell->prompt = ft_free(shell->prompt);
+	shell->path = (char **)ft_double_sfree((void **)shell->path);
+	shell->en = (char **)ft_double_sfree((void **)shell->en);
 	return (1);
 }
 short static	free_data_loc(t_loc *data)
