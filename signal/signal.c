@@ -29,7 +29,7 @@ static void	ft_doc_sig_handle(int signal)
 {
 	(void)signal;
 	ft_putendl_fd("\0", 1);
-	
+	ft_return_ptr(NULL, CLEAN);
 }
 
 void	ft_signal_handler(int mode)
