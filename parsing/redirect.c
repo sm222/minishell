@@ -62,7 +62,7 @@ int	ft_redirect_op(char *cmd, t_token *tokens)
 		if (fd.output != INVALID)
 			fd.out_succ = ft_output(cmd, tokens, fd.output);
 	}
-	if (fd.in_succ == INVALID || fd.out_succ == INVALID || \
+	if (fd.in_succ == INVALID || fd.out_succ == INVALID || \
 		fd.fd_doc == INVALID)
 		return (INCORRECT);
 	if (fd.last_doc)

@@ -54,7 +54,7 @@ int	ft_run_here_doc(char *src, t_idx limit, t_rdct *fd)
 		limit.start_index++;
 	}
 	file = ft_file_extract(src, limit.current_start);
-	fd_doc = make_here_doc(has_quotes, path);
+	fd_doc = make_here_doc(has_quotes, file);
 	free(file);
 	return (fd_doc);
 }
@@ -62,17 +62,14 @@ int	ft_run_here_doc(char *src, t_idx limit, t_rdct *fd)
 int	ft_here_doc(char *src, t_rdct *fd)
 {
 	t_idx	i;
-	int		fd;
+	int		fd_doc;
 
 	ft_bzero(&i, sizeof(t_idx));
 	if (ft_check_here_doc(src, &i))
-		fd_doc = ();
+		fd_doc = ft_run_here_doc(src, i, fd);
 	else
 		return (INVALID);
-	if (fd)
-	{
-	}
 	while (src[i.start_index])
 		i.start_index++;
-	return ();
+	return (fd_doc);
 }

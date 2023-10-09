@@ -54,6 +54,7 @@ int	main(int ac, char **av, char **en)
 	int			loop_test;
 
 	(void)ac;
+	ft_signal_handler(CMD);
 	loop_test = 100;
 	if (start_shell(&shell, en, av) != SUCCESS)
 		return (FAIL);

@@ -8,6 +8,7 @@
 # include "../lib/lib_ft/libft.h"
 # include "../include/structure.h"
 # include "../readline/readline.h"
+# include "../here_doc/here_doc.h"
 
 # include <stdio.h>
 

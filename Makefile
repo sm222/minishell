@@ -40,16 +40,17 @@ SRCS	=	main.c\
 			main_ft.c\
 			main_logo.c\
 			converter.c\
-			converter_ft.c\
 			include/err.c\
+			converter_ft.c\
+			signal/signal.c\
 			built_in/cd/cd.c\
 			built_in/pwd/pwd.c\
 			built_in/echo/echo.c\
 			built_in/env/ft_env.c\
 			built_in/exit/ft_exit.c\
 			built_in/export/export.c\
-			built_in/export/export_u.c\
 			built_in/unset/ft_unset.c\
+			built_in/export/export_u.c\
 
 #env -i ./minishell
 
