@@ -1,5 +1,9 @@
 #include "here_doc.h"
 
+
+/// @brief DON'T USE
+/// @param i 
+/// @return 
 int	get_here_doc(int i)
 {
 	int		fd;

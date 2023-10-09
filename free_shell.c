@@ -1,6 +1,5 @@
 #include "include/minishell.h"
 
-/*
 short static	free_data_shell(t_mshell *data)
 {
 

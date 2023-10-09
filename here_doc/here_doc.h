@@ -26,4 +26,7 @@ int	make_here_doc(char inter, char *stop);
 int	edit_here_doc(t_doc *doc, char *stop, short inter);
 int	free_here_doc(short unlink_f);
 
+// - - - - - - - - - - - -
+int	close_and_exit(int fd);
+
 #endif // HERE_DOC_H
