@@ -66,7 +66,8 @@ int	ft_here_doc(char *src, t_rdct *fd)
 
 	ft_bzero(&i, sizeof(t_idx));
 	if (fd)
-		;
+	{
+	}
 	while (src[i.start_index])
 		i.start_index++;
 	return (CORRECT);
