@@ -10,11 +10,13 @@ int	ft_check_here_doc(char *src, t_idx *i_doc)
 		if (src[i] == '<' && src[i + 1] == '<')
 		{
 			if (!ft_strchr("<>|", src[i + 2]))
+			{
 				if (ft_is_not_in_quotes(src, i))
 				{
 					i_doc->start_index = i;
 					return (CORRECT);
 				}
+			}
 		}
 		i++;
 	}
@@ -54,6 +56,8 @@ int	ft_run_here_doc(char *src, t_idx limit, t_rdct *fd)
 		limit.start_index++;
 	}
 	file = ft_file_extract(src, limit.current_start);
+	while (limit.current_start < limit.end_index)
+		src[limit.current_start++] = PASSED_THROUGH;
 	fd_doc = make_here_doc(has_quotes, file);
 	free(file);
 	return (fd_doc);
