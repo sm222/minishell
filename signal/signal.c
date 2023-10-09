@@ -27,7 +27,6 @@ static void	ft_child_sig_handle(int signal)
 
 static void	ft_doc_sig_handle(int signal)
 {
-
 	(void)signal;
 	ft_putendl_fd("\0", 1);
 	

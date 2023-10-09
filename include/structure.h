@@ -26,6 +26,7 @@
 # define EX_F  4		// tell if the program end
 # define DOC   5		// here_dock
 # define SIG   6		// signal_ft
+# define PARSE 7		// t_loc struct
 
 //		SIG		//
 

@@ -29,8 +29,8 @@ t_loc	*ft_parsing(char *src)
 {
 	t_loc	*list;
 
-	ft_return_ptr(list, PARSE)
 	list = NULL;
+	ft_return_ptr(&list, PARSE);
 	if (!src)
 		return (NULL);
 	if (!ft_verify(src))
