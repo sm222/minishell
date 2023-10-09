@@ -27,9 +27,13 @@ static void	ft_child_sig_handle(int signal)
 
 static void	ft_doc_sig_handle(int signal)
 {
+	short	(*ft)(void);
+
 	(void)signal;
 	ft_putendl_fd("\0", 1);
-	ft_return_ptr(NULL, CLEAN);
+	ft = ft_return_ptr(NULL, CLEAN);
+	ft();
+	ft_putendl_fd("radar", 2);
 }
 
 void	ft_signal_handler(int mode)
