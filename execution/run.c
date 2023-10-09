@@ -46,10 +46,13 @@ int	run_and_close(t_cmd *in, char **env, char *cmd)
 {
 	t_mshell	*shell;
 	char		**new_en;
+	void		(*ft)(int);
 
 	new_en = NULL;
 	shell = NULL;
-	shell = ft_return_ptr(NULL, SYS); 
+	shell = ft_return_ptr(NULL, SYS);
+	ft = ft_return_ptr(NULL, SIG);
+	ft(CHILD);
 	dup_in_out(in);
 	close_all_fd(in);
 	if (in->tok->redi_in == -1)

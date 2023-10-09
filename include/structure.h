@@ -25,6 +25,19 @@
 # define ENV_C 3		// copy of the env
 # define EX_F  4		// tell if the program end
 # define DOC   5		// here_dock
+# define SIG   6		// signal_ft
+
+//		SIG		//
+
+# ifndef CMD
+#  define CMD 9
+# endif
+# ifndef CHILD
+#  define CHILD 3
+# endif
+# ifndef HERE_DOC
+# define  HERE_DOC 6
+# endif
 
 //--------------------------//
 //			colors			//
