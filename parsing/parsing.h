@@ -11,13 +11,10 @@
 
 # include <stdio.h>
 
-# define CMD 9
 # define NODE 1
-# define CHILD 3
 # define ERROR -2
 # define CORRECT 1
 # define INVALID -1 
-# define HERE_DOC 6
 # define INCORRECT 0
 # define FIRST_INDEX 0
 # define PASSED_QUOTES 29

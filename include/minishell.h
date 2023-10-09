@@ -18,6 +18,7 @@
 # include "../execution/execution.h"
 # include "../here_doc/here_doc.h"
 # include "../parsing/parsing.h"
+# include "../signal/signal.h"
 
 # define DEV_CHMOD	0644
 

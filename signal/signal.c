@@ -1,6 +1,6 @@
-#include "parsing.h"
+#include "../include/minishell.h"
 
-void	ft_sig_handle(int signal)
+static void	ft_sig_handle(int signal)
 {
 	(void)signal;
 	ft_putendl_fd("\0", 1);
@@ -9,7 +9,7 @@ void	ft_sig_handle(int signal)
 	rl_redisplay();
 }
 
-void	ft_child_sig_handle(int signal)
+static void	ft_child_sig_handle(int signal)
 {
 	if (signal == SIGQUIT)
 	{
@@ -25,11 +25,12 @@ void	ft_child_sig_handle(int signal)
 	}
 }
 
-void	ft_doc_sig_handle(int signal)
+static void	ft_doc_sig_handle(int signal)
 {
+	t_cmd	
 	(void)signal;
 	ft_putendl_fd("\0", 1);
-	// free all cmds
+
 }
 
 void	ft_signal_handler(int mode)
