@@ -77,7 +77,8 @@
     "readline.h": "c",
     "built_in.h": "c",
     "ls_tester.h": "c",
-    "parsing.h": "c"
+    "parsing.h": "c",
+    "signal.h": "c"
   },
   "C_Cpp.errorSquiggles": "disabled",
   "workbench.colorCustomizations": {
