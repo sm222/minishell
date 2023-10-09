@@ -18,7 +18,7 @@ static void	do_logo(char **av)
 		print_logo(av[1]);
 	else
 		print_logo(NULL);
-	ft_printf(1, "v1.0\n");
+	ft_printf(1, "%o%Sv1.0\n"WHT , NULL ,ft_make_color(97,84,69));
 }
 
 static int	start_shell(t_mshell *shell, char **en, char **av)
