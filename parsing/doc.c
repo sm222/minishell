@@ -68,7 +68,7 @@ int	ft_here_doc(char *src, t_rdct *fd)
 	if (ft_check_here_doc(src, &i))
 		fd_doc = ft_run_here_doc(src, i, fd);
 	else
-		return (INVALID);
+		return (INCORRECT);
 	while (src[i.start_index])
 		i.start_index++;
 	return (fd_doc);
