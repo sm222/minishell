@@ -55,7 +55,6 @@ int	ft_run_here_doc(char *src, t_idx limit, t_rdct *fd)
 	}
 	file = ft_file_extract(src, limit.current_start);
 	fd_doc = make_here_doc(has_quotes, file);
-	free(file);
 	return (fd_doc);
 }
 

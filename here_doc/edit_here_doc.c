@@ -5,20 +5,11 @@
 /// @return 
 int	close_and_exit(int fd)
 {
-	t_mshell	*shell;
+	short	(*ft)(void);
 
-	shell = ft_return_ptr(NULL, SYS);
-	if (shell)
-	{
-		ft_double_sfree((void **)shell->en);
-		ft_double_sfree((void **)shell->path);
-		ft_free(shell->pwd);
-		ft_free(shell->s);
-		ft_free(shell->prompt);
-		ft_free(shell->rest);
-	}
+	ft = ft_return_ptr(NULL, CLEAN);
+	ft();
 	close(fd);
-	free_here_doc(NO_UNLINK);
 	exit(0);
 }
 
@@ -79,7 +70,7 @@ static short	edit_loop(t_doc *doc, char *stop, short inter)
 		f = stat(doc->f_name, &doc->last);
 	}
 	if (f == -1)
-		perror("minishell: here_doc");
+		perror("minishell: here_doc ici");
 	return (close_and_exit(doc->fd));
 }
 
@@ -103,8 +94,6 @@ int	edit_here_doc(t_doc *doc, char *stop, short inter)
 			{
 				ft_printf(2, "%o"MS_NAME"\b: can't make file %s\n", \
 			NULL, doc->f_name);
-				free_here_doc(0);
-				ft_free(stop);
 				exit(1);
 			}
 			edit_loop(doc, stop, inter);
