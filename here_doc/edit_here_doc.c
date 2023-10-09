@@ -60,7 +60,10 @@ static short	edit_loop(t_doc *doc, char *stop, short inter)
 {
 	int			f;
 	mode_t		mode;
+	void		(*ft)(int);
 
+	ft = ft_return_ptr(NULL, SIG);
+	ft(HERE_DOC);
 	f = stat(doc->f_name, &doc->last);
 	mode = doc->last.st_mode;
 	while (f == 0)
