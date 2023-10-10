@@ -47,9 +47,9 @@ typedef struct s_rdct
 	int	output;
 	int	fd_doc;
 	int	in_succ;
-	int out_succ;
+	int	out_succ;
 	int	last_doc;
-} t_rdct;
+}	t_rdct;
 
 int		ft_verify(char *src);
 t_loc	*ft_validate_cmds(t_loc *list);
