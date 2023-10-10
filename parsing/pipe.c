@@ -15,29 +15,32 @@ int	ft_has_pipe(char *src)
 	return (INCORRECT);
 }
 
-void	ft_pipe_op(char *cmd, t_loc **list)
+void	ft_init_start_cmd(char *cmd, t_loc **list)
 {
 	t_idx	index;
 	t_token	*tokens;
+
+	ft_add_node(list);
+	tokens = ft_calloc(NODE, sizeof(t_token));
+	if (ft_has_pipe(cmd))
+	{
+		index.end_index = ft_at_index(cmd, '|');
+		cmd[index.end_index] = PASSED_THROUGH;
+	}
+	else
+		index.end_index = (int)ft_strlen(cmd);
+	sliced_cmd = ft_strslice(cmd, index.start_index, index.end_index);
+	decon = ft_cmd_deconstruct(sliced_cmd, tokens);
+	ft_free(sliced_cmd);
+}
+
+void	ft_pipe_op(char *cmd, t_loc **list)
+{
 	char	*sliced_cmd;
 	char	**decon;
 
 	index.start_index = FIRST_INDEX;
 	while (ft_has_pipe(cmd))
-	{
-		tokens = ft_calloc(NODE, sizeof(t_token));
-		index.end_index = ft_at_index(cmd, '|');
-		sliced_cmd = ft_strslice(cmd, index.start_index, index.end_index);
-		decon = ft_cmd_deconstruct(sliced_cmd, tokens);
-		cmd[index.end_index] = PASSED_THROUGH;
-		index.start_index = index.end_index;
-		ft_add_loc(list, decon, tokens);
-		ft_free(sliced_cmd);
-	}
-	tokens = ft_calloc(NODE, sizeof(t_token));
-	index.end_index = (int)ft_strlen(cmd);
-	sliced_cmd = ft_strslice(cmd, index.start_index, index.end_index);
-	decon = ft_cmd_deconstruct(sliced_cmd, tokens);
-	ft_add_loc(list, decon, tokens);
-	ft_free(sliced_cmd);
+		ft_init_start_cmd(cmd, list);
+	ft_init_start_cmd(cmd, list);
 }
