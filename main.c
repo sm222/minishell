@@ -18,7 +18,7 @@ static void	do_logo(char **av)
 		print_logo(av[1]);
 	else
 		print_logo(NULL);
-	ft_printf(1, "%o%Sv1.0\n"WHT , NULL, ft_make_color(20,84,255));
+	ft_printf(1, "%o%Sv1.0\n"WHT, NULL, ft_make_color(20, 84, 255));
 }
 
 static int	start_shell(t_mshell *shell, char **en, char **av)
@@ -66,7 +66,7 @@ int	main(int ac, char **av, char **en)
 			break ;
 		ft_printf(NO_PRINT, "%oex _=%s", &new, ft_rfind_char(shell.s, ' '));
 		spl = ft_split(new, ' ');
-		ft_export(spl, 0 , 1, shell.en);
+		ft_export(spl, 0, 1, shell.en);
 		shell.en = ft_return_ptr(NULL, ENV_C);
 		new = ft_free(new);
 		spl = (char **)ft_double_sfree((void **)spl);

@@ -16,5 +16,6 @@ t_token	*make_token(int flag, int redi_in, int redi_out)
 	new->redi_in = redi_in;
 	new->redi_out = redi_out;
 	new->mode = flag;
+	new->redi_doc = 0;
 	return (new);
 }

@@ -24,6 +24,8 @@ static int	write_fd(int fd, char *stop, short inter)
 	char	*tmp;
 	int		*pec;
 
+	tmp = NULL;
+	pec = NULL;
 	pec = ft_return_ptr(NULL, PEC);
 	tmp = readline("> ");
 	if (ft_strncmp(stop, tmp, ft_strlen(stop) + 1) == 0)
@@ -71,6 +73,7 @@ static short	edit_loop(t_doc *doc, char *stop, short inter)
 	}
 	if (f == -1)
 		perror("minishell: here_doc ici");
+	ft_free(stop);
 	return (close_and_exit(doc->fd));
 }
 

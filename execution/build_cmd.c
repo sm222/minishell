@@ -89,8 +89,11 @@ void	cmd_free(t_cmd **in)
 	{
 		tmp = ptr->next;
 		ptr->command = (char **)ft_double_sfree((void **)ptr->command);
-		close_fd(ptr->tok->redi_in);
-		close_fd(ptr->tok->redi_out);
+		if (ptr && ptr->tok)
+		{
+			close_fd(ptr->tok->redi_in);
+			close_fd(ptr->tok->redi_out);
+		}
 		ptr->tok = ft_free(ptr->tok);
 		ft_free(ptr);
 		ptr = tmp;

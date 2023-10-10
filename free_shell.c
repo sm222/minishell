@@ -2,7 +2,7 @@
 
 short static	free_data_shell(t_mshell *shell)
 {
-	free_here_doc(UNLINK);
+	free_here_doc(NO_UNLINK);
 	shell->pwd = ft_free(shell->pwd);
 	shell->rest = ft_free(shell->rest);
 	shell->s = ft_free(shell->s);

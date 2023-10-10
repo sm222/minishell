@@ -100,6 +100,7 @@ typedef struct s_doc
 /// @param pipe_out 	this cmd output
 /// @param redi_in 		cmd redir input
 /// @param redi_out 	cmd redir output
+/// @param redi_doc 	fd of here_doc
 typedef struct s_token
 {
 	int				mode;
@@ -107,6 +108,7 @@ typedef struct s_token
 	int				pipe_out;
 	int				redi_in;
 	int				redi_out;
+	int				redi_doc;
 }	t_token;
 
 /// @brief linklist use for waitpid

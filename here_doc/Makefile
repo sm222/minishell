@@ -1,7 +1,7 @@
 NAME	=	here_doc.a
 
 CC		=	gcc
-CFLAGS	=	-Wall -Werror -Wextra
+CFLAGS	=	-Wall -Werror -Wextra -g
 RM		=	rm -f
 
 RL_DIR			=	../readline/
