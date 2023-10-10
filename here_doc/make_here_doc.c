@@ -47,9 +47,9 @@ static int	make_here_doc_last(t_doc **list, short inter, char *stop)
 }
 
 /// @brief use to add a here_doc
-/// @param i index of the here_doc
+/// @param inter interpret the $
 /// @param stop word to stop on
-/// @return err code
+/// @return err code or fd of file
 int	make_here_doc(char inter, char *stop)
 {
 	t_doc	**doc_list;
@@ -60,5 +60,6 @@ int	make_here_doc(char inter, char *stop)
 		return (BAD_ARGS + 1);
 	doc_list = ft_return_ptr(NULL, DOC);
 	err = make_here_doc_last(doc_list, inter, stop);
+	ft_printf(2, "%ohere_doc %d\n", err);
 	return (err);
 }

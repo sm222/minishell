@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 11:07:18 by anboisve          #+#    #+#             */
-/*   Updated: 2023/10/08 11:42:11 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/10/10 10:11:51 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ void		ft_change_dolar(char **old, char **en, short here_doc, int err);
 
 size_t		ft_strlen(const char *s);
 size_t		ft_strlen_double(char **s);
+char		*ft_find_char(char *s, int c);
+char		*ft_rfind_char(char *s, int c);
 char		*ft_strchr(const char *s, int c);
 char		*ft_strrchr(const char *s, int c);
 int			ft_strcmp(const char *s1, const char *s2);

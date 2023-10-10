@@ -16,6 +16,18 @@ static char	*get_path(char *new, char *old)
 	return (NULL);
 }
 
+static char	*err_code(t_mshell *shell)
+{
+	char	*new;
+
+	new = NULL;
+	if (shell->pec != 0)
+		ft_printf(NO_PRINT, "%o"RED"%d"WHT, &new, shell->pec);
+	else
+		ft_printf(NO_PRINT, "%o%d", &new, shell->pec);
+	return (new);
+}
+
 static	void	get_user(t_mshell *shell)
 {
 	char	*logname;
@@ -24,10 +36,11 @@ static	void	get_user(t_mshell *shell)
 	logname = get_env(shell->en, "LOGNAME");
 	shell->pwd = get_path(getcwd(NULL, 0), shell->pwd);
 	if (logname)
-		ft_printf(NO_PRINT, "%o"GRN"%s"WHT"["TOX"%s"WHT"]$ ", &shell->prompt, \
-	shell->pwd, logname);
+		ft_printf(NO_PRINT, "%o"GRN"%s"WHT"(%S)["TOX"%s"WHT"]$ ", \
+		&shell->prompt, shell->pwd, err_code(shell), logname);
 	else
-		ft_printf(NO_PRINT, "%o"GRN"%s "WHT"$ ", &shell->prompt, shell->pwd);
+		ft_printf(NO_PRINT, "%o"GRN"%s"WHT"(%S)$ ", \
+		&shell->prompt, shell->pwd, err_code(shell));
 }
 
 static short	ft_caller(t_mshell *shell)
@@ -40,7 +53,6 @@ static short	ft_caller(t_mshell *shell)
 	ft_set_mode(-1);
 	while (j < ft_strlen(shell->s))
 	{
-		shell->cmd_list = NULL;
 		i = look_for_type(shell->s + j, &type);
 		if (type == -1)
 			return (FAIL);
