@@ -25,6 +25,7 @@ void	ft_add_loc(t_loc **list, char **cmd, t_token *tokens)
 	}
 }
 
+// free cmd when ctrl+c in here_doc
 t_loc	*ft_parsing(char *src)
 {
 	t_loc	*list;

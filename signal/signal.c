@@ -7,6 +7,7 @@ static void	ft_sig_handle(int signal)
 	rl_replace_line("", 1);
 	rl_on_new_line();
 	rl_redisplay();
+	ft_putchar_fd('\r', 1);
 }
 
 static void	ft_child_sig_handle(int signal)

@@ -41,6 +41,7 @@ int	ft_run_here_doc(char *src, t_idx limit, t_rdct *fd)
 	int		fd_doc;
 	int		has_quotes;
 
+	src[limit.start_index] = PASSED_THROUGH;
 	limit.start_index++;
 	limit.current_start = limit.start_index;
 	if (fd)
@@ -59,6 +60,7 @@ int	ft_run_here_doc(char *src, t_idx limit, t_rdct *fd)
 	while (limit.current_start < limit.end_index)
 		src[limit.current_start++] = PASSED_THROUGH;
 	fd_doc = make_here_doc(has_quotes, file);
+	free(file);
 	return (fd_doc);
 }
 
