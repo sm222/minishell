@@ -40,6 +40,8 @@ void	close_all_fd(t_cmd *in)
 	tmp = in;
 	while (tmp)
 	{
+		if (tmp->tok->redi_in != tmp->tok->redi_doc)
+			close_fd(tmp->tok->redi_doc);
 		close_fd(tmp->pipe[0]);
 		close_fd(tmp->pipe[1]);
 		close_fd(tmp->tok->redi_in);
@@ -49,6 +51,8 @@ void	close_all_fd(t_cmd *in)
 	tmp = in->prev;
 	while (tmp)
 	{
+		if (tmp->tok->redi_in != tmp->tok->redi_doc)
+			close_fd(tmp->tok->redi_doc);
 		close_fd(tmp->pipe[0]);
 		close_fd(tmp->pipe[1]);
 		close_fd(tmp->tok->redi_in);
