@@ -53,18 +53,23 @@ static int	start_shell(t_mshell *shell, char **en, char **av)
 int	main(int ac, char **av, char **en)
 {
 	t_mshell	shell;
-	int			loop_test;
+	char		*new;
+	char		**spl;
 
 	(void)ac;
 	ft_signal_handler(CMD);
-	loop_test = 100;
 	if (start_shell(&shell, en, av) != SUCCESS)
 		return (FAIL);
-	while (loop_test--)
+	while (SUCCESS)
 	{
 		if (reset_data_main(&shell) == FAIL -1)
 			break ;
-		printf("last pec == %d\n", shell.pec);
+		ft_printf(NO_PRINT, "%oex _=%s", &new, ft_rfind_char(shell.s, ' '));
+		spl = ft_split(new, ' ');
+		ft_export(spl, 0 , 1, shell.en);
+		shell.en = ft_return_ptr(NULL, ENV_C);
+		new = ft_free(new);
+		spl = (char **)ft_double_sfree((void **)spl);
 	}
 	rl_clear_history();
 	free_shell(&shell);

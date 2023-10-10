@@ -7,12 +7,12 @@ int	permission_denied(char *name, mode_t *err)
 {
 	if (S_ISDIR(*err) || S_ISLNK(*err))
 	{
-		ft_printf(STDERR_FILENO, "%ominishell: |%s: %s\n", \
+		ft_printf(STDERR_FILENO, "%o"MS_NAME"\b%s: %s\n", \
 		NULL, name, ISDIR);
 	}
 	else if (*err == 1)
 	{
-		ft_printf(STDERR_FILENO, "%ominishell: //%s: %s\n", \
+		ft_printf(STDERR_FILENO, "%o"MS_NAME"\b%s: %s\n", \
 		NULL, name, sys_errlist[errno]);
 		return (126);
 	}
@@ -29,7 +29,7 @@ int	no_file(char *name)
 {
 	if (name && (name[0] == '.' || name[0] == '/'))
 	{
-		ft_printf(STDERR_FILENO, "%o"MS_NAME":: %s %s\n", \
+		ft_printf(STDERR_FILENO, "%o"MS_NAME"\b: %s %s\n", \
 		NULL, name, sys_errlist[errno]);
 		return (126);
 	}
@@ -135,5 +135,6 @@ int	run_cmd(t_cmd *in, t_mshell *shell)
 	close_all_fd(in);
 	wait_pids(run.wait, 1);
 	cmd_free(&in);
+	shell->cmd_list = NULL;
 	return (SUCCESS);
 }
