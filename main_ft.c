@@ -63,7 +63,6 @@ static short	ft_caller(t_mshell *shell)
 		converter(shell->rest, &shell->cmd_list);
 		run_cmd(shell->cmd_list, shell);
 		free_here_doc(UNLINK);
-		ft_printf(2, "ici\n");
 		shell->rest = ft_free(shell->rest);
 		if ((shell->pec != 0 && type == '&') || \
 			(shell->pec == 0 && type == '|'))

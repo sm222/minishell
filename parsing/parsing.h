@@ -26,6 +26,7 @@
 
 typedef struct s_loc
 {
+	char			*slice;
 	char			**decon_cmd;
 	t_token			*tokens;
 	struct s_loc	*next;

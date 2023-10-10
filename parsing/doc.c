@@ -63,7 +63,7 @@ int	ft_run_here_doc(char *src, t_idx limit, t_rdct *fd)
 	if (fd)
 	{
 		fd->last_doc = ft_is_last_in(src, limit.start_index);
-		printf(fd->last_doc);
+		printf("is last: %d\n", fd->last_doc);
 	}
 	ft_word_delimiter(src, &limit);
 	no_quotes = ft_no_quotes(src, limit.start_index, limit.end_index);

@@ -5,7 +5,7 @@ void	ft_set_tokens(t_loc **list, t_token *tokens)
 	t_loc	*current;
 
 	current = *list;
-	while (current)
+	while (current->next)
 		current = current->next;
 	current->tokens = tokens;
 }
@@ -15,7 +15,7 @@ void	ft_set_decon(t_loc **list, char **decon_cmd)
 	t_loc	*current;
 
 	current = *list;
-	while (current)
+	while (current->next)
 		current = current->next;
 	current->decon_cmd = decon_cmd;
 }
