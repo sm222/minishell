@@ -61,7 +61,10 @@ int	ft_run_here_doc(char *src, t_idx limit, t_rdct *fd)
 	limit.current_start = limit.start_index + 2;
 	no_quotes = CORRECT;
 	if (fd)
+	{
 		fd->last_doc = ft_is_last_in(src, limit.start_index);
+		printf("is last: %d\n", fd->last_doc);
+	}
 	ft_word_delimiter(src, &limit);
 	no_quotes = ft_no_quotes(src, limit.start_index, limit.end_index);
 	file = ft_file_extract(src, limit.current_start);

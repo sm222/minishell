@@ -1,6 +1,26 @@
 #include "parsing.h"
 
-void	ft_add_loc(t_loc **list, char **cmd, t_token *tokens)
+void	ft_set_tokens(t_loc **list, t_token *tokens)
+{
+	t_loc	*current;
+
+	current = *list;
+	while (current->next)
+		current = current->next;
+	current->tokens = tokens;
+}
+
+void	ft_set_decon(t_loc **list, char **decon_cmd)
+{
+	t_loc	*current;
+
+	current = *list;
+	while (current->next)
+		current = current->next;
+	current->decon_cmd = decon_cmd;
+}
+
+void	ft_add_node(t_loc **list)
 {
 	t_loc	*current;
 	t_loc	*last;
@@ -12,8 +32,6 @@ void	ft_add_loc(t_loc **list, char **cmd, t_token *tokens)
 		ft_putendl_fd("error malloc\n", 2);
 		return ;
 	}
-	current->decon_cmd = cmd;
-	current->tokens = tokens;
 	current->next = NULL;
 	if (*list == NULL)
 		*list = current;

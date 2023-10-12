@@ -26,6 +26,7 @@
 
 typedef struct s_loc
 {
+	char			*slice;
 	char			**decon_cmd;
 	t_token			*tokens;
 	struct s_loc	*next;
@@ -55,7 +56,9 @@ int		ft_verify(char *src);
 t_loc	*ft_validate_cmds(t_loc *list);
 
 t_loc	*ft_parsing(char *src);
-void	ft_add_loc(t_loc **list, char **cmd, t_token *tokens);
+void	ft_add_node(t_loc **list);
+void	ft_set_tokens(t_loc **list, t_token *tokens);
+void	ft_set_decon(t_loc **list, char **decon_cmd);
 
 int		ft_has_pipe(char *src);
 int		ft_invalid_pipe(char *cmd);
