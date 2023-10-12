@@ -107,6 +107,7 @@ clean:
 fclean: clean
 	@$(RM) $(NAME)
 	@$(RM) $(B_NAME)
+	@$(RM) -fr minishell.dSYM 
 	@make -C built_in         fclean
 	@make -C $(LIBFT_DIR)     fclean
 	@make -C $(HERE_DOC_DIR)  fclean

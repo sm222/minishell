@@ -47,27 +47,24 @@ int	run_and_close(t_cmd *in, char **env, char *cmd)
 	t_mshell	*shell;
 	char		**new_en;
 	void		(*ft)(int);
+	int			err;
 
+	free_and_dup_in_run(in);
 	new_en = NULL;
-	shell = NULL;
+	err = 0;
 	shell = ft_return_ptr(NULL, SYS);
 	ft = ft_return_ptr(NULL, SIG);
 	ft(CHILD);
-	dup_in_out(in);
-	close_all_fd(in);
-	if (in->tok->redi_in == -1)
-		close(STDIN_FILENO);
-	in->tok = ft_free(in->tok);
 	if (in->command)
 	{
 		new_en = ex_en_new(env);
-		execve(cmd, in->command, new_en);
+		err = execve(cmd, in->command, new_en);
 		perror("minishell");
 	}
 	free_execution(in, shell);
 	ft_free(cmd);
 	ft_double_sfree((void **)new_en);
-	exit(1);
+	exit(err);
 	return (FAIL);
 }
 

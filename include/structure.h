@@ -19,15 +19,16 @@
 //			define			//
 //--------------------------//
 
-# define SYS   0		// t_mshell struct
-# define PATH  1		// path split with the ':'
-# define PEC   2		// process exit code
-# define ENV_C 3		// copy of the env
-# define EX_F  4		// tell if the program end
-# define DOC   5		// here_dock
-# define SIG   6		// signal_ft
-# define PARSE 7		// t_loc struct
-# define CLEAN 8		// clean_shell ft
+# define SYS      0		// t_mshell struct
+# define PATH     1		// path split with the ':'
+# define PEC      2		// process exit code
+# define ENV_C    3		// copy of the env
+# define EX_F     4		// tell if the program end
+# define DOC      5		// here_dock
+# define SIG      6		// signal_ft
+# define PARSE    7		// t_loc struct
+# define CLEAN    8		// clean_shell ft
+# define FREE_DOC 9		// ft use to free the here_doc
 
 //		SIG		//
 

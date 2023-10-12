@@ -39,6 +39,8 @@ int	find_path(char *name, char **out, char **list, mode_t *err)
 	*out = NULL;
 	if (name && (name[0] == '.' || name[0] == '/'))
 		return (test_local(name, out, err));
+	if (name && !name[0])
+		return (FAIL);
 	while (list && list[i])
 	{
 		ft_printf(NO_PRINT, "%o%s/%s", &tmp, list[i], name);
