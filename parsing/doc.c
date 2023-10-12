@@ -25,6 +25,10 @@ int	ft_check_here_doc(char *src, t_idx *i_doc)
 
 int	ft_is_last_in(char *src, int start)
 {
+	if (start + 2 != (int)ft_strlen(src))
+		start = start + 2;
+	else
+		return (CORRECT);
 	while (src[start])
 	{
 		if (src[start] == '<')
@@ -61,10 +65,7 @@ int	ft_run_here_doc(char *src, t_idx limit, t_rdct *fd)
 	limit.current_start = limit.start_index + 2;
 	no_quotes = CORRECT;
 	if (fd)
-	{
 		fd->last_doc = ft_is_last_in(src, limit.start_index);
-		printf("is last: %d\n", fd->last_doc);
-	}
 	ft_word_delimiter(src, &limit);
 	no_quotes = ft_no_quotes(src, limit.start_index, limit.end_index);
 	file = ft_file_extract(src, limit.current_start);
@@ -73,6 +74,7 @@ int	ft_run_here_doc(char *src, t_idx limit, t_rdct *fd)
 		src[limit.start_index] = PASSED_THROUGH;
 		limit.start_index++;
 	}
+	ft_return_ptr(file, DOC_FILE);
 	fd_doc = make_here_doc(no_quotes, file);
 	free(file);
 	return (fd_doc);
