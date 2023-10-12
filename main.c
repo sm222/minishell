@@ -45,7 +45,7 @@ static int	start_shell(t_mshell *shell, char **en, char **av)
 	ft_bzero(shell, sizeof(t_mshell));
 	shell->en = ft_cpy_double_char(en);
 	if (get_env_path(shell) <= FAIL)
-		return (127);
+		return (1);
 	set_ptr_all(shell);
 	ft_printf(NO_PRINT, "%oex OLDPWD PWD", &new);
 	spl = ft_split(new, ' ');
