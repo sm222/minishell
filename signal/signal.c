@@ -29,9 +29,13 @@ static void	ft_child_sig_handle(int signal)
 static void	ft_doc_sig_handle(int signal)
 {
 	short	(*ft)(void);
+	char	**s;
 
 	(void)signal;
+	s = NULL;
 	ft_putendl_fd("\0", 1);
+	s = ft_return_ptr(NULL, DOC_FILE);
+	ft_free(*s);
 	ft = ft_return_ptr(NULL, CLEAN);
 	ft();
 	exit(130);

@@ -10,8 +10,8 @@ t_loc	*ft_validate_cmds(t_loc *list)
 		if (current->tokens->redi_in == INVALID || \
 			current->tokens->redi_out == INVALID)
 		{
-			ft_purge(list);
-			return (NULL);
+			ft_clear_array(current->decon_cmd);
+			current->decon_cmd = NULL;
 		}
 		current = current->next;
 	}
