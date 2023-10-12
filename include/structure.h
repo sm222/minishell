@@ -29,6 +29,7 @@
 # define PARSE    7		// t_loc struct
 # define CLEAN    8		// clean_shell ft
 # define FREE_DOC 9		// ft use to free the here_doc
+# define DOC_FILE 10	// terminating word for here_doc
 
 //		SIG		//
 
