@@ -44,6 +44,7 @@ static int	ft_file_in(char *path, t_token *tokens)
 	if (path && path[0] == '<')
 	{
 		ft_printf(2, MS_NAME"\b: no file given for input redirection\n");
+		ft_set_error_code(1);
 		return (INCORRECT);
 	}
 	if (path && access(path, F_OK) == 0)
@@ -51,6 +52,7 @@ static int	ft_file_in(char *path, t_token *tokens)
 	else
 	{
 		ft_printf(2, MS_NAME"\b: %s: no such file or directory\n", path);
+		ft_set_error_code(1);
 		return (INCORRECT);
 	}
 	return (CORRECT);
@@ -63,6 +65,7 @@ static int	ft_file_out(char *path, t_token *tokens, char duplicity)
 	if ((path && path[0] == '>') || !path)
 	{
 		ft_printf(2, MS_NAME"\b: no file given for output redirection\n");
+		ft_set_error_code(1);
 		return (INCORRECT);
 	}
 	if (duplicity == SINGLE_REDIRECT)
@@ -72,6 +75,7 @@ static int	ft_file_out(char *path, t_token *tokens, char duplicity)
 	if (tokens->redi_out == INVALID)
 	{
 		ft_printf(2, MS_NAME"\b: %s: can't access file\n", path);
+		ft_set_error_code(1);
 		return (INCORRECT);
 	}
 	return (CORRECT);

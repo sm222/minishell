@@ -54,6 +54,7 @@ typedef struct s_rdct
 }	t_rdct;
 
 int		ft_verify(char *src);
+int		ft_set_error_code(int code);
 t_loc	*ft_validate_cmds(t_loc *list);
 
 t_loc	*ft_parsing(char *src);
