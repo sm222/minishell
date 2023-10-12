@@ -76,7 +76,7 @@ static int	ft_run_here_doc(char *src, t_idx *limit, t_rdct *fd)
 		src[current] = PASSED_THROUGH;
 		current++;
 	}
-	ft_return_ptr(file, DOC_FILE);
+	ft_return_ptr(&file, DOC_FILE);
 	printf("doc file: %s\n", file);
 	fd_doc = make_here_doc(no_quotes, file);
 	file = ft_free(file);
