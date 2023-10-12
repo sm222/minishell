@@ -60,21 +60,24 @@ static int	ft_run_here_doc(char *src, t_idx *limit, t_rdct *fd)
 {
 	char	*file;
 	int		fd_doc;
+	int		current;
 	short	no_quotes;
 
-	limit->current_start = limit->start_index;
+	limit->current_start = limit->start_index + 2;
+	current = limit->start_index; 
 	no_quotes = CORRECT;
 	if (fd)
 		fd->last_doc = ft_is_last_in(src, limit->start_index);
 	ft_word_delimiter(src, limit);
 	no_quotes = ft_no_quotes(src, limit->start_index, limit->end_index);
 	file = ft_file_extract(src, limit->current_start);
-	while (limit->start_index < limit->end_index)
+	while (current < limit->current_start)
 	{
-		src[limit->start_index] = PASSED_THROUGH;
-		limit->start_index++;
+		src[current] = PASSED_THROUGH;
+		current++;
 	}
 	ft_return_ptr(file, DOC_FILE);
+	printf("doc file: %s\n", file);
 	fd_doc = make_here_doc(no_quotes, file);
 	free(file);
 	return (fd_doc);
