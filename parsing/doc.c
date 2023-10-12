@@ -61,18 +61,20 @@ static int	ft_run_here_doc(char *src, t_idx *limit, t_rdct *fd)
 	char	*file;
 	int		fd_doc;
 	short	no_quotes;
+	int		start_quote;
 
-	limit->current_start = limit->start_index;
+	limit->current_start = limit->start_index + 2;
+	start_quote = limit->start_index;
 	no_quotes = CORRECT;
 	if (fd)
 		fd->last_doc = ft_is_last_in(src, limit->start_index);
 	ft_word_delimiter(src, limit);
 	no_quotes = ft_no_quotes(src, limit->start_index, limit->end_index);
 	file = ft_file_extract(src, limit->current_start);
-	while (limit->start_index < limit->end_index)
+	while (start_quote < limit->end_index)
 	{
-		src[limit->start_index] = PASSED_THROUGH;
-		limit->start_index++;
+		src[start_quote] = PASSED_THROUGH;
+		start_quote++;
 	}
 	ft_return_ptr(file, DOC_FILE);
 	fd_doc = make_here_doc(no_quotes, file);
@@ -86,7 +88,7 @@ int	ft_here_doc(char *src, t_rdct *fd)
 	int		fd_doc;
 
 	ft_bzero(&i, sizeof(t_idx));
-	if (ft_check_here_doc(src, &i))
+	while (ft_check_here_doc(src, &i))
 		fd_doc = ft_run_here_doc(src, &i, fd);
 	else
 		return (INCORRECT);
