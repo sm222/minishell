@@ -79,7 +79,7 @@ static int	ft_run_here_doc(char *src, t_idx *limit, t_rdct *fd)
 	ft_return_ptr(file, DOC_FILE);
 	printf("doc file: %s\n", file);
 	fd_doc = make_here_doc(no_quotes, file);
-	free(file);
+	file = ft_free(file);
 	return (fd_doc);
 }
 
