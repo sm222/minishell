@@ -11,8 +11,7 @@ RL_L			=	libreadline.a
 LIBFT		=	libft.a
 LIBFT_DIR	=	../lib/lib_ft/
 
-SRCS	=	here_doc.c\
-			make_here_doc.c\
+SRCS	=	make_here_doc.c\
 			edit_here_doc.c\
 			free_here_doc.c
 

@@ -77,6 +77,17 @@ static short	edit_loop(t_doc *doc, char *stop, short inter)
 	return (close_and_exit(doc->fd));
 }
 
+static int	check_control_c(int err, int fd)
+{
+	if (err)
+	{
+		if (fd)
+			close(fd);
+		return (err);
+	}
+	return (fd);
+}
+
 /// @brief modefi a here_doc
 /// @param doc to edit
 /// @param stop word to stop on
@@ -84,6 +95,7 @@ static short	edit_loop(t_doc *doc, char *stop, short inter)
 int	edit_here_doc(t_doc *doc, char *stop, short inter)
 {
 	pid_t	pid;
+	int		err = 0;
 
 	if (doc)
 	{
@@ -102,8 +114,10 @@ int	edit_here_doc(t_doc *doc, char *stop, short inter)
 			edit_loop(doc, stop, inter);
 		}
 		else
-			waitpid(pid, NULL, 0);
+			waitpid(pid, &err, 0);
 	}
 	doc->fd = open(doc->f_name, O_RDONLY, 0644);
-	return (doc->fd);
+	return (check_control_c(err, doc->fd));
 }
+
+//33280
