@@ -62,7 +62,6 @@ static int	ft_run_here_doc(char *src, t_idx *limit, t_rdct *fd)
 	int		fd_doc;
 	int		current;
 	short	no_quotes;
-	int		start_quote;
 
 	limit->current_start = limit->start_index + 2;
 	current = limit->start_index; 
@@ -90,8 +89,9 @@ int	ft_here_doc(char *src, t_rdct *fd)
 	int		fd_doc;
 
 	ft_bzero(&i, sizeof(t_idx));
-	while (ft_check_here_doc(src, &i))
-		fd_doc = ft_run_here_doc(src, &i, fd);
+	if (ft_check_here_doc(src, &i))
+		while (ft_check_here_doc(src, &i))
+			fd_doc = ft_run_here_doc(src, &i, fd);
 	else
 		return (INCORRECT);
 	while (src[i.start_index])

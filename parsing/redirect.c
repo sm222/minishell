@@ -53,7 +53,7 @@ int	ft_redirect_op(char *cmd, t_token *tokens)
 	ft_bzero(&fd, sizeof(t_rdct));
 	fd.fd_doc = ft_here_doc(cmd, &fd);
 	tokens->redi_doc = fd.fd_doc;
-	while (ft_has_redirect(cmd))
+	while (fd.fd_doc != CANCEL && ft_has_redirect(cmd))
 	{
 		fd.input = ft_at_index(cmd, '<');
 		fd.output = ft_at_index(cmd, '>');

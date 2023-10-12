@@ -17,6 +17,7 @@
 # define CORRECT 1
 # define INVALID -1 
 # define INCORRECT 0
+# define CANCEL 33280
 # define FIRST_INDEX 0
 # define PASSED_QUOTES 29
 # define IGNORE_QUOTES 30
