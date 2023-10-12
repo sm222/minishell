@@ -56,23 +56,23 @@ static short	ft_no_quotes(char *src, int start_index, int end_index)
 	return (no_quotes);
 }
 
-int	ft_run_here_doc(char *src, t_idx limit, t_rdct *fd)
+static int	ft_run_here_doc(char *src, t_idx *limit, t_rdct *fd)
 {
 	char	*file;
 	int		fd_doc;
 	short	no_quotes;
 
-	limit.current_start = limit.start_index + 2;
+	limit->current_start = limit->start_index;
 	no_quotes = CORRECT;
 	if (fd)
-		fd->last_doc = ft_is_last_in(src, limit.start_index);
-	ft_word_delimiter(src, &limit);
-	no_quotes = ft_no_quotes(src, limit.start_index, limit.end_index);
-	file = ft_file_extract(src, limit.current_start);
-	while (limit.start_index < limit.end_index)
+		fd->last_doc = ft_is_last_in(src, limit->start_index);
+	ft_word_delimiter(src, limit);
+	no_quotes = ft_no_quotes(src, limit->start_index, limit->end_index);
+	file = ft_file_extract(src, limit->current_start);
+	while (limit->start_index < limit->end_index)
 	{
-		src[limit.start_index] = PASSED_THROUGH;
-		limit.start_index++;
+		src[limit->start_index] = PASSED_THROUGH;
+		limit->start_index++;
 	}
 	ft_return_ptr(file, DOC_FILE);
 	fd_doc = make_here_doc(no_quotes, file);
@@ -87,7 +87,7 @@ int	ft_here_doc(char *src, t_rdct *fd)
 
 	ft_bzero(&i, sizeof(t_idx));
 	if (ft_check_here_doc(src, &i))
-		fd_doc = ft_run_here_doc(src, i, fd);
+		fd_doc = ft_run_here_doc(src, &i, fd);
 	else
 		return (INCORRECT);
 	while (src[i.start_index])
