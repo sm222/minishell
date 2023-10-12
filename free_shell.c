@@ -20,6 +20,7 @@ short static	free_data_loc(t_loc *data)
 		tmp = data->next;
 		ft_double_sfree((void **)data->decon_cmd);
 		ft_free(data->tokens);
+		ft_free(data->slice);
 		ft_free(data);
 		data = tmp;
 	}
