@@ -2,6 +2,7 @@
 
 short static	free_data_shell(t_mshell *shell)
 {
+	char	*s;
 	free_here_doc(NO_UNLINK);
 	shell->pwd = ft_free(shell->pwd);
 	shell->rest = ft_free(shell->rest);
@@ -9,6 +10,8 @@ short static	free_data_shell(t_mshell *shell)
 	shell->prompt = ft_free(shell->prompt);
 	shell->path = (char **)ft_double_sfree((void **)shell->path);
 	shell->en = (char **)ft_double_sfree((void **)shell->en);
+	s = ft_return_ptr(NULL, DOC_FILE);
+	ft_free(s);
 	return (1);
 }
 short static	free_data_loc(t_loc *data)
