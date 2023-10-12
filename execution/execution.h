@@ -72,6 +72,7 @@ short	new_pwd(t_mshell *data);
 int		close_fd(int fd);
 void	close_all_fd(t_cmd *in);
 int		close_old_fd(t_cmd *in);
+int		free_and_dup_in_run(t_cmd *in);
 
 // pipe
 

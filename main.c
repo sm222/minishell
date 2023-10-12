@@ -4,7 +4,7 @@ static void	free_shell(t_mshell *shell)
 {
 	if (!shell)
 		return ;
-	ft_putstr_fd("test end\n", 2);
+	ft_putstr_fd("goodbye!\n", 2);
 	ft_free(shell->pwd);
 	ft_free(shell->s);
 	ft_free(shell->prompt);
@@ -40,6 +40,7 @@ static int	start_shell(t_mshell *shell, char **en, char **av)
 	ft_return_ptr(&shell->doc, DOC);
 	ft_return_ptr(&ft_signal_handler, SIG);
 	ft_return_ptr(&clean_shell, CLEAN);
+	ft_return_ptr(&free_here_doc, FREE_DOC);
 	ft_printf(NO_PRINT, "%oex OLDPWD PWD", &new);
 	spl = ft_split(new, ' ');
 	ft_export(spl, 0, 1, shell->en);

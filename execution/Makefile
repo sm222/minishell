@@ -18,7 +18,8 @@ SRCS	=	build_cmd.c\
 			wait_pid.c\
 			err_local.c\
 			env_path.c\
-			exe_pwd.c
+			exe_pwd.c\
+			run_free.c
 
 OBJS	=	$(SRCS:.c=.o)
 

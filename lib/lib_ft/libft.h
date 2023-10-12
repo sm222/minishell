@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 11:07:18 by anboisve          #+#    #+#             */
-/*   Updated: 2023/10/10 10:11:51 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/10/12 10:49:29 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 
 # define HEX_TABLE "0123456789abcdef"
 # define DOLAR_LIST "_"
+# define RETURN_PTR_MAX 20
 
 //made by @sm222
 //char		\verification
