@@ -60,6 +60,5 @@ int	make_here_doc(char inter, char *stop)
 		return (BAD_ARGS + 1);
 	doc_list = ft_return_ptr(NULL, DOC);
 	err = make_here_doc_last(doc_list, inter, stop);
-	ft_printf(2, "%ohere_doc %d\n", NULL, err);
 	return (err);
 }

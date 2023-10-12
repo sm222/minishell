@@ -21,6 +21,20 @@ static void	do_logo(char **av)
 	ft_printf(1, "%o%Sv1.0\n"WHT, NULL, ft_make_color(20, 84, 255));
 }
 
+static int	set_ptr_all(t_mshell *shell)
+{
+	ft_return_ptr(shell, SYS);
+	ft_return_ptr(shell->path, PATH);
+	ft_return_ptr(&shell->pec, PEC);
+	ft_return_ptr(shell->en, ENV_C);
+	ft_return_ptr(&shell->exit, EX_F);
+	ft_return_ptr(&shell->doc, DOC);
+	ft_return_ptr(&ft_signal_handler, SIG);
+	ft_return_ptr(&clean_shell, CLEAN);
+	ft_return_ptr(&free_here_doc, FREE_DOC);
+	return (0);
+}
+
 static int	start_shell(t_mshell *shell, char **en, char **av)
 {
 	char	*new;
@@ -32,15 +46,7 @@ static int	start_shell(t_mshell *shell, char **en, char **av)
 	shell->en = ft_cpy_double_char(en);
 	if (get_env_path(shell) <= FAIL)
 		return (127);
-	ft_return_ptr(shell, SYS);
-	ft_return_ptr(shell->path, PATH);
-	ft_return_ptr(&shell->pec, PEC);
-	ft_return_ptr(shell->en, ENV_C);
-	ft_return_ptr(&shell->exit, EX_F);
-	ft_return_ptr(&shell->doc, DOC);
-	ft_return_ptr(&ft_signal_handler, SIG);
-	ft_return_ptr(&clean_shell, CLEAN);
-	ft_return_ptr(&free_here_doc, FREE_DOC);
+	set_ptr_all(shell);
 	ft_printf(NO_PRINT, "%oex OLDPWD PWD", &new);
 	spl = ft_split(new, ' ');
 	ft_export(spl, 0, 1, shell->en);

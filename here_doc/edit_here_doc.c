@@ -72,7 +72,7 @@ static short	edit_loop(t_doc *doc, char *stop, short inter)
 		f = stat(doc->f_name, &doc->last);
 	}
 	if (f == -1)
-		perror("minishell: here_doc ici");
+		perror("minishell: here_doc");
 	ft_free(stop);
 	return (close_and_exit(doc->fd));
 }
