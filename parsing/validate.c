@@ -1,5 +1,14 @@
 #include "parsing.h"
 
+int	ft_set_error_code(int code)
+{
+	int	*pec;
+
+	pec = ft_return_ptr(NULL, PEC);
+	*pec = code;
+	return (code);
+}
+
 t_loc	*ft_validate_cmds(t_loc *list)
 {
 	t_loc	*current;

@@ -31,12 +31,17 @@ static int	ft_quote_error(char *src)
 static int	ft_redirect_error(char *src)
 {
 	int		i;
+	char	current_redirect;
 
 	i = 0;
 	while (src[i])
 	{
 		if (src[i] == '<' || src[i] == '>')
 		{
+			current_redirect = src[i];
+			if (i + 1 < (int)ft_strlen(src))
+				if (src[i + 1] != current_redirect && !ft_isprint(src[i]))
+					return (CORRECT);
 			if (i + 2 < (int)ft_strlen(src))
 				if (src[i + 2] == '<' || src[i + 2] == '>')
 					return (CORRECT);
@@ -44,6 +49,20 @@ static int	ft_redirect_error(char *src)
 		i++;
 	}
 	return (INCORRECT);
+}
+
+int	ft_pipe_error(char *src)
+{
+	int	i;
+
+	i = FIRST_INDEX;
+	while (src[i])
+	{
+		if (src[i] != ' ')
+			return (INCORRECT);
+		i++;
+	}
+	return (CORRECT);
 }
 
 int	ft_verify(char *src)
@@ -61,7 +80,15 @@ int	ft_verify(char *src)
 		ft_putendl_fd(MS_NAME"\b: token error near redirection", 2);
 		res = INCORRECT;
 	}
+	if (ft_pipe_error(src))
+	{
+		ft_putendl_fd(MS_NAME"\b: syntax error near unexpected token '|'", 2);
+		res = INCORRECT;
+	}
 	if (res == INCORRECT)
+	{
 		ft_here_doc(src, NULL);
+		ft_set_error_code(258);
+	}
 	return (res);
 }

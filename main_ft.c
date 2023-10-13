@@ -50,7 +50,6 @@ static short	ft_caller(t_mshell *shell)
 	short	type;
 
 	j = 0;
-	ft_set_mode(-1);
 	while (j < ft_strlen(shell->s))
 	{
 		i = look_for_type(shell->s + j, &type);
@@ -82,5 +81,6 @@ short	reset_data_main(t_mshell *shell)
 	else if (shell->s[0])
 		add_history(shell->s);
 	ft_change_dolar(&shell->s, shell->en, 0, shell->pec);
+	ft_set_mode(-1);
 	return (ft_caller(shell));
 }

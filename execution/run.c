@@ -7,12 +7,12 @@ int	permission_denied(char *name, mode_t *err)
 {
 	if (S_ISDIR(*err) || S_ISLNK(*err))
 	{
-		ft_printf(STDERR_FILENO, "%o"MS_NAME"\b%s: %s\n", \
+		ft_printf(STDERR_FILENO, "%o"MS_NAME"\b %s: %s\n", \
 		NULL, name, ISDIR);
 	}
 	else if (*err == 1)
 	{
-		ft_printf(STDERR_FILENO, "%o"MS_NAME"\b%s: %s\n", \
+		ft_printf(STDERR_FILENO, "%o"MS_NAME"\b %s: %s\n", \
 		NULL, name, sys_errlist[errno]);
 		return (126);
 	}
@@ -33,7 +33,7 @@ int	no_file(char *name)
 		NULL, name, sys_errlist[errno]);
 		return (126);
 	}
-	err_msg(DO_FREE, 127, ft_strjoin(MS_NAME ERR_CNF, name));
+	ft_printf(2, "%o"MS_NAME"\b "ERR_CNF" %s\n", NULL, name);
 	return (127);
 }
 

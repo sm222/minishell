@@ -35,7 +35,7 @@ void	ft_init_start_cmd(char *cmd, t_idx *i, t_loc **list)
 	else
 		i->end_index = (int)ft_strlen(cmd);
 	(*list)->slice = ft_strslice(cmd, i->start_index, i->end_index);
-	decon = ft_cmd_deconstruct((*list)->slice, (*list)->tokens);
+	decon = ft_cmd_deconstruct((*list)->slice, tokens);
 	ft_set_decon(list, decon);
 	ft_free((*list)->slice);
 }

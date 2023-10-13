@@ -5,8 +5,8 @@
 /// @return new one or NULL if fail
 t_doc	*new_doc(int *f)
 {
-	t_doc	*new;
-	static	unsigned int i;
+	t_doc				*new;
+	static unsigned int	i;
 
 	new = ft_calloc(1, sizeof(t_doc));
 	*f = M_FAIL;

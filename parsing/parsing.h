@@ -19,6 +19,8 @@
 # define INCORRECT 0
 # define CANCEL 33280
 # define FIRST_INDEX 0
+# define PASSED_SINGLE 14
+# define PASSED_DOUBLE 15
 # define PASSED_QUOTES 29
 # define IGNORE_QUOTES 30
 # define PASSED_THROUGH 31
@@ -54,6 +56,7 @@ typedef struct s_rdct
 }	t_rdct;
 
 int		ft_verify(char *src);
+int		ft_set_error_code(int code);
 t_loc	*ft_validate_cmds(t_loc *list);
 
 t_loc	*ft_parsing(char *src);
