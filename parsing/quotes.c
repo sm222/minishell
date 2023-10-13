@@ -63,15 +63,15 @@ t_idx	ft_quotes_delimitation(char *src)
 		if (!open_quote && (src[i.current_start] == '\'' \
 			|| src[i.current_start] == '"'))
 		{
-			i.start_index = i.current_start;
-			open_quote = CORRECT;
-			current_quote = src[i.current_start];
+				i.start_index = i.current_start;
+				open_quote = CORRECT;
+				current_quote = src[i.current_start];
 		}
 		else if (open_quote && src[i.current_start] == current_quote)
 		{
-			i.end_index = i.current_start;
-			open_quote = INCORRECT;
-			return (i);
+				i.end_index = i.current_start;
+				open_quote = INCORRECT;
+				return (i);
 		}
 		i.current_start++;
 	}
@@ -90,6 +90,10 @@ void	ft_quote_op(char *cmd)
 	{
 		if (cmd[index.current_start] == ' ')
 			cmd[index.current_start] = PASSED_QUOTES;
+		if (cmd[index.current_start] == '\'')
+			cmd[index.current_start] = PASSED_SINGLE;
+		if (cmd[index.current_start] == '"')
+			cmd[index.current_start] = PASSED_DOUBLE;
 		index.current_start++;
 	}
 }

@@ -55,6 +55,16 @@ char	*ft_strslice(char *src, int start, int end)
 				res[i++] = ' ';
 				start++;
 			}
+			else if (src[start] == PASSED_SINGLE)
+			{
+				res[i++] = '\'';
+				start++;
+			}
+			else if (src[start] == PASSED_DOUBLE)
+			{
+				res[i++] = '"';
+				start++;
+			}
 			else
 				res[i++] = src[start++];
 		}
