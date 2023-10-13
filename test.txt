@@ -1,1 +1,7 @@
-echo "toto"
+echo | $USER
+echo | echo $? 
+sleep 2
+cat < Makefile | wc -l
+sleep 2
+echo | echo je suis un '$USER' et "$USER"
+sleep 2

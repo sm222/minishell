@@ -1,56 +1,48 @@
-|echo "toto"
-|echo '"'toto'"'
-|echo """totot"""
-|echo "'""totot""'"
-|echo '''ta'''
-|"echo" tata
-|echo "''test''"
-|echo '${USER}'
-|echo "${USER}"
-|echo "'"${USER}"'"
-|echo "test" "test"
-|echo "test""test"
-|echo test"test"
-|echo "test"test
-|echo $?
-|echo The current user is $USER
-|echo The current user is "'"$USER"'"
-|echo The current user is '"'"$USER"'"'
-|"'"echo"'" The current user is $USER
-|"''echo''" The current user is "'"$USER"'"
-|"'"""echo"""'" The current user is '"'"$USER"'"'
-|echo The current user is ${USER}
-|echo The current user is "'"${USER}"'"
-|echo The current user is '"'"${USER}"'"'
-|#echo -n rtorto
-|#echo -nnnnn fgergrg
-|echo -n-n fgjrogj
-|"'"echo"'" The current user is ${USER}
-|"''echo''" The current user is "'"${USER}"'"
-|"'"""echo"""'" The current user is '"'"${USER}"'"'
-|ls | wc -l
-|echo toto | ls | wc -l | echo toto
-|echo $?
-|ls -la srcs
-|ls -la srcs | grep in
-|pwd
-|echo toto | echo $? | ls | echo toto
-|echo $?
-|cat nonexistingfile.bob.gratton
-|# REDIRECTION FILENAME MUST BE file.txt
-|echo toto > file.txt | cat file.txt
-|echo toto >> file.txt | cat file.txt
-|echo toto > file.txt | cat file.txt | ls
-|echo toto >> file.txt | cat file.txt | ls
-|echo toto > file.txt | cat < file.txt
-|echo -n > file.txt | cat file.txt
-|echo > file.txt | cat file.txt
-|# END REDIRECTION
-|#cat < Makefile
-|#export $ec=ec
-|#export $ho=ho
-|#unset $PATH
-|#$ec$ho test
-|# START HEREDOC
-|#cat << 4 > file.txt | cat file.txt
-|# END HEREDOC
+echo | echo "toto"
+echo | echo '"'toto'"'
+echo | echo """totot"""
+echo | echo "'""totot""'"
+echo | echo '''ta'''
+echo | "echo" tata
+echo | echo "''test''"
+echo | echo '${USER}'
+echo | echo "${USER}"
+echo | echo "'"${USER}"'"
+echo | echo "test" "test"
+echo | echo "test""test"
+echo | echo test"test"
+echo | echo "test"test
+echo | echo $?
+echo | echo The current user is $USER
+echo | echo The current user is "'"$USER"'"
+echo | echo The current user is '"'"$USER"'"'
+echo | "'"echo"'" The current user is $USER
+echo | "''echo''" The current user is "'"$USER"'"
+echo | "'"""echo"""'" The current user is '"'"$USER"'"'
+echo | echo The current user is ${USER}
+echo | echo The current user is "'"${USER}"'"
+echo | echo The current user is '"'"${USER}"'"'
+echo | echo -n rtorto
+echo | echo -nnnnn fgergrg
+echo | echo -n-n fgjrogj
+echo | "'"echo"'" The current user is ${USER}
+echo | "''echo''" The current user is "'"${USER}"'"
+echo | "'"""echo"""'" The current user is '"'"${USER}"'"'
+echo | ls | wc -l
+echo | echo toto | ls | wc -l | echo toto
+echo | echo $?
+echo | ls -la srcs
+echo | ls -la srcs | grep in
+echo | pwd
+echo | echo toto | echo $? | ls | echo toto
+echo | echo $?
+echo | cat nonexistingfile.bob.gratton
+echo || a
+echo ||| a
+echo |||| a
+echo | cat < Makefile > out
+echo | cat < Makefile >> out
+echo -n | echo '-----Bonus-----'
+echo -n && ls && pwd
+echo -n && ls '' && pwd
+echo -n && pwd -z || pwd

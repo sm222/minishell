@@ -58,7 +58,7 @@ static void	set_m_i_n_s_h(t_logo *logo)
 
 static void	print_seed(t_logo *logo)
 {
-	printf("seed	%d|%d|%d|%d|%d|%d|%d|%d|%d\n", \
+	ft_printf(1, "seed	%d|%d|%d|%d|%d|%d|%d|%d|%d\n", \
 	logo->nb[0], logo->nb[1], logo->nb[2], \
 	logo->nb[3], logo->nb[4], logo->nb[5], \
 	logo->nb[6], logo->nb[7], logo->nb[8]);
@@ -99,7 +99,7 @@ void	print_logo(char *seed)
 	i = -1;
 	while (++i < 5)
 	{
-		printf("%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s\n", \
+		ft_printf(1, "%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s\n", \
 	logo.color[logo.nb[0]], logo.m[i], logo.color[logo.nb[1]], logo.i[i], \
 	logo.color[logo.nb[2]], logo.n[i], logo.color[logo.nb[3]], logo.i[i], \
 	logo.color[logo.nb[4]], logo.s[i], logo.color[logo.nb[5]], logo.h[i], \
