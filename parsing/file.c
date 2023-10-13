@@ -25,7 +25,7 @@ char	*ft_file_extract(char *src, int start_index)
 		i.start_index++;
 	if (src[i.start_index] == '>')
 		i.start_index++;
-	if (src[i.start_index] == ' ')
+	while (src[i.start_index] == ' ')
 		i.start_index++;
 	i.end_index = i.start_index;
 	while (src[i.end_index] && src[i.end_index] != ' ')

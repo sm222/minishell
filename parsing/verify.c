@@ -31,12 +31,17 @@ static int	ft_quote_error(char *src)
 static int	ft_redirect_error(char *src)
 {
 	int		i;
+	char	current_redirect;
 
 	i = 0;
 	while (src[i])
 	{
 		if (src[i] == '<' || src[i] == '>')
 		{
+			current_redirect = src[i];
+			if (i + 1 < (int)ft_strlen(src))
+				if (src[i + 1] != current_redirect && !ft_isprint(src[i]))
+					return (CORRECT);
 			if (i + 2 < (int)ft_strlen(src))
 				if (src[i + 2] == '<' || src[i + 2] == '>')
 					return (CORRECT);
