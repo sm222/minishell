@@ -39,17 +39,6 @@ int	ft_has_quotes(char *src)
 	return (INCORRECT);
 }
 
-int	ft_check_ignore(char *src, int start, int end)
-{
-	int	nb;
-
-	nb = 0;
-	while (start < end)
-		if (src[start++] == IGNORE_QUOTES)
-			nb++;
-	return (nb);
-}
-
 t_idx	ft_quotes_delimitation(char *src)
 {
 	t_idx	i;
@@ -63,15 +52,15 @@ t_idx	ft_quotes_delimitation(char *src)
 		if (!open_quote && (src[i.current_start] == '\'' \
 			|| src[i.current_start] == '"'))
 		{
-				i.start_index = i.current_start;
-				open_quote = CORRECT;
-				current_quote = src[i.current_start];
+			i.start_index = i.current_start;
+			open_quote = CORRECT;
+			current_quote = src[i.current_start];
 		}
 		else if (open_quote && src[i.current_start] == current_quote)
 		{
-				i.end_index = i.current_start;
-				open_quote = INCORRECT;
-				return (i);
+			i.end_index = i.current_start;
+			open_quote = INCORRECT;
+			return (i);
 		}
 		i.current_start++;
 	}
