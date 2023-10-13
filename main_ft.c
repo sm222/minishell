@@ -50,7 +50,8 @@ static short	ft_caller(t_mshell *shell)
 	short	type;
 
 	j = 0;
-	while (j < ft_strlen(shell->s))
+	type = 0;
+	while (j < ft_strlen(shell->s) - 1)
 	{
 		i = look_for_type(shell->s + j, &type);
 		if (type == -1)

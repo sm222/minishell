@@ -48,7 +48,7 @@ static void	bad_con(char *s, short *type)
 
 	i = 0;
 	pec = ft_return_ptr(NULL, PEC);
-	while (s && s[i])
+	while (s && i < ft_strlen(s))
 	{
 		while (s && s[i] && ft_set_mode(s[i]) != 0)
 			ft_set_mode(s[++i]);
