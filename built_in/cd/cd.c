@@ -69,7 +69,7 @@ static int	goto_dir(char *dir, char **en, int re_out)
 	sys_errlist[errno], dir);
 		return (EXIT_FAILURE);
 	}
-	return (err);
+	return (0);
 }
 
 /// @brief		move to a dir
