@@ -1,6 +1,6 @@
 #include "include/minishell.h"
 
-short static	free_data_shell(t_mshell *shell)
+static short	free_data_shell(t_mshell *shell)
 {
 	free_here_doc(NO_UNLINK);
 	shell->pwd = ft_free(shell->pwd);
@@ -11,7 +11,7 @@ short static	free_data_shell(t_mshell *shell)
 	shell->en = (char **)ft_double_sfree((void **)shell->en);
 	return (1);
 }
-short static	free_data_loc(t_loc *data)
+static short	free_data_loc(t_loc *data)
 {
 	t_loc	*tmp;
 

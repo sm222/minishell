@@ -4,10 +4,8 @@
 static int	find_tok(char *s)
 {
 	size_t	i;
-	short	find;
 
 	i = 0;
-	find = 0;
 	while (s && s[i])
 	{
 		ft_set_mode(s[i]);

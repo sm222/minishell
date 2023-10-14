@@ -65,7 +65,7 @@ all: libft builtin exe parse doc $(NAME)
 $(NAME): $(OBJS) $(C_TOOL)
 	@$(CC) $(CFLAGS) $(OBJS) $(LIBFT_DIR)$(LIBFT) -l readline -l ncurses \
 	$(RL_DIR)$(RL_H) $(RL_DIR)$(RL_L) $(C_TOOL) $(EXECUTION_DIR)$(EXECUTION_LIB) \
-	$(HERE_DOC_DIR)$(HERE_DOC_LIB) $(PARSE_DIR)$(PARSE_LIB) -o $(NAME)
+	$(PARSE_DIR)$(PARSE_LIB) $(HERE_DOC_DIR)$(HERE_DOC_LIB) -o $(NAME)
 
 libft:
 	@printf "$(GRN)making libft$(WHT)\n"

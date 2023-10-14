@@ -36,7 +36,7 @@ static int	get_to_user(char **en)
 	err = chdir(env);
 	if (err)
 		ft_printf(STDERR_FILENO, "%ocd: %s: %s\n", \
-		NULL, sys_errlist[errno], env);
+		NULL, strerror(errno), env);
 	return (err);
 }
 
@@ -66,7 +66,7 @@ static int	goto_dir(char *dir, char **en, int re_out)
 	if (err)
 	{
 		ft_printf(STDERR_FILENO, "%ocd: %s: %s\n", NULL, \
-	sys_errlist[errno], dir);
+	strerror(errno), dir);
 		return (EXIT_FAILURE);
 	}
 	return (0);
