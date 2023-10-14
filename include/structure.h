@@ -19,12 +19,29 @@
 //			define			//
 //--------------------------//
 
-# define SYS   0		// t_mshell struct
-# define PATH  1		// path split with the ':'
-# define PEC   2		// process exit code
-# define ENV_C 3		// copy of the env
-# define EX_F  4		// tell if the program end
-# define DOC   5		// here_dock
+# define SYS      0		// t_mshell struct
+# define PATH     1		// path split with the ':'
+# define PEC      2		// process exit code
+# define ENV_C    3		// copy of the env
+# define EX_F     4		// tell if the program end
+# define DOC      5		// here_dock
+# define SIG      6		// signal_ft
+# define PARSE    7		// t_loc struct
+# define CLEAN    8		// clean_shell ft
+# define FREE_DOC 9		// ft use to free the here_doc
+# define DOC_FILE 10	// terminating word for here_doc
+
+//		SIG		//
+
+# ifndef CMD
+#  define CMD 9
+# endif
+# ifndef CHILD
+#  define CHILD 3
+# endif
+# ifndef HERE_DOC
+# define  HERE_DOC 6
+# endif
 
 //--------------------------//
 //			colors			//
@@ -85,6 +102,7 @@ typedef struct s_doc
 /// @param pipe_out 	this cmd output
 /// @param redi_in 		cmd redir input
 /// @param redi_out 	cmd redir output
+/// @param redi_doc 	fd of here_doc
 typedef struct s_token
 {
 	int				mode;
@@ -92,6 +110,7 @@ typedef struct s_token
 	int				pipe_out;
 	int				redi_in;
 	int				redi_out;
+	int				redi_doc;
 }	t_token;
 
 /// @brief linklist use for waitpid

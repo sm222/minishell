@@ -51,7 +51,9 @@ int	ft_redirect_op(char *cmd, t_token *tokens)
 	t_rdct	fd;
 
 	ft_bzero(&fd, sizeof(t_rdct));
-	while (ft_has_redirect(cmd))
+	fd.fd_doc = ft_here_doc(cmd, &fd);
+	tokens->redi_doc = fd.fd_doc;
+	while (fd.fd_doc != CANCEL && ft_has_redirect(cmd))
 	{
 		fd.input = ft_at_index(cmd, '<');
 		fd.output = ft_at_index(cmd, '>');
@@ -62,7 +64,8 @@ int	ft_redirect_op(char *cmd, t_token *tokens)
 		if (fd.output != INVALID)
 			fd.out_succ = ft_output(cmd, tokens, fd.output);
 	}
-	if (fd.in_succ == INVALID || fd.out_succ == INVALID)
+	if (fd.in_succ == INVALID || fd.out_succ == INVALID || \
+		fd.fd_doc == INVALID)
 		return (INCORRECT);
 	if (fd.last_doc)
 		tokens->redi_in = fd.fd_doc;

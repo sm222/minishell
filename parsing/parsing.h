@@ -8,6 +8,7 @@
 # include "../lib/lib_ft/libft.h"
 # include "../include/structure.h"
 # include "../readline/readline.h"
+# include "../here_doc/here_doc.h"
 
 # include <stdio.h>
 
@@ -16,7 +17,10 @@
 # define CORRECT 1
 # define INVALID -1 
 # define INCORRECT 0
+# define CANCEL 33280
 # define FIRST_INDEX 0
+# define PASSED_SINGLE 14
+# define PASSED_DOUBLE 15
 # define PASSED_QUOTES 29
 # define IGNORE_QUOTES 30
 # define PASSED_THROUGH 31
@@ -25,6 +29,7 @@
 
 typedef struct s_loc
 {
+	char			*slice;
 	char			**decon_cmd;
 	t_token			*tokens;
 	struct s_loc	*next;
@@ -46,15 +51,18 @@ typedef struct s_rdct
 	int	output;
 	int	fd_doc;
 	int	in_succ;
-	int out_succ;
+	int	out_succ;
 	int	last_doc;
-} t_rdct;
+}	t_rdct;
 
 int		ft_verify(char *src);
+int		ft_set_error_code(int code);
 t_loc	*ft_validate_cmds(t_loc *list);
 
 t_loc	*ft_parsing(char *src);
-void	ft_add_loc(t_loc **list, char **cmd, t_token *tokens);
+void	ft_add_node(t_loc **list);
+void	ft_set_tokens(t_loc **list, t_token *tokens);
+void	ft_set_decon(t_loc **list, char **decon_cmd);
 
 int		ft_has_pipe(char *src);
 int		ft_invalid_pipe(char *cmd);

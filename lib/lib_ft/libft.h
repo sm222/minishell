@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 11:07:18 by anboisve          #+#    #+#             */
-/*   Updated: 2023/09/25 10:06:56 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/10/12 10:49:29 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 
 # define HEX_TABLE "0123456789abcdef"
 # define DOLAR_LIST "_"
+# define RETURN_PTR_MAX 20
 
 //made by @sm222
 //char		\verification
@@ -58,6 +59,8 @@ void		ft_change_dolar(char **old, char **en, short here_doc, int err);
 
 size_t		ft_strlen(const char *s);
 size_t		ft_strlen_double(char **s);
+char		*ft_find_char(char *s, int c);
+char		*ft_rfind_char(char *s, int c);
 char		*ft_strchr(const char *s, int c);
 char		*ft_strrchr(const char *s, int c);
 int			ft_strcmp(const char *s1, const char *s2);
@@ -91,6 +94,7 @@ int			ft_putchar_fd(char c, int fd);
 int			ft_putstr_fd(char *s, int fd);
 int			ft_putnbr_fd(int n, int fd);
 int			ft_putendl_fd(char *s, int fd);
+char		*ft_make_color(short r, short g, short b);
 
 //b_flag								//
 

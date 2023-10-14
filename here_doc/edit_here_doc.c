@@ -3,22 +3,13 @@
 /// @brief use at the end of the edit_here_doc
 /// @param fd of the open here_doc
 /// @return 
-static int	close_and_exit(int fd)
+int	close_and_exit(int fd)
 {
-	t_mshell	*shell;
+	short	(*ft)(void);
 
-	shell = ft_return_ptr(NULL, SYS);
-	if (shell)
-	{
-		ft_double_sfree((void **)shell->en);
-		ft_double_sfree((void **)shell->path);
-		ft_free(shell->pwd);
-		ft_free(shell->s);
-		ft_free(shell->prompt);
-		ft_free(shell->rest);
-	}
+	ft = ft_return_ptr(NULL, CLEAN);
+	ft();
 	close(fd);
-	free_here_doc(NO_UNLINK);
 	exit(0);
 }
 
@@ -33,6 +24,8 @@ static int	write_fd(int fd, char *stop, short inter)
 	char	*tmp;
 	int		*pec;
 
+	tmp = NULL;
+	pec = NULL;
 	pec = ft_return_ptr(NULL, PEC);
 	tmp = readline("> ");
 	if (ft_strncmp(stop, tmp, ft_strlen(stop) + 1) == 0)
@@ -60,7 +53,10 @@ static short	edit_loop(t_doc *doc, char *stop, short inter)
 {
 	int			f;
 	mode_t		mode;
+	void		(*ft)(int);
 
+	ft = ft_return_ptr(NULL, SIG);
+	ft(HERE_DOC);
 	f = stat(doc->f_name, &doc->last);
 	mode = doc->last.st_mode;
 	while (f == 0)
@@ -77,36 +73,51 @@ static short	edit_loop(t_doc *doc, char *stop, short inter)
 	}
 	if (f == -1)
 		perror("minishell: here_doc");
+	ft_free(stop);
 	return (close_and_exit(doc->fd));
+}
+
+static int	check_control_c(int err, int fd)
+{
+	if (err)
+	{
+		if (fd)
+			close(fd);
+		return (err);
+	}
+	return (fd);
 }
 
 /// @brief modefi a here_doc
 /// @param doc to edit
 /// @param stop word to stop on
 /// @return err code
-short	edit_here_doc(t_doc *doc, char *stop, short inter)
+int	edit_here_doc(t_doc *doc, char *stop, short inter)
 {
 	pid_t	pid;
+	int		err = 0;
 
 	if (doc)
 	{
-		doc->fd = open(doc->f_name, O_CREAT | O_TRUNC | O_RDWR, 0644);
-		if (doc->fd < 0)
-		{
-			unlink(doc->f_name);
-			return (edit_here_doc(doc, stop, inter));
-		}
 		pid = fork();
 		if (pid == -1)
-			return (FORK_FAIL);
+			return (FORK_FAIL + 2);
 		if (pid == 0)
-			edit_loop(doc, stop, inter);
-		else
 		{
-			waitpid(pid, NULL, 0);
-			close(doc->fd);
+			doc->fd = open(doc->f_name, O_CREAT | O_TRUNC | O_RDWR, 0644);
+			if (doc->fd < 0)
+			{
+				ft_printf(2, "%o"MS_NAME"\b: can't make file %s\n", \
+			NULL, doc->f_name);
+				exit(1);
+			}
+			edit_loop(doc, stop, inter);
 		}
-		return (SUCCESS);
+		else
+			waitpid(pid, &err, 0);
 	}
-	return (BAD_ARGS);
+	doc->fd = open(doc->f_name, O_RDONLY, 0644);
+	return (check_control_c(err, doc->fd));
 }
+
+//33280

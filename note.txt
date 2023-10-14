@@ -2,6 +2,7 @@
 //			BUILT_IN		//
 /*/*//*/*//*/*//*/*//*/*//*/*/
 
+<infile echo "allo" | wc -l >outfile
 chnage exit in the real exit and rm it from excution 
 
 3.7.5 Exit Status

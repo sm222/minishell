@@ -31,6 +31,7 @@ SRCS	=	ft_atoi.c\
 			ft_str_split.c\
 			ft_split.c\
 			ft_strcmp.c\
+			ft_find_char.c\
 			ft_strchr.c\
 			ft_strdup.c\
 			ft_striteri.c\
@@ -69,6 +70,7 @@ SRCS	=	ft_atoi.c\
 			ft_lstnew.c\
 			ft_lstadd_front.c\
 			ft_lstsize.c\
+			ft_make_color.c\
 			ft_lstlast.c\
 			ft_lstadd_back.c\
 			ft_lstdelone.c\

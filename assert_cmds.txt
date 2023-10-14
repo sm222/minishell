@@ -1,0 +1,48 @@
+echo | echo "toto"
+echo | echo '"'toto'"'
+echo | echo """totot"""
+echo | echo "'""totot""'"
+echo | echo '''ta'''
+echo | "echo" tata
+echo | echo "''test''"
+echo | echo '${USER}'
+echo | echo "${USER}"
+echo | echo "'"${USER}"'"
+echo | echo "test" "test"
+echo | echo "test""test"
+echo | echo test"test"
+echo | echo "test"test
+echo | echo $?
+echo | echo The current user is $USER
+echo | echo The current user is "'"$USER"'"
+echo | echo The current user is '"'"$USER"'"'
+echo | "'"echo"'" The current user is $USER
+echo | "''echo''" The current user is "'"$USER"'"
+echo | "'"""echo"""'" The current user is '"'"$USER"'"'
+echo | echo The current user is ${USER}
+echo | echo The current user is "'"${USER}"'"
+echo | echo The current user is '"'"${USER}"'"'
+echo | echo -n rtorto
+echo | echo -nnnnn fgergrg
+echo | echo -n-n fgjrogj
+echo | "'"echo"'" The current user is ${USER}
+echo | "''echo''" The current user is "'"${USER}"'"
+echo | "'"""echo"""'" The current user is '"'"${USER}"'"'
+echo | ls | wc -l
+echo | echo toto | ls | wc -l | echo toto
+echo | echo $?
+echo | ls -la srcs
+echo | ls -la srcs | grep in
+echo | pwd
+echo | echo toto | echo $? | ls | echo toto
+echo | echo $?
+echo | cat nonexistingfile.bob.gratton
+echo || a
+echo ||| a
+echo |||| a
+echo | cat < Makefile > out
+echo | cat < Makefile >> out
+echo -n | echo '-----Bonus-----'
+echo -n && ls && pwd
+echo -n && ls '' && pwd
+echo -n && pwd -z || pwd

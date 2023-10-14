@@ -40,16 +40,18 @@ SRCS	=	main.c\
 			main_ft.c\
 			main_logo.c\
 			converter.c\
-			converter_ft.c\
+			free_shell.c\
 			include/err.c\
+			converter_ft.c\
+			signal/signal.c\
 			built_in/cd/cd.c\
 			built_in/pwd/pwd.c\
 			built_in/echo/echo.c\
 			built_in/env/ft_env.c\
 			built_in/exit/ft_exit.c\
 			built_in/export/export.c\
-			built_in/export/export_u.c\
 			built_in/unset/ft_unset.c\
+			built_in/export/export_u.c\
 
 #env -i ./minishell
 
@@ -105,6 +107,7 @@ clean:
 fclean: clean
 	@$(RM) $(NAME)
 	@$(RM) $(B_NAME)
+	@$(RM) -fr minishell.dSYM 
 	@make -C built_in         fclean
 	@make -C $(LIBFT_DIR)     fclean
 	@make -C $(HERE_DOC_DIR)  fclean

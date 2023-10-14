@@ -35,6 +35,29 @@ int	ft_at_rev_index(char *src, char c)
 	return (INVALID);
 }
 
+static void	ft_replace_in_quotes(char *src, int *start, char *res, int *i)
+{
+	if (src[(*start)] == IGNORE_QUOTES)
+		(*start)++;
+	else if (src[(*start)] == PASSED_QUOTES)
+	{
+		res[(*i)++] = ' ';
+		(*start)++;
+	}
+	else if (src[(*start)] == PASSED_SINGLE)
+	{
+		res[(*i)++] = '\'';
+		(*start)++;
+	}
+	else if (src[(*start)] == PASSED_DOUBLE)
+	{
+		res[(*i)++] = '"';
+		(*start)++;
+	}
+	else
+		res[(*i)++] = src[(*start)++];
+}
+
 char	*ft_strslice(char *src, int start, int end)
 {
 	char	*res;
@@ -47,17 +70,7 @@ char	*ft_strslice(char *src, int start, int end)
 		if (!res)
 			return (NULL);
 		while (start < end)
-		{
-			if (src[start] == IGNORE_QUOTES)
-				start++;
-			else if (src[start] == PASSED_QUOTES)
-			{
-				res[i++] = ' ';
-				start++;
-			}
-			else
-				res[i++] = src[start++];
-		}
+			ft_replace_in_quotes(src, &start, res, &i);
 		return (res);
 	}
 	return (NULL);
@@ -78,17 +91,5 @@ void	ft_purge(t_loc *list)
 		temp = current;
 		current = current->next;
 		ft_free(temp);
-	}
-}
-
-void	ft_pass_through(char **decon)
-{
-	int	i;
-
-	i = FIRST_INDEX;
-	if (decon)
-	{
-		while (decon[i])
-			ft_putendl_fd(decon[i++], 1);
 	}
 }

@@ -11,7 +11,7 @@ int	get_env_path(t_mshell *data)
 
 	i = 0;
 	data->path = NULL;
-	while (data->en[i])
+	while (data->en && data->en[i])
 	{
 		if (ft_strncmp(data->en[i], "PATH=", 5) == 0)
 		{

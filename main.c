@@ -4,7 +4,7 @@ static void	free_shell(t_mshell *shell)
 {
 	if (!shell)
 		return ;
-	ft_putstr_fd("test end\n", 2);
+	ft_putstr_fd("goodbye!\n", 2);
 	ft_free(shell->pwd);
 	ft_free(shell->s);
 	ft_free(shell->prompt);
@@ -18,7 +18,21 @@ static void	do_logo(char **av)
 		print_logo(av[1]);
 	else
 		print_logo(NULL);
-	ft_printf(1, "v1.0\n");
+	ft_printf(1, "%o%Sv1.0\n"WHT, NULL, ft_make_color(20, 84, 255));
+}
+
+static int	set_ptr_all(t_mshell *shell)
+{
+	ft_return_ptr(shell, SYS);
+	ft_return_ptr(shell->path, PATH);
+	ft_return_ptr(&shell->pec, PEC);
+	ft_return_ptr(shell->en, ENV_C);
+	ft_return_ptr(&shell->exit, EX_F);
+	ft_return_ptr(&shell->doc, DOC);
+	ft_return_ptr(&ft_signal_handler, SIG);
+	ft_return_ptr(&clean_shell, CLEAN);
+	ft_return_ptr(&free_here_doc, FREE_DOC);
+	return (0);
 }
 
 static int	start_shell(t_mshell *shell, char **en, char **av)
@@ -31,13 +45,8 @@ static int	start_shell(t_mshell *shell, char **en, char **av)
 	ft_bzero(shell, sizeof(t_mshell));
 	shell->en = ft_cpy_double_char(en);
 	if (get_env_path(shell) <= FAIL)
-		return (127);
-	ft_return_ptr(shell, SYS);
-	ft_return_ptr(shell->path, PATH);
-	ft_return_ptr(&shell->pec, PEC);
-	ft_return_ptr(shell->en, ENV_C);
-	ft_return_ptr(&shell->exit, EX_F);
-	ft_return_ptr(&shell->doc, DOC);
+		return (1);
+	set_ptr_all(shell);
 	ft_printf(NO_PRINT, "%oex OLDPWD PWD", &new);
 	spl = ft_split(new, ' ');
 	ft_export(spl, 0, 1, shell->en);
@@ -51,17 +60,23 @@ static int	start_shell(t_mshell *shell, char **en, char **av)
 int	main(int ac, char **av, char **en)
 {
 	t_mshell	shell;
-	int			loop_test;
+	char		*new;
+	char		**spl;
 
 	(void)ac;
-	loop_test = 100;
+	ft_signal_handler(CMD);
 	if (start_shell(&shell, en, av) != SUCCESS)
 		return (FAIL);
-	while (loop_test--)
+	while (SUCCESS)
 	{
 		if (reset_data_main(&shell) == FAIL -1)
 			break ;
-		printf("last pec == %d\n", shell.pec);
+		ft_printf(NO_PRINT, "%oex _=%s", &new, ft_rfind_char(shell.s, ' '));
+		spl = ft_split(new, ' ');
+		ft_export(spl, 0, 1, shell.en);
+		shell.en = ft_return_ptr(NULL, ENV_C);
+		new = ft_free(new);
+		spl = (char **)ft_double_sfree((void **)spl);
 	}
 	rl_clear_history();
 	free_shell(&shell);

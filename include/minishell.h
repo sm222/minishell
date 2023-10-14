@@ -18,6 +18,7 @@
 # include "../execution/execution.h"
 # include "../here_doc/here_doc.h"
 # include "../parsing/parsing.h"
+# include "../signal/signal.h"
 
 # define DEV_CHMOD	0644
 
@@ -92,6 +93,7 @@ typedef struct s_logo
 //			fonction		//
 //--------------------------//
 
+short	clean_shell(void);
 short	reset_data_main(t_mshell *shell);
 int		get_env_path(t_mshell *data);
 void	print_logo(char *seed);
