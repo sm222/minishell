@@ -6,12 +6,17 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 15:06:44 by anboisve          #+#    #+#             */
-/*   Updated: 2023/10/06 17:58:34 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/10/14 02:33:46 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+/// @brief add for here_doc
+/// @param s 
+/// @param i 
+/// @param en 
+/// @return 
 static char	*make_edit_str(char *s, size_t *i, char **en)
 {
 	char	*s1;
