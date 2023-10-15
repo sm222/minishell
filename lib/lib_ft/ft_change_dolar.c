@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 15:06:44 by anboisve          #+#    #+#             */
-/*   Updated: 2023/10/14 02:33:46 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/10/15 16:17:46 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,12 @@ static char	*make_edit_str(char *s, size_t *i, char **en)
 	char	*new;
 	size_t	j;
 
+	if (ft_find_doc(s, *i))
+	{
+		new = ft_strdup(s);
+		ft_free(s);
+		return (new);
+	}
 	ft_set_mode(s[*i + 1]);
 	j = *i + 1;
 	s1 = ft_strndup(s, *i);

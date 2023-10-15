@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 11:07:18 by anboisve          #+#    #+#             */
-/*   Updated: 2023/10/12 10:49:29 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/10/15 16:14:27 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,10 @@ char		**ft_split(char const *s, char c);
 int			ft_close_fds(int **fds, int f_ptr, int size);
 
 //bonus									//
+
+//minishell								//
+
+int	ft_find_doc(char *s, size_t len);
 
 typedef struct s_list
 {
