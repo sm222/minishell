@@ -51,7 +51,7 @@ static short	ft_caller(t_mshell *shell)
 
 	j = 0;
 	type = 0;
-	while (j < ft_strlen(shell->s) - 1)
+	while (j < ft_strlen(shell->s))
 	{
 		i = look_for_type(shell->s + j, &type);
 		if (type == -1)
@@ -73,6 +73,9 @@ static short	ft_caller(t_mshell *shell)
 
 short	reset_data_main(t_mshell *shell)
 {
+	size_t	i;
+
+	i = 0;
 	shell->s = ft_free(shell->s);
 	shell->prompt = ft_free(shell->prompt);
 	get_user(shell);
@@ -82,6 +85,10 @@ short	reset_data_main(t_mshell *shell)
 	else if (shell->s[0])
 		add_history(shell->s);
 	ft_change_dolar(&shell->s, shell->en, 0, shell->pec);
+	while (shell->s && shell->s[i] && (shell->s[i] == ' ' || shell->s[i] == '\t'))
+		i++;
+	if (i == ft_strlen(shell->s))
+		return (FAIL);
 	ft_set_mode(-1);
 	return (ft_caller(shell));
 }

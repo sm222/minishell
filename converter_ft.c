@@ -59,7 +59,7 @@ static void	bad_con(char *s, short *type)
 				ft_printf(2, "%o"MS_NAME"\b: "SENUT" `%c\'\n", NULL, s[i]);
 				*pec = 258;
 				*type = -1;
-				break ;
+				return ;
 			}
 			i++;
 		}
