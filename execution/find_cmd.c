@@ -1,4 +1,4 @@
-# include "execution.h"
+#include "execution.h"
 
 /// @brief	try to find the file in local folder
 /// @param	name	of the fontion
@@ -10,9 +10,11 @@ static int	test_local(char *name, char **out, mode_t *err)
 
 	lstat(name, &test);
 	*err = test.st_mode;
-	if (access(name, X_OK | F_OK) == 0)
+	if (access(name, F_OK) == 0)
 	{
 		if (S_ISDIR(test.st_mode) || S_ISLNK(test.st_mode))
+			return (NO_ASS);
+		if (access(name, X_OK) != 0)
 			return (NO_ASS);
 		*out = ft_strdup(name);
 		if (!*out)
@@ -20,6 +22,18 @@ static int	test_local(char *name, char **out, mode_t *err)
 		return (1);
 	}
 	return (FAIL);
+}
+
+static int	look_perm(char **name, int err)
+{
+	if (access(*name, X_OK) != 0)
+	{
+		ft_printf(2, "%o"MS_NAME"%s %s\n", NULL, *name, strerror(errno));
+		ft_free(*name);
+		*name = NULL;
+		return (ERR_PD);
+	}
+	return (err + 2);
 }
 
 /// @brief	try to find the cmd
@@ -46,10 +60,10 @@ int	find_path(char *name, char **out, char **list, mode_t *err)
 		ft_printf(NO_PRINT, "%o%s/%s", &tmp, list[i], name);
 		if (!tmp)
 			return (M_FAIL);
-		if (access(tmp, F_OK | X_OK) == 0)
+		if (access(tmp, F_OK) == 0)
 		{
 			*out = tmp;
-			return (i + 2);
+			return (look_perm(out, i));
 		}
 		tmp = ft_free(tmp);
 		i++;

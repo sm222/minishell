@@ -3,14 +3,14 @@
 
 //126
 //is a directory
-int	permission_denied(char *name, mode_t *err)
+int	permission_denied(char *name, mode_t *err, int code)
 {
 	if (S_ISDIR(*err) || S_ISLNK(*err))
 	{
 		ft_printf(STDERR_FILENO, "%o"MS_NAME"\b %s: %s\n", \
 		NULL, name, ISDIR);
 	}
-	else if (*err == 1)
+	else if (code == NO_ASS)
 	{
 		ft_printf(STDERR_FILENO, "%o"MS_NAME"\b %s: %s\n", \
 		NULL, name, strerror(errno));
@@ -27,13 +27,18 @@ bash-3.2$ asdasd
 */
 int	no_file(char *name)
 {
+	int	err;
+
+	err = 127;
 	if (name && (name[0] == '.' || name[0] == '/'))
 	{
-		ft_printf(STDERR_FILENO, "%o"MS_NAME"\b: %s %s\n", \
+		if (errno == 20)
+			err = 126;
+		ft_printf(STDERR_FILENO, "%o"MS_NAME"\b10: %s %s\n", \
 		NULL, name, strerror(errno));
-		return (126);
+		return (err);
 	}
-	ft_printf(2, "%o"MS_NAME"\b "ERR_CNF" %s\n", NULL, name);
+	ft_printf(2, "%o"MS_NAME"\b11 "ERR_CNF"%s\n", NULL, name);
 	return (127);
 }
 

@@ -14,8 +14,8 @@ short	set_data_exe(t_exe *data, t_mshell *shell, t_cmd *in)
 	if (data->err_redir < SUCCESS)
 		return (data->err_redir);
 	data->err = find_path(in->command[0], &data->ft_path, shell->path, &err);
-	if (data->err == NO_ASS)
-		return (permission_denied(in->command[0], &err));
+	if (data->err == NO_ASS || data->err == ERR_PD)
+		return (permission_denied(in->command[0], &err, data->err));
 	else if (data->err == FAIL)
 		return (no_file(in->command[0]));
 	return (SUCCESS);

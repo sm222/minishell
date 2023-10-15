@@ -32,6 +32,7 @@
 # define PIPE_FAIL	-4
 # define NO_ASS		-5
 # define OPEN_FAIL	-6
+# define ERR_PD		-7
 
 # define PERROR		0
 # define NO_FREE	1

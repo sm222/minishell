@@ -40,7 +40,7 @@ l’historique n’a pas à être mis à jour !
 // cmd
 
 int		no_file(char *name);
-int		permission_denied(char *name, mode_t *err);
+int		permission_denied(char *name, mode_t *err, int code);
 short	set_data_exe(t_exe *data, t_mshell *shell, t_cmd *in);
 
 short	make_new_path(t_mshell *shell);
