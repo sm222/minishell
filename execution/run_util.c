@@ -18,6 +18,8 @@ short	set_data_exe(t_exe *data, t_mshell *shell, t_cmd *in)
 		return (permission_denied(in->command[0], &err, data->err));
 	else if (data->err == FAIL)
 		return (no_file(in->command[0]));
+	else if (data->err == ERR_NO_TXT)
+		return (126);
 	return (SUCCESS);
 }
 

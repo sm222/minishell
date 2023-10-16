@@ -15,7 +15,9 @@ static int	test_local(char *name, char **out, mode_t *err)
 		if (S_ISDIR(test.st_mode) || S_ISLNK(test.st_mode))
 			return (NO_ASS);
 		if (access(name, X_OK) != 0)
-			return (NO_ASS);
+		{
+			return (ERR_PD);
+		}
 		*out = ft_strdup(name);
 		if (!*out)
 			return (M_FAIL);
@@ -34,6 +36,27 @@ static int	look_perm(char **name, int err)
 		return (ERR_PD);
 	}
 	return (err + 2);
+}
+
+static short	look_local_file(char **list, char *name)
+{
+	size_t	i;
+	char	*new;
+
+	i = 0;
+	while (list && list[i])
+	{
+		ft_printf(NO_PRINT, "%o%s/%s", &new, list[i], name);
+		if (access(new, F_OK) == 0)
+		{
+			ft_printf(2, "%o"MS_NAME"%s %s\n", NULL, new, strerror(errno));
+			ft_free(new);
+			return (ERR_NO_TXT);
+		}
+		ft_free(new);
+		i++;
+	}
+	return (FAIL);
 }
 
 /// @brief	try to find the cmd
@@ -60,7 +83,7 @@ int	find_path(char *name, char **out, char **list, mode_t *err)
 		ft_printf(NO_PRINT, "%o%s/%s", &tmp, list[i], name);
 		if (!tmp)
 			return (M_FAIL);
-		if (access(tmp, F_OK) == 0)
+		if (access(tmp, F_OK | X_OK) == 0)
 		{
 			*out = tmp;
 			return (look_perm(out, i));
@@ -68,5 +91,5 @@ int	find_path(char *name, char **out, char **list, mode_t *err)
 		tmp = ft_free(tmp);
 		i++;
 	}
-	return (FAIL);
+	return (look_local_file(list, name));
 }

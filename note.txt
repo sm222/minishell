@@ -22,3 +22,10 @@ The exit status is used by the Bash conditional commands (see Conditional Constr
 All of the Bash builtins return an exit status of zero if they succeed and a non-zero status on failure, so they may be used by the conditional and list constructs.
 All builtins return an exit status of 2 to indicate incorrect usage, generally invalid options or missing arguments.
 The exit status of the last command is available in the special parameter $? (see Special Parameters).
+
+
+
+ |ls
+ bad errcode with bad redirec : 1
+ control + c in here_doc stop all
+ interpret les here_doc event with '' ""

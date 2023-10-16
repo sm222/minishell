@@ -16,6 +16,11 @@ int	permission_denied(char *name, mode_t *err, int code)
 		NULL, name, strerror(errno));
 		return (126);
 	}
+	else if (code == ERR_PD)
+	{
+		ft_printf(STDERR_FILENO, "%o"MS_NAME"\b %s: %s\n", \
+		NULL, name, strerror(errno));
+	}
 	return (126);
 }
 
@@ -30,7 +35,7 @@ int	no_file(char *name)
 	int	err;
 
 	err = 127;
-	if (name && (name[0] == '.' || name[0] == '/'))
+	if (name && (name[0] == '/'))
 	{
 		if (errno == 20)
 			err = 126;

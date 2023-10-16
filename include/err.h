@@ -33,6 +33,7 @@
 # define NO_ASS		-5
 # define OPEN_FAIL	-6
 # define ERR_PD		-7
+# define ERR_NO_TXT	-8
 
 # define PERROR		0
 # define NO_FREE	1
