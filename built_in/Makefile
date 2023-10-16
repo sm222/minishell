@@ -14,31 +14,31 @@ all: dirmake echo pwd cd env expo unset exit
 dirmake:
 	@mkdir -p /tmp/binmini/
 echo:
-	@printf "$(GRN)making echo$(WHT)\n"
+	@printf '$(GRN)making echo$(WHT)\n'
 	@make -C echo
 
 pwd:
-	@printf "$(GRN)making pwd$(WHT)\n"
+	@printf '$(GRN)making pwd$(WHT)\n'
 	@make -C pwd
 
 cd:
-	@printf "$(GRN)making cd$(WHT)\n"
+	@printf '$(GRN)making cd$(WHT)\n'
 	@make -C cd
 
 expo:
-	@printf "$(GRN)making export$(WHT)\n"
+	@printf '$(GRN)making export$(WHT)\n'
 	@make -C export
 
 env:
-	@printf "$(GRN)making env$(WHT)\n"
+	@printf '$(GRN)making env$(WHT)\n'
 	@make -C env
 
 unset:
-	@printf "$(GRN)making unset$(WHT)\n"
+	@printf '$(GRN)making unset$(WHT)\n'
 	@make -C unset
 
 exit:
-	@printf "$(GRN)making exit$(WHT)\n"
+	@printf '$(GRN)making exit$(WHT)\n'
 	@make -C exit
 
 clean:

@@ -34,11 +34,11 @@ int	no_file(char *name)
 	{
 		if (errno == 20)
 			err = 126;
-		ft_printf(STDERR_FILENO, "%o"MS_NAME"\b10: %s %s\n", \
+		ft_printf(STDERR_FILENO, "%o"MS_NAME"\b: %s %s\n", \
 		NULL, name, strerror(errno));
 		return (err);
 	}
-	ft_printf(2, "%o"MS_NAME"\b11 "ERR_CNF"%s\n", NULL, name);
+	ft_printf(2, "%o"MS_NAME"\b "ERR_CNF"%s\n", NULL, name);
 	return (127);
 }
 
