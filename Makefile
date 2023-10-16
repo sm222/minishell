@@ -127,4 +127,7 @@ re: fclean all
 cp:
 	cp supp.txt /tmp
 
+norm:
+	norminette *.c parsing here_doc/ signal/ execution include built_in lib
+
 .PHONY: all libft run mc
