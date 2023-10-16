@@ -55,12 +55,12 @@ int	ft_pipe_error(char *src)
 {
 	int	i;
 
-	i = FIRST_INDEX;
-	while (src[i])
+	i = ft_at_index(src, '|') - 1;
+	while (i)
 	{
 		if (src[i] != ' ')
 			return (INCORRECT);
-		i++;
+		i--;
 	}
 	return (CORRECT);
 }

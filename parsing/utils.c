@@ -86,8 +86,10 @@ void	ft_purge(t_loc *list)
 	{
 		if (current->tokens)
 			ft_free(current->tokens);
+		current->tokens = NULL;
 		if (current->decon_cmd)
 			ft_clear_array(current->decon_cmd);
+		current->decon_cmd = NULL;
 		temp = current;
 		current = current->next;
 		ft_free(temp);
