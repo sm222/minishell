@@ -8,6 +8,7 @@ static void	ft_sig_handle(int signal)
 	shell = ft_return_ptr(NULL, SYS);
 	if (shell && !shell->re_draw)
 	{
+		shell->pec = 1;
 		ft_putendl_fd("\0", 1);
 		rl_replace_line("", 1);
 		rl_on_new_line();

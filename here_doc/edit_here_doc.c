@@ -59,6 +59,7 @@ static short	edit_loop(t_doc *doc, char *stop, short inter)
 	ft(HERE_DOC);
 	f = stat(doc->f_name, &doc->last);
 	mode = doc->last.st_mode;
+	rl_clear_history();
 	while (f == 0)
 	{
 		f = stat(doc->f_name, &doc->start);
