@@ -39,12 +39,14 @@ int	ft_is_last_in(char *src, int start)
 	return (CORRECT);
 }
 
-static short	ft_no_quotes(char *src, int start_index, int end_index)
+static short	ft_no_quotes(char *src, int start_index)
 {
 	short	no_quotes;
 
 	no_quotes = CORRECT;
-	while (start_index < end_index)
+	while (src && src[start_index] && src[start_index] == ' ')
+		start_index++;
+	while (src && src[start_index] && src[start_index] != ' ')
 	{
 		if (src[start_index] == '\'' || src[start_index] == '"')
 		{
@@ -69,7 +71,7 @@ static int	ft_run_here_doc(char *src, t_idx *limit, t_rdct *fd)
 	if (fd)
 		fd->last_doc = ft_is_last_in(src, limit->start_index);
 	ft_word_delimiter(src, limit);
-	no_quotes = ft_no_quotes(src, limit->start_index, limit->end_index);
+	no_quotes = ft_no_quotes(src, limit->current_start);
 	file = ft_file_extract(src, limit->current_start);
 	while (current < limit->current_start)
 	{
