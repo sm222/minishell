@@ -71,6 +71,7 @@ int	main(int ac, char **av, char **en)
 	{
 		if (reset_data_main(&shell) == FAIL -1)
 			break ;
+		shell.re_draw = 0;
 		ft_printf(NO_PRINT, "%oex _=%s", &new, ft_rfind_char(shell.s, ' '));
 		spl = ft_split(new, ' ');
 		ft_export(spl, 0, 1, shell.en);

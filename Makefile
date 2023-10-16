@@ -60,7 +60,7 @@ OBJS	=	$(SRCS:.c=.o)
 USER = $(shell whoami)
 
 all: libft builtin exe parse doc $(NAME)
-	@printf '$(CYN) \n\n			correction is made by $(USER)\n\n  $(RESET)\n'
+	@printf '$(CYN)''\n\n			correction is made by $(USER)\n\n'  $(RESET)\n
 	
 $(NAME): $(OBJS) $(C_TOOL)
 	@$(CC) $(CFLAGS) $(OBJS) $(LIBFT_DIR)$(LIBFT) -l readline -l ncurses \
@@ -68,7 +68,7 @@ $(NAME): $(OBJS) $(C_TOOL)
 	$(PARSE_DIR)$(PARSE_LIB) $(HERE_DOC_DIR)$(HERE_DOC_LIB) -o $(NAME)
 
 libft:
-	@printf '$(GRN)making libft$(WHT)\n'
+	@printf '$(GRN)''making libft''$(WHT)'\n
 	@make -C $(LIBFT_DIR)
 
 parse:

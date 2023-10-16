@@ -2,12 +2,17 @@
 
 static void	ft_sig_handle(int signal)
 {
+	t_mshell	*shell;
+
 	(void)signal;
-	ft_putendl_fd("\0", 1);
-	rl_replace_line("", 1);
-	rl_on_new_line();
-	rl_redisplay();
-	ft_putchar_fd('\r', 1);
+	shell = ft_return_ptr(NULL, SYS);
+	if (shell && !shell->re_draw)
+	{
+		ft_putendl_fd("\0", 1);
+		rl_replace_line("", 1);
+		rl_on_new_line();
+		rl_redisplay();
+	}
 }
 
 static void	ft_child_sig_handle(int signal)

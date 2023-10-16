@@ -173,6 +173,7 @@ typedef struct s_mshell
 	char			*pwd;
 	char			*prompt;
 	t_doc			*doc;
+	short			re_draw;
 }	t_mshell;
 
 /// @brief use in run_cmd

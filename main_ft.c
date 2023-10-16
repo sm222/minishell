@@ -51,6 +51,7 @@ static short	ft_caller(t_mshell *shell)
 
 	j = 0;
 	type = 0;
+	shell->re_draw = 1;
 	while (j < ft_strlen(shell->s))
 	{
 		i = look_for_type(shell->s + j, &type);
