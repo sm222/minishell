@@ -87,9 +87,10 @@ int	ft_here_doc(char *src, t_rdct *fd)
 	t_idx	i;
 	int		fd_doc;
 
+	fd_doc = 0;
 	ft_bzero(&i, sizeof(t_idx));
 	if (ft_check_here_doc(src, &i))
-		while (ft_check_here_doc(src, &i))
+		while (fd_doc != CANCEL && ft_check_here_doc(src, &i))
 			fd_doc = ft_run_here_doc(src, &i, fd);
 	else
 		return (INCORRECT);

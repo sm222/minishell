@@ -55,7 +55,10 @@ int	ft_pipe_error(char *src)
 {
 	int	i;
 
-	i = ft_at_index(src, '|') - 1;
+	i = ft_at_index(src, '|');
+	if (i == INVALID)
+		return (INCORRECT);
+	i--;
 	while (i)
 	{
 		if (src[i] != ' ')
