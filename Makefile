@@ -60,7 +60,7 @@ OBJS	=	$(SRCS:.c=.o)
 USER = $(shell whoami)
 
 all: libft builtin exe parse doc $(NAME)
-	@printf '$(CYN)''\n\n			correction is made by $(USER)\n\n'  $(RESET)\n
+	@printf "$(CYN) \n\n			correction is made by $(USER)\n\n  $(RESET)\n"
 	
 $(NAME): $(OBJS) $(C_TOOL)
 	@$(CC) $(CFLAGS) $(OBJS) $(LIBFT_DIR)$(LIBFT) -l readline -l ncurses \
@@ -68,23 +68,23 @@ $(NAME): $(OBJS) $(C_TOOL)
 	$(PARSE_DIR)$(PARSE_LIB) $(HERE_DOC_DIR)$(HERE_DOC_LIB) -o $(NAME)
 
 libft:
-	@printf '$(GRN)''making libft''$(WHT)'\n
+	@printf "$(GRN)making libft$(WHT)\n"
 	@make -C $(LIBFT_DIR)
 
 parse:
-	@printf '$(GRN)making parsing$(WHT)\n'
+	@printf "$(GRN)making parsing$(WHT)\n"
 	@make -C parsing
 
 builtin:
-	@printf $(GRN)making builtin$(WHT)\n
+	@printf "$(GRN)making builtin$(WHT)\n"
 	@make -C built_in
 
 exe:
-	@printf '$(GRN)making execution$(WHT)\n'
+	@printf "$(GRN)making execution$(WHT)\n"
 	@make -C $(EXECUTION_DIR)
 
 doc:
-	@printf '$(GRN)making doc$(WHT)\n'
+	@printf "$(GRN)making doc$(WHT)\n"
 	@make -C $(HERE_DOC_DIR)
 
 mem: all
@@ -101,27 +101,25 @@ clean:
 	@make -C $(EXECUTION_DIR) clean
 	@make -C parsing		  clean
 	@echo $(shell clear)
-	@printf '$(GRN)clean *.o$(RESET)\n'
+	@printf "$(GRN)clean *.o$(RESET)\n"
 
 # Removes objects and executables
 fclean: clean
 	@$(RM) $(NAME)
 	@$(RM) $(B_NAME)
-	@$(RM) -fr minishell.dSYM
+	@$(RM) -fr minishell.dSYM 
 	@make -C built_in         fclean
 	@make -C $(LIBFT_DIR)     fclean
 	@make -C $(HERE_DOC_DIR)  fclean
 	@make -C $(EXECUTION_DIR) fclean
 	@make -C parsing		  fclean
 	@echo $(shell clear)
-	@printf '$(GRN)clean all$(RESET)\n'
+	@printf "$(GRN)clean all$(RESET)\n"
 
 run: all
 	@./$(NAME)
 
-mc: all clean
-
-# Removes objects and executables and remakes
+mc: all cleants and executables and remakes
 re: fclean all
 
 cp:
