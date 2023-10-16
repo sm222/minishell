@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   structure.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/16 14:28:21 by anboisve          #+#    #+#             */
+/*   Updated: 2023/10/16 14:28:21 by anboisve         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #ifndef STRUCTURE_H
 # define STRUCTURE_H
@@ -41,7 +52,7 @@
 #  define CHILD 3
 # endif
 # ifndef HERE_DOC
-# define  HERE_DOC 6
+#  define HERE_DOC 6
 # endif
 
 //--------------------------//

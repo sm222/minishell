@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_exit.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/16 14:21:43 by anboisve          #+#    #+#             */
+/*   Updated: 2023/10/16 14:21:43 by anboisve         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "exit.h"
 
-static void	set_exit_flag(short	flag)
+static void	set_exit_flag(short flag)
 {
 	short	*ex;
 

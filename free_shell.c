@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   free_shell.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/16 14:32:13 by anboisve          #+#    #+#             */
+/*   Updated: 2023/10/16 14:33:17 by anboisve         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "include/minishell.h"
 
 static short	free_data_shell(t_mshell *shell)
@@ -11,6 +23,7 @@ static short	free_data_shell(t_mshell *shell)
 	shell->en = (char **)ft_double_sfree((void **)shell->en);
 	return (1);
 }
+
 static short	free_data_loc(t_loc *data)
 {
 	t_loc	*tmp;

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   converter_ft.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/16 14:32:30 by anboisve          #+#    #+#             */
+/*   Updated: 2023/10/16 14:32:53 by anboisve         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "include/minishell.h"
 #include "parsing/parsing.h"
 
@@ -70,7 +82,6 @@ static void	bad_con(char *s, short *type)
 short	find_end(char *s, size_t start)
 {
 	size_t	i;
-
 
 	i = start + 2;
 	if (s && (s[i - 1] == '\'' || s[i - 1] == '"'))

@@ -1,4 +1,16 @@
-# include "here_doc.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   edit_here_doc.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/16 14:26:47 by anboisve          #+#    #+#             */
+/*   Updated: 2023/10/16 14:30:21 by anboisve         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "here_doc.h"
 
 /// @brief use at the end of the edit_here_doc
 /// @param fd of the open here_doc
@@ -96,8 +108,9 @@ static int	check_control_c(int err, int fd)
 int	edit_here_doc(t_doc *doc, char *stop, short inter)
 {
 	pid_t	pid;
-	int		err = 0;
+	int		err;
 
+	err = 0;
 	if (doc)
 	{
 		pid = fork();

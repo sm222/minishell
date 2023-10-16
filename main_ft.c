@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main_ft.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/16 14:32:01 by anboisve          #+#    #+#             */
+/*   Updated: 2023/10/16 14:33:39 by anboisve         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "include/minishell.h"
 
 static char	*get_path(char *new, char *old)
@@ -86,7 +98,8 @@ short	reset_data_main(t_mshell *shell)
 	else if (shell->s[0])
 		add_history(shell->s);
 	ft_change_dolar(&shell->s, shell->en, 0, shell->pec);
-	while (shell->s && shell->s[i] && (shell->s[i] == ' ' || shell->s[i] == '\t'))
+	while (shell->s && shell->s[i] && (shell->s[i] == ' ' \
+		|| shell->s[i] == '\t'))
 		i++;
 	if (i == ft_strlen(shell->s))
 		return (FAIL);
