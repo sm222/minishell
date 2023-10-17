@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:24:37 by anboisve          #+#    #+#             */
-/*   Updated: 2023/10/16 14:24:38 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/10/17 12:32:19 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,11 @@ static char	*find_built_in(char *name, int *f)
 	if (f && name)
 	{
 		*f = SUCCESS;
-		ft_printf(NO_PRINT, "%o%sft_%s", &s, PATH_BIN, name);
+		ft_printf(NO_PRINT, "%oft_%s", &s, name);
 		if (s)
 			return (s);
-		ft_free(s);
-		return (ft_strdup(name));
+		*f = M_FAIL;
+		return (NULL);
 	}
 	else if (f)
 		*f = BAD_ARGS;
