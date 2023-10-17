@@ -42,25 +42,13 @@ static int	ft_file_in(char *path, t_token *tokens)
 	if (tokens->redi_in > 2)
 		close(tokens->redi_in);
 	if (path && path[0] == '<')
-	{
-		ft_printf(2, MS_NAME"\b: no file given for input redirection\n");
-		ft_set_error_code(1);
-		return (INCORRECT);
-	}
+		return (ft_error_file(path, NO_FILE_IN));
 	if (path && access(path, F_OK) == 0)
 		tokens->redi_in = open(path, O_RDONLY);
 	else
-	{
-		ft_printf(2, MS_NAME"\b: %s: no such file or directory\n", path);
-		ft_set_error_code(1);
-		return (INCORRECT);
-	}
+		return (ft_error_file(path, NO_FILE));
 	if (tokens->redi_in == INVALID)
-	{
-		ft_printf(2, MS_NAME"\b: %s: can't access file\n", path);
-		ft_set_error_code(1);
-		return (INCORRECT);
-	}
+		return (ft_error_file(path, NO_ACCESS));
 	return (CORRECT);
 }
 
@@ -69,21 +57,13 @@ static int	ft_file_out(char *path, t_token *tokens, char duplicity)
 	if (tokens->redi_out > 2)
 		close(tokens->redi_out);
 	if ((path && path[0] == '>') || !path)
-	{
-		ft_printf(2, MS_NAME"\b: no file given for output redirection\n");
-		ft_set_error_code(1);
-		return (INCORRECT);
-	}
+		return (ft_error_file(path, NO_FILE_OUT));
 	if (duplicity == SINGLE_REDIRECT)
 		tokens->redi_out = open(path, O_CREAT | O_TRUNC | O_WRONLY, 0644);
 	else if (duplicity == DOUBLE_REDIRECT)
 		tokens->redi_out = open(path, O_CREAT | O_APPEND | O_WRONLY, 0644);
 	if (tokens->redi_out == INVALID)
-	{
-		ft_printf(2, MS_NAME"\b: %s: can't access file\n", path);
-		ft_set_error_code(1);
-		return (INCORRECT);
-	}
+		return (ft_error_file(path, NO_ACCESS));
 	return (CORRECT);
 }
 
