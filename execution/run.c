@@ -97,6 +97,7 @@ short	ft_execution(t_cmd *in, t_waitp **wait, short local)
 	shell = ft_return_ptr(NULL, SYS);
 	if (!shell || !in || !wait)
 		return (BAD_ARGS);
+	shell->keep_wait = *wait;
 	err = set_data_exe(&exe, shell, in);
 	if (err != SUCCESS)
 	{
@@ -110,7 +111,6 @@ short	ft_execution(t_cmd *in, t_waitp **wait, short local)
 		run_and_close(in, shell->en, exe.ft_path);
 	else
 		wait_make_node_last(wait, exe.pid, local);
-	shell->keep_wait = *wait;
 	ft_free(exe.ft_path);
 	return (SUCCESS);
 }
@@ -143,5 +143,5 @@ int	run_cmd(t_cmd *in, t_mshell *shell)
 	close_all_fd(in);
 	cmd_free(&in);
 	shell->cmd_list = NULL;
-	return (wait_pids(shell->keep_wait, 1));
+	return (wait_pids(run.wait, 1));
 }
