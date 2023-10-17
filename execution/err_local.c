@@ -30,7 +30,6 @@ void	free_execution(t_cmd **in, t_mshell *shell)
 		ft_free(pid);
 		pid = next;
 	}
-	ft_printf(2,"ici %p\n", pid);
 	shell->keep_wait = NULL;
 	cmd_free(in);
 	shell->cmd_list = NULL;
