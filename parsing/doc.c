@@ -6,7 +6,7 @@
 /*   By: brheaume <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:35:31 by brheaume          #+#    #+#             */
-/*   Updated: 2023/10/16 14:35:32 by brheaume         ###   ########.fr       */
+/*   Updated: 2023/10/17 13:01:15 by brheaume         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,9 +84,11 @@ static int	ft_run_here_doc(char *src, t_idx *limit, t_rdct *fd)
 	no_quotes = ft_no_quotes(src, limit->start_index, limit->end_index);
 	file = ft_file_extract(src, limit->current_start);
 	while (current < limit->current_start)
+		src[current++] = PASSED_THROUGH;
+	if (!file)
 	{
-		src[current] = PASSED_THROUGH;
-		current++;
+		ft_printf(2, MS_NAME"\b: no file given for input redirection\n");
+		return (INVALID);
 	}
 	ft_return_ptr(&file, DOC_FILE);
 	fd_doc = make_here_doc(no_quotes, file);
