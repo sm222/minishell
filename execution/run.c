@@ -71,7 +71,7 @@ int	run_and_close(t_cmd *in, char **env, char *cmd)
 		err = execve(cmd, in->command, new_en);
 		perror("minishell");
 	}
-	free_execution(in, shell);
+	free_execution(&shell->cmd_list, shell);
 	ft_free(cmd);
 	ft_double_sfree((void **)new_en);
 	exit(err);
@@ -110,6 +110,7 @@ short	ft_execution(t_cmd *in, t_waitp **wait, short local)
 		run_and_close(in, shell->en, exe.ft_path);
 	else
 		wait_make_node_last(wait, exe.pid, local);
+	shell->keep_wait = *wait;
 	ft_free(exe.ft_path);
 	return (SUCCESS);
 }
@@ -140,8 +141,7 @@ int	run_cmd(t_cmd *in, t_mshell *shell)
 		run.tmp = run.tmp->next;
 	}
 	close_all_fd(in);
-	wait_pids(run.wait, 1);
 	cmd_free(&in);
 	shell->cmd_list = NULL;
-	return (SUCCESS);
+	return (wait_pids(shell->keep_wait, 1));
 }

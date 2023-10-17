@@ -77,6 +77,7 @@ short	reset_data_main(t_mshell *shell)
 	size_t	i;
 
 	i = 0;
+	shell->keep_wait = NULL;
 	shell->s = ft_free(shell->s);
 	shell->prompt = ft_free(shell->prompt);
 	get_user(shell);
@@ -86,7 +87,8 @@ short	reset_data_main(t_mshell *shell)
 	else if (shell->s[0])
 		add_history(shell->s);
 	ft_change_dolar(&shell->s, shell->en, 0, shell->pec);
-	while (shell->s && shell->s[i] && (shell->s[i] == ' ' || shell->s[i] == '\t'))
+	while (shell->s && shell->s[i] && (shell->s[i] == ' ' || \
+	shell->s[i] == '\t'))
 		i++;
 	if (i == ft_strlen(shell->s))
 		return (FAIL);

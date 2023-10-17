@@ -49,7 +49,7 @@ static short	look_local_file(char **list, char *name)
 		ft_printf(NO_PRINT, "%o%s/%s", &new, list[i], name);
 		if (access(new, F_OK) == 0)
 		{
-			if (access(new, X_OK)!= 0)
+			if (access(new, X_OK) != 0)
 				ft_printf(2, "%o"MS_NAME"%s %s\n", NULL, new, strerror(errno));
 			else
 				ft_printf(2, "%o"MS_NAME"%s %s\n", NULL, new, strerror(errno));

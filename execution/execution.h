@@ -6,7 +6,6 @@
 //			include			//
 //--------------------------//
 
-//https://stackoverflow.com/questions/142508/how-do-i-check-os-with-a-preprocessor-directive
 
 # ifndef _WIN32
 #  include <sys/wait.h>
@@ -89,6 +88,6 @@ short	wait_pids(t_waitp *in, short free_f);
 
 int		free_exe(int err, t_exe *exe);
 void	free_t_mshell(t_mshell *shell);
-void	free_execution(t_cmd *in, t_mshell *shell);
+void	free_execution(t_cmd **in, t_mshell *shell);
 
 #endif // EXECUTION_H

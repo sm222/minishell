@@ -96,8 +96,9 @@ static int	check_control_c(int err, int fd)
 int	edit_here_doc(t_doc *doc, char *stop, short inter)
 {
 	pid_t	pid;
-	int		err = 0;
+	int		err;
 
+	err = 0;
 	if (doc)
 	{
 		pid = fork();

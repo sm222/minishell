@@ -71,7 +71,6 @@ short	find_end(char *s, size_t start)
 {
 	size_t	i;
 
-
 	i = start + 2;
 	if (s && (s[i - 1] == '\'' || s[i - 1] == '"'))
 		return (0);

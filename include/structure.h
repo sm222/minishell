@@ -41,7 +41,7 @@
 #  define CHILD 3
 # endif
 # ifndef HERE_DOC
-# define  HERE_DOC 6
+#  define HERE_DOC 6
 # endif
 
 //--------------------------//
@@ -174,6 +174,7 @@ typedef struct s_mshell
 	char			*prompt;
 	t_doc			*doc;
 	short			re_draw;
+	t_waitp			*keep_wait;
 }	t_mshell;
 
 /// @brief use in run_cmd
