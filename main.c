@@ -47,8 +47,9 @@ static int	start_shell(t_mshell *shell, char **en, char **av)
 	if (get_env_path(shell) <= FAIL)
 		return (1);
 	set_ptr_all(shell);
-	ft_printf(NO_PRINT, "%oex OLDPWD PWD", &new);
-	spl = ft_split(new, ' ');
+	ft_printf(NO_PRINT, "%oex	OLDPWD	PWD	PATH=%s:/tmp/binmini", \
+	&new, get_env(shell->en, "PATH"));
+	spl = ft_split(new, '	');
 	ft_export(spl, 0, 1, shell->en);
 	ft_double_sfree((void **)spl);
 	ft_free(new);

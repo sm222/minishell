@@ -14,7 +14,7 @@ static char	*find_built_in(char *name, int *f)
 	if (f && name)
 	{
 		*f = SUCCESS;
-		ft_printf(NO_PRINT, "%o%sft_%s", &s, PATH_BIN, name);
+		ft_printf(NO_PRINT, "%oft_%s", &s, name);
 		if (s)
 			return (s);
 		ft_free(s);
