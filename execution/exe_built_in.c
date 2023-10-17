@@ -17,8 +17,8 @@ static char	*find_built_in(char *name, int *f)
 		ft_printf(NO_PRINT, "%oft_%s", &s, name);
 		if (s)
 			return (s);
-		ft_free(s);
-		return (ft_strdup(name));
+		*f = M_FAIL;
+		return (NULL);
 	}
 	else if (f)
 		*f = BAD_ARGS;
