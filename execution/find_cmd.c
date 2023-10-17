@@ -30,7 +30,7 @@ static int	look_perm(char **name, int err)
 {
 	if (access(*name, X_OK) != 0)
 	{
-		ft_printf(2, "%o"MS_NAME"%s %s\n", NULL, *name, strerror(errno));
+		ft_printf(2, "%o"MS_NAME"\b%s: %s\n", NULL, *name, strerror(errno));
 		ft_free(*name);
 		*name = NULL;
 		return (ERR_PD);
@@ -49,7 +49,10 @@ static short	look_local_file(char **list, char *name)
 		ft_printf(NO_PRINT, "%o%s/%s", &new, list[i], name);
 		if (access(new, F_OK) == 0)
 		{
-			ft_printf(2, "%o"MS_NAME"%s %s\n", NULL, new, strerror(errno));
+			if (access(new, X_OK)!= 0)
+				ft_printf(2, "%o"MS_NAME"%s %s\n", NULL, new, strerror(errno));
+			else
+				ft_printf(2, "%o"MS_NAME"%s %s\n", NULL, new, strerror(errno));
 			ft_free(new);
 			return (ERR_NO_TXT);
 		}
