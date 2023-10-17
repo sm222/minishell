@@ -55,6 +55,12 @@ static int	ft_file_in(char *path, t_token *tokens)
 		ft_set_error_code(1);
 		return (INCORRECT);
 	}
+	if (tokens->redi_in == INVALID)
+	{
+		ft_printf(2, MS_NAME"\b: %s: can't access file\n", path);
+		ft_set_error_code(1);
+		return (INCORRECT);
+	}
 	return (CORRECT);
 }
 
