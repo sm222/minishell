@@ -31,10 +31,10 @@ static short	free_data_loc(t_loc *data)
 	while (data)
 	{
 		tmp = data->next;
-		ft_double_sfree((void **)data->decon_cmd);
-		ft_free(data->tokens);
-		ft_free(data->slice);
-		ft_free(data);
+		data->decon_cmd = (char **)ft_double_sfree((void **)data->decon_cmd);
+		data->tokens = ft_free(data->tokens);
+		data->slice = ft_free(data->slice);
+		data = ft_free(data);
 		data = tmp;
 	}
 	return (2);

@@ -82,7 +82,7 @@ int	run_and_close(t_cmd *in, char **env, char *cmd)
 		err = execve(cmd, in->command, new_en);
 		perror("minishell");
 	}
-	free_execution(in, shell);
+	free_execution(&shell->cmd_list, shell);
 	ft_free(cmd);
 	ft_double_sfree((void **)new_en);
 	exit(err);
@@ -108,6 +108,7 @@ short	ft_execution(t_cmd *in, t_waitp **wait, short local)
 	shell = ft_return_ptr(NULL, SYS);
 	if (!shell || !in || !wait)
 		return (BAD_ARGS);
+	shell->keep_wait = *wait;
 	err = set_data_exe(&exe, shell, in);
 	if (err != SUCCESS)
 	{
@@ -151,8 +152,7 @@ int	run_cmd(t_cmd *in, t_mshell *shell)
 		run.tmp = run.tmp->next;
 	}
 	close_all_fd(in);
-	wait_pids(run.wait, 1);
 	cmd_free(&in);
 	shell->cmd_list = NULL;
-	return (SUCCESS);
+	return (wait_pids(run.wait, 1));
 }

@@ -185,6 +185,7 @@ typedef struct s_mshell
 	char			*prompt;
 	t_doc			*doc;
 	short			re_draw;
+	t_waitp			*keep_wait;
 }	t_mshell;
 
 /// @brief use in run_cmd

@@ -42,7 +42,7 @@ static int	look_perm(char **name, int err)
 {
 	if (access(*name, X_OK) != 0)
 	{
-		ft_printf(2, "%o"MS_NAME"%s %s\n", NULL, *name, strerror(errno));
+		ft_printf(2, "%o"MS_NAME"\b%s: %s\n", NULL, *name, strerror(errno));
 		ft_free(*name);
 		*name = NULL;
 		return (ERR_PD);
