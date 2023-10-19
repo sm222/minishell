@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:28:16 by anboisve          #+#    #+#             */
-/*   Updated: 2023/10/16 14:28:18 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/10/19 13:02:30 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,8 @@ void	print_logo(char *seed);
 short	converter(char *in, t_cmd **list);
 short	find_end(char *s, size_t start);
 size_t	look_for_type(char *s, short *type);
+void	set_pec_to(int val);
+int		bad_con_err(short *to_set, short val, int err, char c);
 
 #endif // MINISHELL_H
 

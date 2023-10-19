@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:32:30 by anboisve          #+#    #+#             */
-/*   Updated: 2023/10/16 14:32:53 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/10/19 13:08:14 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,9 @@ static int	find_tok(char *s)
 	{
 		ft_set_mode(s[i]);
 		if (s[i] == '|' && ft_set_mode(0) == 0)
-		{
 			return (0);
-		}
 		if (ft_isprint(s[i]))
-		{
 			return (1);
-		}
 		i++;
 	}
 	return (0);
@@ -51,32 +47,29 @@ static short	look_at_pipe(char *s, size_t i)
 	return (0);
 }
 
-static void	bad_con(char *s, short *type)
+static int	bad_con(char *s, short *type)
 {
-	int		*pec;
 	size_t	i;
 
 	i = 0;
-	pec = ft_return_ptr(NULL, PEC);
 	while (s && i < ft_strlen(s))
 	{
 		while (s && s[i] && ft_set_mode(s[i]) != 0)
 			ft_set_mode(s[++i]);
+		if ((s[i] == '<' && s[i + 1] == '>') || \
+		((s[i] == '>' && s[i + 1] == '<')))
+			return (bad_con_err(type, -1, 258, s[i]));
 		if ((s[i] == '&' || s[i] == '|') && ft_set_mode(s[i]) == 0)
 		{
 			if ((s[i + 1] == '\0') || (s[i] == '&' && s[i + 1] != '&') || \
 				(s[i] == '|' && s[i + 1] == '&') || find_end(s, i) || \
 				find_tok(s) == 0 || look_at_pipe(s, i))
-			{
-				ft_printf(2, "%o"MS_NAME"\b: "SENUT" `%c\'\n", NULL, s[i]);
-				*pec = 258;
-				*type = -1;
-				return ;
-			}
+				return (bad_con_err(type, -1, 258, s[i]));
 			i++;
 		}
 		i++;
 	}
+	return (SUCCESS);
 }
 
 short	find_end(char *s, size_t start)
