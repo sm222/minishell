@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 15:06:44 by anboisve          #+#    #+#             */
-/*   Updated: 2023/10/15 16:17:46 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/10/19 08:57:23 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,10 @@ static char	*make_edit_str(char *s, size_t *i, char **en)
 	while (s[j] && (ft_isalnum(s[j]) || ft_strchr(DOLAR_LIST, s[j])))
 		ft_set_mode(s[j++]);
 	s2 = ft_strdup(s + j);
-	ft_printf(NO_PRINT, "%o%S%s%S", &new, s1, get_env(en, s + *i + 1), s2);
+	ft_printf(NO_PRINT, "%o%s%s%s", &new, s1, get_env(en, s + *i + 1), s2);
 	ft_free(s);
+	ft_free(s1);
+	ft_free(s2);
 	return (new);
 }
 
