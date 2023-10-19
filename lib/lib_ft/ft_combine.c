@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 15:44:12 by anboisve          #+#    #+#             */
-/*   Updated: 2023/09/19 09:34:38 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/10/19 19:24:42 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ static char	*ft_add_str(va_list list, char type, char *s)
 	char	*tmp;
 	short	f;
 
+	tmp = NULL;
 	f = 0;
 	if (type == 'c')
 		return (ft_add_c_to_s(s, va_arg(list, int)));
@@ -79,7 +80,7 @@ char	*ft_combine(char *s, va_list arg)
 	new = ft_calloc(1, sizeof(char));
 	if (!new)
 		return (NULL);
-	while (s && s[i])
+	while (s && i < ft_strlen(s))
 	{
 		if (s[i] != '%')
 		{
