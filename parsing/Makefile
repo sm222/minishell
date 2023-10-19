@@ -5,6 +5,7 @@ SRC = utils.c \
 	  file.c \
 	  pipe.c \
 	  main.c \
+	  error.c \
 	  array.c \
 	  verify.c \
 	  quotes.c \
