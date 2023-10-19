@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   verify.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brheaume <marvin@42quebec.com>             +#+  +:+       +#+        */
+/*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:37:07 by brheaume          #+#    #+#             */
-/*   Updated: 2023/10/16 14:37:07 by brheaume         ###   ########.fr       */
+/*   Updated: 2023/10/19 09:00:57 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static int	ft_quote_error(char *src)
 	open_mark = INCORRECT;
 	if (!src)
 		return (INCORRECT);
-	while (src[i])
+	while (i < (int)ft_strlen(src))
 	{
 		if (src[i] == '"' || src[i] == '\'')
 		{
