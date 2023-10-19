@@ -6,7 +6,7 @@
 /*   By: brheaume <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:35:31 by brheaume          #+#    #+#             */
-/*   Updated: 2023/10/19 13:34:12 by brheaume         ###   ########.fr       */
+/*   Updated: 2023/10/19 13:42:03 by brheaume         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ static short	ft_no_quotes(char *src, int start_index)
 	start_index++;
 	while (src && src[start_index] && src[start_index] != ' ')
 	{
-		printf("ft_no_quotes current char: %c\n", src[start_index]);
 		if (src[start_index] == IGNORE_QUOTES)
 			no_quotes = INCORRECT;
 		start_index++;
