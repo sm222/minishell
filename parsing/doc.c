@@ -6,7 +6,7 @@
 /*   By: brheaume <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:35:31 by brheaume          #+#    #+#             */
-/*   Updated: 2023/10/17 13:01:15 by brheaume         ###   ########.fr       */
+/*   Updated: 2023/10/19 13:34:12 by brheaume         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,18 +51,17 @@ int	ft_is_last_in(char *src, int start)
 	return (CORRECT);
 }
 
-static short	ft_no_quotes(char *src, int start_index, int end_index)
+static short	ft_no_quotes(char *src, int start_index)
 {
 	short	no_quotes;
 
 	no_quotes = CORRECT;
-	while (start_index < end_index)
+	start_index++;
+	while (src && src[start_index] && src[start_index] != ' ')
 	{
-		if (src[start_index] == '\'' || src[start_index] == '"')
-		{
-			src[start_index] = IGNORE_QUOTES;
+		printf("ft_no_quotes current char: %c\n", src[start_index]);
+		if (src[start_index] == IGNORE_QUOTES)
 			no_quotes = INCORRECT;
-		}
 		start_index++;
 	}
 	return (no_quotes);
@@ -81,7 +80,7 @@ static int	ft_run_here_doc(char *src, t_idx *limit, t_rdct *fd)
 	if (fd)
 		fd->last_doc = ft_is_last_in(src, limit->start_index);
 	ft_word_delimiter(src, limit);
-	no_quotes = ft_no_quotes(src, limit->start_index, limit->end_index);
+	no_quotes = ft_no_quotes(src, limit->end_index);
 	file = ft_file_extract(src, limit->current_start);
 	while (current < limit->current_start)
 		src[current++] = PASSED_THROUGH;
