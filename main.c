@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:31:47 by anboisve          #+#    #+#             */
-/*   Updated: 2023/10/19 08:58:27 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/10/20 08:37:48 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,9 @@ static int	start_shell(t_mshell *shell, char **en, char **av)
 	if (get_env_path(shell) <= FAIL)
 		return (1);
 	set_ptr_all(shell);
-	ft_printf(NO_PRINT, "%oex	OLDPWD	PWD	PATH=%s:/tmp/binmini", \
+	ft_printf(NO_PRINT, "%oex\bOLDPWD\bPWD\bPATH=%s:/tmp/binmini", \
 	&new, get_env(shell->en, "PATH"));
-	spl = ft_split(new, '	');
+	spl = ft_split(new, '\b');
 	ft_export(spl, 0, 1, shell->en);
 	ft_double_sfree((void **)spl);
 	ft_free(new);
@@ -85,8 +85,8 @@ int	main(int ac, char **av, char **en)
 		if (reset_data_main(&shell) == FAIL -1)
 			break ;
 		shell.re_draw = 0;
-		ft_printf(NO_PRINT, "%oex _=%s", &new, ft_rfind_char(shell.s, ' '));
-		spl = ft_split(new, ' ');
+		ft_printf(NO_PRINT, "%oex\b_=%s", &new, ft_rfind_char(shell.s, '\b'));
+		spl = ft_split(new, '\b');
 		ft_export(spl, 0, 1, shell.en);
 		shell.en = ft_return_ptr(NULL, ENV_C);
 		new = ft_free(new);

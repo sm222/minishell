@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:24:47 by anboisve          #+#    #+#             */
-/*   Updated: 2023/10/19 19:17:18 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/10/20 08:46:01 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ short	oldpwd(t_mshell *data)
 	char	*new;
 	char	**spl;
 
-	ft_printf(NO_PRINT, "%oex OLDPWD=%s", &new, data->pwd);
-	spl = ft_split(new, ' ');
+	ft_printf(NO_PRINT, "%oex\bOLDPWD=%s", &new, data->pwd);
+	spl = ft_split(new, '\b');
 	ft_export(spl, 0, 1, data->en);
 	ft_double_sfree((void **)spl);
 	ft_free(new);
@@ -35,8 +35,8 @@ short	new_pwd(t_mshell *data)
 	new_pwd = getcwd(NULL, 0);
 	if (new_pwd)
 	{
-		ft_printf(NO_PRINT, "%oex	PWD=%s", &new, new);
-		spl = ft_split(new, '	');
+		ft_printf(NO_PRINT, "%oex\bPWD=%s", &new, new_pwd);
+		spl = ft_split(new, '\b');
 		ft_export(spl, 0, 1, data->en);
 		ft_double_sfree((void **)spl);
 		ft_free(new);
