@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 15:06:44 by anboisve          #+#    #+#             */
-/*   Updated: 2023/10/19 08:57:23 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/10/20 08:50:18 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ static char	*make_edit_str(char *s, size_t *i, char **en)
 	ft_free(s);
 	ft_free(s1);
 	ft_free(s2);
+	*i -= 1;
 	return (new);
 }
 

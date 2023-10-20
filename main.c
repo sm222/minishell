@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:31:47 by anboisve          #+#    #+#             */
-/*   Updated: 2023/10/20 08:37:48 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/10/20 09:02:09 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ static void	free_shell(t_mshell *shell)
 {
 	if (!shell)
 		return ;
-	ft_putstr_fd("goodbye!\n", 2);
+	ft_putstr_fd(BLU"GoodBye~!"WHT"\n", 2);
+	rl_clear_history();
 	ft_free(shell->pwd);
 	ft_free(shell->s);
 	ft_free(shell->prompt);
@@ -30,7 +31,7 @@ static void	do_logo(char **av)
 		print_logo(av[1]);
 	else
 		print_logo(NULL);
-	ft_printf(1, "%o%Sv1.0\n"WHT, NULL, ft_make_color(20, 84, 255));
+	ft_printf(1, "%o%S"V_MINI"\n"WHT, NULL, ft_make_color(20, 84, 255));
 }
 
 static int	set_ptr_all(t_mshell *shell)
@@ -92,7 +93,6 @@ int	main(int ac, char **av, char **en)
 		new = ft_free(new);
 		spl = (char **)ft_double_sfree((void **)spl);
 	}
-	rl_clear_history();
 	free_shell(&shell);
 	return (shell.pec);
 }
