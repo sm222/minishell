@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:19:43 by anboisve          #+#    #+#             */
-/*   Updated: 2023/10/16 14:19:46 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/10/19 18:42:55 by brheaume         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static int	get_to_user(char **en)
 	int		err;
 
 	env = NULL;
-	if (en)
+	if (en && en[0])
 		env = find_name(en, "HOME=");
 	if (!env || !*env)
 	{

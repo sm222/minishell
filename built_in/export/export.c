@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:22:07 by anboisve          #+#    #+#             */
-/*   Updated: 2023/10/16 14:22:07 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/10/19 18:48:31 by brheaume         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ int	look_for_dup(char **env, char *name)
 	size_t	len2;
 
 	i = 0;
+	if (!name)
+			return (-1);
 	while (env && env[i])
 	{
 		len1 = 0;
