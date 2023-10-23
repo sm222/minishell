@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:24:55 by anboisve          #+#    #+#             */
-/*   Updated: 2023/10/16 14:25:01 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/10/23 16:26:43 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@
 # ifndef _WIN32
 #  include <sys/wait.h>
 # endif
-# include <dirent.h>
 # include <stdbool.h>
 # include "token.h"
 # include "../include/err.h"
