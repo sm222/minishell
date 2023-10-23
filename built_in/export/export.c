@@ -43,7 +43,7 @@ int	look_for_dup(char **env, char *name)
 
 	i = 0;
 	if (!name)
-			return (-1);
+		return (-1);
 	while (env && env[i])
 	{
 		len1 = 0;

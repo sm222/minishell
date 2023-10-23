@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:32:30 by anboisve          #+#    #+#             */
-/*   Updated: 2023/10/23 09:38:20 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/10/23 12:37:14 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,9 @@ static short	look_at_pipe(char *s, size_t i)
 		if (s[i] == '|' && s[i + 1] == '|')
 		{
 			if (find_tok(s + i + 2) == 0)
+			{
 				return (1);
+			}
 		}
 		else
 			return (0);
@@ -83,9 +85,14 @@ short	find_end(char *s, size_t start)
 	if (s && (s[i - 1] == '\'' || s[i - 1] == '"'))
 		return (0);
 	while (s && s[i] && (s[i] == ' ' || s[i] == '\t'))
-		ft_set_mode(s[++i]);
-	if (!s[i] || ((s[i] == '|' || s[i] == '&') && ft_set_mode(s[i]) == 0))
+		ft_set_mode(s[i++]);
+	if (ft_strlen(s) > i && ft_set_mode(s[i]) == 0)
+	{
+		if ((s[i - 1] == '|' && s[i] == '|') || (s[i] != '|' \
+		&& s[i - 1] == '|') || (s[i - 1] == '&' && s[i] == '&'))
+			return (0);
 		return (1);
+	}
 	return (0);
 }
 
