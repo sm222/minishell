@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:28:16 by anboisve          #+#    #+#             */
-/*   Updated: 2023/10/20 09:01:56 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/10/23 14:19:38 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,7 @@ short	find_end(char *s, size_t start);
 size_t	look_for_type(char *s, short *type);
 void	set_pec_to(int val);
 int		bad_con_err(short *to_set, short val, int err, char c);
+short	try_end(char *s, char *err);
 
 #endif // MINISHELL_H
 

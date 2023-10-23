@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:32:30 by anboisve          #+#    #+#             */
-/*   Updated: 2023/10/23 12:37:14 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/10/23 15:45:44 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,11 @@ static short	look_at_pipe(char *s, size_t i)
 static int	bad_con(char *s, short *type)
 {
 	size_t	i;
+	char	err;
 
 	i = 0;
+	if (try_end(s, &err))
+		return(bad_con_err(type, -1, 258, err));
 	ft_set_mode(-1);
 	while (s && i < ft_strlen(s))
 	{
@@ -67,9 +70,7 @@ static int	bad_con(char *s, short *type)
 			if ((s[i + 1] == '\0') || (s[i] == '&' && s[i + 1] != '&') || \
 				(s[i] == '|' && s[i + 1] == '&') || find_end(s, i - 1) || \
 				find_tok(s) == 0 || look_at_pipe(s, i))
-			{
 				return (bad_con_err(type, -1, 258, s[i]));
-			}
 			i++;
 		}
 		i++;
@@ -88,10 +89,12 @@ short	find_end(char *s, size_t start)
 		ft_set_mode(s[i++]);
 	if (ft_strlen(s) > i && ft_set_mode(s[i]) == 0)
 	{
-		if ((s[i - 1] == '|' && s[i] == '|') || (s[i] != '|' \
-		&& s[i - 1] == '|') || (s[i - 1] == '&' && s[i] == '&'))
-			return (0);
-		return (1);
+		while (s[i] == '|' || s[i] == '&')
+			i++;
+		while (s && s[i] && (s[i] == ' ' || s[i] == '\t'))
+			ft_set_mode(s[i++]);
+		if (!s[i])
+			return (1);
 	}
 	return (0);
 }
@@ -127,3 +130,5 @@ size_t	look_for_type(char *s, short *type)
 //ls 'ads ||'
 
 //ls||'|'
+
+//echo "<>|" | echo "|<>"
