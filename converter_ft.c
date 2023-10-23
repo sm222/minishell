@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:32:30 by anboisve          #+#    #+#             */
-/*   Updated: 2023/10/19 13:08:14 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/10/23 09:38:20 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,19 +52,22 @@ static int	bad_con(char *s, short *type)
 	size_t	i;
 
 	i = 0;
+	ft_set_mode(-1);
 	while (s && i < ft_strlen(s))
 	{
-		while (s && s[i] && ft_set_mode(s[i]) != 0)
-			ft_set_mode(s[++i]);
+		while (s && s[i] && ft_set_mode(0) != 0)
+			ft_set_mode(s[i++]);
 		if ((s[i] == '<' && s[i + 1] == '>') || \
 		((s[i] == '>' && s[i + 1] == '<')))
 			return (bad_con_err(type, -1, 258, s[i]));
-		if ((s[i] == '&' || s[i] == '|') && ft_set_mode(s[i]) == 0)
+		if (ft_set_mode(s[i]) == 0 && (s[i] == '&' || s[i] == '|')) 
 		{
 			if ((s[i + 1] == '\0') || (s[i] == '&' && s[i + 1] != '&') || \
-				(s[i] == '|' && s[i + 1] == '&') || find_end(s, i) || \
+				(s[i] == '|' && s[i + 1] == '&') || find_end(s, i - 1) || \
 				find_tok(s) == 0 || look_at_pipe(s, i))
+			{
 				return (bad_con_err(type, -1, 258, s[i]));
+			}
 			i++;
 		}
 		i++;
