@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 12:51:56 by anboisve          #+#    #+#             */
-/*   Updated: 2023/10/23 15:44:16 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/10/23 15:59:21 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static short	check_bett(char *s, char *err, size_t *i)
 	return (0);
 }
 
-static short end(char *s, char *err, size_t len)
+static short	end(char *s, char *err, size_t len)
 {
 	len--;
 	while (s[len] == ' ' || s[len] == '\t')

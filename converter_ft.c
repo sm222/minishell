@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:32:30 by anboisve          #+#    #+#             */
-/*   Updated: 2023/10/23 15:45:44 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/10/23 15:59:02 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static int	bad_con(char *s, short *type)
 
 	i = 0;
 	if (try_end(s, &err))
-		return(bad_con_err(type, -1, 258, err));
+		return (bad_con_err(type, -1, 258, err));
 	ft_set_mode(-1);
 	while (s && i < ft_strlen(s))
 	{
