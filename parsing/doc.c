@@ -6,7 +6,7 @@
 /*   By: brheaume <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:35:31 by brheaume          #+#    #+#             */
-/*   Updated: 2023/10/19 13:42:03 by brheaume         ###   ########.fr       */
+/*   Updated: 2023/10/23 12:36:16 by brheaume         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ft_check_here_doc(char *src, t_idx *i_doc)
 {
-	int			i;
+	int	i;
 
 	i = FIRST_INDEX;
 	while (src && src[i])
@@ -56,7 +56,14 @@ static short	ft_no_quotes(char *src, int start_index)
 	short	no_quotes;
 
 	no_quotes = CORRECT;
-	start_index++;
+	if (start_index < (int)ft_strlen(src))
+		start_index++;
+	while (src && src[start_index] && src[start_index] == ' ')
+		start_index++;
+	while (src && src[start_index] && src[start_index] == '<')
+		start_index++;
+	while (src && src[start_index] && src[start_index] == ' ')
+		start_index++;
 	while (src && src[start_index] && src[start_index] != ' ')
 	{
 		if (src[start_index] == IGNORE_QUOTES)
@@ -73,7 +80,9 @@ static int	ft_run_here_doc(char *src, t_idx *limit, t_rdct *fd)
 	int		current;
 	short	no_quotes;
 
-	limit->current_start = limit->start_index + 2;
+	limit->current_start = limit->start_index + 1;
+	if (src[limit->current_start + 1] == ' ')
+		limit->current_start++;
 	current = limit->start_index; 
 	no_quotes = CORRECT;
 	if (fd)
@@ -84,10 +93,7 @@ static int	ft_run_here_doc(char *src, t_idx *limit, t_rdct *fd)
 	while (current < limit->current_start)
 		src[current++] = PASSED_THROUGH;
 	if (!file)
-	{
-		ft_printf(2, MS_NAME"\b: no file given for input redirection\n");
-		return (INVALID);
-	}
+		return (ft_error_file(file, NO_FILE_IN));
 	ft_return_ptr(&file, DOC_FILE);
 	fd_doc = make_here_doc(no_quotes, file);
 	file = ft_free(file);

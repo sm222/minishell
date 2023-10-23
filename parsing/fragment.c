@@ -6,7 +6,7 @@
 /*   By: brheaume <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:35:50 by brheaume          #+#    #+#             */
-/*   Updated: 2023/10/19 13:23:42 by brheaume         ###   ########.fr       */
+/*   Updated: 2023/10/23 11:54:45 by brheaume         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,6 @@ char	**ft_cmd_deconstruct(char *cmd, t_token *tokens)
 	while (ft_has_quotes(cmd))
 		ft_quote_op(cmd);
 	if (ft_redirect_op(cmd, tokens) == CORRECT)
-	{
 		res = ft_cmd_fragments(cmd);
-	}
 	return (res);
 }

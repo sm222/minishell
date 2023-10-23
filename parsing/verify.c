@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:37:07 by brheaume          #+#    #+#             */
-/*   Updated: 2023/10/19 09:00:57 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/10/23 12:45:19 by brheaume         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,10 @@ int	ft_pipe_error(char *src)
 			return (INCORRECT);
 		i--;
 	}
-	return (CORRECT);
+	if (src[i] == ' ')
+		return (CORRECT);
+	else
+		return (INCORRECT);
 }
 
 int	ft_verify(char *src)
