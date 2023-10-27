@@ -8,11 +8,13 @@ WHT		=	\x1B[37m
 RESET	=	\x1B[0m
 CLE		=	\e[1;1H\e[2J
 
+DIR = "/Users/$(shell whoami)/Mini_bin"
+
 all: dirmake echo pwd cd env expo unset exit
 	
 
 dirmake:
-	@mkdir -p /tmp/binmini/
+	@mkdir -p $(DIR)
 echo:
 	@printf "$(GRN)making echo$(WHT)\n"
 	@make -C echo

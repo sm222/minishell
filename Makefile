@@ -30,7 +30,7 @@ RL_L			=	libreadline.a
 
 # Compiler and flags
 CC				=	gcc
-CFLAGS			=	-Wall -Werror -Wextra -g
+CFLAGS			=	-Wall -Werror -Wextra -g -D MINI_BIN=$(BIN_DIR)
 #-fsanitize=address
 RM				=	rm -f
 
@@ -59,13 +59,14 @@ SRCS	=	main.c\
 OBJS	=	$(SRCS:.c=.o)
 
 USER = $(shell whoami)
+BIN_DIR = \"/Users/$(USER)/Mini_bin/\"
 
 all: libft builtin exe parse doc $(NAME)
 	@printf "$(CYN) \n\n			correction is made by $(USER)\n\n  $(RESET)\n"
 	
-$(NAME): $(OBJS) $(C_TOOL)
-	@$(CC) $(CFLAGS) $(OBJS) $(LIBFT_DIR)$(LIBFT) -l readline -l ncurses \
-	$(RL_DIR)$(RL_H) $(RL_DIR)$(RL_L) $(C_TOOL) $(EXECUTION_DIR)$(EXECUTION_LIB) \
+$(NAME): $(OBJS)
+	$(CC) $(CFLAGS) $(OBJS) $(LIBFT_DIR)$(LIBFT) -l readline -l ncurses \
+	$(RL_DIR)$(RL_H) $(RL_DIR)$(RL_L) $(EXECUTION_DIR)$(EXECUTION_LIB) \
 	$(PARSE_DIR)$(PARSE_LIB) $(HERE_DOC_DIR)$(HERE_DOC_LIB) -o $(NAME)
 
 libft:

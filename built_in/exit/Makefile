@@ -1,4 +1,6 @@
-NAME	=	/tmp/binmini/ft_exit
+DIR = /Users/$(shell whoami)/Mini_bin/
+
+NAME	=	$(DIR)ft_exit
 
 LIBFT		=	libft.a
 LIBFT_DIR	=	../../lib/lib_ft/
