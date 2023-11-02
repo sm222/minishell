@@ -6,12 +6,13 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:26:14 by anboisve          #+#    #+#             */
-/*   Updated: 2023/11/02 11:59:24 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/11/02 14:30:24 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "execution.h"
 #include "../readline/readline.h"
+#include <sys/_types/_null.h>
 
 //126
 //is a directory
@@ -113,17 +114,19 @@ short	ft_execution(t_cmd *in, t_waitp **wait, short local)
 	shell->keep_wait = *wait;
 	err = set_data_exe(&exe, shell, in);
 	if (err != SUCCESS)
-	{
-		wait_make_node_last(wait, -1, err, NULL);
-		return (SUCCESS);
-	}
+		return (wait_make_node_last(wait, -1, err, NULL), SUCCESS);
 	exe.pid = fork();
 	if (exe.pid == -1)
 		return (err_msg(NO_FREE, FORK_FAIL, "fork fail"));
 	if (exe.pid == 0)
 		run_and_close(in, shell->en, exe.ft_path);
 	else
-		wait_make_node_last(wait, exe.pid, local, ft_strdup(in->command[0]));
+	{
+		if (in->command)
+			wait_make_node_last(wait, exe.pid, local, ft_strdup(in->command[0]));
+		else
+			wait_make_node_last(wait, exe.pid, local, NULL);
+	}
 	ft_free(exe.ft_path);
 	return (SUCCESS);
 }
