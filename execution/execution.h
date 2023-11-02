@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:24:55 by anboisve          #+#    #+#             */
-/*   Updated: 2023/10/23 16:26:43 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/11/02 11:35:51 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ int		dup_in_out(t_cmd *in);
 
 // pid
 
-int		wait_make_node_last(t_waitp **in, pid_t pid, int flag);
+int		wait_make_node_last(t_waitp **in, pid_t pid, int flag, char *name);
 short	wait_pids(t_waitp *in, short free_f);
 
 //free 

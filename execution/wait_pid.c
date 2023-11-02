@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:26:42 by anboisve          #+#    #+#             */
-/*   Updated: 2023/10/16 14:26:43 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/11/02 12:01:01 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,23 @@ int	get_err_code(int pec, int l)
 			r_val = (128 + WTERMSIG(pec));
 	}
 	return (r_val);
+}
+
+static void	print_err(char *name, int pec)
+{
+	int	r_val;
+
+	r_val = 0;
+	if (pec)
+	{
+		if (WIFEXITED(pec))
+			r_val = WEXITSTATUS(pec);
+		else if (WIFSIGNALED(pec))
+			r_val = (128 + WTERMSIG(pec));
+	}
+	if (r_val == 139)
+		ft_printf(2, "%o%s\b: segmentation fault %s\n", NULL, MS_NAME, name);
+	ft_free(name);
 }
 
 /// @brief	run a waitpid on a list of pid_t
@@ -50,6 +67,7 @@ short	wait_pids(t_waitp *in, short free_f)
 		else
 			pec = in->built;
 		last = in->pid;
+		print_err(in->name, pec);
 		if (free_f)
 			ft_free(in);
 		in = tmp;
@@ -62,7 +80,7 @@ short	wait_pids(t_waitp *in, short free_f)
 /// @brief	make new node
 /// @param	pid	new pid
 /// @return	new node
-static t_waitp	*wait_make_node(pid_t pid, int local)
+static t_waitp	*wait_make_node(pid_t pid, int local, char *name)
 {
 	t_waitp	*new;
 
@@ -71,6 +89,7 @@ static t_waitp	*wait_make_node(pid_t pid, int local)
 		return (NULL);
 	new->pid = pid;
 	new->built = local;
+	new->name = name;
 	return (new);
 }
 
@@ -80,7 +99,7 @@ static t_waitp	*wait_make_node(pid_t pid, int local)
 /// @return	SUCCESS + len
 /// @return	BAD_ARGS if miss some argument
 /// @return	M_FAIL if malloc fail
-int	wait_make_node_last(t_waitp **in, pid_t pid, int flag)
+int	wait_make_node_last(t_waitp **in, pid_t pid, int flag, char *name)
 {
 	t_waitp	*tmp;
 	int		len;
@@ -92,7 +111,7 @@ int	wait_make_node_last(t_waitp **in, pid_t pid, int flag)
 	tmp = (*in);
 	if (!tmp)
 	{
-		(*in) = wait_make_node(pid, flag);
+		(*in) = wait_make_node(pid, flag, name);
 		if (!*in)
 			return (M_FAIL);
 		return (SUCCESS);
@@ -102,7 +121,7 @@ int	wait_make_node_last(t_waitp **in, pid_t pid, int flag)
 		len++;
 		tmp = tmp->next;
 	}
-	tmp->next = wait_make_node(pid, flag);
+	tmp->next = wait_make_node(pid, flag, name);
 	if (!tmp->next)
 		return (M_FAIL);
 	return (SUCCESS + len);

@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:26:14 by anboisve          #+#    #+#             */
-/*   Updated: 2023/10/20 08:48:49 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/11/02 11:59:24 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ short	ft_execution(t_cmd *in, t_waitp **wait, short local)
 	err = set_data_exe(&exe, shell, in);
 	if (err != SUCCESS)
 	{
-		wait_make_node_last(wait, -1, err);
+		wait_make_node_last(wait, -1, err, NULL);
 		return (SUCCESS);
 	}
 	exe.pid = fork();
@@ -123,7 +123,7 @@ short	ft_execution(t_cmd *in, t_waitp **wait, short local)
 	if (exe.pid == 0)
 		run_and_close(in, shell->en, exe.ft_path);
 	else
-		wait_make_node_last(wait, exe.pid, local);
+		wait_make_node_last(wait, exe.pid, local, ft_strdup(in->command[0]));
 	ft_free(exe.ft_path);
 	return (SUCCESS);
 }
