@@ -15,7 +15,7 @@ SRC = utils.c \
 
 OBJ = ${SRC:.c=.o}
 
-CC = clang
+CC = gcc
 CFLAGS = -Wall -Wextra -Werror -g
 
 LIB = ../lib/lib_ft

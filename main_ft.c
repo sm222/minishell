@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:32:01 by anboisve          #+#    #+#             */
-/*   Updated: 2023/10/19 11:50:23 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/11/05 12:59:06 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,7 @@ short	reset_data_main(t_mshell *shell)
 		return (FAIL - 1);
 	else if (shell->s[0])
 		add_history(shell->s);
+	find_git(shell);
 	ft_change_dolar(&shell->s, shell->en, 0, shell->pec);
 	while (shell->s && shell->s[i] && (shell->s[i] == ' ' || \
 	shell->s[i] == '\t'))

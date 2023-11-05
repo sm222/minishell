@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:28:16 by anboisve          #+#    #+#             */
-/*   Updated: 2023/11/02 12:50:46 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/11/05 12:58:42 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,7 @@ size_t	look_for_type(char *s, short *type);
 void	set_pec_to(int val);
 int		bad_con_err(short *to_set, short val, int err, char c);
 short	try_end(char *s, char *err);
+void	find_git(t_mshell *shell);
 
 #endif // MINISHELL_H
 
