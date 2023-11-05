@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:26:42 by anboisve          #+#    #+#             */
-/*   Updated: 2023/11/02 12:01:01 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/11/03 10:23:39 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ static void	print_err(char *name, int pec)
 	}
 	if (r_val == 139)
 		ft_printf(2, "%o%s\b: segmentation fault %s\n", NULL, MS_NAME, name);
+	if (r_val == 134)
+		ft_printf(2, "%o%s\b: abort %s\n", NULL, MS_NAME, name);
 	ft_free(name);
 }
 
