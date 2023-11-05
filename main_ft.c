@@ -6,11 +6,12 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:32:01 by anboisve          #+#    #+#             */
-/*   Updated: 2023/11/05 12:59:06 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/11/05 16:10:17 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "include/minishell.h"
+#include "lib/lib_ft/ft_printf.h"
 
 static char	*get_path(char *new, char *old)
 {
@@ -43,16 +44,24 @@ static char	*err_code(t_mshell *shell)
 static	void	get_user(t_mshell *shell)
 {
 	char	*logname;
+	char	*new;
 
 	logname = NULL;
+	new = NULL;
 	logname = get_env(shell->en, "LOGNAME");
 	shell->pwd = get_path(getcwd(NULL, 0), shell->pwd);
+	if (shell->git_status)
+	{
+		ft_printf(NO_PRINT, "%o🌲"GIT"%S"WHT"🌲", &new, shell->git_status);
+		shell->git_status = NULL;
+	}
 	if (logname)
-		ft_printf(NO_PRINT, "%o"GRN"%s"WHT"(%S)["TOX"%s"WHT"]$ ", \
-		&shell->prompt, shell->pwd, err_code(shell), logname);
+		ft_printf(NO_PRINT, "%o"GRN"%s"WHT"%s(%S)["TOX"%s"WHT"]$ ", \
+		&shell->prompt, shell->pwd, new, err_code(shell), logname);
 	else
-		ft_printf(NO_PRINT, "%o"GRN"%s"WHT"(%S)$ ", \
-		&shell->prompt, shell->pwd, err_code(shell));
+		ft_printf(NO_PRINT, "%o"GRN"%s"WHT"%s(%S)$ ", \
+		&shell->prompt, shell->pwd, new, err_code(shell));
+	ft_free(new);
 }
 
 static short	ft_caller(t_mshell *shell)
@@ -92,13 +101,13 @@ short	reset_data_main(t_mshell *shell)
 	shell->keep_wait = NULL;
 	shell->s = ft_free(shell->s);
 	shell->prompt = ft_free(shell->prompt);
+	find_git(shell);
 	get_user(shell);
 	shell->s = readline(shell->prompt);
 	if (!shell->s)
 		return (FAIL - 1);
 	else if (shell->s[0])
 		add_history(shell->s);
-	find_git(shell);
 	ft_change_dolar(&shell->s, shell->en, 0, shell->pec);
 	while (shell->s && shell->s[i] && (shell->s[i] == ' ' || \
 	shell->s[i] == '\t'))

@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:28:16 by anboisve          #+#    #+#             */
-/*   Updated: 2023/11/05 12:58:42 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/11/05 16:19:37 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,8 @@
 # define SENUT "syntax error near unexpected token"
 # define MADE_BY "		made by		"
 # define MADE_BY_NANE "\x1B[34m anboisve \x1B[32m brheaume\n"
-# define V_MINI "v1.5"
+
+# define V_MINI "v1.7"
 
 # define L0M "███    ███ "
 # define L1M "████  ████ "

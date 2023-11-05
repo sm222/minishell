@@ -73,6 +73,7 @@
 #  define TOX	"\x1b[38;5;51m"
 #  define RESET	"\x1B[0m"
 #  define CLE	"\e[1;1H\e[2J"
+#  define GIT	"\x1b[38;5;82m"
 # endif
 
 //--------------------------//
@@ -186,6 +187,7 @@ typedef struct s_mshell
 	char			*prompt;
 	t_doc			*doc;
 	short			re_draw;
+	char			*git_status;
 	t_waitp			*keep_wait;
 }	t_mshell;
 
