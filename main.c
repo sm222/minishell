@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:31:47 by anboisve          #+#    #+#             */
-/*   Updated: 2023/10/27 09:35:37 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/11/05 18:19:56 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ static void	free_shell(t_mshell *shell)
 	ft_free(shell->prompt);
 	ft_double_sfree((void **)shell->path);
 	ft_double_sfree((void **)shell->en);
+	ft_double_sfree((void **)shell->aliace);
 }
 
 static void	do_logo(char **av)
@@ -81,6 +82,7 @@ int	main(int ac, char **av, char **en)
 	ft_signal_handler(CMD);
 	if (start_shell(&shell, en, av) != SUCCESS)
 		return (FAIL);
+	set_aliace(&shell);
 	while (SUCCESS)
 	{
 		if (reset_data_main(&shell) == FAIL -1)

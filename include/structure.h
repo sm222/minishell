@@ -189,6 +189,7 @@ typedef struct s_mshell
 	short			re_draw;
 	char			*git_status;
 	t_waitp			*keep_wait;
+	char			**aliace;
 }	t_mshell;
 
 /// @brief use in run_cmd

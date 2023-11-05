@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:28:16 by anboisve          #+#    #+#             */
-/*   Updated: 2023/11/05 16:19:37 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/11/05 18:01:48 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@
 # define MADE_BY "		made by		"
 # define MADE_BY_NANE "\x1B[34m anboisve \x1B[32m brheaume\n"
 
-# define V_MINI "v1.7"
+# define V_MINI "v1.7.2"
 
 # define L0M "███    ███ "
 # define L1M "████  ████ "
@@ -117,6 +117,7 @@ void	set_pec_to(int val);
 int		bad_con_err(short *to_set, short val, int err, char c);
 short	try_end(char *s, char *err);
 void	find_git(t_mshell *shell);
+void	set_aliace(t_mshell *shell);
 
 #endif // MINISHELL_H
 

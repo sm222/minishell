@@ -39,6 +39,7 @@ void	free_execution(t_cmd **in, t_mshell *shell)
 	while (pid)
 	{
 		next = pid->next;
+		ft_free(pid->name);
 		ft_free(pid);
 		pid = next;
 	}
@@ -47,6 +48,7 @@ void	free_execution(t_cmd **in, t_mshell *shell)
 	shell->cmd_list = NULL;
 	shell->path = (char **)ft_double_sfree((void **)shell->path);
 	shell->en = (char **)ft_double_sfree((void **)shell->en);
+	shell->en = (char **)ft_double_sfree((void **)shell->aliace);
 	shell->s = ft_free(shell->s);
 	shell->prompt = ft_free(shell->prompt);
 	shell->pwd = ft_free(shell->pwd);

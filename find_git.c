@@ -6,13 +6,13 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 12:13:56 by anboisve          #+#    #+#             */
-/*   Updated: 2023/11/05 16:21:05 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/11/05 17:52:19 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "include/minishell.h"
-#include "lib/lib_ft/ft_printf.h"
 #include "lib/lib_ft/libft.h"
+#include <limits.h>
 
 static char	*edit_git(char *in)
 {
@@ -34,11 +34,11 @@ static int	cont_c(void)
 {
 	int		i;
 	int		n;
-	char	pwd[500];
+	char	pwd[PATH_MAX];
 
 	i = 0;
 	n = 0;
-	getcwd(pwd, 500);
+	getcwd(pwd, PATH_MAX);
 	while (pwd[i])
 	{
 		if (pwd[i] == '/')

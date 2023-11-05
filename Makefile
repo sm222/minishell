@@ -54,6 +54,7 @@ SRCS	=	main.c\
 			built_in/unset/ft_unset.c\
 			built_in/export/export_u.c\
 			find_git.c\
+			aliace.c\
 
 #env -i ./minishell
 
@@ -122,7 +123,8 @@ fclean: clean
 run: all
 	@./$(NAME)
 
-mc: all cleants and executables and remakes
+mc: all clean
+
 re: fclean all
 
 cp:

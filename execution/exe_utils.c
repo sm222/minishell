@@ -22,6 +22,7 @@ void	free_t_mshell(t_mshell *shell)
 	ft_free(shell->prompt);
 	ft_double_sfree((void **)shell->path);
 	ft_double_sfree((void **)shell->en);
+	ft_double_sfree((void **)shell->aliace);
 	ft_return_ptr(NULL, -1);
 }
 
