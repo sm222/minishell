@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 12:13:56 by anboisve          #+#    #+#             */
-/*   Updated: 2023/11/05 16:06:46 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/11/05 16:21:05 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static int	cont_c(void)
 	return (n);
 }
 
-static char *find_file(void)
+static char	*find_file(void)
 {
 	char	*find;
 	char	*tmp;
@@ -76,14 +76,13 @@ static char *find_file(void)
 	return (find);
 }
 
-
 void	find_git(t_mshell *shell)
 {
 	int		fd;
 	char	*line;
 	char	*out;
 	char	*t;
-	
+
 	shell->git_status = NULL;
 	out = NULL;
 	t = find_file();
