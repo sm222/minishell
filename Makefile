@@ -61,16 +61,23 @@ SRCS	=	main.c\
 OBJS	=	$(SRCS:.c=.o)
 
 USER = $(shell whoami)
-BIN_DIR = \"/Users/$(USER)/Mini_bin/\"
+
+ifeq ($(shell uname -s), Darwin)
+    BIN_DIR = \"/Users/$(USER)/Mini_bin/\"
+else
+    BIN_DIR = "A"
+endif
+
+
+
 
 all: libft builtin exe parse doc $(NAME)
 	@printf "$(CYN) \n\n			correction is made by $(USER)\n\n  $(RESET)\n"
 	
 $(NAME): $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) $(LIBFT_DIR)$(LIBFT) -l readline -l ncurses \
+	@$(CC) $(CFLAGS) $(OBJS) $(LIBFT_DIR)$(LIBFT) -l readline -l ncurses \
 	$(RL_DIR)$(RL_H) $(RL_DIR)$(RL_L) $(EXECUTION_DIR)$(EXECUTION_LIB) \
 	$(PARSE_DIR)$(PARSE_LIB) $(HERE_DOC_DIR)$(HERE_DOC_LIB) -o $(NAME)
-
 libft:
 	@printf "$(GRN)making libft$(WHT)\n"
 	@make -C $(LIBFT_DIR)

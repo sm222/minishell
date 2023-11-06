@@ -8,7 +8,13 @@ WHT		=	\x1B[37m
 RESET	=	\x1B[0m
 CLE		=	\e[1;1H\e[2J
 
-DIR = "/Users/$(shell whoami)/Mini_bin"
+
+
+ifeq ($(shell uname -s), Darwin)
+    DIR = "/Users/$(shell whoami)/Mini_bin"
+else
+    DIR = "a"
+endif
 
 all: dirmake echo pwd cd env expo unset exit
 	
