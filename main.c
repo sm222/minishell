@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:31:47 by anboisve          #+#    #+#             */
-/*   Updated: 2023/11/05 18:19:56 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/11/06 17:39:37 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,3 +98,6 @@ int	main(int ac, char **av, char **en)
 	free_shell(&shell);
 	return (shell.pec);
 }
+
+
+//https://opensource.apple.com/source/gdb/gdb-962/src/readline/
