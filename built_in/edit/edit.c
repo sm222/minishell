@@ -4,6 +4,7 @@ static int	how_to_use(void)
 {
 	ft_printf(2, "%oedit: -s \n", NULL);
 	ft_printf(2, "%o	"DIRL, NULL);
+	ft_printf(2, "%o	"COLOR_SYS, NULL);
 	return (0);
 }
 

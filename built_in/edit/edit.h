@@ -22,6 +22,7 @@ int	shell_edit(char **av, size_t *j);
 //--------------------------//
 
 # define DIRL "DIRL=(number) - change the lend of the pwd in the prompt\n"
+# define COLOR_SYS "C=(number)(number) - change colors of the prompt\n"
 
 # ifndef EDIT
 #  define EDIT "edit"

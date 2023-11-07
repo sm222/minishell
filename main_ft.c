@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:32:01 by anboisve          #+#    #+#             */
-/*   Updated: 2023/11/07 12:04:21 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/11/07 16:03:01 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,15 +77,15 @@ static	void	get_user(t_mshell *shell)
 	shell->pwd = get_path(getcwd(NULL, 0), shell->pwd, shell);
 	if (shell->git_status)
 	{
-		ft_printf(NO_PRINT, "%o🌲"GIT"%S"WHT, &new, shell->git_status);
+		ft_printf(NO_PRINT, "%o🌲%s%S"WHT, &new, shell->sys_color.c2, shell->git_status);
 		shell->git_status = NULL;
 	}
 	if (logname)
-		ft_printf(NO_PRINT, "%o"GRN"%s"WHT"%s(%S)["TOX"%s"WHT"]$ ", \
-		&shell->prompt, shell->pwd, new, err_code(shell), logname);
+		ft_printf(NO_PRINT, "%o%s%s"WHT"%s(%S)[%s%s"WHT"]$ ", \
+		&shell->prompt, shell->sys_color.c1, shell->pwd, new, err_code(shell), shell->sys_color.c3, logname);
 	else
-		ft_printf(NO_PRINT, "%o"GRN"%s"WHT"%s(%S)$ ", \
-		&shell->prompt, shell->pwd, new, err_code(shell));
+		ft_printf(NO_PRINT, "%o%s%s"WHT"%s(%S)$ ", \
+		&shell->prompt, shell->sys_color.c1, shell->pwd, new, err_code(shell));
 	ft_free(new);
 }
 
