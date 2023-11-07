@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:31:47 by anboisve          #+#    #+#             */
-/*   Updated: 2023/11/06 17:39:37 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/11/07 09:41:54 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ static int	start_shell(t_mshell *shell, char **en, char **av)
 		return (1);
 	set_ptr_all(shell);
 	ft_printf(NO_PRINT, "%oex\bOLDPWD\bPWD\bPATH=%s:"MINI_BIN, \
-	&new, get_env(shell->en, "PATH"));
+		&new, get_env(shell->en, "PATH"));
 	spl = ft_split(new, '\b');
 	ft_export(spl, 0, 1, shell->en);
 	ft_double_sfree((void **)spl);

@@ -6,26 +6,51 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:32:01 by anboisve          #+#    #+#             */
-/*   Updated: 2023/11/06 16:51:17 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/11/07 10:28:54 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "include/minishell.h"
 #include "lib/lib_ft/ft_printf.h"
 
+static char	*make_new_path_len(char *path, size_t len)
+{
+	size_t	i;
+	size_t	j;
+	char	*new;
+
+	i = ft_strlen(path);
+	j = 0;
+	if (!path || !len)
+		return (path);
+	while (i--)
+	{
+		if (path[i] == '/')
+			j++;
+		if (j == len)
+			break ;
+	}
+	new = ft_strdup(path + i + 1);
+	ft_free(path);
+	return (new);
+}
+
 static char	*get_path(char *new, char *old)
 {
+	char	*tmp;
+
+	tmp = NULL;
 	if (!new && old)
 		return (old);
 	else if (new && old)
 	{
 		ft_free(old);
-		return (new);
+		return (make_new_path_len(new, 3));
 	}
 	else if (!new && !old)
 		return (ft_strdup("?"));
 	else if (new && !old)
-		return (new);
+		return (make_new_path_len(new, 3));
 	return (NULL);
 }
 
