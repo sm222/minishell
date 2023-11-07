@@ -6,10 +6,11 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:32:23 by anboisve          #+#    #+#             */
-/*   Updated: 2023/10/16 14:32:24 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/11/07 11:13:06 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "built_in/edit/edit.h"
 #include "include/minishell.h"
 
 static int	find_buit_in(char *name)
@@ -34,7 +35,8 @@ static int	find_buit_in(char *name)
 		ft_strncmp(tmp, EXIT, ft_strlen(EXIT) + 1) == 0 || \
 		ft_strncmp(tmp, PWD, ft_strlen(PWD) + 1) == 0 || \
 		ft_strncmp(tmp, ENV, ft_strlen(ENV) + 1) == 0 || \
-		ft_strncmp(tmp, CD, ft_strlen(CD) + 1) == 0)
+		ft_strncmp(tmp, CD, ft_strlen(CD) + 1) == 0 || \
+		ft_strncmp(tmp, EDIT, ft_strlen(EDIT)) == 0)
 		flag = BUILT_IN_FLAG;
 	free(tmp);
 	return (flag);

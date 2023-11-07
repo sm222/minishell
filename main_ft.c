@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:32:01 by anboisve          #+#    #+#             */
-/*   Updated: 2023/11/07 10:28:54 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/11/07 12:04:21 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static char	*make_new_path_len(char *path, size_t len)
 	return (new);
 }
 
-static char	*get_path(char *new, char *old)
+static char	*get_path(char *new, char *old, t_mshell *shell)
 {
 	char	*tmp;
 
@@ -45,12 +45,12 @@ static char	*get_path(char *new, char *old)
 	else if (new && old)
 	{
 		ft_free(old);
-		return (make_new_path_len(new, 3));
+		return (make_new_path_len(new, shell->dir_len));
 	}
 	else if (!new && !old)
 		return (ft_strdup("?"));
 	else if (new && !old)
-		return (make_new_path_len(new, 3));
+		return (make_new_path_len(new, shell->dir_len));
 	return (NULL);
 }
 
@@ -74,7 +74,7 @@ static	void	get_user(t_mshell *shell)
 	logname = NULL;
 	new = NULL;
 	logname = get_env(shell->en, "LOGNAME");
-	shell->pwd = get_path(getcwd(NULL, 0), shell->pwd);
+	shell->pwd = get_path(getcwd(NULL, 0), shell->pwd, shell);
 	if (shell->git_status)
 	{
 		ft_printf(NO_PRINT, "%o🌲"GIT"%S"WHT, &new, shell->git_status);

@@ -16,7 +16,7 @@ else
     DIR = "a"
 endif
 
-all: dirmake echo pwd cd env expo unset exit
+all: dirmake echo pwd cd env expo unset exit edit
 	
 
 dirmake:
@@ -49,6 +49,10 @@ exit:
 	@printf "$(GRN)making exit$(WHT)\n"
 	@make -C exit
 
+edit:
+	@printf "$(GRN)making exit$(WHT)\n"
+	@make -C edit
+
 clean:
 	@make -C echo   clean
 	@make -C pwd    clean
@@ -57,6 +61,7 @@ clean:
 	@make -C unset  clean
 	@make -C export clean
 	@make -C exit   clean
+	@make -C edit   clean
 
 fclean: clean
 	@make -C echo   fclean
@@ -66,11 +71,12 @@ fclean: clean
 	@make -C unset  fclean
 	@make -C export fclean
 	@make -C exit   fclean
-	@rm -fr /tmp/binmini
+	@make -C edit   fclean
+	rm -fr $(DIR)
 
 re: fclean all
 
 bonus: all
 	make -C ls_tester
 
-.PHONY: all echo pwd cd env unset exit
+.PHONY: all echo pwd cd env unset exit edit

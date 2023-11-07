@@ -177,6 +177,7 @@ typedef struct s_cmd
 typedef struct s_mshell
 {
 	char			*s;
+	size_t			dir_len;
 	char			*rest;
 	int				pec;
 	short			exit;

@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:23:29 by anboisve          #+#    #+#             */
-/*   Updated: 2023/10/16 14:23:30 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/11/07 11:15:58 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # include "pwd/pwd.h"
 # include "env/env.h"
 # include "cd/cd.h"
+# include "edit/edit.h"
 
 //--------------------------//
 //			define			//

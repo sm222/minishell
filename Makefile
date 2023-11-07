@@ -53,6 +53,7 @@ SRCS	=	main.c\
 			built_in/export/export.c\
 			built_in/unset/ft_unset.c\
 			built_in/export/export_u.c\
+			built_in/edit/edit.c\
 			find_git.c\
 			aliace.c\
 

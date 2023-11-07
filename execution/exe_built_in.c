@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:24:37 by anboisve          #+#    #+#             */
-/*   Updated: 2023/10/17 12:32:19 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/11/07 11:15:43 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,8 @@ static void	*find_built_in_l(char *name)
 		return (&ft_unset);
 	if (ft_strncmp(name, EXPORT, ft_strlen(EXPORT) + 1) == 0)
 		return (&ft_export);
+	if (ft_strncmp(name, EDIT, ft_strlen(EDIT) + 1) == 0)
+		return (&ft_edit);
 	return (NULL);
 }
 

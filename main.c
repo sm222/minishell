@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:31:47 by anboisve          #+#    #+#             */
-/*   Updated: 2023/11/07 09:41:54 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/11/07 11:11:13 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ static int	start_shell(t_mshell *shell, char **en, char **av)
 	if (!shell || !en)
 		return (BAD_ARGS);
 	ft_bzero(shell, sizeof(t_mshell));
+	shell->dir_len = 3;
 	shell->en = ft_cpy_double_char(en);
 	if (get_env_path(shell) <= FAIL)
 		return (1);
