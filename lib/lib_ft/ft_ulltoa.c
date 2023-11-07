@@ -6,10 +6,11 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 18:00:16 by anboisve          #+#    #+#             */
-/*   Updated: 2023/03/30 14:53:26 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/11/07 15:24:20 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 #include "ft_printf.h"
 
 static int	ft_size_of_unb(unsigned long long nb, int base)

@@ -166,6 +166,24 @@ typedef struct s_cmd
 	t_token			*tok;
 }	t_cmd;
 
+typedef	struct s_col_sys
+{
+	char	*red;
+	char	*grn;
+	char	*yel;
+	char	*blu;
+	char	*mag;
+	char	*cyn;
+	char	*wht;
+	char	*tox;
+	char	*git;
+	char	*c1;
+	char	*c2;
+	char	*c3;
+	char	*c4;
+	char	*c5;
+}	t_col_sys;
+
 /// @brief use in the shell
 /// @param s 		readline output
 /// @param pec 		prosess exit code
@@ -191,6 +209,7 @@ typedef struct s_mshell
 	char			*git_status;
 	t_waitp			*keep_wait;
 	char			**aliace;
+	t_col_sys		sys_color;
 }	t_mshell;
 
 /// @brief use in run_cmd

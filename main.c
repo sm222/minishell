@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:31:47 by anboisve          #+#    #+#             */
-/*   Updated: 2023/11/07 11:11:13 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/11/07 15:16:52 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,15 @@ static int	set_ptr_all(t_mshell *shell)
 	ft_return_ptr(&ft_signal_handler, SIG);
 	ft_return_ptr(&clean_shell, CLEAN);
 	ft_return_ptr(&free_here_doc, FREE_DOC);
+	shell->sys_color.red = RED;
+	shell->sys_color.grn = GRN;
+	shell->sys_color.yel = YEL;
+	shell->sys_color.blu = BLU;
+	shell->sys_color.mag = MAG;
+	shell->sys_color.cyn = CYN;
+	shell->sys_color.wht = WHT;
+	shell->sys_color.tox = TOX;
+	shell->sys_color.git = GIT;
 	return (0);
 }
 

@@ -79,7 +79,9 @@
     "ls_tester.h": "c",
     "parsing.h": "c",
     "signal.h": "c",
-    "cd.h": "c"
+    "cd.h": "c",
+    "edit.h": "c",
+    "stdlib.h": "c"
   },
   "C_Cpp.errorSquiggles": "disabled",
   "workbench.colorCustomizations": {

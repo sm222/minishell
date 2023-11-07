@@ -12,6 +12,7 @@ RM		=	rm -f
 
 # Sources are all .c files
 SRCS	=	edit.c\
+			edit_pwd.c\
 			main.c
 
 OBJS	=	$(SRCS:.c=.o)

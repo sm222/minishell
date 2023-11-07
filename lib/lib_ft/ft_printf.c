@@ -6,10 +6,11 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 13:12:13 by anboisve          #+#    #+#             */
-/*   Updated: 2023/08/03 13:29:00 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/11/07 15:21:47 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 #include "ft_printf.h"
 
 static int	print_free(char *s, char c, int fd)

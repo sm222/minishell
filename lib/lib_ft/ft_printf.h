@@ -6,15 +6,15 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 13:13:03 by anboisve          #+#    #+#             */
-/*   Updated: 2023/07/24 10:48:33 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/11/07 15:23:06 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
-# include "libft.h"
-
+# include <stdarg.h>
+# include <stdio.h>
 # define NO_PRINT -1
 
 typedef struct s_printf
