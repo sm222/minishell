@@ -106,7 +106,7 @@ typedef struct s_doc
 	char			*f_name;
 	int				i;
 	int				fd;
-	struct s_doc	*next; 
+	struct s_doc	*next;
 }		t_doc;
 
 /// @brief use to find if is a built in and redir
@@ -166,7 +166,7 @@ typedef struct s_cmd
 	t_token			*tok;
 }	t_cmd;
 
-typedef	struct s_col_sys
+typedef struct s_col_sys
 {
 	char	*red;
 	char	*grn;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   doc.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brheaume <marvin@42quebec.com>             +#+  +:+       +#+        */
+/*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:35:31 by brheaume          #+#    #+#             */
-/*   Updated: 2023/10/23 12:36:16 by brheaume         ###   ########.fr       */
+/*   Updated: 2023/11/07 23:25:23 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ static int	ft_run_here_doc(char *src, t_idx *limit, t_rdct *fd)
 	limit->current_start = limit->start_index + 1;
 	if (src[limit->current_start + 1] == ' ')
 		limit->current_start++;
-	current = limit->start_index; 
+	current = limit->start_index;
 	no_quotes = CORRECT;
 	if (fd)
 		fd->last_doc = ft_is_last_in(src, limit->start_index);

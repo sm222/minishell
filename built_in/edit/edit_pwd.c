@@ -14,6 +14,7 @@ static int	edit_pwd(char **av, t_mshell *shell)
 		shell->dir_len = (size_t)tab;
 	return (0);
 }
+
 static char	*color_chose(int i, t_mshell *shell)
 {
 	if (i == 0)

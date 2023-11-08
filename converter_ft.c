@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:32:30 by anboisve          #+#    #+#             */
-/*   Updated: 2023/10/23 15:59:02 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/11/07 23:28:21 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ static int	bad_con(char *s, short *type)
 		if ((s[i] == '<' && s[i + 1] == '>') || \
 		((s[i] == '>' && s[i + 1] == '<')))
 			return (bad_con_err(type, -1, 258, s[i]));
-		if (ft_set_mode(s[i]) == 0 && (s[i] == '&' || s[i] == '|')) 
+		if (ft_set_mode(s[i]) == 0 && (s[i] == '&' || s[i] == '|'))
 		{
 			if ((s[i + 1] == '\0') || (s[i] == '&' && s[i + 1] != '&') || \
 				(s[i] == '|' && s[i + 1] == '&') || find_end(s, i - 1) || \
