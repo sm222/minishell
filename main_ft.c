@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:32:01 by anboisve          #+#    #+#             */
-/*   Updated: 2023/11/07 23:25:59 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/11/08 00:24:56 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ static	void	get_user(t_mshell *shell)
 
 	logname = NULL;
 	new = NULL;
+	find_git(shell);
 	logname = get_env(shell->en, "LOGNAME");
 	shell->pwd = get_path(getcwd(NULL, 0), shell->pwd, shell);
 	if (shell->git_status)
@@ -125,13 +126,16 @@ short	reset_data_main(t_mshell *shell)
 	shell->keep_wait = NULL;
 	shell->s = ft_free(shell->s);
 	shell->prompt = ft_free(shell->prompt);
-	find_git(shell);
 	get_user(shell);
-	shell->s = readline(shell->prompt);
+	if (!shell->s_in)
+		shell->s = readline(shell->prompt);
+	else
+		shell->s = shell->s_in;
 	if (!shell->s)
 		return (FAIL - 1);
-	else if (shell->s[0])
+	else if (shell->s[0] && !shell->s_in)
 		add_history(shell->s);
+	shell->s_in = NULL;
 	ft_change_dolar(&shell->s, shell->en, 0, shell->pec);
 	while (shell->s && shell->s[i] && (shell->s[i] == ' ' || \
 	shell->s[i] == '\t'))

@@ -39,6 +39,8 @@ int	ft_edit(char **av, int re_in, int re_out, char **en)
 	{
 		if (ft_strncmp(av[j], "-s", 3) == 0)
 			err += shell_edit(av + j + 1, &j);
+		else if (ft_strncmp(av[j], "-u", 3) == 0)
+			edit_update();
 		else
 			err += bad_arg(av[j]);
 	}

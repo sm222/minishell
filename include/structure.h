@@ -195,6 +195,7 @@ typedef struct s_col_sys
 typedef struct s_mshell
 {
 	char			*s;
+	char			*s_in;
 	size_t			dir_len;
 	char			*rest;
 	int				pec;
