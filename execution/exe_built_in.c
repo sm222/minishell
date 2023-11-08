@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:24:37 by anboisve          #+#    #+#             */
-/*   Updated: 2023/11/07 11:15:43 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/11/07 23:16:38 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ static void	change_arg(t_cmd *in)
 	}
 	else if (ft_strncmp(in->command[0], PWD, ft_strlen(PWD) + 1) == 0)
 	{
-		if (change_av_pwd(in, shell->pwd) < SUCCESS)
+		if (change_av_pwd(in, get_env(shell->en, "PWD")) < SUCCESS)
 			err_msg(PERROR, M_FAIL, "change_av_pwd");
 	}
 }
