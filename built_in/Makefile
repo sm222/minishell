@@ -10,17 +10,20 @@ CLE		=	\e[1;1H\e[2J
 
 
 
+USER = $(shell whoami)
+
 ifeq ($(shell uname -s), Darwin)
-    DIR = "/Users/$(shell whoami)/Mini_bin"
+    BIN_DIR = /Users/$(USER)/Mini_bin/
 else
-    DIR = "a"
+    BIN_DIR = /home/$(USER)/Mini_bin/
 endif
 
 all: dirmake echo pwd cd env expo unset exit edit
 	
 
 dirmake:
-	@mkdir -p $(DIR)
+	mkdir -p $(BIN_DIR)
+
 echo:
 	@printf "$(GRN)making echo$(WHT)\n"
 	@make -C echo
@@ -72,7 +75,7 @@ fclean: clean
 	@make -C export fclean
 	@make -C exit   fclean
 	@make -C edit   fclean
-	rm -fr $(DIR)
+	rm -fr $(BIN_DIR)
 
 re: fclean all
 

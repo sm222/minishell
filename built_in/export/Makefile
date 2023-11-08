@@ -1,6 +1,12 @@
-DIR = /Users/$(shell whoami)/Mini_bin/
+USER = $(shell whoami)
 
-NAME	=	$(DIR)ft_export
+ifeq ($(shell uname -s), Darwin)
+    BIN_DIR = /Users/$(USER)/Mini_bin/
+else
+    BIN_DIR = /home/$(USER)/Mini_bin/
+endif
+
+NAME	=	$(BIN_DIR)ft_export
 
 LIBFT		=	libft.a
 LIBFT_DIR	=	../../lib/lib_ft/

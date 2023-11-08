@@ -67,7 +67,7 @@ USER = $(shell whoami)
 ifeq ($(shell uname -s), Darwin)
     BIN_DIR = \"/Users/$(USER)/Mini_bin/\"
 else
-    BIN_DIR = "A"
+    BIN_DIR = \"/home/$(USER)/Mini_bin/\"
 endif
 
 

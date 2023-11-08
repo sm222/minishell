@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 12:13:56 by anboisve          #+#    #+#             */
-/*   Updated: 2023/11/05 17:52:19 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/11/07 22:56:06 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,9 @@
 
 static char	*edit_git(char *in)
 {
-	char	*new;
-	char	*tmp;
 	size_t	i;
 
 	i = ft_strlen(in) - 1;
-	new = NULL;
-	tmp = NULL;
 	while (i && in[i] != '/')
 		i--;
 	if (i == 0)

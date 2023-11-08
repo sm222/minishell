@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:32:01 by anboisve          #+#    #+#             */
-/*   Updated: 2023/11/07 16:03:01 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/11/07 22:55:47 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,6 @@ static char	*make_new_path_len(char *path, size_t len)
 
 static char	*get_path(char *new, char *old, t_mshell *shell)
 {
-	char	*tmp;
-
-	tmp = NULL;
 	if (!new && old)
 		return (old);
 	else if (new && old)

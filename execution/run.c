@@ -6,13 +6,12 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:26:14 by anboisve          #+#    #+#             */
-/*   Updated: 2023/11/02 14:30:24 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/11/07 22:55:32 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "execution.h"
 #include "../readline/readline.h"
-#include <sys/_types/_null.h>
 
 //126
 //is a directory
