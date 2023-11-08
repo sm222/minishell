@@ -21,7 +21,9 @@ RM		=	rm -f
 SRCS	=	edit.c\
 			edit_pwd.c\
 			edit_update.c\
+			edit_logic.c\
 			main.c\
+
 
 OBJS	=	$(SRCS:.c=.o)
 

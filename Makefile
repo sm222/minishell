@@ -56,6 +56,7 @@ SRCS	=	main.c\
 			built_in/edit/edit_pwd.c\
 			built_in/edit/edit.c\
 			built_in/edit/edit_update.c\
+			built_in/edit/edit_logic.c\
 			find_git.c\
 			aliace.c\
 

@@ -41,6 +41,8 @@ int	ft_edit(char **av, int re_in, int re_out, char **en)
 			err += shell_edit(av + j + 1, &j);
 		else if (ft_strncmp(av[j], "-u", 3) == 0)
 			edit_update();
+		else if (ft_strncmp(av[j], "-l", 3) == 0)
+			edit_logic(av);
 		else
 			err += bad_arg(av[j]);
 	}
