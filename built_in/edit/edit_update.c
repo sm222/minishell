@@ -9,7 +9,7 @@ int	edit_update(void)
 	{
 		if (shell->s_in)
 			shell->s_in = ft_free(shell->s_in);
-		shell->s_in = ft_strdup("git pull --all");
+		shell->s_in = ft_strdup("git ls-remote https://github.com/sm222/minishell > file ; diff .git/ORIG_HEAD file ; rm file");
 	}
 	return (0);
 }

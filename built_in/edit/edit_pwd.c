@@ -72,7 +72,7 @@ int shell_edit(char **av, size_t *j)
 	shell = ft_return_ptr(NULL, SYS);
 	if (!av[0])
 	{
-		ft_printf(2, "%o"MS_NAME"\b: -s need args\n", NULL);
+		ft_printf(2, "%o"MS_NAME"\b: edit: -s need args\n", NULL);
 		return (1);
 	}
 	*j += 1;
@@ -81,6 +81,6 @@ int shell_edit(char **av, size_t *j)
 	else if (ft_strncmp(av[0], "C=", 2) == 0)
 		return (edit_color(av, shell));
 	else
-		ft_printf(2, "%o"MS_NAME"\b: -s unknow %s\n", NULL, av[0]);
+		ft_printf(2, "%o"MS_NAME"\b: edit: -s unknow %s\n", NULL, av[0]);
 	return (1);
 }

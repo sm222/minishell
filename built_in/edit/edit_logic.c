@@ -18,7 +18,7 @@ int	edit_logic(char **av, size_t *j)
 			return (0);
 		}
 		else
-			ft_printf(2, "%o"MS_NAME"\b -l need 2 string {exit code 0} {exit code 1}\n", NULL);
+			ft_printf(2, "%o"MS_NAME"\b: edit: "LOGIC, NULL);
 		return (1);
 	}
 	return (0);
