@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:32:01 by anboisve          #+#    #+#             */
-/*   Updated: 2023/11/08 00:24:56 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/11/08 19:45:04 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,28 +91,28 @@ static	void	get_user(t_mshell *shell)
 
 static short	ft_caller(t_mshell *shell)
 {
-	size_t	i;
-	size_t	j;
-	short	type;
+	t_index	l;
 
-	j = 0;
-	type = 0;
+	ft_bzero(&l, sizeof(t_index));
 	shell->re_draw = 1;
-	while (j < ft_strlen(shell->s))
+	while (l.j < ft_strlen(shell->s))
 	{
-		i = look_for_type(shell->s + j, &type);
-		if (type == -1)
+		l.i = look_for_type(shell->s + l.j, &l.type);
+		if (l.type == -1)
 			return (FAIL);
-		shell->rest = ft_strndup(shell->s + j, i);
+		shell->rest = ft_strndup(shell->s + l.j, l.i);
 		if (!shell->rest)
 			break ;
-		j += i + 2;
+		if (l.type != '&' && l.type != '|')
+			l.j += l.i + 1;
+		else
+			l.j += l.i + 2;
 		converter(shell->rest, &shell->cmd_list);
 		run_cmd(shell->cmd_list, shell);
 		free_here_doc(UNLINK);
 		shell->rest = ft_free(shell->rest);
-		if ((shell->pec != 0 && type == '&') || \
-			(shell->pec == 0 && type == '|'))
+		if ((shell->pec != 0 && l.type == '&') || \
+			(shell->pec == 0 && l.type == '|'))
 			break ;
 	}
 	return (SUCCESS);

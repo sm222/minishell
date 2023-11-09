@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 10:19:00 by anboisve          #+#    #+#             */
-/*   Updated: 2023/05/25 15:12:30 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/11/08 19:36:51 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ typedef struct s_index
 	size_t	j;
 	size_t	k;
 	size_t	l;
+	short	type;
 }	t_index;
 
 #endif 
