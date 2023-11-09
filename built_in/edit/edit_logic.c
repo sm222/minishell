@@ -1,12 +1,25 @@
 #include "edit.h"
 
-int	edit_logic(char **av)
+int	edit_logic(char **av, size_t *j)
 {
 	t_mshell	*shell;
 
-	(void)av;
 	shell = ft_return_ptr(NULL, SYS);
 	if (shell)
-		ft_printf(2, "%olast err was %d\n", NULL, shell->pec);
+	{
+		*j += ft_strlen_double(av);
+		if (av[0] && av[1])
+		{
+			shell->s_in = ft_free(shell->s_in);
+			if (!shell->pec)
+				shell->s_in = ft_strdup(av[0]);
+			else
+				shell->s_in = ft_strdup(av[1]);
+			return (0);
+		}
+		else
+			ft_printf(2, "%o"MS_NAME"\b -l need 2 string {exit code 0} {exit code 1}\n", NULL);
+		return (1);
+	}
 	return (0);
 }

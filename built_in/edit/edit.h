@@ -16,8 +16,8 @@
 
 int	ft_edit(char **av, int re_in, int re_out, char **en);
 int	shell_edit(char **av, size_t *j);
+int	edit_logic(char **av, size_t *j);
 int	edit_update(void);
-int	edit_logic(char **av);
 
 //--------------------------//
 //			define			//

@@ -42,7 +42,7 @@ int	ft_edit(char **av, int re_in, int re_out, char **en)
 		else if (ft_strncmp(av[j], "-u", 3) == 0)
 			edit_update();
 		else if (ft_strncmp(av[j], "-l", 3) == 0)
-			edit_logic(av);
+			err += edit_logic(av + 2, &j);
 		else
 			err += bad_arg(av[j]);
 	}
