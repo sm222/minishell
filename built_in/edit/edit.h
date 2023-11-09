@@ -25,6 +25,7 @@ int	edit_update(void);
 
 # define DIRL "DIRL=(number) - change the lend of the pwd in the prompt\n"
 # define COLOR_SYS "C=(number)(number) - change colors of the prompt\n"
+# define LOGIC "need 2 string {exit code 0} {exit code 1}\n"
 
 # ifndef EDIT
 #  define EDIT "edit"
