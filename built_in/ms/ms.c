@@ -1,22 +1,22 @@
-#include "edit.h"
+#include "ms.h"
 
 static int	how_to_use(void)
 {
-	ft_printf(2, "%oedit: -s \n", NULL);
+	ft_printf(2, "%oms: -s \n", NULL);
 	ft_printf(2, "%o	"DIRL, NULL);
 	ft_printf(2, "%o	"COLOR_SYS, NULL);
-	ft_printf(2, "%oedit: -u \n", NULL);
+	ft_printf(2, "%oms: -u \n", NULL);
 	ft_printf(2, "%o	use too look for update, not ready yet\n", NULL);
-	ft_printf(2, "%oedit: -l \n", NULL);
+	ft_printf(2, "%oms: -l \n", NULL);
 	ft_printf(2, "%o	"LOGIC, NULL);
-	ft_printf(2, "%oedit: -r \n", NULL);
+	ft_printf(2, "%oms: -r \n", NULL);
 	ft_printf(2, "%o	"RUN, NULL);
 	return (0);
 }
 
 static int	bad_arg(char *s)
 {
-	ft_printf(2, "%o"MS_NAME"\b: edit: %s not valid\n", NULL, s);
+	ft_printf(2, "%o"MS_NAME"\b: ms: %s not valid\n", NULL, s);
 	return (1);
 }
 static int	look_arg(char **av, size_t *i, size_t *j)
@@ -31,7 +31,7 @@ static int	look_arg(char **av, size_t *i, size_t *j)
 	return (0);
 }
 
-int	ft_edit(char **av, int re_in, int re_out, char **en)
+int	ft_ms(char **av, int re_in, int re_out, char **en)
 {
 	size_t	i;
 	size_t	j;
@@ -44,13 +44,13 @@ int	ft_edit(char **av, int re_in, int re_out, char **en)
 	while (++j < i)
 	{
 		if (ft_strncmp(av[j], "-s", 3) == 0)
-			err += shell_edit(av + j + 1, &j);
+			err += ms_edit(av + j + 1, &j);
 		else if (ft_strncmp(av[j], "-u", 3) == 0)
-			edit_update();
+			ms_update();
 		else if (ft_strncmp(av[j], "-l", 3) == 0)
-			err += edit_logic(av + 2, &j);
+			err += ms_logic(av + 2, &j);
 		else if (ft_strncmp(av[j], "-r", 3) == 0)
-			err += edit_run(av + 2, &j);
+			err += ms_run(av + 2, &j);
 		else
 			err += bad_arg(av[j]);
 	}

@@ -18,7 +18,7 @@ else
     BIN_DIR = /home/$(USER)/Mini_bin/
 endif
 
-all: dirmake echo pwd cd env expo unset exit edit
+all: dirmake echo pwd cd env expo unset exit ms
 	
 
 dirmake:
@@ -52,9 +52,9 @@ exit:
 	@printf "$(GRN)making exit$(WHT)\n"
 	@make -C exit
 
-edit:
-	@printf "$(GRN)making exit$(WHT)\n"
-	@make -C edit
+ms:
+	@printf "$(GRN)making ms$(WHT)\n"
+	@make -C ms
 
 clean:
 	@make -C echo   clean
@@ -64,7 +64,7 @@ clean:
 	@make -C unset  clean
 	@make -C export clean
 	@make -C exit   clean
-	@make -C edit   clean
+	@make -C ms     clean
 
 fclean: clean
 	@make -C echo   fclean
@@ -74,7 +74,7 @@ fclean: clean
 	@make -C unset  fclean
 	@make -C export fclean
 	@make -C exit   fclean
-	@make -C edit   fclean
+	@make -C ms     fclean
 	rm -fr $(BIN_DIR)
 
 re: fclean all
@@ -82,4 +82,4 @@ re: fclean all
 bonus: all
 	make -C ls_tester
 
-.PHONY: all echo pwd cd env unset exit edit
+.PHONY: all echo pwd cd env unset exit ms

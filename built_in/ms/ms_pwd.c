@@ -1,12 +1,12 @@
-#include "edit.h"
+#include "ms.h"
 
-static int	edit_pwd(char **av, t_mshell *shell)
+static int	ms_pwd(char **av, t_mshell *shell)
 {
 	int	tab;
 
 	if (!av[0][5])
 	{
-		ft_printf(2, "%o"MS_NAME"\b: -s DIRL need a number\n", NULL);
+		ft_printf(2, "%o"MS_NAME"\b: ms -s DIRL need a number\n", NULL);
 		return (1);
 	}
 	tab = ft_atoi(av[0] + 5);
@@ -38,7 +38,7 @@ static char	*color_chose(int i, t_mshell *shell)
 	return (NULL);
 }
 
-static int	edit_color(char **av, t_mshell *shell)
+static int	ms_color(char **av, t_mshell *shell)
 {
 	char	*new_c;
 
@@ -65,22 +65,22 @@ static int	edit_color(char **av, t_mshell *shell)
 	return (0);
 }
 
-int shell_edit(char **av, size_t *j)
+int ms_edit(char **av, size_t *j)
 {
 	t_mshell *shell;
 
 	shell = ft_return_ptr(NULL, SYS);
 	if (!av[0])
 	{
-		ft_printf(2, "%o"MS_NAME"\b: edit: -s need args\n", NULL);
+		ft_printf(2, "%o"MS_NAME"\b: ms: -s need args\n", NULL);
 		return (1);
 	}
 	*j += 1;
 	if (ft_strncmp(av[0], "DIRL=", 5) == 0)
-		return (edit_pwd(av, shell));
+		return (ms_pwd(av, shell));
 	else if (ft_strncmp(av[0], "C=", 2) == 0)
-		return (edit_color(av, shell));
+		return (ms_color(av, shell));
 	else
-		ft_printf(2, "%o"MS_NAME"\b: edit: -s unknow %s\n", NULL, av[0]);
+		ft_printf(2, "%o"MS_NAME"\b: ms: -s unknow %s\n", NULL, av[0]);
 	return (1);
 }

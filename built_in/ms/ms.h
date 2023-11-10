@@ -1,5 +1,5 @@
-#ifndef EDIT_H
-# define EDIT_H
+#ifndef MS_H
+# define MS_H
 
 //--------------------------//
 //			include			//
@@ -14,11 +14,11 @@
 //			fonction		//
 //--------------------------//
 
-int	ft_edit(char **av, int re_in, int re_out, char **en);
-int	shell_edit(char **av, size_t *j);
-int	edit_logic(char **av, size_t *j);
-int	edit_update(void);
-int	edit_run(char **av, size_t *j);
+int	ft_ms(char **av, int re_in, int re_out, char **en);
+int	ms_edit(char **av, size_t *j);
+int	ms_logic(char **av, size_t *j);
+int	ms_update(void);
+int	ms_run(char **av, size_t *j);
 
 //--------------------------//
 //			define			//
@@ -29,8 +29,8 @@ int	edit_run(char **av, size_t *j);
 # define LOGIC "need 2 string {exit code 0} {exit code 1}\n"
 # define RUN "need 1 file {PATH}\n"
 
-# ifndef EDIT
-#  define EDIT "edit"
+# ifndef MS
+#  define MS "ms"
 # endif
 
 #endif // EXPORT_H

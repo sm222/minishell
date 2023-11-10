@@ -6,7 +6,7 @@ else
     BIN_DIR = /home/$(USER)/Mini_bin/
 endif
 
-NAME	=	$(BIN_DIR)ft_edit
+NAME	=	$(BIN_DIR)ft_ms
 
 
 LIBFT		=	libft.a
@@ -18,11 +18,11 @@ CFLAGS	=	-Wall -Werror -Wextra -g
 RM		=	rm -f
 
 # Sources are all .c files
-SRCS	=	edit.c\
-			edit_pwd.c\
-			edit_update.c\
-			edit_logic.c\
-			main.c\
+SRCS	=	main.c\
+			ms.c\
+			ms_logic.c\
+			ms_pwd.c\
+			ms_update.c\
 
 
 OBJS	=	$(SRCS:.c=.o)

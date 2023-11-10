@@ -1,4 +1,4 @@
-#include "edit.h"
+#include "ms.h"
 #include <errno.h>
 
 static char	*read_file(int fd)
@@ -18,7 +18,7 @@ static char	*read_file(int fd)
 		join = ft_strfjoin(join, tmp);
 	}
 	close (fd);
-	ft_printf(2, "%oedit : line - %s\n", NULL, join);
+	ft_printf(2, "%oms : line - %s\n", NULL, join);
 	return (join);
 }
 
@@ -29,20 +29,20 @@ static char	*make_new_str(char *f_name)
 	fd = open(f_name, O_DIRECTORY);
 	if (fd > 0)
 	{
-		ft_printf(2, "%o"MS_NAME"\b: edit: %s is a directory\n", NULL, f_name);
+		ft_printf(2, "%o"MS_NAME"\b: ms: %s is a directory\n", NULL, f_name);
 		close(fd);
 		return (NULL);
 	}
 	fd = open(f_name, O_RDONLY);
 	if (fd == -1)
 	{
-		ft_printf(2, "%o"MS_NAME"\b: edit: %s %s\n", NULL, f_name, strerror(errno));
+		ft_printf(2, "%o"MS_NAME"\b: ms: %s %s\n", NULL, f_name, strerror(errno));
 		return (NULL);
 	}
 	return (read_file(fd));
 }
 
-int	edit_run(char **av, size_t *j)
+int	ms_run(char **av, size_t *j)
 {
 	t_mshell	*shell;
 
@@ -59,13 +59,13 @@ int	edit_run(char **av, size_t *j)
 			return (0);
 		}
 		else
-			ft_printf(2, "%o"MS_NAME"\b: edit: -r "RUN, NULL);
+			ft_printf(2, "%o"MS_NAME"\b: ms: -r "RUN, NULL);
 		return (1);
 	}
 	return (0);
 }
 
-int	edit_logic(char **av, size_t *j)
+int	ms_logic(char **av, size_t *j)
 {
 	t_mshell	*shell;
 
@@ -83,7 +83,7 @@ int	edit_logic(char **av, size_t *j)
 			return (0);
 		}
 		else
-			ft_printf(2, "%o"MS_NAME"\b: edit: "LOGIC, NULL);
+			ft_printf(2, "%o"MS_NAME"\b: ms: "LOGIC, NULL);
 		return (1);
 	}
 	return (0);

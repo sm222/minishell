@@ -53,10 +53,10 @@ SRCS	=	main.c\
 			built_in/export/export.c\
 			built_in/unset/ft_unset.c\
 			built_in/export/export_u.c\
-			built_in/edit/edit_pwd.c\
-			built_in/edit/edit.c\
-			built_in/edit/edit_update.c\
-			built_in/edit/edit_logic.c\
+			built_in/ms/ms_pwd.c\
+			built_in/ms/ms.c\
+			built_in/ms/ms_update.c\
+			built_in/ms/ms_logic.c\
 			find_git.c\
 			aliace.c\
 
