@@ -9,6 +9,8 @@ static int	how_to_use(void)
 	ft_printf(2, "%o	use too look for update, not ready yet\n", NULL);
 	ft_printf(2, "%oedit: -l \n", NULL);
 	ft_printf(2, "%o	"LOGIC, NULL);
+	ft_printf(2, "%oedit: -r \n", NULL);
+	ft_printf(2, "%o	"RUN, NULL);
 	return (0);
 }
 
@@ -47,6 +49,8 @@ int	ft_edit(char **av, int re_in, int re_out, char **en)
 			edit_update();
 		else if (ft_strncmp(av[j], "-l", 3) == 0)
 			err += edit_logic(av + 2, &j);
+		else if (ft_strncmp(av[j], "-r", 3) == 0)
+			err += edit_run(av + 2, &j);
 		else
 			err += bad_arg(av[j]);
 	}

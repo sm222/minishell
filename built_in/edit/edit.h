@@ -18,6 +18,7 @@ int	ft_edit(char **av, int re_in, int re_out, char **en);
 int	shell_edit(char **av, size_t *j);
 int	edit_logic(char **av, size_t *j);
 int	edit_update(void);
+int	edit_run(char **av, size_t *j);
 
 //--------------------------//
 //			define			//
@@ -26,6 +27,7 @@ int	edit_update(void);
 # define DIRL "DIRL=(number) - change the lend of the pwd in the prompt\n"
 # define COLOR_SYS "C=(number)(number) - change colors of the prompt\n"
 # define LOGIC "need 2 string {exit code 0} {exit code 1}\n"
+# define RUN "need 1 file {PATH}\n"
 
 # ifndef EDIT
 #  define EDIT "edit"
