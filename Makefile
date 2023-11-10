@@ -28,9 +28,11 @@ RL_L			=	libreadline.a
 
 #
 
+version = \"$(shell cat .config/version)\"
+
 # Compiler and flags
 CC				=	gcc
-CFLAGS			=	-Wall -Werror -Wextra -g -D MINI_BIN=$(BIN_DIR) -D CONPILE_DIR=$(PWD)
+CFLAGS			=	-Wall -Werror -Wextra -g -D MINI_BIN=$(BIN_DIR) -D CONPILE_DIR=$(PWD) -D V_MINI=$(version)
 #-fsanitize=address
 RM				=	rm -f
 
@@ -108,7 +110,7 @@ readline:
 	cd include/readline && ./configure && $(MAKE)
 
 rm_readline:
-	cd include/readline && make distclean
+	cd include/readline && make clean
 
 
 

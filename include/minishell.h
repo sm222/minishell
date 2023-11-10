@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:28:16 by anboisve          #+#    #+#             */
-/*   Updated: 2023/11/10 17:17:14 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/11/10 17:52:11 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,9 @@
 # define MADE_BY "		made by		"
 # define MADE_BY_NANE "\x1B[34m anboisve \x1B[32m brheaume\n"
 
-# define V_MINI "v1.7.2"
+# ifndef V_MINI
+# define  V_MINI "v1.7.2"
+# endif
 
 # ifndef MINI_BIN
 #  define MINI_BIN "\0"
