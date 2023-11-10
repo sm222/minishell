@@ -30,7 +30,7 @@ RL_L			=	libreadline.a
 
 # Compiler and flags
 CC				=	gcc
-CFLAGS			=	-Wall -Werror -Wextra -g -D MINI_BIN=$(BIN_DIR)
+CFLAGS			=	-Wall -Werror -Wextra -g -D MINI_BIN=$(BIN_DIR) -D CONPILE_DIR=$(PWD)
 #-fsanitize=address
 RM				=	rm -f
 
@@ -65,6 +65,7 @@ SRCS	=	main.c\
 OBJS	=	$(SRCS:.c=.o)
 
 USER = $(shell whoami)
+PWD  = $(shell pwd)
 
 ifeq ($(shell uname -s), Darwin)
     BIN_DIR = \"/Users/$(USER)/Mini_bin/\"
@@ -73,13 +74,11 @@ else
 endif
 
 
-
-
 all: libft builtin exe parse doc $(NAME)
 	@printf "$(CYN) \n\n			correction is made by $(USER)\n\n  $(RESET)\n"
 	
 $(NAME): $(OBJS)
-	@$(CC) $(CFLAGS) $(OBJS) $(LIBFT_DIR)$(LIBFT) -l readline -l ncurses \
+	@$(CC) $(CFLAGS) $(OBJS) $(LIBFT_DIR)$(LIBFT) readline/ -lreadline -lhistory -lncurses \
 	$(RL_DIR)$(RL_H) $(RL_DIR)$(RL_L) $(EXECUTION_DIR)$(EXECUTION_LIB) \
 	$(PARSE_DIR)$(PARSE_LIB) $(HERE_DOC_DIR)$(HERE_DOC_LIB) -o $(NAME)
 libft:
@@ -104,6 +103,14 @@ doc:
 
 mem: all
 	valgrind --leak-check=full --show-leak-kinds=all --trace-children=yes --track-fds=yes --suppressions=/tmp/supp.txt ./minishell 
+
+readline:
+	cd readline && ./configure && $(MAKE)
+
+rm_readline:
+	cd readline && make distclean
+
+
 
 #https://github.com/sm222/C_tools
 
@@ -144,4 +151,4 @@ cp:
 norm:
 	norminette *.c parsing here_doc/ signal/ execution include built_in lib
 
-.PHONY: all libft run mc
+.PHONY: all libft run mc readline rm_readline

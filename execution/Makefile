@@ -25,7 +25,7 @@ OBJS	=	$(SRCS:.c=.o)
 
 $(NAME): $(OBJS) $(LIBFT_DIR)$(LIBFT)
 	@cp $(LIBFT_DIR)$(LIBFT) $(NAME)
-	@ar rcs $(NAME) $(OBJS)
+	@ar rcs $(NAME) $(OBJS) 
 
 all: $(LDIR)$(LIBFT) $(NAME)
 

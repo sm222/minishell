@@ -81,7 +81,10 @@
     "signal.h": "c",
     "cd.h": "c",
     "edit.h": "c",
-    "stdlib.h": "c"
+    "stdlib.h": "c",
+    "rlstdc.h": "c",
+    "rltypedefs.h": "c",
+    "history.h": "c"
   },
   "C_Cpp.errorSquiggles": "disabled",
   "workbench.colorCustomizations": {
