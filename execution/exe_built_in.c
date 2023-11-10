@@ -6,14 +6,14 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:24:37 by anboisve          #+#    #+#             */
-/*   Updated: 2023/11/10 13:43:49 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/11/10 14:15:37 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "execution.h"
 #include "../here_doc/here_doc.h"
-#include "../readline/history.h"
-#include "../readline/readline.h"
+//#include "../readline/history.h"
+//#include "../readline/readline.h"
 
 /// @brief	try to find the cmd adrres
 /// @param	name	name of the cmd

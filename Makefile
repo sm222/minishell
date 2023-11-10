@@ -22,7 +22,7 @@ HERE_DOC_DIR	=	here_doc/
 PARSE_LIB		=	parsing.a
 PARSE_DIR		=	parsing/
 
-RL_DIR			=	readline/
+RL_DIR			=	include/readline/
 RL_H			=	libhistory.a
 RL_L			=	libreadline.a
 
@@ -53,10 +53,10 @@ SRCS	=	main.c\
 			built_in/export/export.c\
 			built_in/unset/ft_unset.c\
 			built_in/export/export_u.c\
-			built_in/ms/ms_pwd.c\
-			built_in/ms/ms.c\
 			built_in/ms/ms_update.c\
 			built_in/ms/ms_logic.c\
+			built_in/ms/ms_pwd.c\
+			built_in/ms/ms.c\
 			find_git.c\
 			aliace.c\
 
@@ -74,11 +74,11 @@ else
 endif
 
 
-all: libft builtin exe parse doc $(NAME)
+all: libft readline builtin exe parse doc $(NAME)
 	@printf "$(CYN) \n\n			correction is made by $(USER)\n\n  $(RESET)\n"
 	
 $(NAME): $(OBJS)
-	@$(CC) $(CFLAGS) $(OBJS) $(LIBFT_DIR)$(LIBFT) readline/ -lreadline -lhistory -lncurses \
+	@$(CC) $(CFLAGS) $(OBJS) $(LIBFT_DIR)$(LIBFT) -Linclude/readline -lreadline -lncurses \
 	$(RL_DIR)$(RL_H) $(RL_DIR)$(RL_L) $(EXECUTION_DIR)$(EXECUTION_LIB) \
 	$(PARSE_DIR)$(PARSE_LIB) $(HERE_DOC_DIR)$(HERE_DOC_LIB) -o $(NAME)
 libft:
@@ -105,10 +105,10 @@ mem: all
 	valgrind --leak-check=full --show-leak-kinds=all --trace-children=yes --track-fds=yes --suppressions=/tmp/supp.txt ./minishell 
 
 readline:
-	cd readline && ./configure && $(MAKE)
+	cd include/readline && ./configure && $(MAKE)
 
 rm_readline:
-	cd readline && make distclean
+	cd include/readline && make distclean
 
 
 
@@ -126,7 +126,7 @@ clean:
 	@printf "$(GRN)clean *.o$(RESET)\n"
 
 # Removes objects and executables
-fclean: clean
+fclean: clean rm_readline
 	@$(RM) $(NAME)
 	@$(RM) $(B_NAME)
 	@$(RM) -fr minishell.dSYM 

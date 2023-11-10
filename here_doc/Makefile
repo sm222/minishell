@@ -3,7 +3,7 @@ NAME	=	here_doc.a
 CC		=	gcc
 CFLAGS	=	-Wall -Werror -Wextra -g 
 
-RL_DIR			=	../readline/
+RL_DIR			=	../include/readline/
 RL_H			=	libhistory.a
 RL_L			=	libreadline.a
 
@@ -19,7 +19,7 @@ OBJS	=	$(SRCS:.c=.o)
 
 $(NAME): $(OBJS) $(LIBFT_DIR)$(LIBFT)
 	@cp $(LIBFT_DIR)$(LIBFT) $(NAME)
-	@ar rcs $(NAME) $(OBJS) $(RL_DIR)$(RL_H) $(RL_DIR)$(RL_L)
+	@ar rcs $(NAME) $(OBJS)
 
 all: $(LDIR)$(LIBFT) $(NAME)
 

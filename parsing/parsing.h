@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brheaume <marvin@42quebec.com>             +#+  +:+       +#+        */
+/*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:36:07 by brheaume          #+#    #+#             */
-/*   Updated: 2023/10/16 14:36:08 by brheaume         ###   ########.fr       */
+/*   Updated: 2023/11/10 14:16:33 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include "../include/err.h"
 # include "../lib/lib_ft/libft.h"
 # include "../include/structure.h"
-# include "../readline/readline.h"
+# include "../include/readline/readline.h"
 # include "../here_doc/here_doc.h"
 
 # include <stdio.h>

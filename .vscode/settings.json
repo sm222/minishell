@@ -84,7 +84,8 @@
     "stdlib.h": "c",
     "rlstdc.h": "c",
     "rltypedefs.h": "c",
-    "history.h": "c"
+    "history.h": "c",
+    "colors.h": "c"
   },
   "C_Cpp.errorSquiggles": "disabled",
   "workbench.colorCustomizations": {

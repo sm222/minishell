@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:28:16 by anboisve          #+#    #+#             */
-/*   Updated: 2023/11/07 15:18:50 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/11/10 17:17:14 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,6 @@
 //--------------------------//
 
 # include "../lib/lib_ft/libft.h"
-# include "../readline/history.h"
-# include "../readline/readline.h"
 # include "../execution/execution.h"
 # include "../here_doc/here_doc.h"
 # include "../parsing/parsing.h"

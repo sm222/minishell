@@ -6,12 +6,12 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:26:14 by anboisve          #+#    #+#             */
-/*   Updated: 2023/11/07 22:55:32 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/11/10 14:00:10 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "execution.h"
-#include "../readline/readline.h"
+//#include "../readline/readline.h"
 
 //126
 //is a directory
@@ -77,7 +77,7 @@ int	run_and_close(t_cmd *in, char **env, char *cmd)
 	shell = ft_return_ptr(NULL, SYS);
 	ft = ft_return_ptr(NULL, SIG);
 	ft(CHILD);
-	rl_clear_history();
+	//rl_clear_history();
 	if (in->command)
 	{
 		new_en = ex_en_new(env);
