@@ -22,10 +22,25 @@ static char	*read_file(int fd)
 	return (join);
 }
 
+static int	look_name(char *name)
+{
+	char	*r;
+
+	r = ft_strrchr(name, '.');
+	if (!r || ft_strncmp(r, ".ms", 3) != 0)
+	{
+		ft_printf(2, "%o"MS_NAME"\b: ms: %s don't end in .ms\n", NULL, name);
+		return (FAIL);
+	}
+	return (SUCCESS);
+}
+
 static char	*make_new_str(char *f_name)
 {
 	int		fd;
 
+	if (look_name(f_name) != SUCCESS)
+		return (NULL);
 	fd = open(f_name, O_DIRECTORY);
 	if (fd > 0)
 	{
