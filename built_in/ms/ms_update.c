@@ -13,7 +13,7 @@ int	ms_update(void)
 		getcwd(pwd, PATH_MAX);
 		if (shell->s_in)
 			shell->s_in = ft_free(shell->s_in);
-		ft_printf(NO_PRINT, "%ocd %s && pwd && sleep 2 && make && cd %s", &tmp, shell->compile_dir, pwd);
+		ft_printf(NO_PRINT, "%oms -r $CONPILE_DIR/scrips/update.ms", &tmp);
 		shell->s_in = tmp;
 		ft_printf(2, "%o%s\n", NULL, tmp);
 	}

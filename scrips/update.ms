@@ -1,5 +1,9 @@
+cd $CONPILE_DIR
+sleep 1
 git pull --all
-sleep 1
 make re
-echo 'close, relunch for update'
+cd -
 sleep 1
+echo 'the shell whill close , re open it to use it'
+sleep 2
+exit
