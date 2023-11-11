@@ -4,6 +4,4 @@ git pull --all
 make re
 cd -
 sleep 1
-echo 'the shell whill close , re open it to use it'
-sleep 2
-exit
+echo 'close and re-open to use the new update'
