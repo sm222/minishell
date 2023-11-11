@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:24:55 by anboisve          #+#    #+#             */
-/*   Updated: 2023/11/10 13:11:23 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/11/10 22:35:26 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,8 @@ short	ft_execution(t_cmd *in, t_waitp **wait, short local);
 int		find_path(char *name, char **out, char **list, mode_t *err);
 int		execution_builtin(t_cmd *in, t_waitp **wait, int cmd_len);
 
-int		change_env_data(t_mshell *data);
-short	oldpwd(t_mshell *data);
+int		change_env_data(t_mshell *data, char *old_pwd);
+short	oldpwd(t_mshell *data, char *old_pwd);
 short	new_pwd(t_mshell *data);
 
 // fd

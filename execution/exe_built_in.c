@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:24:37 by anboisve          #+#    #+#             */
-/*   Updated: 2023/11/10 14:15:37 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/11/10 22:36:31 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,9 @@ static void	change_arg(t_cmd *in)
 static int	run_local(int (*ft)(char **, int, int, char **), t_cmd *in)
 {
 	t_mshell	*shell;
+	char		c_pwd[PATH_MAX];
 
+	getcwd(c_pwd, PATH_MAX);
 	shell = ft_return_ptr(NULL, SYS);
 	if (!ft)
 		return (FAIL);
@@ -108,7 +110,7 @@ static int	run_local(int (*ft)(char **, int, int, char **), t_cmd *in)
 	shell->pec = \
 	ft(in->command, in->tok->redi_in, in->tok->redi_out, shell->en);
 	if (ft == &ft_cd)
-		change_env_data(shell);
+		change_env_data(shell, c_pwd);
 	if (shell->exit)
 	{
 		cmd_free(&in);

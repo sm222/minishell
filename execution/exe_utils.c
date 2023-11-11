@@ -85,7 +85,7 @@ short	change_av_for_en(t_cmd *in)
 	return (SUCCESS);
 }
 
-int	change_env_data(t_mshell *data)
+int	change_env_data(t_mshell *data, char *old_pwd)
 {
 	size_t	i;
 
@@ -94,7 +94,7 @@ int	change_env_data(t_mshell *data)
 	{
 		if (ft_strncmp("OLDPWD", data->en[i], 6) == 0 && \
 		(data->en[i][6] == '=' || data->en[i][6] == 0))
-			oldpwd(data);
+			oldpwd(data, old_pwd);
 		if (ft_strncmp("PWD", data->en[i], 3) == 0 && \
 		(data->en[i][3] == '=' || data->en[i][3] == 0))
 			new_pwd(data);

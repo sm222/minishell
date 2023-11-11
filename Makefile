@@ -75,7 +75,7 @@ SRCS	=	main.c\
 
 OBJS	=	$(SRCS:.c=.o)
 
-all: libft readline builtin exe parse doc $(NAME)
+all: libft builtin exe parse doc $(NAME)
 	@printf "$(CYN) \n\n			correction is made by $(USER)\n\n  $(RESET)\n"
 	
 $(NAME): $(OBJS)
@@ -127,7 +127,7 @@ clean:
 	@printf "$(GRN)clean *.o$(RESET)\n"
 
 # Removes objects and executables
-fclean: clean rm_readline
+fclean: clean
 	@$(RM) $(NAME)
 	@$(RM) $(B_NAME)
 	@$(RM) -fr minishell.dSYM 

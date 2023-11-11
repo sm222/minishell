@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:31:47 by anboisve          #+#    #+#             */
-/*   Updated: 2023/11/10 21:30:43 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/11/10 22:15:55 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ static int	start_shell(t_mshell *shell, char **en, char **av)
 	ft_free(new);
 	shell->en = ft_return_ptr(NULL, ENV_C);
 	do_logo(av);
-	//shell->compile_dir = CONPILE_DIR;
+	shell->compile_dir = CONPILE_DIR;
 	return (SUCCESS);
 }
 

@@ -1,5 +1,5 @@
 git pull --all
-sleep 3
+sleep 1
 make re
 echo 'close, relunch for update'
-exit
+sleep 1
