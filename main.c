@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:31:47 by anboisve          #+#    #+#             */
-/*   Updated: 2023/11/10 17:10:43 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/11/10 21:30:43 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ static int	set_ptr_all(t_mshell *shell)
 	shell->sys_color.c1 = GRN;
 	shell->sys_color.c2 = GIT;
 	shell->sys_color.c3 = TOX;
+	shell->sys_color.c4 = TOX;
+	shell->sys_color.c5 = TOX;
 	return (0);
 }
 
@@ -82,6 +84,7 @@ static int	start_shell(t_mshell *shell, char **en, char **av)
 	ft_free(new);
 	shell->en = ft_return_ptr(NULL, ENV_C);
 	do_logo(av);
+	//shell->compile_dir = CONPILE_DIR;
 	return (SUCCESS);
 }
 

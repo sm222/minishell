@@ -3,13 +3,16 @@
 int	ms_update(void)
 {
 	t_mshell	*shell;
+	char		*tmp;
 
+	tmp = NULL;
 	shell = ft_return_ptr(NULL, SYS);
 	if (shell)
 	{
 		if (shell->s_in)
 			shell->s_in = ft_free(shell->s_in);
-		shell->s_in = ft_strdup("git ls-remote https://github.com/sm222/minishell > file ; diff .git/ORIG_HEAD file ; rm file");
+		ft_printf(NO_PRINT, "%ocd %s", &tmp, shell->compile_dir);
+		shell->s_in = tmp;
 	}
 	return (0);
 }

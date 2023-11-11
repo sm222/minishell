@@ -212,6 +212,7 @@ typedef struct s_mshell
 	char			*git_status;
 	t_waitp			*keep_wait;
 	char			**aliace;
+	char			*compile_dir;
 	t_col_sys		sys_color;
 }	t_mshell;
 

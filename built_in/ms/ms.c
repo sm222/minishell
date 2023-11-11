@@ -4,6 +4,7 @@ static int	how_to_use(void)
 {
 	ft_printf(2, "%oms: -s \n", NULL);
 	ft_printf(2, "%o	"DIRL, NULL);
+	ft_printf(2, "%o	C show the color pallet", NULL);
 	ft_printf(2, "%o	"COLOR_SYS, NULL);
 	ft_printf(2, "%oms: -u \n", NULL);
 	ft_printf(2, "%o	use too look for update, not ready yet\n", NULL);

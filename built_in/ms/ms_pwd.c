@@ -64,6 +64,29 @@ static int	ms_color(char **av, t_mshell *shell)
 	}
 	return (0);
 }
+static int	show_color(void)
+{
+	t_mshell	*shell;
+	int			i;
+
+	i = 0;
+	shell = ft_return_ptr(NULL, SYS);
+	if (shell)
+	{
+		ft_printf(2, "%ocolor ~>\n", NULL);
+		ft_printf(2, "%o%s|#¤	◻ %d"WHT"\n", NULL, shell->sys_color.red, i++);
+		ft_printf(2, "%o%s|#¤	◻ %d"WHT"\n", NULL, shell->sys_color.grn, i++);
+		ft_printf(2, "%o%s|#¤	◻ %d"WHT"\n", NULL, shell->sys_color.yel, i++);
+		ft_printf(2, "%o%s|#¤	◻ %d"WHT"\n", NULL, shell->sys_color.blu, i++);
+		ft_printf(2, "%o%s|#¤	◻ %d"WHT"\n", NULL, shell->sys_color.mag, i++);
+		ft_printf(2, "%o%s|#¤	◻ %d"WHT"\n", NULL, shell->sys_color.cyn, i++);
+		ft_printf(2, "%o%s|#¤	◻ %d"WHT"\n", NULL, shell->sys_color.wht, i++);
+		ft_printf(2, "%o%s|#¤	◻ %d"WHT"\n", NULL, shell->sys_color.tox, i++);
+		ft_printf(2, "%o%s|#¤	◻ %d"WHT"\n", NULL, shell->sys_color.git, i++);
+		ft_printf(2, "%o	<~\n", NULL);
+	}
+	return (0);
+}
 
 int ms_edit(char **av, size_t *j)
 {
@@ -80,6 +103,8 @@ int ms_edit(char **av, size_t *j)
 		return (ms_pwd(av, shell));
 	else if (ft_strncmp(av[0], "C=", 2) == 0)
 		return (ms_color(av, shell));
+	else if (ft_strncmp(av[0], "C", 2) == 0)
+		return (show_color());
 	else
 		ft_printf(2, "%o"MS_NAME"\b: ms: -s unknow %s\n", NULL, av[0]);
 	return (1);

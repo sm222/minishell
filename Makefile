@@ -26,9 +26,18 @@ RL_DIR			=	include/readline/
 RL_H			=	libhistory.a
 RL_L			=	libreadline.a
 
-#
+#		config		#
 
 version = \"$(shell cat .config/version)\"
+
+USER = $(shell whoami)
+PWD  = \"$(shell pwd)\"
+
+ifeq ($(shell uname -s), Darwin)
+    BIN_DIR = \"/Users/$(USER)/Mini_bin/\"
+else
+    BIN_DIR = \"/home/$(USER)/Mini_bin/\"
+endif
 
 # Compiler and flags
 CC				=	gcc
@@ -65,16 +74,6 @@ SRCS	=	main.c\
 #env -i ./minishell
 
 OBJS	=	$(SRCS:.c=.o)
-
-USER = $(shell whoami)
-PWD  = $(shell pwd)
-
-ifeq ($(shell uname -s), Darwin)
-    BIN_DIR = \"/Users/$(USER)/Mini_bin/\"
-else
-    BIN_DIR = \"/home/$(USER)/Mini_bin/\"
-endif
-
 
 all: libft readline builtin exe parse doc $(NAME)
 	@printf "$(CYN) \n\n			correction is made by $(USER)\n\n  $(RESET)\n"

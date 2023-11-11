@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:28:16 by anboisve          #+#    #+#             */
-/*   Updated: 2023/11/10 17:52:11 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/11/10 21:16:38 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,10 @@
 
 # ifndef MINI_BIN
 #  define MINI_BIN "\0"
+# endif
+
+# ifndef CONPILE_DIR
+#  define CONPILE_DIR ""
 # endif
 
 # define L0M "███    ███ "
