@@ -56,6 +56,7 @@ SRCS	=	main.c\
 			include/err.c\
 			converter_ft.c\
 			signal/signal.c\
+			export_main.c\
 			built_in/cd/cd.c\
 			built_in/pwd/pwd.c\
 			built_in/echo/echo.c\
