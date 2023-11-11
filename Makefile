@@ -35,9 +35,15 @@ PWD  = \"$(shell pwd)\"
 
 ifeq ($(shell uname -s), Darwin)
     BIN_DIR = \"/Users/$(USER)/Mini_bin/\"
+    L = "
 else
     BIN_DIR = \"/home/$(USER)/Mini_bin/\"
+    L = '
 endif
+
+
+TEST = $(shell test -e include/readline/libreadline.a ; echo "$$?")
+
 
 # Compiler and flags
 CC				=	gcc
@@ -76,31 +82,39 @@ SRCS	=	main.c\
 
 OBJS	=	$(SRCS:.c=.o)
 
-all: libft builtin exe parse doc $(NAME)
-	@printf "$(CYN) \n\n			correction is made by $(USER)\n\n  $(RESET)\n"
-	
+all: rl libft builtin exe parse doc $(NAME)
+	@printf $(L)$(CYN) \n\n			correction is made by $(USER)\n\n  $(RESET)\n$(L)
+
 $(NAME): $(OBJS)
 	@$(CC) $(CFLAGS) $(OBJS) $(LIBFT_DIR)$(LIBFT) -Linclude/readline -lreadline -lncurses \
 	$(RL_DIR)$(RL_H) $(RL_DIR)$(RL_L) $(EXECUTION_DIR)$(EXECUTION_LIB) \
 	$(PARSE_DIR)$(PARSE_LIB) $(HERE_DOC_DIR)$(HERE_DOC_LIB) -o $(NAME)
+
+rl:
+	if test $(TEST) = 1 ; then \
+		cd include/readline && ./configure && make ; \
+	else \
+		echo $(TEST); \
+	fi
+
 libft:
-	@printf "$(GRN)making libft$(WHT)\n"
+	@printf $(L)$(GRN)making libft$(WHT)\n$(L)
 	@make -C $(LIBFT_DIR)
 
 parse:
-	@printf "$(GRN)making parsing$(WHT)\n"
+	@printf $(L)$(GRN)making parsing$(WHT)\n$(L)
 	@make -C parsing
 
 builtin:
-	@printf "$(GRN)making builtin$(WHT)\n"
+	@printf $(L)$(GRN)making builtin$(WHT)\n$(L)
 	@make -C built_in
 
 exe:
-	@printf "$(GRN)making execution$(WHT)\n"
+	@printf $(L)$(GRN)making execution$(WHT)\n$(L)
 	@make -C $(EXECUTION_DIR)
 
 doc:
-	@printf "$(GRN)making doc$(WHT)\n"
+	@printf $(L)$(GRN)making doc$(WHT)\n$(L)
 	@make -C $(HERE_DOC_DIR)
 
 mem: all
@@ -110,9 +124,7 @@ readline:
 	cd include/readline && ./configure && $(MAKE)
 
 rm_readline:
-	cd include/readline && make clean
-
-
+	cd include/readline && make distclean
 
 #https://github.com/sm222/C_tools
 
@@ -125,7 +137,7 @@ clean:
 	@make -C $(EXECUTION_DIR) clean
 	@make -C parsing		  clean
 	@echo $(shell clear)
-	@printf "$(GRN)clean *.o$(RESET)\n"
+	@printf $(L)$(GRN)clean *.o$(RESET)\n$(L)
 
 # Removes objects and executables
 fclean: clean
@@ -136,9 +148,11 @@ fclean: clean
 	@make -C $(LIBFT_DIR)     fclean
 	@make -C $(HERE_DOC_DIR)  fclean
 	@make -C $(EXECUTION_DIR) fclean
-	@make -C parsing		  fclean
+	@make -C parsing          fclean
 	@echo $(shell clear)
-	@printf "$(GRN)clean all$(RESET)\n"
+	@printf $(L)$(GRN)clean all$(RESET)\n$(L)
+
+ffclean: rm_readline fclean
 
 run: all
 	@./$(NAME)

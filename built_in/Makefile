@@ -14,8 +14,10 @@ USER = $(shell whoami)
 
 ifeq ($(shell uname -s), Darwin)
     BIN_DIR = /Users/$(USER)/Mini_bin/
+    L = "
 else
     BIN_DIR = /home/$(USER)/Mini_bin/
+    L = '
 endif
 
 all: dirmake echo pwd cd env expo unset exit ms
@@ -25,35 +27,35 @@ dirmake:
 	mkdir -p $(BIN_DIR)
 
 echo:
-	@printf "$(GRN)making echo$(WHT)\n"
+	@printf $(L)$(GRN)making echo$(WHT)\n$(L)
 	@make -C echo
 
 pwd:
-	@printf "$(GRN)making pwd$(WHT)\n"
+	@printf $(L)$(GRN)making pwd$(WHT)\n$(L)
 	@make -C pwd
 
 cd:
-	@printf "$(GRN)making cd$(WHT)\n"
+	@printf $(L)$(GRN)making cd$(WHT)\n$(L)
 	@make -C cd
 
 expo:
-	@printf "$(GRN)making export$(WHT)\n"
+	@printf $(L)$(GRN)making export$(WHT)\n$(L)
 	@make -C export
 
 env:
-	@printf "$(GRN)making env$(WHT)\n"
+	@printf $(L)$(GRN)making env$(WHT)\n$(L)
 	@make -C env
 
 unset:
-	@printf "$(GRN)making unset$(WHT)\n"
+	@printf $(L)$(GRN)making unset$(WHT)\n$(L)
 	@make -C unset
 
 exit:
-	@printf "$(GRN)making exit$(WHT)\n"
+	@printf $(L)$(GRN)making exit$(WHT)\n$(L)
 	@make -C exit
 
 ms:
-	@printf "$(GRN)making ms$(WHT)\n"
+	@printf $(L)$(GRN)making ms$(WHT)\n$(L)
 	@make -C ms
 
 clean:
