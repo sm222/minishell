@@ -4,13 +4,11 @@ int	ms_update(void)
 {
 	t_mshell	*shell;
 	char		*tmp;
-	char		pwd[PATH_MAX];
 
 	tmp = NULL;
 	shell = ft_return_ptr(NULL, SYS);
 	if (shell)
 	{
-		getcwd(pwd, PATH_MAX);
 		if (shell->s_in)
 			shell->s_in = ft_free(shell->s_in);
 		ft_printf(NO_PRINT, "%oms -r $CONPILE_DIR/scrips/update.ms", &tmp);

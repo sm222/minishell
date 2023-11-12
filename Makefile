@@ -91,10 +91,10 @@ $(NAME): $(OBJS)
 	$(PARSE_DIR)$(PARSE_LIB) $(HERE_DOC_DIR)$(HERE_DOC_LIB) -o $(NAME)
 
 rl:
-	if test $(TEST) = 1 ; then \
+	@if test $(TEST) = 1 ; then \
 		cd include/readline && ./configure && make ; \
 	else \
-		echo $(TEST); \
+		echo readline all ready make ; sleep 1; \
 	fi
 
 libft:
