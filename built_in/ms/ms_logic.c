@@ -13,12 +13,13 @@ static char	*read_file(int fd)
 	{
 		tmp = get_next_line(fd);
 		i = ft_strlen(tmp);
-		if (i > 0 && tmp[i - 1] == '\n')
+		if (i > 1 && tmp[i - 1] == '\n')
 			tmp[i - 1] = ';';
-		join = ft_strfjoin(join, tmp);
+		if (tmp && tmp[0] && tmp[0] != '#')
+			join = ft_strfjoin(join, tmp);
+		ft_free(tmp);
 	}
 	close (fd);
-	ft_printf(2, "%oms : line - %s\n", NULL, join);
 	return (join);
 }
 

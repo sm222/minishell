@@ -1,5 +1,5 @@
 echo $PWD
 echo
-ls
-av
+#ls
+#av
 ms -l 'echo p' 'echo -n n'
