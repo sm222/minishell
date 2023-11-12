@@ -6,11 +6,12 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:31:47 by anboisve          #+#    #+#             */
-/*   Updated: 2023/11/10 23:03:28 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/11/12 13:42:10 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "include/minishell.h"
+#include "include/readline/readline.h"
 
 static void	free_shell(t_mshell *shell)
 {

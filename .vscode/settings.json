@@ -86,7 +86,11 @@
     "rltypedefs.h": "c",
     "history.h": "c",
     "colors.h": "c",
-    "ms.h": "c"
+    "ms.h": "c",
+    "_ucontext.h": "c",
+    "wait.h": "c",
+    "_mcontext.h": "c",
+    "_sigaltstack.h": "c"
   },
   "C_Cpp.errorSquiggles": "disabled",
   "workbench.colorCustomizations": {

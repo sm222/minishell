@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:28:16 by anboisve          #+#    #+#             */
-/*   Updated: 2023/11/10 22:57:34 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/11/12 11:26:45 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,6 @@
 # include "../signal/signal.h"
 
 # define DEV_CHMOD	0644
-
-//TODO: zsh: command not found:
 
 //--------------------------//
 //			define			//

@@ -1,7 +1,4 @@
-#set color
-#ms -s C=01
-#ms -s C=18
-#ms -s C=27
-ms -s C=00
-ms -s C=15
-ms -s C=24
+ms -s C=01
+ms -s C=18
+ms -s C=27
+ms -s DIRL=3

@@ -99,23 +99,28 @@ rl:
 
 libft:
 	@printf $(L)$(GRN)making libft$(WHT)\n$(L)
-	@make -C $(LIBFT_DIR)
+	@make -s -C $(LIBFT_DIR)
+	@printf $(L)$(GRN)libft done$(WHT)\n$(L)
 
 parse:
 	@printf $(L)$(GRN)making parsing$(WHT)\n$(L)
-	@make -C parsing
+	@make -s -C parsing
+	@printf $(L)$(GRN)parsing done$(WHT)\n$(L)
 
 builtin:
 	@printf $(L)$(GRN)making builtin$(WHT)\n$(L)
-	@make -C built_in
+	@make -s -C built_in
+	@printf $(L)$(GRN)builtin done$(WHT)\n$(L)
 
 exe:
 	@printf $(L)$(GRN)making execution$(WHT)\n$(L)
-	@make -C $(EXECUTION_DIR)
+	@make -s -C $(EXECUTION_DIR)
+	@printf $(L)$(GRN)execution done$(WHT)\n$(L)
 
 doc:
 	@printf $(L)$(GRN)making doc$(WHT)\n$(L)
-	@make -C $(HERE_DOC_DIR)
+	@make -s -C $(HERE_DOC_DIR)
+	@printf $(L)$(GRN)doc done$(WHT)\n$(L)
 
 mem: all
 	valgrind --leak-check=full --show-leak-kinds=all --trace-children=yes --track-fds=yes --suppressions=/tmp/supp.txt ./minishell 
