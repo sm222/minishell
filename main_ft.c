@@ -6,12 +6,11 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:32:01 by anboisve          #+#    #+#             */
-/*   Updated: 2023/11/12 13:51:43 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/11/12 14:45:56 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "include/minishell.h"
-#include "lib/lib_ft/ft_printf.h"
 
 static char	*make_new_path_len(char *path, size_t len)
 {
