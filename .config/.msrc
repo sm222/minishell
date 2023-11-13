@@ -1,4 +1,12 @@
+# this script is use at start up
+# all the empty line will be ignore
+
+# line that start with '#' is comment
+
+#	set up color
 ms -s C=01
 ms -s C=18
 ms -s C=27
+
+#	setup dir len in prompt
 ms -s DIRL=3

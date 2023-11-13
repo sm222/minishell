@@ -1,6 +1,21 @@
 #include "ms.h"
 #include <errno.h>
 
+static short	look_for_space(char *s)
+{
+	size_t	i;
+
+	i = 0;
+
+	if (!s || s[0] == '#')
+		return (1);
+	while (s && s[i] && (s[i] == ' ' || s[i] == '\t'))
+		i++;
+	if (s[i] == 0 || s[i] == '\n')
+		return (1);
+	return (0);
+}
+
 static char	*read_file(int fd)
 {
 	char	*tmp;
@@ -12,14 +27,19 @@ static char	*read_file(int fd)
 	while (tmp)
 	{
 		tmp = get_next_line(fd);
-		i = ft_strlen(tmp);
-		if (i > 1 && tmp[i - 1] == '\n')
-			tmp[i - 1] = ';';
-		if (tmp && tmp[0] && tmp[0] != '#')
+		if (look_for_space(tmp) == 0)
+		{
+			i = ft_strlen(tmp);
+			if (i > 1 && tmp[i - 1] == '\n')
+				tmp[i - 1] = ';';
 			join = ft_strfjoin(join, tmp);
+		}
 		ft_free(tmp);
 	}
 	close (fd);
+	i = ft_strlen(join);
+	if (join && join[i -1] == ';')
+		join[i -1] = '\0';
 	return (join);
 }
 
