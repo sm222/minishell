@@ -42,6 +42,12 @@ else
 endif
 
 
+ifeq ($(shell test -d /Users/$(USER)/.brew/opt/readline; echo $$?), 0)
+	BREW = .brew
+else ifeq ($(shell test -d /Users/$(USER)/homebrew/opt/readline; echo $$?), 0)
+	BREW = homebrew
+endif
+
 TEST = $(shell test -e include/readline/libreadline.a ; echo "$$?")
 
 
@@ -171,5 +177,9 @@ cp:
 
 norm:
 	norminette *.c parsing here_doc/ signal/ execution include built_in lib
+
+exp:
+	echo 'export CPPFLAGS="-I/Users/$(USER)/$(BREW)/opt/readline/include"' >> /Users/$(USER)/.zshrc
+	echo 'export LDFLAGS="-L/Users/$(USER)/$(BREW)/opt/readline/lib"' >> /Users/$(USER)/.zshrc
 
 .PHONY: all libft run mc readline rm_readline
