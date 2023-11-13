@@ -17,7 +17,7 @@
 int	ft_ms(char **av, int re_in, int re_out, char **en);
 int	ms_edit(char **av, size_t *j);
 int	ms_logic(char **av, size_t *j);
-int	ms_update(void);
+int	ms_update(int i);
 int	ms_run(char **av, size_t *j);
 
 //--------------------------//

@@ -32,6 +32,8 @@ static int	look_arg(char **av, size_t *i, size_t *j)
 	return (0);
 }
 
+//update
+
 int	ft_ms(char **av, int re_in, int re_out, char **en)
 {
 	size_t	i;
@@ -47,7 +49,9 @@ int	ft_ms(char **av, int re_in, int re_out, char **en)
 		if (ft_strncmp(av[j], "-s", 3) == 0)
 			err += ms_edit(av + j + 1, &j);
 		else if (ft_strncmp(av[j], "-u", 3) == 0)
-			ms_update();
+			ms_update(1);
+		else if (ft_strncmp(av[j], "update", 7) == 0)
+			ms_update(0);
 		else if (ft_strncmp(av[j], "-l", 3) == 0)
 			err += ms_logic(av + 2, &j);
 		else if (ft_strncmp(av[j], "-r", 3) == 0)
