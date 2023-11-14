@@ -9,6 +9,7 @@
 # include "../../lib/lib_ft/libft.h"
 # include "../../include/err.h"
 # include <sysexits.h>
+# include <errno.h>
 
 //--------------------------//
 //			fonction		//

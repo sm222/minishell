@@ -1,8 +1,35 @@
+
 #include "ms.h"
+
+static char	*edit_line(char *name)
+{
+	int		fd;
+	char	*res;
+
+	res = NULL;
+	fd = open(name, O_RDONLY);
+	if (fd)
+	{
+		res = get_next_line(fd);
+		if (!res)
+		{
+			ft_printf(2, "%o"MS_NAME"\b: ms: malloc fail\n", NULL);
+			return (NULL);
+		}
+		close(fd);
+		if (res[ft_strlen(res) - 1] == '\n')
+			res[ft_strlen(res) - 1] = '\0';
+	}
+	else
+	{
+		ft_printf(2, "%o"MS_NAME"\b: ms:%s %s\n", NULL, name, strerror(errno));
+		return (NULL);
+	}
+	return (res);
+}
 
 static int	look_v(t_mshell *data)
 {
-	int		fd;
 	char	*s;
 	char	*res;
 	int		swi;
@@ -14,10 +41,8 @@ static int	look_v(t_mshell *data)
 		res = ft_strjoin(s, "/.config/version");
 		if (res)
 		{
-			fd = open(res, O_RDONLY);
+			s = edit_line(res);
 			res = ft_free(res);
-			s = get_next_line(fd);
-			close(fd);
 			res = get_env(data->en, "V_MINI");
 			ft_printf(2, "%oms: last update %s , shell v %s\n", NULL, s, res);
 			if (ft_strncmp(res, s, 5) != 0)
