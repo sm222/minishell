@@ -36,7 +36,7 @@
 *.x86_64
 *.hex
 ./minishell
-./config/.msrc
+.config.msrc
 
 # Debug files
 .vscode/*
