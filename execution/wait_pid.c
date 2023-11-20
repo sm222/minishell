@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:26:42 by anboisve          #+#    #+#             */
-/*   Updated: 2023/11/12 13:13:23 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/11/20 14:27:51 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ static void	err_list2(char *name, int r_val)
 		ft_printf(2, "%o%s\b: virtual time alarm %s\n", NULL, MS_NAME, name);
 	if (r_val == 155)
 		ft_printf(2, "%o%s\b: profile signal %s\n", NULL, MS_NAME, name);
-	if (r_val == 141)
-		ft_printf(2, "%o%s\b: sigpipe you litte pbergero %s\n", NULL, MS_NAME, name);
+	//if (r_val == 141)
+	//	ft_printf(2, "%o%s\b: sigpipe you litte pbergero %s\n", NULL, MS_NAME, name);
 	if (r_val == 132)
 		ft_printf(2, "%o%s\b: illegal hardware instruction %s\n", NULL, MS_NAME, name);
 	if (r_val == 158 || r_val == 159)

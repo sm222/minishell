@@ -23,10 +23,12 @@ int	export_main(t_mshell *data)
 	av = ft_split(new, '\b');
 	ft_export(av, 0, 1, data->en);
 	data->en = ft_return_ptr(NULL, ENV_C);
+	new = ft_free(new);
 	av = (char **)ft_double_sfree((void **)av);
 	new = NULL;
 	ft_printf(NO_PRINT, "%oex\bV_MINI="V_MINI, &new);
 	av = ft_split(new, '\b');
+	new = ft_free(new);
 	ft_export(av, 0, 1, data->en);
 	data->en = ft_return_ptr(NULL, ENV_C);
 	av = (char **)ft_double_sfree((void **)av);
