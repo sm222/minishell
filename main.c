@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:31:47 by anboisve          #+#    #+#             */
-/*   Updated: 2023/11/12 13:42:10 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/11/23 08:49:43 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void	free_shell(t_mshell *shell)
 	ft_free(shell->prompt);
 	ft_double_sfree((void **)shell->path);
 	ft_double_sfree((void **)shell->en);
-	ft_double_sfree((void **)shell->aliace);
+	ft_double_sfree((void **)shell->alias);
 }
 
 static void	do_logo(char **av)
@@ -44,6 +44,7 @@ static int	set_ptr_all(t_mshell *shell)
 	ft_return_ptr(shell->en, ENV_C);
 	ft_return_ptr(&shell->exit, EX_F);
 	ft_return_ptr(&shell->doc, DOC);
+	ft_return_ptr(&shell->alias, ALIAS_VAR);
 	ft_return_ptr(&ft_signal_handler, SIG);
 	ft_return_ptr(&clean_shell, CLEAN);
 	ft_return_ptr(&free_here_doc, FREE_DOC);
@@ -99,7 +100,7 @@ int	main(int ac, char **av, char **en)
 	ft_signal_handler(CMD);
 	if (start_shell(&shell, en, av) != SUCCESS)
 		return (FAIL);
-	set_aliace(&shell);
+	set_alias(&shell);
 	while (SUCCESS)
 	{
 		if (reset_data_main(&shell) == FAIL -1)

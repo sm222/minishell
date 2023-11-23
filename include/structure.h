@@ -33,17 +33,18 @@
 //			define			//
 //--------------------------//
 
-# define SYS      0		// t_mshell struct
-# define PATH     1		// path split with the ':'
-# define PEC      2		// process exit code
-# define ENV_C    3		// copy of the env
-# define EX_F     4		// tell if the program end
-# define DOC      5		// here_dock
-# define SIG      6		// signal_ft
-# define PARSE    7		// t_loc struct
-# define CLEAN    8		// clean_shell ft
-# define FREE_DOC 9		// ft use to free the here_doc
-# define DOC_FILE 10	// terminating word for here_doc
+# define SYS       0		// t_mshell struct
+# define PATH      1		// path split with the ':'
+# define PEC       2		// process exit code
+# define ENV_C     3		// copy of the env
+# define EX_F      4		// tell if the program end
+# define DOC       5		// here_dock
+# define SIG       6		// signal_ft
+# define PARSE     7		// t_loc struct
+# define CLEAN     8		// clean_shell ft
+# define FREE_DOC  9		// ft use to free the here_doc
+# define DOC_FILE  10		// terminating word for here_doc
+# define ALIAS_VAR 11		// use to set and get alias value
 
 //		SIG		//
 
@@ -211,7 +212,7 @@ typedef struct s_mshell
 	short			re_draw;
 	char			*git_status;
 	t_waitp			*keep_wait;
-	char			**aliace;
+	char			**alias;
 	char			*compile_dir;
 	t_col_sys		sys_color;
 }	t_mshell;

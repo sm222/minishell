@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 17:54:43 by anboisve          #+#    #+#             */
-/*   Updated: 2023/11/12 20:44:01 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/11/23 08:48:10 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,12 @@ static int	read_file(char ***aliace, char *name)
 }
 */
 
-void	set_aliace(t_mshell *shell)
+void	set_alias(t_mshell *shell)
 {
 	char	**av;
 	//int		fd;
 
-	shell->aliace = ft_split("a a a a", ' ');
+	shell->alias = ft_split("a a a a", ' ');
 	av = ft_split("ms\b-r\b"CONPILE_DIR"/.config/.msrc", '\b');
 	ft_ms(av, 0, 1, shell->en);
 	//if (ft != 0)

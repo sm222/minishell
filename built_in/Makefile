@@ -58,6 +58,10 @@ ms:
 	@printf $(L)$(GRN)making ms$(WHT)\n$(L)
 	@make -C ms
 
+alias:
+	@printf $(L)$(GRN)making alias$(WHT)\n$(L)
+	@make -C alias
+
 clean:
 	@make -C echo   clean
 	@make -C pwd    clean
@@ -67,6 +71,7 @@ clean:
 	@make -C export clean
 	@make -C exit   clean
 	@make -C ms     clean
+	@make -C alias  clean
 
 fclean: clean
 	@make -C echo   fclean
@@ -77,6 +82,7 @@ fclean: clean
 	@make -C export fclean
 	@make -C exit   fclean
 	@make -C ms     fclean
+	@make -C alias  fclean
 	rm -fr $(BIN_DIR)
 
 re: fclean all
@@ -84,4 +90,4 @@ re: fclean all
 bonus: all
 	make -C ls_tester
 
-.PHONY: all echo pwd cd env unset exit ms
+.PHONY: all echo pwd cd env unset exit ms alias

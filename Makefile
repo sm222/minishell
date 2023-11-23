@@ -82,7 +82,7 @@ SRCS	=	main.c\
 			built_in/ms/ms_pwd.c\
 			built_in/ms/ms.c\
 			find_git.c\
-			aliace.c\
+			alias.c\
 
 #env -i ./minishell
 
