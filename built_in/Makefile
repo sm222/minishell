@@ -20,7 +20,7 @@ else
     L = '
 endif
 
-all: dirmake echo pwd cd env expo unset exit ms
+all: dirmake echo pwd cd env expo unset exit ms alias
 	
 
 dirmake:

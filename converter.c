@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:32:23 by anboisve          #+#    #+#             */
-/*   Updated: 2023/11/10 10:22:15 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/11/23 17:08:01 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ static int	find_buit_in(char *name)
 		ft_strncmp(tmp, PWD, ft_strlen(PWD) + 1) == 0 || \
 		ft_strncmp(tmp, ENV, ft_strlen(ENV) + 1) == 0 || \
 		ft_strncmp(tmp, CD, ft_strlen(CD) + 1) == 0 || \
+		ft_strncmp(tmp, ALIAS, ft_strlen(ALIAS) + 1) == 0 || \
 		ft_strncmp(tmp, MS, ft_strlen(MS)) == 0)
 		flag = BUILT_IN_FLAG;
 	free(tmp);

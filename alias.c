@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   aliace.c                                           :+:      :+:    :+:   */
+/*   alias.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 17:54:43 by anboisve          #+#    #+#             */
-/*   Updated: 2023/11/23 08:48:10 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/11/23 17:45:15 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ void	set_alias(t_mshell *shell)
 	char	**av;
 	//int		fd;
 
-	shell->alias = ft_split("a a a a", ' ');
+	shell->alias = ft_split("a", '\b');
+	ft_return_ptr(shell->alias, ALIAS_VAR);
 	av = ft_split("ms\b-r\b"CONPILE_DIR"/.config/.msrc", '\b');
 	ft_ms(av, 0, 1, shell->en);
 	//if (ft != 0)

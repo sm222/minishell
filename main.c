@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:31:47 by anboisve          #+#    #+#             */
-/*   Updated: 2023/11/23 08:49:43 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/11/23 17:41:07 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ static int	set_ptr_all(t_mshell *shell)
 	ft_return_ptr(shell->en, ENV_C);
 	ft_return_ptr(&shell->exit, EX_F);
 	ft_return_ptr(&shell->doc, DOC);
-	ft_return_ptr(&shell->alias, ALIAS_VAR);
 	ft_return_ptr(&ft_signal_handler, SIG);
 	ft_return_ptr(&clean_shell, CLEAN);
 	ft_return_ptr(&free_here_doc, FREE_DOC);

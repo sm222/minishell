@@ -35,7 +35,7 @@ static short	find_word(char *word, int *pec)
 	return (err);
 }
 
-int	look_for_dup(char **env, char *name)
+static int	look_for_dup(char **env, char *name)
 {
 	size_t	i;
 	size_t	len1;

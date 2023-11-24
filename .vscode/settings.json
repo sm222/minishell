@@ -90,7 +90,8 @@
     "_ucontext.h": "c",
     "wait.h": "c",
     "_mcontext.h": "c",
-    "_sigaltstack.h": "c"
+    "_sigaltstack.h": "c",
+    "alias.h": "c"
   },
   "C_Cpp.errorSquiggles": "disabled",
   "workbench.colorCustomizations": {
