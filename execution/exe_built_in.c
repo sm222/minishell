@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:24:37 by anboisve          #+#    #+#             */
-/*   Updated: 2023/11/23 17:14:07 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/11/24 08:26:27 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,6 +123,7 @@ static int	run_local(int (*ft)(char **, int, int, char **), t_cmd *in)
 		exit(((unsigned char)shell->pec));
 	}
 	shell->en = ft_return_ptr(NULL, ENV_C);
+	shell->alias = ft_return_ptr(NULL, ALIAS_VAR);
 	return (SUCCESS);
 }
 

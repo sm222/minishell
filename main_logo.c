@@ -27,7 +27,8 @@ static void	set_color(char *color[11], int nb[7], char *tmp)
 	color[7] = ORG;
 	color[8] = PIK;
 	color[9] = TOX;
-	while (i < 10)
+	ft_bzero(nb, sizeof(int[7]));
+	while (i < 10 && tmp && tmp[i])
 	{
 		if (tmp[0] == '-')
 			nb[i] = tmp[i + 1] - '0';
@@ -98,11 +99,13 @@ void	print_logo(char *seed)
 	t_logo		logo;
 	int			i;
 
+	ft_bzero(&logo, sizeof(t_logo));
 	if (seed && !ft_ban(seed, "0123456789"))
 		logo.tmp = ft_strdup(seed);
 	else
 	{
 		logo.con = ((long long)&print_logo);
+		printf("code %llu\n", logo.con);
 		logo.tmp = ft_ulltoa((unsigned long long)logo.con, 10);
 	}
 	if (!logo.tmp)
