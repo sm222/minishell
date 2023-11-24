@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:32:01 by anboisve          #+#    #+#             */
-/*   Updated: 2023/11/17 14:03:28 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/11/24 09:01:10 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,7 +135,8 @@ short	reset_data_main(t_mshell *shell)
 	else if (shell->s[0] && !shell->s_in)
 		add_history(shell->s);
 	shell->s_in = NULL;
-	ft_change_dolar(&shell->s, shell->en, 0, shell->pec);
+	ft_change_dolar(&shell->s, shell->en, false, shell->pec);
+	put_alias(&shell->s, shell->alias);
 	while (shell->s && shell->s[i] && (shell->s[i] == ' ' || \
 	shell->s[i] == '\t'))
 		i++;
