@@ -6,12 +6,15 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:31:47 by anboisve          #+#    #+#             */
-/*   Updated: 2023/11/23 17:41:07 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/11/29 21:43:57 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "include/minishell.h"
 #include "include/readline/readline.h"
+#include <unistd.h>
+#include <curses.h>
+#include <term.h>
 
 static void	free_shell(t_mshell *shell)
 {
@@ -90,11 +93,14 @@ static int	start_shell(t_mshell *shell, char **en, char **av)
 	return (SUCCESS);
 }
 
+
 int	main(int ac, char **av, char **en)
 {
 	t_mshell	shell;
 	char		*new;
 	char		**spl;
+
+	//tputs();
 	(void)ac;
 	ft_signal_handler(CMD);
 	if (start_shell(&shell, en, av) != SUCCESS)
