@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:31:47 by anboisve          #+#    #+#             */
-/*   Updated: 2023/11/29 21:43:57 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/11/29 23:58:00 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,13 +94,13 @@ static int	start_shell(t_mshell *shell, char **en, char **av)
 }
 
 
+
 int	main(int ac, char **av, char **en)
 {
 	t_mshell	shell;
 	char		*new;
 	char		**spl;
 
-	//tputs();
 	(void)ac;
 	ft_signal_handler(CMD);
 	if (start_shell(&shell, en, av) != SUCCESS)

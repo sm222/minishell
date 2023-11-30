@@ -91,7 +91,12 @@
     "wait.h": "c",
     "_mcontext.h": "c",
     "_sigaltstack.h": "c",
-    "alias.h": "c"
+    "alias.h": "c",
+    "term.h": "c",
+    "ncurses_dll.h": "c",
+    "termios.h": "c",
+    "termio.h": "c",
+    "ioctl.h": "c"
   },
   "C_Cpp.errorSquiggles": "disabled",
   "workbench.colorCustomizations": {

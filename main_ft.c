@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:32:01 by anboisve          #+#    #+#             */
-/*   Updated: 2023/11/24 09:01:10 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/11/30 12:51:40 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ static	void	get_user(t_mshell *shell)
 	shell->pwd = get_path(getcwd(NULL, 0), shell->pwd, shell);
 	if (shell->git_status)
 	{
-		ft_printf(NO_PRINT, "%o🌲%s%S"WHT, \
+		ft_printf(NO_PRINT, "%o"GIT_B"Y"WHT"%s%S"WHT, \
 		&new, shell->sys_color.c2, shell->git_status);
 		shell->git_status = NULL;
 	}

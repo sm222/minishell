@@ -77,6 +77,7 @@
 #  define RESET	"[0m"
 #  define CLE	"[1;1H\e[2J"
 #  define GIT	"[38;5;82m"
+#  define GIT_B	"[38;5;94m"
 # endif
 
 //--------------------------//
