@@ -10,3 +10,6 @@ ms -s C=27
 
 #	setup dir len in prompt
 ms -s DIRL=3
+
+#make update
+ms -u
