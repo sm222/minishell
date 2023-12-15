@@ -4,22 +4,16 @@
 # line that start with '#' is comment
 
 #	setup color
-echo 1
 ms -s C=01
 ms -s C=18
 ms -s C=27
 
 #	setup dir len in prompt
-echo 2
 ms -s DIRL=2
 export MS_DIR=$CONPILE_DIR
 export SDIR=$CONPILE_DIR/scrips
 
-
-#reset
-echo 3 
-ms -l "echo up to date" "echo bug" 
-echo 4 
-
 #make update
 ms -u
+
+#base scrip made by anboisve
