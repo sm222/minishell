@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brheaume <marvin@42quebec.com>             +#+  +:+       +#+        */
+/*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:35:56 by brheaume          #+#    #+#             */
-/*   Updated: 2023/10/16 14:35:57 by brheaume         ###   ########.fr       */
+/*   Updated: 2023/12/16 02:24:00 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,11 @@ t_loc	*ft_parsing(char *src)
 	ft_return_ptr(&list, PARSE);
 	if (!src)
 		return (NULL);
+	if (src[0] == '|')
+	{
+		ft_printf(2, "%o"MS_NAME"\b: "SENUT" `|'\n", NULL);
+		return (NULL);
+	}
 	if (!ft_verify(src))
 		return (NULL);
 	ft_pipe_op(src, &list);

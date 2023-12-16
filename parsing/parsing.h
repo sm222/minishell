@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:36:07 by brheaume          #+#    #+#             */
-/*   Updated: 2023/11/10 14:16:33 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/12/16 02:20:34 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,9 @@
 # include "../here_doc/here_doc.h"
 
 # include <stdio.h>
+# ifndef SENUT
+#  define SENUT "syntax error near unexpected token"
+# endif
 
 # define NODE 1
 

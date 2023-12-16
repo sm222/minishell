@@ -17,3 +17,4 @@ export SDIR=$CONPILE_DIR/scrips
 ms -u
 
 #base scrip made by anboisve
+#@0cculus add security if line start with '|'
