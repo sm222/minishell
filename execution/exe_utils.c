@@ -23,6 +23,7 @@ void	free_t_mshell(t_mshell *shell)
 	ft_double_sfree((void **)shell->path);
 	ft_double_sfree((void **)shell->en);
 	ft_double_sfree((void **)shell->alias);
+	ft_free(shell->termios);
 	ft_return_ptr(NULL, -1);
 }
 

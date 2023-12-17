@@ -6,14 +6,12 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:31:47 by anboisve          #+#    #+#             */
-/*   Updated: 2023/11/29 23:58:00 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/12/17 01:35:57 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "include/minishell.h"
 #include "include/readline/readline.h"
-#include <unistd.h>
-#include <curses.h>
 #include <term.h>
 
 static void	free_shell(t_mshell *shell)
@@ -28,6 +26,7 @@ static void	free_shell(t_mshell *shell)
 	ft_double_sfree((void **)shell->path);
 	ft_double_sfree((void **)shell->en);
 	ft_double_sfree((void **)shell->alias);
+	ft_free(shell->termios);
 }
 
 static void	do_logo(char **av)
@@ -67,6 +66,21 @@ static int	set_ptr_all(t_mshell *shell)
 	return (0);
 }
 
+static int	set_shlvl(t_mshell *data)
+{
+	char	*s;
+	int		lv;
+	char	*tmp;
+
+	s = get_env(data->en, "SHLVL");
+	lv = ft_atoi(s);
+	lv++;
+	ft_printf(NO_PRINT, "%oex\bSHLVL=%d", &tmp, lv);
+	export_in_main(data, tmp);
+	ft_free(tmp);
+	return (SUCCESS);
+}
+
 static int	start_shell(t_mshell *shell, char **en, char **av)
 {
 	char	*new;
@@ -90,6 +104,9 @@ static int	start_shell(t_mshell *shell, char **en, char **av)
 	do_logo(av);
 	shell->compile_dir = CONPILE_DIR;
 	export_main(shell);
+	set_shlvl(shell);
+	shell->termios = ft_calloc(1, sizeof(struct termios));
+	tcgetattr(0, shell->termios);
 	return (SUCCESS);
 }
 
@@ -123,3 +140,18 @@ int	main(int ac, char **av, char **en)
 }
 
 //https://opensource.apple.com/source/gdb/gdb-962/src/readline/
+
+/*
+
+readline, rl_clear_history, rl_on_new_line,
+rl_replace_line, rl_redisplay, add_history,
+printf, malloc, free, write, access, open, read,
+close, fork, wait, waitpid, wait3, wait4, signal,
+sigaction, sigemptyset, sigaddset, kill, exit,
+getcwd, chdir, stat, lstat, fstat, unlink, execve,
+dup, dup2, pipe, opendir, readdir, closedir,
+strerror, perror, isatty, ttyname, ttyslot, ioctl,
+getenv, tcsetattr, tcgetattr, tgetent, tgetflag,
+tgetnum, tgetstr, tgoto, tputs
+
+*/

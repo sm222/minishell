@@ -12,6 +12,23 @@
 
 #include "include/minishell.h"
 
+/// @brief use to export value in main prosses
+/// @param data shell strut 
+/// @param value value to export, seperate by '\b'
+/// @return err code
+int	export_in_main(t_mshell	*data, char *value)
+{
+	char	**spl;
+
+	spl = ft_split(value, '\b');
+	if (!spl)
+		return (M_FAIL);
+	ft_export(spl, 0, 1, data->en);
+	ft_double_sfree((void **)spl);
+	data->en = ft_return_ptr(NULL, ENV_C);
+	return (SUCCESS);
+}
+
 int	export_main(t_mshell *data)
 {
 	char	**av;

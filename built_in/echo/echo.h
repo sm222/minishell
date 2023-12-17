@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:20:53 by anboisve          #+#    #+#             */
-/*   Updated: 2023/11/12 11:04:35 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/12/17 00:24:21 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ int	ft_echo(char **av, int re_in, int re_out, char **en);
 //			define			//
 //--------------------------//
 
-# ifndef ECHO
-#  define ECHO "echo"
+# ifndef FT_ECHO
+#  define FT_ECHO "echo"
 # endif
 
 #endif // ECHO_H

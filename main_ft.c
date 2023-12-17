@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:32:01 by anboisve          #+#    #+#             */
-/*   Updated: 2023/11/30 12:51:40 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/12/17 02:15:50 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ static	void	get_user(t_mshell *shell)
 		&shell->prompt, shell->sys_color.c1, shell->pwd, new, err_code(shell));
 	ft_free(new);
 }
+//\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\\w\\[\\033[00m\\]\\$
 
 static short	ft_caller(t_mshell *shell)
 {

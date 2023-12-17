@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:32:30 by anboisve          #+#    #+#             */
-/*   Updated: 2023/11/08 19:20:34 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/12/16 22:29:00 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,3 +134,5 @@ size_t	look_for_type(char *s, short *type)
 //ls||'|'
 
 //echo "<>|" | echo "|<>"
+
+//echo '"<''>|" | echo "|<''>"'

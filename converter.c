@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:32:23 by anboisve          #+#    #+#             */
-/*   Updated: 2023/12/16 02:27:06 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/12/17 00:23:57 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static int	find_buit_in(char *name)
 	}
 	if (ft_strncmp(tmp, EXPORT, ft_strlen(EXPORT) + 1) == 0 || \
 		ft_strncmp(tmp, UNSET, ft_strlen(UNSET) + 1) == 0 || \
-		ft_strncmp(tmp, ECHO, ft_strlen(ECHO) + 1) == 0 || \
+		ft_strncmp(tmp, FT_ECHO, ft_strlen(FT_ECHO) + 1) == 0 || \
 		ft_strncmp(tmp, EXIT, ft_strlen(EXIT) + 1) == 0 || \
 		ft_strncmp(tmp, PWD, ft_strlen(PWD) + 1) == 0 || \
 		ft_strncmp(tmp, ENV, ft_strlen(ENV) + 1) == 0 || \

@@ -64,20 +64,20 @@
 
 # ifndef COLORS
 #  define COLORS
-#  define RED	"[31m"
-#  define GRN	"[32m"
-#  define YEL	"[33m"
-#  define BLU	"[34m"
-#  define MAG	"[35m"
-#  define CYN	"[36m"
-#  define WHT	"[37m"
-#  define ORG	"[38;5;202m"
-#  define PIK	"[38;5;176m"
-#  define TOX	"[38;5;51m"
-#  define RESET	"[0m"
-#  define CLE	"[1;1H\e[2J"
-#  define GIT	"[38;5;82m"
-#  define GIT_B	"[38;5;94m"
+#  define RED	"\e[31m"
+#  define GRN	"\e[32m"
+#  define YEL	"\e[33m"
+#  define BLU	"\e[34m"
+#  define MAG	"\e[35m"
+#  define CYN	"\e[36m"
+#  define WHT	"\e[37m"
+#  define ORG	"\e[38;5;202m"
+#  define PIK	"\e[38;5;176m"
+#  define TOX	"\e[38;5;51m"
+#  define RESET	"\e[0m"
+#  define CLE	"\e[1;1H\e[2J"
+#  define GIT	"\e[38;5;82m"
+#  define GIT_B	"\e[38;5;94m"
 # endif
 
 //--------------------------//
@@ -216,6 +216,7 @@ typedef struct s_mshell
 	char			**alias;
 	char			*compile_dir;
 	t_col_sys		sys_color;
+	struct termios	*termios;
 }	t_mshell;
 
 /// @brief use in run_cmd

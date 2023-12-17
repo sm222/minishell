@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:32:13 by anboisve          #+#    #+#             */
-/*   Updated: 2023/11/23 08:47:40 by anboisve         ###   ########.fr       */
+/*   Updated: 2023/12/17 01:32:54 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ static short	free_data_shell(t_mshell *shell)
 	shell->path = (char **)ft_double_sfree((void **)shell->path);
 	shell->en = (char **)ft_double_sfree((void **)shell->en);
 	shell->alias = (char **)ft_double_sfree((void **)shell->alias);
+	shell->termios = ft_free(shell->termios);
 	return (1);
 }
 
