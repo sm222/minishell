@@ -4,9 +4,11 @@
 # line that start with '#' is comment
 
 #	setup color
-ms -s C=01
-ms -s C=18
-ms -s C=27
+#	show the color pallet 'ms -s C'
+ms -s C=04
+ms -s C=13
+ms -s C=26
+ms -s C
 
 #	setup dir len in prompt
 ms -s DIRL=2

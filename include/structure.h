@@ -177,10 +177,11 @@ typedef struct s_col_sys
 	char	*yel;
 	char	*blu;
 	char	*mag;
-	char	*cyn;
+	char	*pik;
 	char	*wht;
 	char	*tox;
 	char	*git;
+	char	*org;
 	char	*c1;
 	char	*c2;
 	char	*c3;

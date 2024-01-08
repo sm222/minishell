@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:31:47 by anboisve          #+#    #+#             */
-/*   Updated: 2023/12/17 01:35:57 by anboisve         ###   ########.fr       */
+/*   Updated: 2024/01/08 14:59:56 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,15 +54,16 @@ static int	set_ptr_all(t_mshell *shell)
 	shell->sys_color.yel = YEL;
 	shell->sys_color.blu = BLU;
 	shell->sys_color.mag = MAG;
-	shell->sys_color.cyn = CYN;
+	shell->sys_color.pik = PIK;
 	shell->sys_color.wht = WHT;
 	shell->sys_color.tox = TOX;
 	shell->sys_color.git = GIT;
+	shell->sys_color.org = ORG;
 	shell->sys_color.c1 = GRN;
 	shell->sys_color.c2 = GIT;
 	shell->sys_color.c3 = TOX;
-	shell->sys_color.c4 = TOX;
-	shell->sys_color.c5 = TOX;
+	shell->sys_color.c4 = GIT;
+	shell->sys_color.c5 = BLU;
 	return (0);
 }
 

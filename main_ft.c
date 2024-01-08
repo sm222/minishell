@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:32:01 by anboisve          #+#    #+#             */
-/*   Updated: 2023/12/17 02:15:50 by anboisve         ###   ########.fr       */
+/*   Updated: 2024/01/08 14:59:40 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,9 @@ static char	*err_code(t_mshell *shell)
 	char	*new;
 
 	new = NULL;
-	if (shell->pec != 0)
+	if (shell->pec == 42)
+		ft_printf(NO_PRINT, "%o%s%d"WHT, &new, shell->sys_color.c5 ,shell->pec);
+	else if (shell->pec != 0)
 		ft_printf(NO_PRINT, "%o"RED"%d"WHT, &new, shell->pec);
 	else
 		ft_printf(NO_PRINT, "%o%d", &new, shell->pec);
@@ -74,8 +76,8 @@ static	void	get_user(t_mshell *shell)
 	shell->pwd = get_path(getcwd(NULL, 0), shell->pwd, shell);
 	if (shell->git_status)
 	{
-		ft_printf(NO_PRINT, "%o"GIT_B"Y"WHT"%s%S"WHT, \
-		&new, shell->sys_color.c2, shell->git_status);
+		ft_printf(NO_PRINT, "%o%sY"WHT"%s%S"WHT, \
+		&new, shell->sys_color.c4, shell->sys_color.c2, shell->git_status);
 		shell->git_status = NULL;
 	}
 	if (logname)
@@ -87,7 +89,7 @@ static	void	get_user(t_mshell *shell)
 		&shell->prompt, shell->sys_color.c1, shell->pwd, new, err_code(shell));
 	ft_free(new);
 }
-//\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\\w\\[\\033[00m\\]\\$
+//\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$
 
 static short	ft_caller(t_mshell *shell)
 {

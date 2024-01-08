@@ -20,21 +20,23 @@ static char	*color_chose(int i, t_mshell *shell)
 	if (i == 0)
 		return (shell->sys_color.red);
 	if (i == 1)
-		return (shell->sys_color.grn);
+		return (shell->sys_color.org);
 	if (i == 2)
 		return (shell->sys_color.yel);
 	if (i == 3)
-		return (shell->sys_color.blu);
-	if (i == 4)
-		return (shell->sys_color.mag);
-	if (i == 5)
-		return (shell->sys_color.cyn);
-	if (i == 6)
-		return (shell->sys_color.wht);
-	if (i == 7)
-		return (shell->sys_color.tox);
-	if (i == 8)
 		return (shell->sys_color.git);
+	if (i == 4)
+		return (shell->sys_color.grn);
+	if (i == 5)
+		return (shell->sys_color.blu);
+	if (i == 6)
+		return (shell->sys_color.tox);
+	if (i == 7)
+		return (shell->sys_color.pik);
+	if (i == 8)
+		return (shell->sys_color.mag);
+	if (i == 9)
+		return (shell->sys_color.wht);
 	return (NULL);
 }
 
@@ -74,16 +76,19 @@ static int	show_color(void)
 	if (shell)
 	{
 		ft_printf(2, "%ocolor ~>\n", NULL);
-		ft_printf(2, "%o%s|#¤	◻ %d"WHT"\n", NULL, shell->sys_color.red, i++);
-		ft_printf(2, "%o%s|#¤	◻ %d"WHT"\n", NULL, shell->sys_color.grn, i++);
-		ft_printf(2, "%o%s|#¤	◻ %d"WHT"\n", NULL, shell->sys_color.yel, i++);
-		ft_printf(2, "%o%s|#¤	◻ %d"WHT"\n", NULL, shell->sys_color.blu, i++);
-		ft_printf(2, "%o%s|#¤	◻ %d"WHT"\n", NULL, shell->sys_color.mag, i++);
-		ft_printf(2, "%o%s|#¤	◻ %d"WHT"\n", NULL, shell->sys_color.cyn, i++);
-		ft_printf(2, "%o%s|#¤	◻ %d"WHT"\n", NULL, shell->sys_color.wht, i++);
-		ft_printf(2, "%o%s|#¤	◻ %d"WHT"\n", NULL, shell->sys_color.tox, i++);
-		ft_printf(2, "%o%s|#¤	◻ %d"WHT"\n", NULL, shell->sys_color.git, i++);
-		ft_printf(2, "%o	<~\n", NULL);
+		ft_printf(2, "%o------------------------------------\n", NULL);
+		ft_printf(2, "%o%s"TXT_C"%d|"WHT"\n", NULL, shell->sys_color.red, i++);
+		ft_printf(2, "%o%s"TXT_C"%d|"WHT"\n", NULL, shell->sys_color.org, i++);
+		ft_printf(2, "%o%s"TXT_C"%d|"WHT"\n", NULL, shell->sys_color.yel, i++);
+		ft_printf(2, "%o%s"TXT_C"%d|"WHT"\n", NULL, shell->sys_color.git, i++);
+		ft_printf(2, "%o%s"TXT_C"%d|"WHT"\n", NULL, shell->sys_color.grn, i++);
+		ft_printf(2, "%o%s"TXT_C"%d|"WHT"\n", NULL, shell->sys_color.blu, i++);
+		ft_printf(2, "%o%s"TXT_C"%d|"WHT"\n", NULL, shell->sys_color.tox, i++);
+		ft_printf(2, "%o%s"TXT_C"%d|"WHT"\n", NULL, shell->sys_color.pik, i++);
+		ft_printf(2, "%o%s"TXT_C"%d|"WHT"\n", NULL, shell->sys_color.mag, i++);
+		ft_printf(2, "%o%s"TXT_C"%d|"WHT"\n", NULL, shell->sys_color.wht, i++);
+		ft_printf(2, "%o------------------------------------\n", NULL);
+		ft_printf(2, "%o<~\n", NULL);
 	}
 	return (0);
 }

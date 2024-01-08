@@ -29,6 +29,7 @@ int	ms_run(char **av, size_t *j);
 # define COLOR_SYS "C=(number)(number) - change colors of the prompt\n"
 # define LOGIC "need 2 string {exit code 0} {exit code 1}\n"
 # define RUN "need 1 file {PATH}\n"
+# define TXT_C "|#¤Colors[]{}-=+_!\"$%%?&*	◻ "
 
 # ifndef MS
 #  define MS "ms"
