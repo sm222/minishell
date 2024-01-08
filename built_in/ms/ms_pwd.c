@@ -36,7 +36,7 @@ static char	*color_chose(int i, t_mshell *shell)
 	if (i == 8)
 		return (shell->sys_color.mag);
 	if (i == 9)
-		return (shell->sys_color.wht);
+		return (shell->sys_color.git_b);
 	return (NULL);
 }
 
@@ -45,9 +45,10 @@ static int	ms_color(char **av, t_mshell *shell)
 	char	*new_c;
 
 	if (!av[0][2] || !av[0][3] || av[0][4] || \
-		!ft_isdigit(av[0][2]) || !ft_isdigit(av[0][3]))
+		!ft_isdigit(av[0][2]) || (!ft_isdigit(av[0][3]) && av[0][3] != '-'))
 	{
-		ft_printf(2, "%o"MS_NAME"\b: -s C= need 2 numbers\n", NULL);
+		ft_printf(2, "%o"MS_NAME"\b: -s C= need 2 numbers or 1 number and - \
+to set it to white\n", NULL);
 		return (1);
 	}
 	if (shell)
@@ -66,36 +67,39 @@ static int	ms_color(char **av, t_mshell *shell)
 	}
 	return (0);
 }
-static int	show_color(void)
+
+static void	show_color(void)
 {
 	t_mshell	*shell;
 	int			i;
 
 	i = 0;
 	shell = ft_return_ptr(NULL, SYS);
-	if (shell)
-	{
-		ft_printf(2, "%ocolor ~>\n", NULL);
-		ft_printf(2, "%o------------------------------------\n", NULL);
-		ft_printf(2, "%o%s"TXT_C"%d|"WHT"\n", NULL, shell->sys_color.red, i++);
-		ft_printf(2, "%o%s"TXT_C"%d|"WHT"\n", NULL, shell->sys_color.org, i++);
-		ft_printf(2, "%o%s"TXT_C"%d|"WHT"\n", NULL, shell->sys_color.yel, i++);
-		ft_printf(2, "%o%s"TXT_C"%d|"WHT"\n", NULL, shell->sys_color.git, i++);
-		ft_printf(2, "%o%s"TXT_C"%d|"WHT"\n", NULL, shell->sys_color.grn, i++);
-		ft_printf(2, "%o%s"TXT_C"%d|"WHT"\n", NULL, shell->sys_color.blu, i++);
-		ft_printf(2, "%o%s"TXT_C"%d|"WHT"\n", NULL, shell->sys_color.tox, i++);
-		ft_printf(2, "%o%s"TXT_C"%d|"WHT"\n", NULL, shell->sys_color.pik, i++);
-		ft_printf(2, "%o%s"TXT_C"%d|"WHT"\n", NULL, shell->sys_color.mag, i++);
-		ft_printf(2, "%o%s"TXT_C"%d|"WHT"\n", NULL, shell->sys_color.wht, i++);
-		ft_printf(2, "%o------------------------------------\n", NULL);
-		ft_printf(2, "%o<~\n", NULL);
-	}
-	return (0);
+	if (!shell)
+		return ;
+	ft_printf(2, "%ocolor ~>\n", NULL);
+	ft_printf(2, "%o------------------------------------\n", NULL);
+	ft_printf(2, "%o%s"TXT_C"%d|"WHT"\n", NULL, shell->sys_color.red, i++);
+	ft_printf(2, "%o%s"TXT_C"%d|"WHT"\n", NULL, shell->sys_color.org, i++);
+	ft_printf(2, "%o%s"TXT_C"%d|"WHT"\n", NULL, shell->sys_color.yel, i++);
+	ft_printf(2, "%o%s"TXT_C"%d|"WHT"\n", NULL, shell->sys_color.git, i++);
+	ft_printf(2, "%o%s"TXT_C"%d|"WHT"\n", NULL, shell->sys_color.grn, i++);
+	ft_printf(2, "%o%s"TXT_C"%d|"WHT"\n", NULL, shell->sys_color.blu, i++);
+	ft_printf(2, "%o%s"TXT_C"%d|"WHT"\n", NULL, shell->sys_color.tox, i++);
+	ft_printf(2, "%o%s"TXT_C"%d|"WHT"\n", NULL, shell->sys_color.pik, i++);
+	ft_printf(2, "%o%s"TXT_C"%d|"WHT"\n", NULL, shell->sys_color.mag, i++);
+	ft_printf(2, "%o%s"TXT_C"%d|"WHT"\n", NULL, shell->sys_color.git_b, i++);
+	ft_printf(2, "%o%s"TXT_C"-|"WHT"\n", NULL, shell->sys_color.wht);
+	ft_printf(2, "%o------------------------------------\n", NULL);
+	ft_printf(2, "%o"EXP"\n", NULL);
+	ft_printf(2, "%o------------------------------------\n", NULL);
+	ft_printf(2, "%oex: ms -s C=25\n", NULL);
+	ft_printf(2, "%o------------------------------------\n<~\n", NULL);
 }
 
-int ms_edit(char **av, size_t *j)
+int	ms_edit(char **av, size_t *j)
 {
-	t_mshell *shell;
+	t_mshell	*shell;
 
 	shell = ft_return_ptr(NULL, SYS);
 	if (!av[0])
@@ -109,7 +113,7 @@ int ms_edit(char **av, size_t *j)
 	else if (ft_strncmp(av[0], "C=", 2) == 0)
 		return (ms_color(av, shell));
 	else if (ft_strncmp(av[0], "C", 2) == 0)
-		return (show_color());
+		return (show_color(), 0);
 	else
 		ft_printf(2, "%o"MS_NAME"\b: ms: -s unknow %s\n", NULL, av[0]);
 	return (1);

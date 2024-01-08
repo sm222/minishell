@@ -181,6 +181,7 @@ typedef struct s_col_sys
 	char	*wht;
 	char	*tox;
 	char	*git;
+	char	*git_b;
 	char	*org;
 	char	*c1;
 	char	*c2;

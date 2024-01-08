@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:31:47 by anboisve          #+#    #+#             */
-/*   Updated: 2024/01/08 15:07:41 by anboisve         ###   ########.fr       */
+/*   Updated: 2024/01/08 15:22:20 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static void	do_logo(char **av)
 	ft_printf(1, "%o%S"V_MINI"\n"WHT, NULL, ft_make_color(20, 84, 255));
 }
 
-static int	set_ptr_all(t_mshell *shell)
+static void	set_ptr_all(t_mshell *shell)
 {
 	ft_return_ptr(shell, SYS);
 	ft_return_ptr(shell->path, PATH);
@@ -59,12 +59,12 @@ static int	set_ptr_all(t_mshell *shell)
 	shell->sys_color.tox = TOX;
 	shell->sys_color.git = GIT;
 	shell->sys_color.org = ORG;
+	shell->sys_color.git_b = GIT_B;
 	shell->sys_color.c1 = GRN;
 	shell->sys_color.c2 = GIT;
 	shell->sys_color.c3 = TOX;
 	shell->sys_color.c4 = GIT_B;
 	shell->sys_color.c5 = RED;
-	return (0);
 }
 
 static int	set_shlvl(t_mshell *data)

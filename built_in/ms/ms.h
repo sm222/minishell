@@ -30,6 +30,7 @@ int	ms_run(char **av, size_t *j);
 # define LOGIC "need 2 string {exit code 0} {exit code 1}\n"
 # define RUN "need 1 file {PATH}\n"
 # define TXT_C "|#¤Colors[]{}-=+_!\"$%%?&*	◻ "
+# define EXP "0 PATH, 1 GIT BRANCH, 2 USER, 3 GIT BRANCH LOGO, 4 ERROR COLOR"
 
 # ifndef MS
 #  define MS "ms"
