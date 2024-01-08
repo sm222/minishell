@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:32:01 by anboisve          #+#    #+#             */
-/*   Updated: 2024/01/08 14:59:40 by anboisve         ###   ########.fr       */
+/*   Updated: 2024/01/08 15:08:07 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,9 @@ static char	*err_code(t_mshell *shell)
 
 	new = NULL;
 	if (shell->pec == 42)
-		ft_printf(NO_PRINT, "%o%s%d"WHT, &new, shell->sys_color.c5 ,shell->pec);
+		ft_printf(NO_PRINT, "%o"BLU"%d"WHT, &new, shell->pec);
 	else if (shell->pec != 0)
-		ft_printf(NO_PRINT, "%o"RED"%d"WHT, &new, shell->pec);
+		ft_printf(NO_PRINT, "%o%s%d"WHT, &new, shell->sys_color.c5 ,shell->pec);
 	else
 		ft_printf(NO_PRINT, "%o%d", &new, shell->pec);
 	return (new);

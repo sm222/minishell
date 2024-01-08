@@ -8,7 +8,7 @@
 ms -s C=04
 ms -s C=13
 ms -s C=26
-ms -s C
+# ms -s C
 
 #	setup dir len in prompt
 ms -s DIRL=2
