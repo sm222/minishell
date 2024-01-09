@@ -138,6 +138,12 @@ readline:
 rm_readline:
 	cd include/readline && make distclean
 
+config:
+	cp .config/.msrc $$HOME
+
+rm_config:
+	rm $$HOME/.msrc
+
 #https://github.com/sm222/C_tools
 
 # Removes objects
