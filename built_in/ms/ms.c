@@ -7,7 +7,8 @@ static int	how_to_use(void)
 	ft_printf(2, "%o	C show the color pallet\n", NULL);
 	ft_printf(2, "%o	"COLOR_SYS, NULL);
 	ft_printf(2, "%oms: -u \n", NULL);
-	ft_printf(2, "%o	use too look for update, not ready yet\n", NULL);
+	ft_printf(2, "%o	use too look for update, and auto update\n", NULL);
+	ft_printf(2, "%o	you can use in .msrc\n", NULL);
 	ft_printf(2, "%oms: -l \n", NULL);
 	ft_printf(2, "%o	"LOGIC, NULL);
 	ft_printf(2, "%oms: -r \n", NULL);

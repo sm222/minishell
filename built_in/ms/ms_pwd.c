@@ -113,7 +113,7 @@ static void	show_color(void)
 	if (!shell)
 		return ;
 	ft_printf(2, "%ocolor ~>\n", NULL);
-	ft_printf(2, "%o------------------------------------\n", NULL);
+	ft_printf(2, "%o"LINE"\n", NULL);
 	ft_printf(2, "%o%s"TXT_C"%d|"WHT"\n", NULL, shell->sys_color.red, i++);
 	ft_printf(2, "%o%s"TXT_C"%d|"WHT"\n", NULL, shell->sys_color.org, i++);
 	ft_printf(2, "%o%s"TXT_C"%d|"WHT"\n", NULL, shell->sys_color.yel, i++);
@@ -125,7 +125,7 @@ static void	show_color(void)
 	ft_printf(2, "%o%s"TXT_C"%d|"WHT"\n", NULL, shell->sys_color.mag, i++);
 	ft_printf(2, "%o%s"TXT_C"%d|"WHT"\n", NULL, shell->sys_color.git_b, i++);
 	ft_printf(2, "%o%s"TXT_C"-|"WHT"\n", NULL, shell->sys_color.wht);
-	ft_printf(2, "%o------------------------------------\n", NULL);
+	ft_printf(2, "%o"LINE"\n", NULL);
 	ft_printf(2, "%o"EXP"\n", NULL);
 	ft_printf(2, "%oex: ms -s C=25\n", NULL);
 	number_color(shell->sys_color);
