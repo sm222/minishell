@@ -68,6 +68,41 @@ to set it to white\n", NULL);
 	return (0);
 }
 
+static int	color_number(char const *s)
+{
+	if (ft_strcmp(s, RED) == 0)
+		return ('0');
+	if (ft_strcmp(s, ORG) == 0)
+		return ('1');
+	if (ft_strcmp(s, YEL) == 0)
+		return ('2');
+	if (ft_strcmp(s, GIT) == 0)
+		return ('3');
+	if (ft_strcmp(s, GRN) == 0)
+		return ('4');
+	if (ft_strcmp(s, BLU) == 0)
+		return ('5');
+	if (ft_strcmp(s, CYN) == 0)
+		return ('6');
+	if (ft_strcmp(s, PIK) == 0)
+		return ('7');
+	if (ft_strcmp(s, MAG) == 0)
+		return ('8');
+	if (ft_strcmp(s, GIT_B) == 0)
+		return ('9');
+	return ('-');
+}
+
+static void	number_color(t_col_sys const data)
+{
+	ft_printf(2, "%oyour color rn\n", NULL);
+	ft_printf(2, "%oPATH %c, ", NULL, color_number(data.c1));
+	ft_printf(2, "%oGIT BRANCH %c, ", NULL, color_number(data.c2));
+	ft_printf(2, "%oUSER %c, ", NULL, color_number(data.c3));
+	ft_printf(2, "%oGIT BRANCH LOGO %c, ", NULL, color_number(data.c4));
+	ft_printf(2, "%oERROR COLOR %c.\n", NULL, color_number(data.c5));
+}
+
 static void	show_color(void)
 {
 	t_mshell	*shell;
@@ -92,8 +127,8 @@ static void	show_color(void)
 	ft_printf(2, "%o%s"TXT_C"-|"WHT"\n", NULL, shell->sys_color.wht);
 	ft_printf(2, "%o------------------------------------\n", NULL);
 	ft_printf(2, "%o"EXP"\n", NULL);
-	ft_printf(2, "%o------------------------------------\n", NULL);
 	ft_printf(2, "%oex: ms -s C=25\n", NULL);
+	number_color(shell->sys_color);
 	ft_printf(2, "%o------------------------------------\n<~\n", NULL);
 }
 
