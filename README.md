@@ -23,12 +23,13 @@ to open it use
 ```txt
 ./minishell
 ```
+waht was ask for the projet
 
-builtin
-* export
-* unset
-* cd
-* echo
-* env
-* pwd
-* exit
+* builtin
+  * export
+  * unset
+  * cd
+  * echo
+  * env
+  * pwd
+  * exit
