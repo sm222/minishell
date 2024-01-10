@@ -28,6 +28,8 @@ to open it use
 ```bash
 $ ./minishell
 ```
+https://github.com/sm222/minishell/assets/41463323/45415d78-2101-4e40-967d-6a045f90f18b
+
 ## what was ask for the projet
 
 * Display a prompt while waiting for a new command.
@@ -58,3 +60,8 @@ $ ./minishell
   *  unset without any options
   *  env without any options or arguments
   *  exit without any options
+
+
+thout any options or arguments
+  *  exit without any options
+
