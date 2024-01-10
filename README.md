@@ -3,7 +3,7 @@
 ### projet made by
 [Antoine](https://github.com/sm222) and [0cculus](https://github.com/0cculus)
 
-## for this projet you need:
+## for this projet you need
 
 *  _gcc_
 
@@ -11,7 +11,7 @@
 
 *  _readline_
 
-## if you are missing one of those you can install them with:
+## if you are missing one of those you can install them with
 
 ```bash
 $ sudo apt install gcc
@@ -19,7 +19,7 @@ $ sudo apt install make
 $ sudo apt install libreadline-dev
 ```
 
-to install it use:
+## how to install it use:
 ```bash
 $ https://github.com/sm222/minishell.git && make
 ```
