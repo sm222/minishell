@@ -11,6 +11,7 @@
 
 *  _readline_
 
+
 ## if you are missing one of those you can install them with
 
 ```bash
@@ -57,3 +58,6 @@ $ ./minishell
   *  unset without any options
   *  env without any options or arguments
   *  exit without any options
+
+https://github.com/sm222/minishell/assets/41463323/0a9f9f73-4b4a-4501-8c4f-0287aa4a860e
+
