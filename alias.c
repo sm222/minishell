@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 17:54:43 by anboisve          #+#    #+#             */
-/*   Updated: 2024/01/09 12:37:00 by anboisve         ###   ########.fr       */
+/*   Updated: 2024/01/09 19:24:36 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ short	put_alias(char **str, char **alias_v)
 	return (0);
 }
 
-void	set_alias(t_mshell *shell)
+void	set_alias(t_mshell *shell, int ac)
 {
 	char	**av;
 	char	*path;
@@ -67,20 +67,22 @@ void	set_alias(t_mshell *shell)
 
 	shell->alias = ft_calloc(1, sizeof(char *));
 	ft_return_ptr(shell->alias, ALIAS_VAR);
-	
-	ft_printf(NO_PRINT, "%o%s/.msrc", &path, get_env(shell->en, "HOME"));
-	if (access(path, F_OK) == 0)
+	if (ac < 3)
 	{
-		ft_printf(NO_PRINT, "%oms\b-r\b%s", &cmd, path);
-		av = ft_split(cmd, '\b');
-		ft_ms(av, 0, 1, shell->en);
-		ft_double_sfree((void **)av);
-		ft_free(cmd);
+		ft_printf(NO_PRINT, "%o%s/.msrc", &path, get_env(shell->en, "HOME"));
+		if (access(path, F_OK) == 0)
+		{
+			ft_printf(NO_PRINT, "%oms\b-r\b%s", &cmd, path);
+			av = ft_split(cmd, '\b');
+			ft_ms(av, 0, 1, shell->en);
+			ft_double_sfree((void **)av);
+			ft_free(cmd);
+		}
+		else
+		{
+			ft_printf(2, "%ono config file found, you can add one in ~/.msrc\n", NULL);
+			ft_printf(2, "%oecho > $HOME/.msrc or copy the default one with rule: make config\n", NULL);
+		}
+		ft_free(path);
 	}
-	else
-	{
-		ft_printf(2, "%ono config file found, you can add one in ~/.msrc\n", NULL);
-		ft_printf(2, "%oecho > $HOME/.msrc or copy the default one with rule: make config\n", NULL);
-	}
-	ft_free(path);
 }

@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:32:01 by anboisve          #+#    #+#             */
-/*   Updated: 2024/01/08 21:53:04 by anboisve         ###   ########.fr       */
+/*   Updated: 2024/01/09 17:31:27 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,46 @@ static short	ft_caller(t_mshell *shell)
 	return (SUCCESS);
 }
 
+static short	is_number_list(char *s)
+{
+	size_t	i;
+
+	i = 0;
+	while (s && s[i])
+	{
+		if (!ft_isdigit(s[i]))
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
+static int	set_cmd_input(t_mshell *shell)
+{
+	if (!shell->av)
+	{
+		shell->s = NULL;
+		return (0);
+	}
+	if (shell->s_in)
+		shell->s = shell->s_in;
+	else if (ft_strlen_double(shell->av) > 1 && !is_number_list(shell->av[1]))
+	{
+		if (ft_strncmp(shell->av[1], "-c", 3) == 0)
+			shell->s = ft_strdup(shell->av[2]);
+		else
+		{
+			ft_printf(2, "%o"MS_NAME"\b: %s unknow flag\n", NULL, shell->av[1]);
+			shell->pec = 1;
+		}
+		shell->s_in = NULL;
+		shell->av = NULL;
+	}
+	else
+		shell->s = readline(shell->prompt);
+	return (0);
+}
+
 short	reset_data_main(t_mshell *shell)
 {
 	size_t	i;
@@ -129,10 +169,7 @@ short	reset_data_main(t_mshell *shell)
 	shell->s = ft_free(shell->s);
 	shell->prompt = ft_free(shell->prompt);
 	get_user(shell);
-	if (!shell->s_in)
-		shell->s = readline(shell->prompt);
-	else
-		shell->s = shell->s_in;
+	set_cmd_input(shell);
 	if (!shell->s)
 		return (FAIL - 1);
 	else if (shell->s[0] && !shell->s_in)

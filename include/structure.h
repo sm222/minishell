@@ -220,6 +220,7 @@ typedef struct s_mshell
 	char			*compile_dir;
 	t_col_sys		sys_color;
 	struct termios	*termios;
+	char			**av;
 }	t_mshell;
 
 /// @brief use in run_cmd

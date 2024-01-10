@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:28:16 by anboisve          #+#    #+#             */
-/*   Updated: 2023/12/17 01:16:55 by anboisve         ###   ########.fr       */
+/*   Updated: 2024/01/09 17:41:34 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,7 @@ void	set_pec_to(int val);
 int		bad_con_err(short *to_set, short val, int err, char c);
 short	try_end(char *s, char *err);
 void	find_git(t_mshell *shell);
-void	set_alias(t_mshell *shell);
+void	set_alias(t_mshell *shell, int ac);
 int		export_main(t_mshell *data);
 short	put_alias(char **str, char **alias_v);
 int	export_in_main(t_mshell	*data, char *value);

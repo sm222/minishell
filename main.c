@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:31:47 by anboisve          #+#    #+#             */
-/*   Updated: 2024/01/08 15:22:20 by anboisve         ###   ########.fr       */
+/*   Updated: 2024/01/09 17:41:44 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,12 @@
 #include "include/readline/readline.h"
 #include <term.h>
 
-static void	free_shell(t_mshell *shell)
+static void	free_shell(t_mshell *shell, int ac)
 {
 	if (!shell)
 		return ;
-	ft_putstr_fd(BLU"GoodBye~!"WHT"\n", 2);
+	if (ac < 2)
+		ft_putstr_fd(BLU"GoodBye~!"WHT"\n", 2);
 	rl_clear_history();
 	ft_free(shell->pwd);
 	ft_free(shell->s);
@@ -31,6 +32,8 @@ static void	free_shell(t_mshell *shell)
 
 static void	do_logo(char **av)
 {
+	if (ft_strlen_double(av) > 2)
+		return ;
 	if (av[1] && av[1][0] != 0 && ft_strlen(av[1]) > 8)
 		print_logo(av[1]);
 	else
@@ -87,8 +90,6 @@ static int	start_shell(t_mshell *shell, char **en, char **av)
 	char	*new;
 	char	**spl;
 
-	if (!shell || !en)
-		return (BAD_ARGS);
 	ft_bzero(shell, sizeof(t_mshell));
 	shell->dir_len = 3;
 	shell->en = ft_cpy_double_char(en);
@@ -112,18 +113,17 @@ static int	start_shell(t_mshell *shell, char **en, char **av)
 }
 
 
-
 int	main(int ac, char **av, char **en)
 {
 	t_mshell	shell;
 	char		*new;
 	char		**spl;
 
-	(void)ac;
 	ft_signal_handler(CMD);
 	if (start_shell(&shell, en, av) != SUCCESS)
 		return (FAIL);
-	set_alias(&shell);
+	shell.av = av;
+	set_alias(&shell, ac);
 	while (SUCCESS)
 	{
 		if (reset_data_main(&shell) == FAIL -1)
@@ -136,7 +136,7 @@ int	main(int ac, char **av, char **en)
 		new = ft_free(new);
 		spl = (char **)ft_double_sfree((void **)spl);
 	}
-	free_shell(&shell);
+	free_shell(&shell, ac);
 	return (shell.pec);
 }
 
