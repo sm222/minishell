@@ -100,7 +100,7 @@ void	print_logo(char *seed)
 	int			i;
 
 	ft_bzero(&logo, sizeof(t_logo));
-	if (seed && !ft_ban(seed, "0123456789"))
+	if (seed)
 		logo.tmp = ft_strdup(seed);
 	else
 	{
