@@ -13,6 +13,8 @@ static int	how_to_use(void)
 	ft_printf(2, "%o	"LOGIC, NULL);
 	ft_printf(2, "%oms: -r \n", NULL);
 	ft_printf(2, "%o	"RUN, NULL);
+	ft_printf(2, "%oms: -i \n", NULL);
+	ft_printf(2, "%oshow information about default value on this shell\n", NULL);
 	return (0);
 }
 
@@ -34,6 +36,23 @@ static int	look_arg(char **av, size_t *i, size_t *j)
 }
 
 //update
+
+static int	info(size_t *j)
+{
+	t_mshell	*data;
+
+	(*j)++;
+	data = ft_return_ptr(NULL, SYS);
+	if (data)
+	{
+		ft_printf(1, "%odefault value for:\n", NULL);
+		ft_printf(1, "%obin find in : %s\n", NULL, PATH_BIN_S);
+		ft_printf(1, "%osplit value on: %c\n", NULL, PATH_SPLIT);
+		ft_printf(1, "%opath separator: %c\n", NULL, PATH_SEP);
+		ft_printf(1, "%oPROMPT: %s\n", NULL, PROMPT);
+	}
+	return (0);
+}
 
 int	ft_ms(char **av, int re_in, int re_out, char **en)
 {
@@ -57,6 +76,8 @@ int	ft_ms(char **av, int re_in, int re_out, char **en)
 			err += ms_logic(av + 2, &j);
 		else if (ft_strncmp(av[j], "-r", 3) == 0)
 			err += ms_run(av + 2, &j);
+		else if (ft_strncmp(av[j], "-i", 3) == 0)
+			err += info(&j);
 		else
 			err += bad_arg(av[j]);
 	}
