@@ -13,10 +13,6 @@
 #ifndef STRUCTURE_H
 # define STRUCTURE_H
 
-# ifndef _WIN32
-#  include <sys/wait.h>
-# endif
-
 //--------------------------//
 //			include			//
 //--------------------------//
@@ -26,13 +22,16 @@
 # include <sys/types.h>
 # include <sys/stat.h>
 # include <string.h>
+# include <sys/wait.h>
 # include "readline/readline.h"
 # include "readline/history.h"
+# include "shelldata.h"
 
 //--------------------------//
 //			define			//
 //--------------------------//
 
+//	use for ft_return_ptr
 # define SYS       0		// t_mshell struct
 # define PATH      1		// path split with the ':'
 # define PEC       2		// process exit code
@@ -48,14 +47,12 @@
 
 //		SIG		//
 
-# ifndef CMD
-#  define CMD 9
-# endif
-# ifndef CHILD
-#  define CHILD 3
-# endif
-# ifndef HERE_DOC
-#  define HERE_DOC 6
+// use in ft_signal_handler
+# ifndef SIG_SHELL
+#  define SIG_SHELL 1
+#  define CMD       9
+#  define CHILD     3
+#  define HERE_DOC  6
 # endif
 
 //--------------------------//
@@ -89,11 +86,11 @@
 //			pipes			//
 //--------------------------//
 
-# define PIPE_NO		0
-# define PIPE_IN		1
-# define PIPE_OUT		2
-# define PIPE_IN_OUT	3
-# define BUILT_IN		4
+# define PIPE_NO		0	//index of byte in mode for token
+# define PIPE_IN		1	//index of byte in mode for token
+# define PIPE_OUT		2	//index of byte in mode for token
+# define PIPE_IN_OUT	3	//index of byte in mode for token
+# define BUILT_IN		4	//index of byte in mode for token
 
 //	byte flag			//
 # define BUILT_IN_FLAG	0x10
@@ -106,12 +103,12 @@
 
 typedef struct s_doc
 {
-	struct stat		start;
-	struct stat		last;
-	char			*f_name;
-	int				i;
-	int				fd;
-	struct s_doc	*next;
+	struct stat		start;		//use to see if file is still useable
+	struct stat		last;		//use to see if file is still useable
+	char			*f_name;	//name
+	int				i;			//file number
+	int				fd;			//fd of file
+	struct s_doc	*next;		//next node
 }		t_doc;
 
 /// @brief use to find if is a built in and redir
@@ -123,12 +120,12 @@ typedef struct s_doc
 /// @param redi_doc 	fd of here_doc
 typedef struct s_token
 {
-	int				mode;
-	int				pipe_in;
-	int				pipe_out;
-	int				redi_in;
-	int				redi_out;
-	int				redi_doc;
+	int				mode;		//byte flag
+	int				pipe_in;	//fd
+	int				pipe_out;	//fd
+	int				redi_in;	//fd
+	int				redi_out;	//fd
+	int				redi_doc;	//fd
 }	t_token;
 
 /// @brief linklist use for waitpid
@@ -137,23 +134,23 @@ typedef struct s_token
 /// @param next 		next node
 typedef struct s_waitp
 {
-	short			built;
-	pid_t			pid;
-	char			*name;
-	struct s_waitp	*next;
+	short			built;	//use to store if is a buildin
+	pid_t			pid;	//pid
+	char			*name;	//name of the ft
+	struct s_waitp	*next;	//next one
 }	t_waitp;
 
 /// @brief use in execution 
 /// @param err 			err code
-/// @param err_redir 	
-/// @param ft_path 		path of the cmd
-/// @param pid 			pid of the cmd run
+/// @param err_redir	
+/// @param ft_path		path of the cmd
+/// @param pid			pid of the cmd run
 typedef struct s_exe
 {
-	int				err;
-	int				err_redir;
-	char			*ft_path;
-	pid_t			pid;
+	int				err;		//err code
+	int				err_redir;	//
+	char			*ft_path;	// path of cmd if find
+	pid_t			pid;		// pid code
 }	t_exe;
 
 /// @brief use for linklist of cmd
@@ -166,9 +163,9 @@ typedef struct s_cmd
 {
 	struct s_cmd	*prev;
 	struct s_cmd	*next;
-	char			**command;
-	int				pipe[2];
-	t_token			*tok;
+	char			**command;	//av of command, av[0] is use to find path
+	int				pipe[2];	//use to store 2 fd
+	t_token			*tok;		//token of command
 }	t_cmd;
 
 typedef struct s_col_sys
@@ -184,43 +181,35 @@ typedef struct s_col_sys
 	char	*git;
 	char	*git_b;
 	char	*org;
-	char	*c1;
-	char	*c2;
-	char	*c3;
-	char	*c4;
-	char	*c5;
+	char	*c1;	// color prompt
+	char	*c2;	// color prompt
+	char	*c3;	// color prompt
+	char	*c4;	// color prompt
+	char	*c5;	// color prompt
 }	t_col_sys;
 
-/// @brief use in the shell
-/// @param s 		readline output
-/// @param pec 		prosess exit code
-/// @param exit 	bool to know if the shell need to exit
-/// @param en 		enviroment
-/// @param pwd 		prompt dir
-/// @param prompt 	prompt tmp var
-/// @param doc 		link list variable
 typedef struct s_mshell
 {
-	char			*s;
-	char			*s_in;
-	size_t			dir_len;
-	char			*rest;
-	int				pec;
-	short			exit;
-	char			**en;
-	char			**path;
-	t_cmd			*cmd_list;
-	char			*pwd;
-	char			*prompt;
-	t_doc			*doc;
-	short			re_draw;
-	char			*git_status;
-	t_waitp			*keep_wait;
-	char			**alias;
-	char			*compile_dir;
-	t_col_sys		sys_color;
-	struct termios	*termios;
-	char			**av;
+	char			*s;				//readline output
+	int				pec;			//prosess exit code
+	short			exit;			//exit flag could be switch for a bool
+	char			**en;			//env copy
+	char			*pwd;			//pwd use in readline
+	t_doc			*doc;			//heredoc linklist
+	char			**av;			//pointer to argv from main
+	char			*s_in;			//if cmd put in here shell will skip readline
+	char			*rest;			// ----need docu
+	char			**path;			//$PATH split on ':'
+	size_t			dir_len;		//change len of pwd in readline
+	char			*prompt;		// all text use in readline to make the prompt
+	short			re_draw;		//set to 1 if shell run cmd else 0, use to fix problem were readline print more then onece
+	char			**alias;		//unuse yet
+	struct termios	*termios;		//unuse -- can use later
+	t_cmd			*cmd_list;		//link list of cmd for execution
+	t_col_sys		sys_color;		//use to costomise the shell
+	t_waitp			*keep_wait;		//waitpid list use at the end of execution
+	char			*git_status;	//use if .git was find and show in the prompt
+	char			*compile_dir;	//were is the shell was compile
 }	t_mshell;
 
 /// @brief use in run_cmd
@@ -229,9 +218,9 @@ typedef struct s_mshell
 /// @param tmp 		use to navigate the link list
 typedef struct s_run
 {
-	int		err;
-	t_waitp	*wait;
-	t_cmd	*tmp;
+	int		err;		//err code
+	t_waitp	*wait;		//link list
+	t_cmd	*tmp;		//place holder while it run
 }	t_run;
 
 #endif // STRUCTURE_H

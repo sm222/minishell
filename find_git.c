@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 12:13:56 by anboisve          #+#    #+#             */
-/*   Updated: 2023/11/07 22:56:06 by anboisve         ###   ########.fr       */
+/*   Updated: 2024/01/16 17:06:44 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,18 @@ static char	*edit_git(char *in)
 	return (ft_strdup(in + i + 1));
 }
 
+/// @brief find number of '/' in getcwd()
+/// @param  void
+/// @return n of '/'
 static int	cont_c(void)
 {
 	int		i;
 	int		n;
-	char	pwd[PATH_MAX];
+	char	pwd[PATH_MAX + 1];
 
 	i = 0;
 	n = 0;
+	ft_bzero(pwd, PATH_MAX + 1);
 	getcwd(pwd, PATH_MAX);
 	while (pwd[i])
 	{

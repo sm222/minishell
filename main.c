@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:31:47 by anboisve          #+#    #+#             */
-/*   Updated: 2024/01/11 23:34:00 by anboisve         ###   ########.fr       */
+/*   Updated: 2024/01/19 23:40:30 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,6 +119,8 @@ int	main(int ac, char **av, char **en)
 	char		*new;
 	char		**spl;
 
+	if (NORUN)
+		return(ft_putstr_fd("sorry code don't work on this system", 2), 1);
 	ft_signal_handler(CMD);
 	if (start_shell(&shell, en, av) != SUCCESS)
 		return (FAIL);

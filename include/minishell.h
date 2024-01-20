@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:28:16 by anboisve          #+#    #+#             */
-/*   Updated: 2024/01/09 17:41:34 by anboisve         ###   ########.fr       */
+/*   Updated: 2024/01/19 23:20:19 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,27 +107,27 @@ typedef struct s_logo
 	char		*e[5];
 	char		*l[5];
 	int			nb[9];
-}t_logo;
+}	t_logo;
 
 //--------------------------//
 //			fonction		//
 //--------------------------//
 
 short	clean_shell(void);
-short	reset_data_main(t_mshell *shell);
-int		get_env_path(t_mshell *data);
-void	print_logo(char *seed);
-short	converter(char *in, t_cmd **list);
-short	find_end(char *s, size_t start);
-size_t	look_for_type(char *s, short *type);
 void	set_pec_to(int val);
-int		bad_con_err(short *to_set, short val, int err, char c);
-short	try_end(char *s, char *err);
+void	print_logo(char *seed);
 void	find_git(t_mshell *shell);
-void	set_alias(t_mshell *shell, int ac);
 int		export_main(t_mshell *data);
+short	try_end(char *s, char *err);
+int		get_env_path(t_mshell *data);
+short	find_end(char *s, size_t start);
+short	reset_data_main(t_mshell *shell);
+short	converter(char *in, t_cmd **list);
+void	set_alias(t_mshell *shell, int ac);
+size_t	look_for_type(char *s, short *type);
 short	put_alias(char **str, char **alias_v);
-int	export_in_main(t_mshell	*data, char *value);
+int		export_in_main(t_mshell	*data, char *value);
+int		bad_con_err(short *to_set, short val, int err, char c);
 
 #endif // MINISHELL_H
 

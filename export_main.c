@@ -36,6 +36,7 @@ int	export_main(t_mshell *data)
 
 	new = NULL;
 	av = NULL;
+	export_in_main(data, "ex\bSHELL="CONPILE_DIR"/minishell");
 	ft_printf(NO_PRINT, "%oex\bCONPILE_DIR="CONPILE_DIR, &new);
 	av = ft_split(new, '\b');
 	ft_export(av, 0, 1, data->en);

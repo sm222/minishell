@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:32:01 by anboisve          #+#    #+#             */
-/*   Updated: 2024/01/09 17:31:27 by anboisve         ###   ########.fr       */
+/*   Updated: 2024/01/19 22:57:24 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static char	*make_new_path_len(char *path, size_t len)
 		return (path);
 	while (i--)
 	{
-		if (path[i] == '/')
+		if (path[i] == PATH_SPLIT)
 			j++;
 		if (j == len)
 			break ;
@@ -53,14 +53,22 @@ static char	*get_path(char *new, char *old, t_mshell *shell)
 static char	*err_code(t_mshell *shell)
 {
 	char	*new;
+	char	*buffl;
+	char	*buffr;
 
 	new = NULL;
+	buffl = NULL;
+	buffr = NULL;
+	if (shell->pec < 100)
+		buffl = " ";
+	if (shell->pec  < 10)
+		buffr = " ";
 	if (shell->pec == 42)
-		ft_printf(NO_PRINT, "%o"BLU"%d"WHT, &new, shell->pec);
+		ft_printf(NO_PRINT, "%o"BLU"%s%d%s"WHT, &new, buffl, shell->pec, buffr);
 	else if (shell->pec != 0)
-		ft_printf(NO_PRINT, "%o%s%d"WHT, &new, shell->sys_color.c5 ,shell->pec);
+		ft_printf(NO_PRINT, "%o%s%s%d%s"WHT, &new, shell->sys_color.c5, buffl ,shell->pec, buffr);
 	else
-		ft_printf(NO_PRINT, "%o%d", &new, shell->pec);
+		ft_printf(NO_PRINT, "%o%s%d%s", &new, buffl, shell->pec, buffr);
 	return (new);
 }
 
@@ -74,6 +82,7 @@ static	void	get_user(t_mshell *shell)
 	find_git(shell);
 	logname = get_env(shell->en, "LOGNAME");
 	shell->pwd = get_path(getcwd(NULL, 0), shell->pwd, shell);
+	// ||          pwd here          || 
 	if (shell->git_status)
 	{
 		ft_printf(NO_PRINT, "%o%sY"WHT"%s%S"WHT, \
@@ -81,14 +90,15 @@ static	void	get_user(t_mshell *shell)
 		shell->git_status = NULL;
 	}
 	if (logname)
-		ft_printf(NO_PRINT, "%o%s%s"WHT"%s(%S)[%s%s"WHT"]$ ", \
+		ft_printf(NO_PRINT, "%o%s%s"WHT"%s(%S)[%s%s"WHT"]"PROMPT, \
 		&shell->prompt, shell->sys_color.c1, shell->pwd, new, err_code(shell), \
 		shell->sys_color.c3, logname);
 	else
-		ft_printf(NO_PRINT, "%o%s%s"WHT"%s(%S)$ ", \
+		ft_printf(NO_PRINT, "%o%s%s"WHT"%s(%S)"PROMPT, \
 		&shell->prompt, shell->sys_color.c1, shell->pwd, new, err_code(shell));
 	ft_free(new);
 }
+
 //\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$
 
 static short	ft_caller(t_mshell *shell)
