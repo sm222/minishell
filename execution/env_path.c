@@ -6,12 +6,16 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:24:29 by anboisve          #+#    #+#             */
-/*   Updated: 2023/10/16 14:24:30 by anboisve         ###   ########.fr       */
+/*   Updated: 2024/01/20 18:10:27 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "execution.h"
 
+/// @brief copy the env
+/// @param env were the data will be store &en
+/// @param old 
+/// @return err code
 static short	new_run_env(char ***env, char **old)
 {
 	size_t	i;
@@ -33,6 +37,10 @@ static short	new_run_env(char ***env, char **old)
 	return (SUCCESS);
 }
 
+
+/// @brief use to give new env to exeve witout the variable with no value
+/// @param en env of minishell
+/// @return new env
 char	**ex_en_new(char **en)
 {
 	char	**new;
@@ -59,20 +67,25 @@ char	**ex_en_new(char **en)
 	return (new);
 }
 
+/// @brief make new path befor trying to find the exe
+/// @param shell data
+/// @return err code
 short	make_new_path(t_mshell *shell)
 {
 	size_t	i;
+	int		len;
 
 	if (!shell)
 		return (BAD_ARGS);
 	if (shell->path)
 		shell->path = (char **)ft_double_sfree((void **)shell->path);
 	i = 0;
+	len = ft_strlen(PATH_BIN_S);
 	while (shell->en && shell->en[i])
 	{
-		if (ft_strncmp("PATH=", shell->en[i], 5) == 0)
+		if (ft_strncmp(PATH_BIN_S, shell->en[i], len) == 0)
 		{
-			shell->path = ft_split(shell->en[i] + 5, ':');
+			shell->path = ft_split(shell->en[i] + len, PATH_SPLIT);
 			if (!shell->path)
 				return (M_FAIL);
 			return (SUCCESS);

@@ -6,12 +6,19 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:32:01 by anboisve          #+#    #+#             */
-/*   Updated: 2024/01/19 22:57:24 by anboisve         ###   ########.fr       */
+/*   Updated: 2024/01/20 17:32:17 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "include/minishell.h"
 
+/// @brief use to short the path in the prompt
+/// example : home/antoine/Documents/42/minishell
+/// to        42/minishell
+/// @param path the path use
+/// @param len number of word want too keep, like ex woud be 2
+/// if len 0 return all path
+/// @return new path
 static char	*make_new_path_len(char *path, size_t len)
 {
 	size_t	i;
@@ -24,7 +31,7 @@ static char	*make_new_path_len(char *path, size_t len)
 		return (path);
 	while (i--)
 	{
-		if (path[i] == PATH_SPLIT)
+		if (path[i] == PATH_SEP)
 			j++;
 		if (j == len)
 			break ;

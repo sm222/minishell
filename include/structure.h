@@ -95,7 +95,6 @@
 //	byte flag			//
 # define BUILT_IN_FLAG	0x10
 
-# define PROMPT "$ "
 
 //--------------------------//
 //			struct			//
@@ -120,7 +119,7 @@ typedef struct s_doc
 /// @param redi_doc 	fd of here_doc
 typedef struct s_token
 {
-	int				mode;		//byte flag
+	int32_t			mode;		//byte flag
 	int				pipe_in;	//fd
 	int				pipe_out;	//fd
 	int				redi_in;	//fd
@@ -134,7 +133,7 @@ typedef struct s_token
 /// @param next 		next node
 typedef struct s_waitp
 {
-	short			built;	//use to store if is a buildin
+	int			built;	//use to store if is a buildin
 	pid_t			pid;	//pid
 	char			*name;	//name of the ft
 	struct s_waitp	*next;	//next one

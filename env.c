@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:32:18 by anboisve          #+#    #+#             */
-/*   Updated: 2023/10/16 14:32:19 by anboisve         ###   ########.fr       */
+/*   Updated: 2024/01/20 18:07:51 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ int	get_env_path(t_mshell *data)
 	data->path = NULL;
 	while (data->en && data->en[i])
 	{
-		if (ft_strncmp(data->en[i], "PATH=", 5) == 0)
+		if (ft_strncmp(data->en[i], PATH_BIN_S, ft_strlen(PATH_BIN_S)) == 0)
 		{
-			data->path = ft_split(data->en[i], ':');
+			data->path = ft_split(data->en[i], PATH_SPLIT);
 			if (!data->path)
 				return (M_FAIL);
 			return (SUCCESS);

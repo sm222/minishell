@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:24:55 by anboisve          #+#    #+#             */
-/*   Updated: 2023/11/10 22:35:26 by anboisve         ###   ########.fr       */
+/*   Updated: 2024/01/20 16:44:15 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,8 @@ int		no_file(char *name);
 int		permission_denied(char *name, mode_t *err, int code);
 short	set_data_exe(t_exe *data, t_mshell *shell, t_cmd *in);
 
-short	make_new_path(t_mshell *shell);
 char	**ex_en_new(char **en);
+short	make_new_path(t_mshell *shell);
 
 int		run_cmd(t_cmd *in, t_mshell *shell);
 short	cmd_make_node_last(t_cmd **list, char **cmd, t_token *tok);
@@ -90,8 +90,8 @@ int		dup_in_out(t_cmd *in);
 
 // pid
 
-int		wait_make_node_last(t_waitp **in, pid_t pid, int flag, char *name);
 short	wait_pids(t_waitp *in, short free_f);
+int		wait_make_node_last(t_waitp **in, pid_t pid, int flag, char *name);
 
 //free 
 

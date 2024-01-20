@@ -2,7 +2,9 @@
   "C_Cpp_Runner.msvcBatchPath": "",
   "files.associations": {
     "err.h": "c",
-    "param.h": "c"
+    "param.h": "c",
+    "types.h": "c",
+    "shelldata.h": "c"
   },
   "C_Cpp_Runner.cCompilerPath": "gcc",
   "C_Cpp_Runner.cppCompilerPath": "g++",
