@@ -7,8 +7,8 @@
 // https://stackoverflow.com/questions/142508/how-do-i-check-os-with-a-preprocessor-directive
 
 # define FT_LINUX 0 // Linux is use
-# define FT_MAC   2 // Mac is use
 # define FT_WIN   1 // Windows is use
+# define FT_MAC   2 // Mac is use
 
 # if (unix || __unix || __unix__ || __linux__)
 #  define SYSTYPE FT_LINUX
@@ -45,7 +45,7 @@
 # endif
 
 //unsuport
-# if (SYSTYPE == -1 || SYSTYPE == 2)
+# if (SYSTYPE == -1 || SYSTYPE == 1)
 #  define NORUN 1
 # else
 #  define NORUN 0

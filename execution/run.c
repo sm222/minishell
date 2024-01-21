@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:26:14 by anboisve          #+#    #+#             */
-/*   Updated: 2024/01/05 08:41:35 by anboisve         ###   ########.fr       */
+/*   Updated: 2024/01/20 21:29:12 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,7 @@ short	ft_execution(t_cmd *in, t_waitp **wait, short local)
 	if (exe.pid == -1)
 		return (err_msg(NO_FREE, FORK_FAIL, "fork fail"));
 	if (exe.pid == 0)
-		run_and_close(in, shell->en, exe.ft_path);
+		(void)run_and_close(in, shell->en, exe.ft_path);
 	else
 	{
 		if (in->command)
