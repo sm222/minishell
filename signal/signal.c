@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:37:23 by brheaume          #+#    #+#             */
-/*   Updated: 2023/11/12 12:07:16 by anboisve         ###   ########.fr       */
+/*   Updated: 2024/01/20 19:12:54 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,12 @@ static void	ft_sig_handle(int signal)
 	if (shell && !shell->re_draw)
 	{
 		shell->pec = 1;
+		shell->s = ft_free(shell->s);
+		shell->prompt = ft_free(shell->prompt);
+		get_user(shell);
+		rl_set_prompt(shell->prompt);	// can't use normaly
 		ft_putendl_fd("\0", 1);
-		rl_replace_line("", 1);
+		rl_replace_line("\0", 1);
 		rl_on_new_line();
 		rl_redisplay();
 	}

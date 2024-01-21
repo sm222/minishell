@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:28:16 by anboisve          #+#    #+#             */
-/*   Updated: 2024/01/19 23:20:19 by anboisve         ###   ########.fr       */
+/*   Updated: 2024/01/20 18:55:07 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,7 @@ typedef struct s_logo
 short	clean_shell(void);
 void	set_pec_to(int val);
 void	print_logo(char *seed);
+void	get_user(t_mshell *shell);
 void	find_git(t_mshell *shell);
 int		export_main(t_mshell *data);
 short	try_end(char *s, char *err);

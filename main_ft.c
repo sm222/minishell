@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:32:01 by anboisve          #+#    #+#             */
-/*   Updated: 2024/01/20 17:32:17 by anboisve         ###   ########.fr       */
+/*   Updated: 2024/01/20 18:54:46 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ static char	*err_code(t_mshell *shell)
 	return (new);
 }
 
-static	void	get_user(t_mshell *shell)
+void	get_user(t_mshell *shell)
 {
 	char	*logname;
 	char	*new;
