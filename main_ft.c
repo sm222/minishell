@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:32:01 by anboisve          #+#    #+#             */
-/*   Updated: 2024/01/20 18:54:46 by anboisve         ###   ########.fr       */
+/*   Updated: 2024/01/20 23:55:56 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,19 +151,22 @@ static short	is_number_list(char *s)
 	return (1);
 }
 
-static int	set_cmd_input(t_mshell *shell)
+static void	set_cmd_input(t_mshell *shell)
 {
 	if (!shell->av)
-	{
-		shell->s = NULL;
-		return (0);
-	}
+		return ;
 	if (shell->s_in)
 		shell->s = shell->s_in;
 	else if (ft_strlen_double(shell->av) > 1 && !is_number_list(shell->av[1]))
 	{
 		if (ft_strncmp(shell->av[1], "-c", 3) == 0)
 			shell->s = ft_strdup(shell->av[2]);
+		else if (ft_strncmp(shell->av[1], "-r", 3) == 0)
+		{
+			shell->s = get_next_line(STDIN_FILENO);
+			if (ft_strlen(shell->s) > 0 && shell->s[ft_strlen(shell->s) - 1] == '\n')
+				shell->s[ft_strlen(shell->s) - 1] = '\0';
+		}
 		else
 		{
 			ft_printf(2, "%o"MS_NAME"\b: %s unknow flag\n", NULL, shell->av[1]);
@@ -174,7 +177,6 @@ static int	set_cmd_input(t_mshell *shell)
 	}
 	else
 		shell->s = readline(shell->prompt);
-	return (0);
 }
 
 short	reset_data_main(t_mshell *shell)

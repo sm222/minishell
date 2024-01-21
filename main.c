@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:31:47 by anboisve          #+#    #+#             */
-/*   Updated: 2024/01/19 23:40:30 by anboisve         ###   ########.fr       */
+/*   Updated: 2024/01/20 23:30:07 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,15 @@ static void	do_logo(char **av)
 {
 	if (ft_strlen_double(av) > 2)
 		return ;
-	if (av[1] && av[1][0] != 0 && ft_strlen(av[1]) > 8)
-		print_logo(av[1]);
+	if (av[1] && av[1][0] != 0)
+	{
+		if (!ft_ban(av[1], "0123456789") && ft_strlen(av[1]) > 8)
+			print_logo(av[1]);
+		else if (!ft_ban(av[1], "0123456789"))
+			print_logo(NULL);
+		else
+			return ;
+	}
 	else
 		print_logo(NULL);
 	ft_printf(1, "%o%S"V_MINI"\n"WHT, NULL, ft_make_color(20, 84, 255));

@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 17:54:43 by anboisve          #+#    #+#             */
-/*   Updated: 2024/01/09 19:24:36 by anboisve         ###   ########.fr       */
+/*   Updated: 2024/01/20 23:41:30 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,9 @@ short	put_alias(char **str, char **alias_v)
 	return (0);
 }
 
+/// @brief more like run .msrc
+/// @param shell 
+/// @param ac 
 void	set_alias(t_mshell *shell, int ac)
 {
 	char	**av;
@@ -67,6 +70,8 @@ void	set_alias(t_mshell *shell, int ac)
 
 	shell->alias = ft_calloc(1, sizeof(char *));
 	ft_return_ptr(shell->alias, ALIAS_VAR);
+	if (ac > 1 && ft_strncmp(shell->av[1], "-r", 3) == 0)
+		return ;
 	if (ac < 3)
 	{
 		ft_printf(NO_PRINT, "%o%s/.msrc", &path, get_env(shell->en, "HOME"));
