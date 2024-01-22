@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:32:01 by anboisve          #+#    #+#             */
-/*   Updated: 2024/01/20 23:55:56 by anboisve         ###   ########.fr       */
+/*   Updated: 2024/01/22 08:46:39 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ void	get_user(t_mshell *shell)
 	find_git(shell);
 	logname = get_env(shell->en, "LOGNAME");
 	shell->pwd = get_path(getcwd(NULL, 0), shell->pwd, shell);
-	// ||          pwd here          || 
+	// ||          pwd here          ||
 	if (shell->git_status)
 	{
 		ft_printf(NO_PRINT, "%o%sY"WHT"%s%S"WHT, \
@@ -108,12 +108,45 @@ void	get_user(t_mshell *shell)
 
 //\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$
 
+static void	lunch(t_mshell *shell)
+{
+	converter(shell->rest, &shell->cmd_list);
+	run_cmd(shell->cmd_list, shell);
+	free_here_doc(UNLINK);
+}
+
+/// @brief 
+/// @param shell 
+/// @param l 
+/// @return 1 to break 0 to continue
+static int	skip_to_next(t_mshell *shell, t_index *l)
+{
+	ft_set_mode(-1);
+	l->k = ft_strlen(shell->s);
+	if ((shell->pec != 0 && l->type == '&') || (shell->pec == 0 && l->type == '|'))
+	{
+		while (l->j < l->k)
+		{
+			ft_set_mode(shell->s[l->j]);
+			if (ft_set_mode(0) < 1 && shell->s[l->j] == ';')
+			{
+				l->j++;
+				return (0);
+			}
+			else
+				l->j++;
+		}
+		return (1);
+	}
+	return (0);
+}
+
+
 static short	ft_caller(t_mshell *shell)
 {
 	t_index	l;
 
 	ft_bzero(&l, sizeof(t_index));
-	shell->re_draw = 1;
 	while (l.j < ft_strlen(shell->s))
 	{
 		l.i = look_for_type(shell->s + l.j, &l.type);
@@ -126,12 +159,9 @@ static short	ft_caller(t_mshell *shell)
 			l.j += l.i + 1;
 		else
 			l.j += l.i + 2;
-		converter(shell->rest, &shell->cmd_list);
-		run_cmd(shell->cmd_list, shell);
-		free_here_doc(UNLINK);
+		lunch(shell);
 		shell->rest = ft_free(shell->rest);
-		if ((shell->pec != 0 && l.type == '&') || \
-			(shell->pec == 0 && l.type == '|'))
+		if (skip_to_next(shell, &l))
 			break ;
 	}
 	return (SUCCESS);
@@ -162,11 +192,7 @@ static void	set_cmd_input(t_mshell *shell)
 		if (ft_strncmp(shell->av[1], "-c", 3) == 0)
 			shell->s = ft_strdup(shell->av[2]);
 		else if (ft_strncmp(shell->av[1], "-r", 3) == 0)
-		{
-			shell->s = get_next_line(STDIN_FILENO);
-			if (ft_strlen(shell->s) > 0 && shell->s[ft_strlen(shell->s) - 1] == '\n')
-				shell->s[ft_strlen(shell->s) - 1] = '\0';
-		}
+			shell->s = readline(NULL);
 		else
 		{
 			ft_printf(2, "%o"MS_NAME"\b: %s unknow flag\n", NULL, shell->av[1]);
@@ -202,5 +228,6 @@ short	reset_data_main(t_mshell *shell)
 	if (i == ft_strlen(shell->s))
 		return (FAIL);
 	ft_set_mode(-1);
+	shell->re_draw = 1;
 	return (ft_caller(shell));
 }

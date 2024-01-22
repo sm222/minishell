@@ -38,7 +38,7 @@ static char	*read_file(int fd)
 	}
 	close (fd);
 	i = ft_strlen(join);
-	if (join && join[i -1] == ';')
+	if (join && join[i - 1] == ';')
 		join[i -1] = '\0';
 	return (join);
 }
