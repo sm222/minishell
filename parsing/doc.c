@@ -58,13 +58,13 @@ static short	ft_no_quotes(char *src, int start_index)
 	no_quotes = CORRECT;
 	if (start_index < (int)ft_strlen(src))
 		start_index++;
-	while (src && src[start_index] && src[start_index] == ' ')
+	while (src && src[start_index] && ft_isspace(src[start_index]))
 		start_index++;
 	while (src && src[start_index] && src[start_index] == '<')
 		start_index++;
-	while (src && src[start_index] && src[start_index] == ' ')
+	while (src && src[start_index] && ft_isspace(src[start_index]))
 		start_index++;
-	while (src && src[start_index] && src[start_index] != ' ')
+	while (src && src[start_index] && !ft_isspace(src[start_index]))
 	{
 		if (src[start_index] == IGNORE_QUOTES)
 			no_quotes = INCORRECT;
@@ -81,7 +81,7 @@ static int	ft_run_here_doc(char *src, t_idx *limit, t_rdct *fd)
 	short	no_quotes;
 
 	limit->current_start = limit->start_index + 1;
-	if (src[limit->current_start + 1] == ' ')
+	if (ft_isspace(src[limit->current_start + 1]))
 		limit->current_start++;
 	current = limit->start_index;
 	no_quotes = CORRECT;

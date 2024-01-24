@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:32:30 by anboisve          #+#    #+#             */
-/*   Updated: 2023/12/16 22:29:00 by anboisve         ###   ########.fr       */
+/*   Updated: 2024/01/24 18:03:56 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,13 +85,13 @@ short	find_end(char *s, size_t start)
 	i = start + 2;
 	if (s && (s[i - 1] == '\'' || s[i - 1] == '"'))
 		return (0);
-	while (s && s[i] && (s[i] == ' ' || s[i] == '\t'))
+	while (s && s[i] && ft_isspace(s[i]))
 		ft_set_mode(s[i++]);
 	if (ft_strlen(s) > i && ft_set_mode(s[i]) == 0)
 	{
 		while (s[i] == '|' || s[i] == '&')
 			i++;
-		while (s && s[i] && (s[i] == ' ' || s[i] == '\t'))
+		while (s && s[i] && ft_isspace(s[i]))
 			ft_set_mode(s[i++]);
 		if (!s[i])
 			return (1);

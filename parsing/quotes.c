@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   quotes.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brheaume <marvin@42quebec.com>             +#+  +:+       +#+        */
+/*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:36:34 by brheaume          #+#    #+#             */
-/*   Updated: 2023/10/16 14:36:35 by brheaume         ###   ########.fr       */
+/*   Updated: 2024/01/24 18:26:04 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ void	ft_quote_op(char *cmd)
 	index.current_start = index.start_index;
 	while (index.current_start < index.end_index)
 	{
-		if (cmd[index.current_start] == ' ')
+		if (ft_isspace(cmd[index.current_start]))
 			cmd[index.current_start] = PASSED_QUOTES;
 		if (cmd[index.current_start] == '\'')
 			cmd[index.current_start] = PASSED_SINGLE;

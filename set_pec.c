@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 12:51:56 by anboisve          #+#    #+#             */
-/*   Updated: 2023/10/23 15:59:21 by anboisve         ###   ########.fr       */
+/*   Updated: 2024/01/24 18:05:19 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static short	check_bett(char *s, char *err, size_t *i)
 	*i += 1;
 	while (j--)
 	{
-		while (j && (s[j] == ' ' || s[j] == '\t'))
+		while (j && ft_isspace(s[j]))
 			j--;
 		if (s[j] == '|' || s[j] == '&')
 		{
@@ -55,7 +55,7 @@ static short	check_bett(char *s, char *err, size_t *i)
 static short	end(char *s, char *err, size_t len)
 {
 	len--;
-	while (s[len] == ' ' || s[len] == '\t')
+	while (ft_isspace(s[len]))
 		len--;
 	if (s[len] == '|' || s[len] == '&')
 	{

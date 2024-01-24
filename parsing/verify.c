@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:37:07 by brheaume          #+#    #+#             */
-/*   Updated: 2023/10/23 12:45:19 by brheaume         ###   ########.fr       */
+/*   Updated: 2024/01/24 18:28:34 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,11 +73,11 @@ int	ft_pipe_error(char *src)
 	i--;
 	while (i)
 	{
-		if (src[i] != ' ')
+		if (!ft_isspace(src[i]))
 			return (INCORRECT);
 		i--;
 	}
-	if (src[i] == ' ')
+	if (ft_isspace(src[i]))
 		return (CORRECT);
 	else
 		return (INCORRECT);

@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 15:06:44 by anboisve          #+#    #+#             */
-/*   Updated: 2023/10/20 08:50:18 by anboisve         ###   ########.fr       */
+/*   Updated: 2024/01/24 18:12:54 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ static short	skip_2(char *in)
 {
 	if (ft_strlen(in) >= 1)
 	{
-		if (in[0] == '$' && in[1] == ' ')
+		if (in[0] == '$' && ft_isspace(in[1]))
 			return (1);
 		if (in[0] == '$' && in[1] == '\0')
 			return (1);

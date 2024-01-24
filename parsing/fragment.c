@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fragment.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brheaume <marvin@42quebec.com>             +#+  +:+       +#+        */
+/*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:35:50 by brheaume          #+#    #+#             */
-/*   Updated: 2023/10/23 11:54:45 by brheaume         ###   ########.fr       */
+/*   Updated: 2024/01/24 18:27:53 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	ft_word_delimiter(char *cmd, t_idx *index)
 
 	i = index->current;
 	index->start_index = i;
-	while (cmd[i] && cmd[i] != PASSED_THROUGH && cmd[i] != ' ')
+	while (cmd[i] && cmd[i] != PASSED_THROUGH && !ft_isspace(cmd[i]))
 		i++;
 	index->end_index = i;
 	index->current = i;
@@ -34,7 +34,7 @@ char	**ft_cmd_fragments(char *cmd)
 	ft_bzero(&idx, sizeof(t_idx));
 	while (cmd[idx.current])
 	{
-		while (cmd[idx.current] && (cmd[idx.current] == ' ' || \
+		while (cmd[idx.current] && (ft_isspace(cmd[idx.current]) || \
 				cmd[idx.current] == PASSED_THROUGH))
 			idx.current++;
 		ft_word_delimiter(cmd, &idx);

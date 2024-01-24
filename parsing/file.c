@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   file.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brheaume <marvin@42quebec.com>             +#+  +:+       +#+        */
+/*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:35:41 by brheaume          #+#    #+#             */
-/*   Updated: 2023/10/16 14:35:41 by brheaume         ###   ########.fr       */
+/*   Updated: 2024/01/24 18:27:20 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,10 @@ char	*ft_file_extract(char *src, int start_index)
 		i.start_index++;
 	if (src[i.start_index] == '>')
 		i.start_index++;
-	while (src[i.start_index] == ' ')
+	while (ft_isspace(src[i.start_index]))
 		i.start_index++;
 	i.end_index = i.start_index;
-	while (src[i.end_index] && src[i.end_index] != ' ')
+	while (src[i.end_index] && !ft_isspace(src[i.end_index]))
 		i.end_index++;
 	ft_file_quotes(src, &i);
 	res = ft_strslice(src, i.start_index, i.end_index);
