@@ -41,7 +41,7 @@ static int	info(size_t *j)
 {
 	t_mshell	*data;
 
-	(*j)++;
+	(void)(*j);
 	data = ft_return_ptr(NULL, SYS);
 	if (data)
 	{
@@ -50,6 +50,8 @@ static int	info(size_t *j)
 		ft_printf(1, "%osplit value on: %c\n", NULL, PATH_SPLIT);
 		ft_printf(1, "%opath separator: %c\n", NULL, PATH_SEP);
 		ft_printf(1, "%oPROMPT: %s\n", NULL, PROMPT);
+		ft_printf(1, "%oversion: %s\n", NULL, get_env(data->en, "V_MINI"));
+		ft_printf(1, "%oconpile dir: %s\n", NULL, get_env(data->en, "CONPILE_DIR"));
 	}
 	return (0);
 }
