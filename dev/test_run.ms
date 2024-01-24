@@ -11,11 +11,26 @@ mkdir -p output
 echo test 0 
 bash -c 'echo $?'
 minishell -c 'echo $?'
-echo test 1 ls 
+#
+sleep 1
+echo test 1 ls
 minishell -c 'ls > output/ms0'
 bash -c 'ls > output/ba0'
 diff output/ms0 output/ba0 || echo 'fail'
-echo test 2 /bin/ls 
+sleep 1
+#
+echo test 2 /bin/ls ; echo
 minishell -c '/bin/ls > output/ms0'
 bash -c 'ls > output/ba0'
 diff output/ms0 output/ba0 || echo 'fail'
+sleep 1
+#
+echo test '|'
+minishell -c '|'
+bash -c '|'
+#
+echo
+sleep 1
+echo test ' | '
+minishell -c '		ls'
+bash -c '		ls'
