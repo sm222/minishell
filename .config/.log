@@ -1,9 +1,13 @@
 
->4.0.1
+>4.0.2
 
+@sm222
+	Fix bug with cd with not set OLDPWD
+	Fix bug with built in runing on fds 0 0, now run on 0 1
+		only append in the shell with no pipeline
+	switch some pwd logic
 
-
-<4.0.1
+<4.0.2
 
 
 >4.0.0

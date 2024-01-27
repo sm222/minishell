@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:24:37 by anboisve          #+#    #+#             */
-/*   Updated: 2023/12/17 00:24:41 by anboisve         ###   ########.fr       */
+/*   Updated: 2024/01/27 11:58:51 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,16 @@ static void	change_arg(t_cmd *in)
 	}
 }
 
+static void	exit_shell(t_mshell *shell, t_cmd **in)
+{
+	cmd_free(in);
+	free_here_doc(UNLINK);
+	free_t_mshell(shell);
+	rl_clear_history();
+	ft_putstr_fd("exit\n", 2);
+	exit(((unsigned char)shell->pec));
+}
+
 /// @brief	use to run a built in
 /// @param	ft	address of the function
 /// @param	in	t_cmd* data of the function
@@ -102,26 +112,24 @@ static void	change_arg(t_cmd *in)
 static int	run_local(int (*ft)(char **, int, int, char **), t_cmd *in)
 {
 	t_mshell	*shell;
-	char		c_pwd[PATH_MAX];
+	char		c_pwd[PATH_MAX + 1];
 
+	ft_bzero(c_pwd, PATH_MAX + 1);
 	getcwd(c_pwd, PATH_MAX);
 	shell = ft_return_ptr(NULL, SYS);
 	if (!ft)
 		return (FAIL);
+	if (in->tok->redi_out == 0)
+		in->tok->redi_out = STDOUT_FILENO;
 	change_arg(in);
 	shell->pec = \
 	ft(in->command, in->tok->redi_in, in->tok->redi_out, shell->en);
+	if (in->tok->redi_out == STDOUT_FILENO)
+		in->tok->redi_out = 0;
 	if (ft == &ft_cd)
 		change_env_data(shell, c_pwd);
 	if (shell->exit)
-	{
-		cmd_free(&in);
-		free_here_doc(UNLINK);
-		free_t_mshell(shell);
-		rl_clear_history();
-		ft_putstr_fd("exit\n", 2);
-		exit(((unsigned char)shell->pec));
-	}
+		exit_shell(shell, &in);
 	shell->en = ft_return_ptr(NULL, ENV_C);
 	shell->alias = ft_return_ptr(NULL, ALIAS_VAR);
 	return (SUCCESS);

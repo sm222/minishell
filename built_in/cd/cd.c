@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:19:43 by anboisve          #+#    #+#             */
-/*   Updated: 2023/10/19 18:42:55 by brheaume         ###   ########.fr       */
+/*   Updated: 2024/01/27 12:11:31 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,14 +59,14 @@ static int	goto_dir(char *dir, char **en, int re_out)
 	int		err;
 	char	*t;
 
-	if (ft_strncmp(dir, "", 1) == 0)
-		return (0);
 	if (ft_strncmp(dir, "-", 2) == 0)
 	{
 		t = find_name(en, "OLDPWD=");
-		ft_printf(re_out, "%o%s\n", NULL, t);
 		if (t)
+		{
+			ft_printf(re_out, "%o%s\n", NULL, t);
 			dir = t;
+		}
 		else
 		{
 			ft_putstr_fd("cd: OLDPWD not set\n", 2);
@@ -94,7 +94,7 @@ int	ft_cd(char **av, int re_in, int re_out, char **en)
 
 	(void)re_in;
 	len = ft_strlen_double(av);
-	if (len == 1)
+	if (len == 1 || ft_strncmp(av[1], "\0", 1) == 0)
 		return (get_to_user(en));
 	return (goto_dir(av[1], en, re_out));
 }

@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:24:47 by anboisve          #+#    #+#             */
-/*   Updated: 2023/11/10 22:41:59 by anboisve         ###   ########.fr       */
+/*   Updated: 2024/01/27 12:30:39 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,9 @@ short	new_pwd(t_mshell *data)
 {
 	char	*new;
 	char	**spl;
-	char	pwd[PATH_MAX];
+	char	pwd[PATH_MAX + 1];
 
+	ft_bzero(pwd, PATH_MAX + 1);
 	getcwd(pwd, PATH_MAX);
 	if (pwd[0])
 	{
