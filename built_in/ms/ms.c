@@ -2,19 +2,21 @@
 
 static int	how_to_use(void)
 {
-	ft_printf(2, "%oms: -s \n", NULL);
+	ft_printf(2, "%oms: -s\n", NULL);
 	ft_printf(2, "%o	"DIRL, NULL);
 	ft_printf(2, "%o	C show the color pallet\n", NULL);
 	ft_printf(2, "%o	"COLOR_SYS, NULL);
-	ft_printf(2, "%oms: -u \n", NULL);
+	ft_printf(2, "%oms: -u\n", NULL);
 	ft_printf(2, "%o	use too look for update, and auto update\n", NULL);
 	ft_printf(2, "%o	you can use in .msrc\n", NULL);
-	ft_printf(2, "%oms: -l \n", NULL);
+	ft_printf(2, "%oms: -l\n", NULL);
 	ft_printf(2, "%o	"LOGIC, NULL);
 	ft_printf(2, "%oms: -r \n", NULL);
 	ft_printf(2, "%o	"RUN, NULL);
-	ft_printf(2, "%oms: -i \n", NULL);
-	ft_printf(2, "%oshow information about default value on this shell\n", NULL);
+	ft_printf(2, "%oms: -i\n", NULL);
+	ft_printf(2, "%o	show information about default value on this shell\n", NULL);
+	ft_printf(2, "%oms: log\n", NULL);
+	ft_printf(2, "%o	use to print the log on scren with 'less'\n", NULL);
 	return (0);
 }
 
@@ -33,6 +35,28 @@ static int	look_arg(char **av, size_t *i, size_t *j)
 		return (0);
 	}
 	return (0);
+}
+
+static int	readlog(void)
+{
+	t_mshell	*shell;
+	char		*str;
+	int			err;
+
+	err = 0;
+	shell = ft_return_ptr(NULL, SYS);
+	if (!shell)
+		return (1);
+	ft_printf(NO_PRINT, "%o%s/.config/.log", &str, shell->compile_dir);
+	if (access(str, F_OK | R_OK) == 0 && !shell->s_in)
+		ft_printf(NO_PRINT, "%oless %s", &shell->s_in, str);
+	else
+	{
+		ft_printf(2, "%oms: no file %s\n", NULL, str);
+		err = 1;
+	}
+	ft_free(str);
+	return (err);
 }
 
 //update
@@ -80,6 +104,8 @@ int	ft_ms(char **av, int re_in, int re_out, char **en)
 			err += ms_run(av + 2, &j);
 		else if (ft_strncmp(av[j], "-i", 3) == 0)
 			err += info(&j);
+		else if (ft_strncmp(av[j], "log", 4) == 0)
+			err += readlog();
 		else
 			err += bad_arg(av[j]);
 	}
