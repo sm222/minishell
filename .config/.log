@@ -1,3 +1,12 @@
+>4.2.2
+
+@sm222
+	add cd -g
+		bring back to the root of a git projet
+
+<4.2.2
+
+
 >4.1.2
 
 @sm222
