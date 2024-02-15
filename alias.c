@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 17:54:43 by anboisve          #+#    #+#             */
-/*   Updated: 2024/02/14 20:06:45 by anboisve         ###   ########.fr       */
+/*   Updated: 2024/02/15 10:00:39 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ void	set_alias(t_mshell *shell, int ac)
 			ft_double_sfree((void **)av);
 			ft_free(cmd);
 		}
-		else if (shell->isatty)
+		else if (!shell->isatty)
 		{
 			ft_printf(2, "%ono config file found, you can add one in ~/.msrc\n", NULL);
 			ft_printf(2, "%oecho > $HOME/.msrc or copy the default one with rule: make config\n", NULL);

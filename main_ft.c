@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:32:01 by anboisve          #+#    #+#             */
-/*   Updated: 2024/02/15 08:58:11 by anboisve         ###   ########.fr       */
+/*   Updated: 2024/02/15 09:54:15 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -201,7 +201,7 @@ static void	set_cmd_input(t_mshell *shell)
 		shell->s_in = NULL;
 		shell->av = NULL;
 	}
-	else if (shell->isatty)
+	else if (!shell->isatty)
 		shell->s = readline(shell->prompt);
 	else
 	{

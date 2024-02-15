@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:31:47 by anboisve          #+#    #+#             */
-/*   Updated: 2024/02/14 22:40:07 by anboisve         ###   ########.fr       */
+/*   Updated: 2024/02/15 10:01:07 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,9 @@ static void	do_logo(char **av, t_mshell *shell)
 		else
 			return ;
 	}
-	else if (shell->isatty)
+	else if (!shell->isatty)
 		print_logo(NULL);
-	if (shell->isatty)
+	if (!shell->isatty)
 		ft_printf(1, "%o%S"V_MINI"\n"WHT, NULL, ft_make_color(20, 84, 255));
 }
 

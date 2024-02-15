@@ -1,3 +1,9 @@
+>4.3.3
+
+@sm222
+	fix bug with istty forgot to add '!'
+
+
 >4.3.2
 
 @sm222
