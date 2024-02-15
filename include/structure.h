@@ -209,6 +209,7 @@ typedef struct s_mshell
 	t_waitp			*keep_wait;		//waitpid list use at the end of execution
 	char			*git_status;	//use if .git was find and show in the prompt
 	char			*compile_dir;	//were is the shell was compile
+	int				isatty;			//use to know if the shell is pipe or not
 }	t_mshell;
 
 /// @brief use in run_cmd

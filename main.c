@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:31:47 by anboisve          #+#    #+#             */
-/*   Updated: 2024/01/20 23:30:07 by anboisve         ###   ########.fr       */
+/*   Updated: 2024/02/14 22:40:07 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static void	free_shell(t_mshell *shell, int ac)
 	ft_free(shell->termios);
 }
 
-static void	do_logo(char **av)
+static void	do_logo(char **av, t_mshell *shell)
 {
 	if (ft_strlen_double(av) > 2)
 		return ;
@@ -43,9 +43,10 @@ static void	do_logo(char **av)
 		else
 			return ;
 	}
-	else
+	else if (shell->isatty)
 		print_logo(NULL);
-	ft_printf(1, "%o%S"V_MINI"\n"WHT, NULL, ft_make_color(20, 84, 255));
+	if (shell->isatty)
+		ft_printf(1, "%o%S"V_MINI"\n"WHT, NULL, ft_make_color(20, 84, 255));
 }
 
 static void	set_ptr_all(t_mshell *shell)
@@ -110,7 +111,7 @@ static int	start_shell(t_mshell *shell, char **en, char **av)
 	ft_double_sfree((void **)spl);
 	ft_free(new);
 	shell->en = ft_return_ptr(NULL, ENV_C);
-	do_logo(av);
+	do_logo(av, shell);
 	shell->compile_dir = CONPILE_DIR;
 	export_main(shell);
 	set_shlvl(shell);

@@ -1,3 +1,9 @@
+>4.3.2
+
+@sm222
+	add get_next_line during if minishell is pipe
+
+
 >4.2.2
 
 @sm222

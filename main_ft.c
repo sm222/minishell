@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:32:01 by anboisve          #+#    #+#             */
-/*   Updated: 2024/01/22 08:46:39 by anboisve         ###   ########.fr       */
+/*   Updated: 2024/02/15 08:58:11 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -192,7 +192,7 @@ static void	set_cmd_input(t_mshell *shell)
 		if (ft_strncmp(shell->av[1], "-c", 3) == 0)
 			shell->s = ft_strdup(shell->av[2]);
 		else if (ft_strncmp(shell->av[1], "-r", 3) == 0)
-			shell->s = readline(NULL);
+			shell->s = get_next_line(STDIN_FILENO);
 		else
 		{
 			ft_printf(2, "%o"MS_NAME"\b: %s unknow flag\n", NULL, shell->av[1]);
@@ -201,8 +201,13 @@ static void	set_cmd_input(t_mshell *shell)
 		shell->s_in = NULL;
 		shell->av = NULL;
 	}
-	else
+	else if (shell->isatty)
 		shell->s = readline(shell->prompt);
+	else
+	{
+		ft_putendl_fd(shell->prompt, STDOUT_FILENO);
+		shell->s = get_next_line(STDIN_FILENO);
+	}
 }
 
 short	reset_data_main(t_mshell *shell)
