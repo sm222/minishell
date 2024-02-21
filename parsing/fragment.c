@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:35:50 by brheaume          #+#    #+#             */
-/*   Updated: 2024/01/24 18:27:53 by anboisve         ###   ########.fr       */
+/*   Updated: 2024/02/21 13:42:05 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,5 +56,7 @@ char	**ft_cmd_deconstruct(char *cmd, t_token *tokens)
 		ft_quote_op(cmd);
 	if (ft_redirect_op(cmd, tokens) == CORRECT)
 		res = ft_cmd_fragments(cmd);
+	else
+		return (NULL);
 	return (res);
 }

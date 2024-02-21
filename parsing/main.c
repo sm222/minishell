@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:35:56 by brheaume          #+#    #+#             */
-/*   Updated: 2023/12/16 02:24:00 by anboisve         ###   ########.fr       */
+/*   Updated: 2024/02/21 14:03:07 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,10 @@ t_loc	*ft_parsing(char *src)
 	}
 	if (!ft_verify(src))
 		return (NULL);
-	ft_pipe_op(src, &list);
+	if (ft_pipe_op(src, &list))
+	{
+		ft_purge(list);
+		return (NULL);
+	}
 	return (ft_validate_cmds(list));
 }

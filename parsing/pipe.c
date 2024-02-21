@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brheaume <marvin@42quebec.com>             +#+  +:+       +#+        */
+/*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:36:15 by brheaume          #+#    #+#             */
-/*   Updated: 2023/10/16 14:36:15 by brheaume         ###   ########.fr       */
+/*   Updated: 2024/02/20 13:54:36 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,13 @@ int	ft_has_pipe(char *src)
 	return (INCORRECT);
 }
 
-void	ft_init_start_cmd(char *cmd, t_idx *i, t_loc **list)
+int	ft_init_start_cmd(char *cmd, t_idx *i, t_loc **list)
 {
 	t_token	*tokens;
 	char	**decon;
+	int		err;
 
+	err = 0;
 	ft_add_node(list);
 	if (i->end_index > 0)
 		i->start_index = i->end_index;
@@ -48,16 +50,22 @@ void	ft_init_start_cmd(char *cmd, t_idx *i, t_loc **list)
 		i->end_index = (int)ft_strlen(cmd);
 	(*list)->slice = ft_strslice(cmd, i->start_index, i->end_index);
 	decon = ft_cmd_deconstruct((*list)->slice, tokens);
+	if (!decon)
+		err = 1;
 	ft_set_decon(list, decon);
 	ft_free((*list)->slice);
+	return (err);
 }
 
-void	ft_pipe_op(char *cmd, t_loc **list)
+int	ft_pipe_op(char *cmd, t_loc **list)
 {
 	t_idx	index;
+	int		err;
 
+	err = 0;
 	ft_bzero(&index, sizeof(t_idx));
 	while (ft_has_pipe(cmd))
-		ft_init_start_cmd(cmd, &index, list);
-	ft_init_start_cmd(cmd, &index, list);
+		err += ft_init_start_cmd(cmd, &index, list);
+	err += ft_init_start_cmd(cmd, &index, list);
+	return (err);
 }

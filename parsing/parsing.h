@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:36:07 by brheaume          #+#    #+#             */
-/*   Updated: 2023/12/16 02:20:34 by anboisve         ###   ########.fr       */
+/*   Updated: 2024/02/20 13:54:56 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ void	ft_set_decon(t_loc **list, char **decon_cmd);
 //--------------------------//
 int		ft_has_pipe(char *src);
 int		ft_invalid_pipe(char *cmd);
-void	ft_pipe_op(char *cmd, t_loc **list);
+int		ft_pipe_op(char *cmd, t_loc **list);
 
 //--------------------------//
 //          quotes          //

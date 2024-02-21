@@ -6,11 +6,27 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:32:23 by anboisve          #+#    #+#             */
-/*   Updated: 2023/12/17 00:23:57 by anboisve         ###   ########.fr       */
+/*   Updated: 2024/02/21 13:39:45 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "include/minishell.h"
+
+static short	find_name(const char *name)
+{
+	if (
+		ft_strncmp(name, EXPORT, ft_strlen(EXPORT) + 1) == 0 || \
+		ft_strncmp(name, UNSET, ft_strlen(UNSET) + 1) == 0 || \
+		ft_strncmp(name, FT_ECHO, ft_strlen(FT_ECHO) + 1) == 0 || \
+		ft_strncmp(name, EXIT, ft_strlen(EXIT) + 1) == 0 || \
+		ft_strncmp(name, PWD, ft_strlen(PWD) + 1) == 0 || \
+		ft_strncmp(name, ENV, ft_strlen(ENV) + 1) == 0 || \
+		ft_strncmp(name, CD, ft_strlen(CD) + 1) == 0 || \
+		ft_strncmp(name, ALIAS, ft_strlen(ALIAS) + 1) == 0 || \
+		ft_strncmp(name, MS, ft_strlen(MS)) == 0 )
+		return (BUILT_IN_FLAG);
+	return (0);
+}
 
 static int	find_buit_in(char *name)
 {
@@ -28,16 +44,7 @@ static int	find_buit_in(char *name)
 		tmp[i] = ft_tolower(tmp[i]);
 		i++;
 	}
-	if (ft_strncmp(tmp, EXPORT, ft_strlen(EXPORT) + 1) == 0 || \
-		ft_strncmp(tmp, UNSET, ft_strlen(UNSET) + 1) == 0 || \
-		ft_strncmp(tmp, FT_ECHO, ft_strlen(FT_ECHO) + 1) == 0 || \
-		ft_strncmp(tmp, EXIT, ft_strlen(EXIT) + 1) == 0 || \
-		ft_strncmp(tmp, PWD, ft_strlen(PWD) + 1) == 0 || \
-		ft_strncmp(tmp, ENV, ft_strlen(ENV) + 1) == 0 || \
-		ft_strncmp(tmp, CD, ft_strlen(CD) + 1) == 0 || \
-		ft_strncmp(tmp, ALIAS, ft_strlen(ALIAS) + 1) == 0 || \
-		ft_strncmp(tmp, MS, ft_strlen(MS)) == 0)
-		flag = BUILT_IN_FLAG;
+	flag = find_name(tmp);
 	free(tmp);
 	return (flag);
 }
@@ -51,6 +58,10 @@ short	converter(char *in, t_cmd **list)
 	if (!in || !list)
 		return (BAD_ARGS);
 	nav = ft_parsing(in);
+	if (!nav) 
+	{
+		return (FAIL);
+	}
 	while (nav)
 	{
 		flag = 0;

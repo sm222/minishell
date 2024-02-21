@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validate.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brheaume <marvin@42quebec.com>             +#+  +:+       +#+        */
+/*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:36:59 by brheaume          #+#    #+#             */
-/*   Updated: 2023/10/16 14:37:00 by brheaume         ###   ########.fr       */
+/*   Updated: 2024/02/20 08:27:49 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ int	ft_set_error_code(int code)
 	int	*pec;
 
 	pec = ft_return_ptr(NULL, PEC);
-	*pec = code;
+	if (!pec)
+		*pec = code;
 	return (code);
 }
 

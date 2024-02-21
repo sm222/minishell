@@ -16,7 +16,6 @@ export MS_DIR=$CONPILE_DIR
 export SDIR=$CONPILE_DIR/scrips
 
 #make update
-ms -u
+#ms -u
 
 #base scrip made by anboisve
-#@0cculus add security if line start with '|'

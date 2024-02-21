@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:32:01 by anboisve          #+#    #+#             */
-/*   Updated: 2024/02/15 09:54:15 by anboisve         ###   ########.fr       */
+/*   Updated: 2024/02/21 13:48:49 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,16 +108,24 @@ void	get_user(t_mshell *shell)
 
 //\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$
 
-static void	lunch(t_mshell *shell)
+static short	lunch(t_mshell *shell)
 {
-	converter(shell->rest, &shell->cmd_list);
-	run_cmd(shell->cmd_list, shell);
+	if (converter(shell->rest, &shell->cmd_list) == SUCCESS)
+	{
+		run_cmd(shell->cmd_list, shell);
+	}
+	else
+	{
+		shell->pec = 258;
+		cmd_free(&shell->cmd_list);
+	}
 	free_here_doc(UNLINK);
+	return (SUCCESS);
 }
 
-/// @brief 
-/// @param shell 
-/// @param l 
+/// @brief
+/// @param shell
+/// @param l
 /// @return 1 to break 0 to continue
 static int	skip_to_next(t_mshell *shell, t_index *l)
 {
