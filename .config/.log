@@ -1,5 +1,12 @@
->4.3.4
+4.4.4
+{
+@sm222
+	edit .log file
+	add compile info to 'ms -i'
+}
 
+4.3.4
+{
 @sm222
 	fix bug with
 		$ <
@@ -7,56 +14,51 @@
 		$ >
 		$ >>
 	now return 258
+}
 
-<4.3.4
-
->4.3.3
-
+4.3.3
+{
 @sm222
 	fix bug with istty forgot to add '!'
+}
 
-
->4.3.2
-
+4.3.2
+{
 @sm222
 	add get_next_line during if minishell is pipe
+}
 
-
->4.2.2
-
+4.2.2
+{
 @sm222
 	add cd -g
 		bring back to the root of a git projet
+}
 
-<4.2.2
 
-
->4.1.2
-
+4.1.2
+{
 @sm222
 	add ms log to read log file from shell
+}
 
-<4.1.2
 
-
->4.0.2
-
+4.0.2
+{
 @sm222
 	Fix bug with cd with not set OLDPWD
 	Fix bug with built in runing on fds 0 0, now run on 0 1
 		only append in the shell with no pipeline
 	switch some pwd logic
+}
 
-<4.0.2
 
-
->4.0.0
-
+4.0.0
+{
 @sm222
 	new log file was add.
 	fix on pipeline with ';' in them, better sript posibility.
-
-<4.0.0
+}
 
 
 END

@@ -6,6 +6,8 @@ else
     BIN_DIR = /home/$(USER)/Mini_bin/
 endif
 
+USER_GIT = $(shell git config --get user.name)
+
 NAME	=	$(BIN_DIR)ft_ms
 
 
@@ -14,7 +16,7 @@ LIBFT_DIR	=	../../lib/lib_ft/
 
 # Compiler and flags
 CC		=	gcc
-CFLAGS	=	-Wall -Werror -Wextra -g
+CFLAGS	=	-Wall -Werror -Wextra -g -D USER_GCC='"$(USER_GIT)"'
 RM		=	rm -f
 
 # Sources are all .c files

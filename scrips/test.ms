@@ -1,4 +1,4 @@
-echo $PWD
+echo $PWD && pwd || ls
 echo
 #ls
 #av

@@ -9,7 +9,8 @@
     "libft.h": "c",
     "ms.h": "c",
     "pwd.h": "c",
-    "cd.h": "c"
+    "cd.h": "c",
+    "structure.h": "c"
   },
   "C_Cpp_Runner.cCompilerPath": "gcc",
   "C_Cpp_Runner.cppCompilerPath": "g++",

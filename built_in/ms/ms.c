@@ -49,10 +49,10 @@ static int	readlog(void)
 		return (1);
 	ft_printf(NO_PRINT, "%o%s/.config/.log", &str, shell->compile_dir);
 	if (access(str, F_OK | R_OK) == 0 && !shell->s_in)
-		ft_printf(NO_PRINT, "%oless %s", &shell->s_in, str);
+		ft_printf(NO_PRINT, "%o"LESS_AND_ARGS"%s", &shell->s_in, str);
 	else
 	{
-		ft_printf(2, "%oms: no file %s\n", NULL, str);
+		ft_printf(2, "%oms: %s %s\n", NULL, str, strerror(errno));
 		err = 1;
 	}
 	ft_free(str);
@@ -76,6 +76,7 @@ static int	info(size_t *j)
 		ft_printf(1, "%oPROMPT: %s\n", NULL, PROMPT);
 		ft_printf(1, "%oversion: %s\n", NULL, get_env(data->en, "V_MINI"));
 		ft_printf(1, "%oconpile dir: %s\n", NULL, get_env(data->en, "CONPILE_DIR"));
+		ft_printf(1, "%olast compile vertion by %s at %s %s\n", NULL, USER_GCC , __DATE__, __TIME__);
 	}
 	return (0);
 }
