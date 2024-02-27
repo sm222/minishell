@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:32:01 by anboisve          #+#    #+#             */
-/*   Updated: 2024/02/21 13:48:49 by anboisve         ###   ########.fr       */
+/*   Updated: 2024/02/27 10:35:11 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,14 +79,34 @@ static char	*err_code(t_mshell *shell)
 	return (new);
 }
 
+static void set_shell_lv(t_mshell *shell, char *str)
+{
+	short	i;
+	char	*shlv;
+
+	i = 0;
+	ft_bzero(str, SH_LV_MAX + 1);
+	shlv = get_env(shell->en, "SHLVL");
+	if (shlv && ft_atoi(shlv) > 2)
+	{
+		while (shlv[i] && i < SH_LV_MAX)
+		{
+			str[i] = shlv[i];
+			i++;
+		}
+	}
+}
+
 void	get_user(t_mshell *shell)
 {
 	char	*logname;
 	char	*new;
+	char	shlv[SH_LV_MAX + 1];
 
 	logname = NULL;
 	new = NULL;
 	find_git(shell);
+	set_shell_lv(shell, shlv);
 	logname = get_env(shell->en, "LOGNAME");
 	shell->pwd = get_path(getcwd(NULL, 0), shell->pwd, shell);
 	// ||          pwd here          ||
@@ -97,12 +117,12 @@ void	get_user(t_mshell *shell)
 		shell->git_status = NULL;
 	}
 	if (logname)
-		ft_printf(NO_PRINT, "%o%s%s"WHT"%s(%S)[%s%s"WHT"]"PROMPT, \
+		ft_printf(NO_PRINT, "%o%s%s"WHT"%s(%S)[%s%s"WHT"]%s"PROMPT, \
 		&shell->prompt, shell->sys_color.c1, shell->pwd, new, err_code(shell), \
-		shell->sys_color.c3, logname);
+		shell->sys_color.c3, logname, shlv);
 	else
-		ft_printf(NO_PRINT, "%o%s%s"WHT"%s(%S)"PROMPT, \
-		&shell->prompt, shell->sys_color.c1, shell->pwd, new, err_code(shell));
+		ft_printf(NO_PRINT, "%o%s%s"WHT"%s(%S)%s"PROMPT, \
+		&shell->prompt, shell->sys_color.c1, shell->pwd, new, err_code(shell), shlv);
 	ft_free(new);
 }
 

@@ -20,12 +20,16 @@
 #  define SYSTYPE -1
 # endif
 
+// all system                                        |
+# define SH_LV_MAX  10
+
+
 // linux
 # if (SYSTYPE == FT_LINUX)
 #  define PATH_SEP   '/'
 #  define PATH_SPLIT ':'
 #  define PATH_BIN_S "PATH="
-#  define PROMPT     "$ "
+#  define PROMPT     "$ "                            //at least one space at the end to show cursor
 # endif
 
 //mac
@@ -45,8 +49,12 @@
 # endif
 
 //unsuport
-# if (SYSTYPE == -1 || SYSTYPE == 1)
+# if (SYSTYPE == -1 || SYSTYPE == 1)                 //if system is not suport set default value
 #  define NORUN 1
+#  define PATH_SEP   '/'
+#  define PATH_SPLIT ':'
+#  define PATH_BIN_S "PATH="
+#  define PROMPT     "<> "
 # else
 #  define NORUN 0
 # endif
