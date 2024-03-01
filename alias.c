@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 17:54:43 by anboisve          #+#    #+#             */
-/*   Updated: 2024/02/29 08:30:45 by anboisve         ###   ########.fr       */
+/*   Updated: 2024/03/01 08:45:25 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,8 @@ short	put_alias(char **str, char **alias_v)
 }
 
 /// @brief more like run .msrc
-/// @param shell 
-/// @param ac 
+/// @param shell
+/// @param ac
 void	set_alias(t_mshell *shell, int ac)
 {
 	char	**av;
