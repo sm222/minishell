@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:31:47 by anboisve          #+#    #+#             */
-/*   Updated: 2024/02/27 10:22:53 by anboisve         ###   ########.fr       */
+/*   Updated: 2024/03/01 08:26:03 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,9 @@ static void	do_logo(char **av, t_mshell *shell)
 		else
 			return ;
 	}
-	else if (!shell->isatty)
+	else if (shell->isatty)
 		print_logo(NULL);
-	if (!shell->isatty)
+	if (shell->isatty)
 		ft_printf(1, "%o%S"V_MINI"\n"WHT, NULL, ft_make_color(20, 84, 255));
 }
 
@@ -100,6 +100,7 @@ static int	start_shell(t_mshell *shell, char **en, char **av)
 
 	ft_bzero(shell, sizeof(t_mshell));
 	shell->dir_len = 3;
+	shell->isatty = isatty(STDIN_FILENO);
 	shell->en = ft_cpy_double_char(en);
 	if (get_env_path(shell) <= FAIL)
 		return (1);
@@ -125,10 +126,9 @@ int	main(int ac, char **av, char **en)
 {
 	t_mshell	shell;
 	char		*new;
-	char		**spl;
 
 	if (NORUN)
-		return(ft_putstr_fd("sorry code don't work on this system", 2), 1);
+		return(ft_putstr_fd("sorry code don't work on this system\n", 2), 1);
 	ft_signal_handler(CMD);
 	if (start_shell(&shell, en, av) != SUCCESS)
 		return (FAIL);
@@ -140,11 +140,8 @@ int	main(int ac, char **av, char **en)
 			break ;
 		shell.re_draw = 0;
 		ft_printf(NO_PRINT, "%oex\b_=%s", &new, ft_rfind_char(shell.s, '\b'));
-		spl = ft_split(new, '\b');
-		ft_export(spl, 0, 1, shell.en);
-		shell.en = ft_return_ptr(NULL, ENV_C);
+		export_in_main(&shell, new);
 		new = ft_free(new);
-		spl = (char **)ft_double_sfree((void **)spl);
 	}
 	free_shell(&shell, ac);
 	return (shell.pec);
