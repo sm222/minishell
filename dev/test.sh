@@ -45,8 +45,15 @@ j=0
 di=0
 
 function runTest() {
+  echo '--- --- ---'
   $val minishell -c "${testlist[$j]}" > out/out_ms
+  mscode=$?
   bash           -c "${testlist[$j]}" > out/out_ba
+  bacode=$?
+  if [ $bacode != $mscode ];
+  then
+    printf \%s\ "Error: return value\n shell give $GRN$bacode$RESET ms give $RED$mscode$RESET \n"
+  fi
   grep  "definitely lost" $outfileval | cut -c15-
   grep  "indirectly lost" $outfileval | cut -c15-
   grep  "possibly lost"   $outfileval | cut -c15-

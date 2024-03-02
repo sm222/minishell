@@ -78,7 +78,7 @@ static int	info(size_t *j)
 		ft_printf(1, "%oconpile dir: %s\n", NULL, get_env(data->en, "CONPILE_DIR"));
 		ft_printf(1, "%olast compile vertion by %s at %s %s\n", NULL, USER_GCC , __DATE__, __TIME__);
 	}
-	return (0);
+	return (1);
 }
 
 int	ft_ms(char **av, int re_in, int re_out, char **en)

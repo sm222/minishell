@@ -6,4 +6,4 @@
 > PROMPT: $ 
 > version: 4.5.5
 > conpile dir: /home/antoine/Documents/42/minishell
-> last compile vertion by sm222 at Mar  1 2024 16:38:46
+> last compile vertion by sm222 at Mar  2 2024 01:16:01
