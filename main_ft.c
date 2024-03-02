@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:32:01 by anboisve          #+#    #+#             */
-/*   Updated: 2024/02/29 08:31:00 by anboisve         ###   ########.fr       */
+/*   Updated: 2024/03/01 16:38:34 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -233,7 +233,6 @@ static void	set_cmd_input(t_mshell *shell)
 		shell->s = readline(shell->prompt);
 	else
 	{
-		ft_putendl_fd(shell->prompt, STDOUT_FILENO);
 		shell->s = get_next_line(STDIN_FILENO);
 	}
 }

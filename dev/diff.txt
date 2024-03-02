@@ -1,0 +1,9 @@
+0a1,8
+> default value for:
+> bin find in : PATH=
+> split value on: :
+> path separator: /
+> PROMPT: $ 
+> version: 4.5.5
+> conpile dir: /home/antoine/Documents/42/minishell
+> last compile vertion by sm222 at Mar  1 2024 16:38:46
