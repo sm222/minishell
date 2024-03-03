@@ -2,10 +2,12 @@
 
 sys= uname -s
 test $sys "Darwin"
-if [ $? != 0 ];
+if [ $? != 0 ]
 then
+  slow=0
   L="\""
 else
+  slow=1
   L="'"
 fi
 
@@ -81,6 +83,11 @@ function runTest() {
 
 # start of scrip
 rm -r diff.txt
+make -C .. re
+make -C .. cp
+echo "making dir"
+mkdir -p out
+
 while [ $j -lt $i ]
 do
   runTest
@@ -98,6 +105,14 @@ do
     printf \%s\ "✅$GRN ${testlist[$j]} $RESET\n"
   fi
   j=$((j + 1))
-  #sleep 1
+  if [ $slow == 1 ]
+  then
+    sleep 0
+  fi
 done
+make -C .. clean
+read -p "rm file? (Y/N): " confirm && [[ $confirm == [yY] || $confirm == [yY][eE][sS] ]] || exit 0
 rm out/out_ms out/out_ba
+rm -fr out
+rm diff.txt
+make -C .. fclean
