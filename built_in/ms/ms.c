@@ -77,6 +77,9 @@ static int	info(size_t *j)
 		ft_printf(1, "%oversion: %s\n", NULL, get_env(data->en, "V_MINI"));
 		ft_printf(1, "%oconpile dir: %s\n", NULL, get_env(data->en, "CONPILE_DIR"));
 		ft_printf(1, "%olast compile vertion by %s at %s %s\n", NULL, USER_GCC , __DATE__, __TIME__);
+			void *l;
+		l = malloc(1);
+		(void)l;
 	}
 	return (1);
 }

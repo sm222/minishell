@@ -38,6 +38,7 @@ testlist=(
   "echo | echo"
   "a ; echo $?"
   "ms -i"
+  "echo a a a | cat | wc"
 )
 
 i=${#testlist[@]}
@@ -45,24 +46,40 @@ j=0
 di=0
 
 function runTest() {
-  echo '--- --- ---'
+  printf "$YEL --- --- ---$RESET\n"
   $val minishell -c "${testlist[$j]}" > out/out_ms
   mscode=$?
   bash           -c "${testlist[$j]}" > out/out_ba
   bacode=$?
+  err=0
   if [ $bacode != $mscode ];
   then
     printf \%s\ "Error: return value\n shell give $GRN$bacode$RESET ms give $RED$mscode$RESET \n"
   fi
-  grep  "definitely lost" $outfileval | cut -c15-
-  grep  "indirectly lost" $outfileval | cut -c15-
-  grep  "possibly lost"   $outfileval | cut -c15-
-  grep  "still reachable" $outfileval | cut -c15-
+  str=$(grep  "definitely lost" $outfileval | cut -c15-)
+  test "$str" = 'definitely lost: 0 bytes in 0 blocks'
+  ((err+=$?))
+  str=$(grep  "indirectly lost" $outfileval | cut -c15-)
+  test "$str" = 'indirectly lost: 0 bytes in 0 blocks'
+  ((err+=$?))
+  str=$(grep  "possibly lost" $outfileval | cut -c15-)
+  test "$str" = '  possibly lost: 0 bytes in 0 blocks'
+  ((err+=$?))
+  str=$(grep  "still reachable" $outfileval | cut -c15-)
+  test "$str" = 'still reachable: 0 bytes in 0 blocks'
+  ((err+=$?))
+  if [ $err != 0 ]
+  then
+    grep  "definitely lost" $outfileval | cut -c15-
+    grep  "indirectly lost" $outfileval | cut -c15-
+    grep  "possibly lost"   $outfileval | cut -c15-
+    grep  "still reachable" $outfileval | cut -c15-
+  fi
   rm -f out/val.log
   diff  out/out_ba out/out_ms >> diff.txt
 }
 
-
+# start of scrip
 rm -r diff.txt
 while [ $j -lt $i ]
 do
