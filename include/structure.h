@@ -62,20 +62,22 @@
 //ty for that https://github.com/iLucasPires/minishell/blob/e6906a30b2335a9dae38fb5203a6f89062fef7cd/project/includes/minishell_colors.h#L14
 # ifndef COLORS
 #  define COLORS
-#  define RED	"\001\e[31m\002"
-#  define GRN	"\001\e[32m\002"
-#  define YEL	"\001\e[33m\002"
-#  define BLU	"\001\e[34m\002"
-#  define MAG	"\001\e[35m\002"
-#  define CYN	"\001\e[36m\002"
-#  define WHT	"\001\e[37m\002"
-#  define ORG	"\001\e[38;5;202m\002"
-#  define PIK	"\001\e[38;5;176m\002"
-#  define TOX	"\001\e[38;5;51m\002"
-#  define RESET	"\001\e[0m\022"
-#  define CLE	"\001\e[1;1H\x1b[2J\002"
-#  define GIT	"\001\e[38;5;82m\002"
-#  define GIT_B	"\001\e[38;5;94m\002"
+#  define CS	"\001" //*start code
+#  define CE	"\002" //*end   code 
+#  define RED	CS"\e[31m"CE
+#  define GRN	CS"\e[32m"CE
+#  define YEL	CS"\e[33m"CE
+#  define BLU	CS"\e[34m"CE
+#  define MAG	CS"\e[35m"CE
+#  define CYN	CS"\e[36m"CE
+#  define WHT	CS"\e[37m"CE
+#  define ORG	CS"\e[38;5;202m"CE
+#  define PIK	CS"\e[38;5;176m"CE
+#  define TOX	CS"\e[38;5;51m"CE
+#  define RESET	CS"\e[0m\022"CE
+#  define CLE	CS"\e[1;1H\x1b[2J"CE
+#  define GIT	CS"\e[38;5;82m"CE
+#  define GIT_B	CS"\e[38;5;94m"CE
 # endif
 
 //--------------------------//
@@ -133,7 +135,7 @@ typedef struct s_token
 /// @param next 		next node
 typedef struct s_waitp
 {
-	int			built;	//use to store if is a buildin
+	int				built;	//use to store if is a buildin
 	pid_t			pid;	//pid
 	char			*name;	//name of the ft
 	struct s_waitp	*next;	//next one

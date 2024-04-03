@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:32:01 by anboisve          #+#    #+#             */
-/*   Updated: 2024/03/01 16:38:34 by anboisve         ###   ########.fr       */
+/*   Updated: 2024/03/20 23:42:17 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,9 +131,7 @@ void	get_user(t_mshell *shell)
 static short	lunch(t_mshell *shell)
 {
 	if (converter(shell->rest, &shell->cmd_list) == SUCCESS)
-	{
 		run_cmd(shell->cmd_list, shell);
-	}
 	else
 	{
 		shell->pec = 258;
@@ -174,7 +172,7 @@ static short	ft_caller(t_mshell *shell)
 {
 	t_index	l;
 
-	ft_bzero(&l, sizeof(t_index));
+	ft_bzero(&l, sizeof(l));
 	while (l.j < ft_strlen(shell->s))
 	{
 		l.i = look_for_type(shell->s + l.j, &l.type);
@@ -224,24 +222,31 @@ static void	set_cmd_input(t_mshell *shell)
 		else
 		{
 			ft_printf(2, "%o"MS_NAME"\b: %s unknow flag\n", NULL, shell->av[1]);
-			shell->pec = 1;
+			shell->pec = 2;
 		}
 		shell->s_in = NULL;
 		shell->av = NULL;
 	}
 	else if (shell->isatty)
 		shell->s = readline(shell->prompt);
-	else
-	{
+	else 
 		shell->s = get_next_line(STDIN_FILENO);
-	}
 }
 
-short	reset_data_main(t_mshell *shell)
+static short	test_end_str(const char* str)
 {
 	size_t	i;
 
 	i = 0;
+	while (str && str[i] && (str[i] == ' ' || str[i] == '\t'))
+		i++;
+	if (i == ft_strlen(str))
+		return (1);
+	return (0);
+}
+
+short	reset_data_main(t_mshell *shell)
+{
 	shell->keep_wait = NULL;
 	shell->s = ft_free(shell->s);
 	shell->prompt = ft_free(shell->prompt);
@@ -254,10 +259,7 @@ short	reset_data_main(t_mshell *shell)
 	shell->s_in = NULL;
 	ft_change_dolar(&shell->s, shell->en, false, shell->pec);
 	put_alias(&shell->s, shell->alias);
-	while (shell->s && shell->s[i] && (shell->s[i] == ' ' || \
-	shell->s[i] == '\t'))
-		i++;
-	if (i == ft_strlen(shell->s))
+	if (test_end_str(shell->s))
 		return (FAIL);
 	ft_set_mode(-1);
 	shell->re_draw = 1;

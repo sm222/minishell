@@ -54,7 +54,7 @@ TEST = $(shell test -e include/readline/libreadline.a ; echo "$$?")
 # Compiler and flags
 CC				=	gcc
 FLAGS_SHELL		=	-D MINI_BIN=$(BIN_DIR) -D CONPILE_DIR=$(PWD) -D V_MINI=$(version)
-CFLAGS			=	-Wall -Werror -Wextra -g $(FLAGS_SHELL)
+CFLAGS			=	-Wall -Werror -Wextra -g -fno-common $(FLAGS_SHELL)
 #-fsanitize=address
 RM				=	rm -f
 

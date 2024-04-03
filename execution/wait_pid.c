@@ -6,52 +6,29 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:26:42 by anboisve          #+#    #+#             */
-/*   Updated: 2023/11/20 14:27:51 by anboisve         ###   ########.fr       */
+/*   Updated: 2024/03/20 23:38:29 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "execution.h"
+#include "sig_list.h"
 
-int	get_err_code(int pec, int l)
+static int	get_err_code(int pec, int local)
 {
-	unsigned char	r_val;
-
-	r_val = pec;
-	if (l > 0)
+	if (local > 0)
 	{
 		if (WIFEXITED(pec))
-			r_val = WEXITSTATUS(pec);
+			return ((unsigned char)WEXITSTATUS(pec));
 		else if (WIFSIGNALED(pec))
-			r_val = (128 + WTERMSIG(pec));
+			return((unsigned char)(128 + WTERMSIG(pec)));
 	}
-	return (r_val);
+	return ((unsigned char)pec);
 }
 
 // do later
 // SIGSTOP
 // SIGTSTP
 
-static void	err_list2(char *name, int r_val)
-{
-	if (r_val == 142)
-		ft_printf(2, "%o%s\b: alarm %s\n", NULL, MS_NAME, name);
-	if (r_val == 152)
-		ft_printf(2, "%o%s\b: cpu limit exceeded %s\n", NULL, MS_NAME, name);
-	if (r_val == 153)
-		ft_printf(2, "%o%s\b: file size limit exceeded %s\n", NULL, MS_NAME, name);
-	if (r_val == 154)
-		ft_printf(2, "%o%s\b: virtual time alarm %s\n", NULL, MS_NAME, name);
-	if (r_val == 155)
-		ft_printf(2, "%o%s\b: profile signal %s\n", NULL, MS_NAME, name);
-	//if (r_val == 141)
-	//	ft_printf(2, "%o%s\b: sigpipe you litte pbergero %s\n", NULL, MS_NAME, name);
-	if (r_val == 132)
-		ft_printf(2, "%o%s\b: illegal hardware instruction %s\n", NULL, MS_NAME, name);
-	if (r_val == 158 || r_val == 159)
-		ft_printf(2, "%o%s\b: user-defined signal %d %s\n", NULL, MS_NAME, r_val - 157, name);
-	if (r_val == 129)
-		ft_printf(2, "%o%s\b: hangup %s\n", NULL, MS_NAME, name);
-}
 static void	print_err(char *name, int pec)
 {
 	int	r_val;
@@ -64,19 +41,13 @@ static void	print_err(char *name, int pec)
 		else if (WIFSIGNALED(pec))
 			r_val = (128 + WTERMSIG(pec));
 	}
-	if (r_val == 133)
-		ft_printf(2, "%o%s\b: trace trap %s\n", NULL, MS_NAME, name);
-	if (r_val == 139)
-		ft_printf(2, "%o%s\b: segmentation fault %s\n", NULL, MS_NAME, name);
-	if (r_val == 134)
-		ft_printf(2, "%o%s\b: abort %s\n", NULL, MS_NAME, name);
-	if (r_val == 143)
-		ft_printf(2, "%o%s\b: terminated %s\n", NULL, MS_NAME, name);
-	if (r_val == 138)
-		ft_printf(2, "%o%s\b: bus error %s\n", NULL, MS_NAME, name);
-	if (r_val == 136)
-		ft_printf(2, "%o%s\b: floating point exception %s\n", NULL, MS_NAME, name);
-	err_list2(name, r_val);
+	//!shoud show  minishell : ./a.out segmentation fault
+	if (r_val >= 129 && r_val <= 155 && r_val != 141)
+		ft_printf(2, "%o%s\b: %s %s\n", NULL, MS_NAME, \
+		signal_list[r_val - SIGOFSET] + 4, name);
+	if (r_val == 158 || r_val == 159)
+		ft_printf(2, "%o%s\b: user-defined signal %d %s\n", NULL, \
+		MS_NAME, r_val - 157, name);
 	ft_free(name);
 }
 //136

@@ -1,4 +1,4 @@
-#!bin/bash
+#!/bin/bash
 
 sys= uname -s
 test $sys "Darwin"
@@ -23,7 +23,7 @@ RESET=\\x1B[0m
 
 # -- -- -- var
 outfileval="$PWD/out/val.log"
-val="valgrind --leak-check=full --trace-children=yes --track-fds=yes --suppressions=/tmp/supp.txt --log-file=$outfileval"
+val="valgrind --trace-children=yes --track-fds=yes --suppressions=/tmp/supp.txt --log-file=$outfileval"
 
 ## test
 testlist=(
@@ -37,10 +37,47 @@ testlist=(
   "ls -la"
   "|"
   "hello\"\"gorge"
-  "echo | echo"
+  "echo a | echo"
+  "echo   | echo"
+  "echo a | echo a"
+  "echo   | echo a"
   "a ; echo $?"
   "ms -i"
   "echo a a a | cat | wc"
+  "env | grep 'LOGNAME'"
+  "pwd | cut -c5- | wc "
+  "$ $\?"
+  "echo || echo no"
+  "echo && echo yes"
+  "\""
+  "'"
+  "ls < a"
+  "echo < a"
+  "echo > a"
+  "ls > a"
+  "cat < a"
+  "< b cat -e"
+  "< a cat -e"
+  "< b < a cat"
+  "?"
+  "<"
+  "<<"
+  "<<"
+  "<<<"
+  "<< <"
+  ">"
+  ">>"
+  ">>>"
+  ">> >"
+  "||"
+  "pwd || echo a"
+  "pwd |  echo b"
+  "$;"
+  "\$?;ls"
+  "\$?;pwd"
+  "\$?;<a cat -e "
+  "ls;ls;ls"
+  "ls | ls |ls| ls |ls |ls |ls |ls |ls |ls |ls |ls |ls |ls |ls |ls |ls |ls |ls |ls |ls |ls |ls |ls |ls |ls |ls |ls | echo"
 )
 
 i=${#testlist[@]}
@@ -49,10 +86,11 @@ di=0
 
 function runTest() {
   printf "$YEL --- --- ---$RESET\n"
-  $val minishell -c "${testlist[$j]}" > out/out_ms
-  mscode=$?
   bash           -c "${testlist[$j]}" > out/out_ba
   bacode=$?
+  rm -fr a b
+  $val minishell -c "${testlist[$j]}" > out/out_ms
+  mscode=$?
   err=0
   if [ $bacode != $mscode ];
   then
@@ -95,6 +133,7 @@ do
   if [ $di != 0 ]
   then
     printf \%s\ "❌$RED ${testlist[$j]} $RESET\n"
+    printf \%s\ "❌${testlist[$j]}\n" >> diff.txt
     echo 'ms >'
     cat -be out/out_ms
     echo 'ms <'
@@ -107,11 +146,12 @@ do
   j=$((j + 1))
   if [ $slow == 1 ]
   then
-    sleep 0
+    echo '- - - - -'
   fi
+  sleep 0.3
 done
-make -C .. clean
 read -p "rm file? (Y/N): " confirm && [[ $confirm == [yY] || $confirm == [yY][eE][sS] ]] || exit 0
+make -C .. clean
 rm out/out_ms out/out_ba
 rm -fr out
 rm diff.txt
