@@ -21,9 +21,9 @@ void	free_t_mshell(t_mshell *shell)
 	shell->rest    = ft_free(shell->rest);
 	shell->prompt  = ft_free(shell->prompt);
 	shell->termios = ft_free(shell->termios);
-	shell->en      = ft_double_sfree((void **)shell->en);
-	shell->path    = ft_double_sfree((void **)shell->path);
-	shell->alias   = ft_double_sfree((void **)shell->alias);
+	shell->en      = (char **)ft_double_sfree((void **)shell->en);
+	shell->path    = (char **)ft_double_sfree((void **)shell->path);
+	shell->alias   = (char **)ft_double_sfree((void **)shell->alias);
 	ft_return_ptr(NULL, -1);
 }
 
