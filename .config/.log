@@ -1,3 +1,22 @@
+4.7.5
+{
+@sm222
+	edit:
+		print_alias
+			from (char **)
+			to   (char **, int)
+		goto_dir, in cd
+		export.c, main.c (in export)
+		ms main.c
+		pwd
+		exe_utilse.c
+		find_cmd.c
+		exe_built_in.c -> find_buildin_l
+	add:
+		ft_strmapft
+}
+
+
 4.6.5
 {
 @sm222
