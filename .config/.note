@@ -1,0 +1,9 @@
+//! need to fix export, doing malloc for no resson // static void	print_type(const char *s, int re_out)
+
+// working on a log system 
+// work on way to find unuse code or lagacy code that can be change 
+// clean some code trying to put it back to norm
+//* use more ft in same file we can fix the norm on that latter
+
+//make it dev frandly, code simple to read and understand
+//better ft name amd smaller logic to decorticate code

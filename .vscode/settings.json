@@ -11,7 +11,8 @@
     "pwd.h": "c",
     "cd.h": "c",
     "structure.h": "c",
-    "execution.h": "c"
+    "execution.h": "c",
+    "typeinfo": "c"
   },
   "C_Cpp_Runner.cCompilerPath": "gcc",
   "C_Cpp_Runner.cppCompilerPath": "g++",

@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:24:37 by anboisve          #+#    #+#             */
-/*   Updated: 2024/01/27 11:58:51 by anboisve         ###   ########.fr       */
+/*   Updated: 2024/04/08 17:22:18 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,14 +42,7 @@ static char	*find_built_in(char *name, int *f)
 /// @return	void* of the ft
 static void	*find_built_in_l(char *name)
 {
-	size_t	i;
-
-	i = 0;
-	while (name && name [i])
-	{
-		name[i] = ft_tolower(name[i]);
-		i++;
-	}
+	ft_strmapft(name, &ft_tolower);
 	if (ft_strncmp(name, FT_ECHO, ft_strlen(FT_ECHO) + 1) == 0)
 		return (&ft_echo);
 	if (ft_strncmp(name, PWD, ft_strlen(PWD) + 1) == 0)

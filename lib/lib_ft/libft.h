@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 11:07:18 by anboisve          #+#    #+#             */
-/*   Updated: 2024/01/24 17:57:53 by anboisve         ###   ########.fr       */
+/*   Updated: 2024/04/08 17:21:40 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ char		*ft_find_char(char *s, int c);
 char		*ft_rfind_char(char *s, int c);
 char		*ft_strchr(const char *s, int c);
 char		*ft_strrchr(const char *s, int c);
+void		ft_strmapft(char *s, int (*ft)(int));
 int			ft_strcmp(const char *s1, const char *s2);
 short		ft_ban(const char *src, const char *list);
 short		ft_find(const char *src, const char *filter);

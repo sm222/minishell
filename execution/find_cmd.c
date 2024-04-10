@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:25:09 by anboisve          #+#    #+#             */
-/*   Updated: 2023/10/17 12:37:12 by anboisve         ###   ########.fr       */
+/*   Updated: 2024/04/09 13:24:12 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,7 @@ static int	test_local(char *name, char **out, mode_t *err)
 		if (S_ISDIR(test.st_mode) || S_ISLNK(test.st_mode))
 			return (NO_ASS);
 		if (access(name, X_OK) != 0)
-		{
 			return (ERR_PD);
-		}
 		*out = ft_strdup(name);
 		if (!*out)
 			return (M_FAIL);

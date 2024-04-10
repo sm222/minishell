@@ -98,7 +98,7 @@ char	**alias_new(char **en, char *arg)
 	return (new);
 }
 
-static int	print_alias(char **data)
+static int	print_alias(char **data, int fd)
 {
 	size_t	i;
 
@@ -107,7 +107,7 @@ static int	print_alias(char **data)
 		return (1);
 	while (data[i])
 	{
-		ft_printf(1, "%o%s\n", NULL, data[i]);
+		ft_printf(fd, "%o%s\n", NULL, data[i]);
 		i++;
 	}
 	return (0);
@@ -115,21 +115,20 @@ static int	print_alias(char **data)
 
 int	ft_alias(char **av, int re_in, int re_out, char **en)
 {
-	int	err;
+	int		err;
 	size_t	i;
 	size_t	len;
 	char	**alias;
 	char	**tmp;
 
 	(void)re_in;
-	(void)re_out;
 	(void)en;
 	err = 0;
 	i = 1;
 	alias = ft_return_ptr(NULL, ALIAS_VAR);
 	len = ft_strlen_double(av);
 	if (len == 1)
-		return (print_alias(alias));
+		return (print_alias(alias, re_out));
 	while (i < len)
 	{
 		if (find_word(av[i], &err) == FAIL)

@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:20:43 by anboisve          #+#    #+#             */
-/*   Updated: 2024/01/26 08:38:54 by anboisve         ###   ########.fr       */
+/*   Updated: 2024/04/05 09:45:47 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	print_loop(char **av, size_t i, int fd)
 	}
 }
 
+//#pragma region awd
 /// @brief	use to skip -n
 /// @param	av	argv
 /// @return	index

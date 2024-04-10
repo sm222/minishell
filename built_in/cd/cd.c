@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:19:43 by anboisve          #+#    #+#             */
-/*   Updated: 2024/02/14 18:04:38 by anboisve         ###   ########.fr       */
+/*   Updated: 2024/04/04 09:06:25 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ static int	get_to_user(char **en)
 /// @return			err code
 static int	goto_dir(char *dir, char **en, int re_out)
 {
-	int		err;
 	char	*t;
 
 	if (ft_strncmp(dir, "-", 2) == 0)
@@ -73,8 +72,7 @@ static int	goto_dir(char *dir, char **en, int re_out)
 			return (EXIT_FAILURE);
 		}
 	}
-	err = chdir(dir);
-	if (err)
+	if (chdir(dir))
 	{
 		ft_printf(STDERR_FILENO, "%ocd: %s: %s\n", NULL, \
 	strerror(errno), dir);

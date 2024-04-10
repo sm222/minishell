@@ -16,14 +16,14 @@
 /// @param	shell	t_mshell*
 void	free_t_mshell(t_mshell *shell)
 {
-	ft_free(shell->pwd);
-	ft_free(shell->rest);
-	ft_free(shell->s);
-	ft_free(shell->prompt);
-	ft_double_sfree((void **)shell->path);
-	ft_double_sfree((void **)shell->en);
-	ft_double_sfree((void **)shell->alias);
-	ft_free(shell->termios);
+	shell->s       = ft_free(shell->s);
+	shell->pwd     = ft_free(shell->pwd);
+	shell->rest    = ft_free(shell->rest);
+	shell->prompt  = ft_free(shell->prompt);
+	shell->termios = ft_free(shell->termios);
+	shell->en      = ft_double_sfree((void **)shell->en);
+	shell->path    = ft_double_sfree((void **)shell->path);
+	shell->alias   = ft_double_sfree((void **)shell->alias);
 	ft_return_ptr(NULL, -1);
 }
 

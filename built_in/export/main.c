@@ -20,8 +20,11 @@ int	main(int ac, char **av, char **en)
 	(void)ac;
 	en_c = ft_cpy_double_char(en);
 	ft_return_ptr(en_c, ENV_C);
-	if (!en_c)
+	if (!en_c) 
+	{
+		ft_printf(2, "%o"MS_NAME"\bmalloc fail in export\n", NULL);
 		return (2);
+	}
 	err = ft_export(av, 0, 1, en_c);
 	ft_double_sfree((void **)ft_return_ptr(NULL, ENV_C));
 	return (err);
