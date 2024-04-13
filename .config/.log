@@ -1,3 +1,25 @@
+5.0.0.0
+{
+@sm222
+	version stable.
+	knowe problem
+		git branch not showing if it have the same name as the current directory
+		<< < open a heredoc and should not
+	need to add a new number at the end for small update
+	0.0.0.0
+	^ ^ ^ ^
+	| | | | refactor or small update
+	| | | bug fix
+	| | new feature add
+	| major update
+	----------------------------------
+	need more testing file and better test
+	need more cleaning of code and better name for ft
+	and also working on optimizing and adding feature
+
+	need to fix the way the .version file is read and update the README
+}
+
 
 4.7.6
 {
