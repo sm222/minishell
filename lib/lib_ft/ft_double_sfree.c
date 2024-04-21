@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_double_sfree.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
+/*   By: anboisve <anboisve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 13:06:56 by anboisve          #+#    #+#             */
-/*   Updated: 2023/05/26 10:30:53 by anboisve         ###   ########.fr       */
+/*   Updated: 2024/04/19 15:10:40 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,10 @@ void	**ft_double_sfree(void **ptr)
 
 	i = 0;
 	while (ptr && ptr[i])
-		free(ptr[i++]);
+	{
+		ptr[i] = ft_free(ptr[i]);
+		i++;
+	}
 	ft_free(ptr);
 	return (NULL);
 }

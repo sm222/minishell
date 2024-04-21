@@ -45,7 +45,7 @@ static int	look_v(t_mshell *data)
 			res = ft_free(res);
 			res = get_env(data->en, "V_MINI");
 			ft_printf(2, "%oms: last update %s , shell v %s\n", NULL, s, res);
-			if (ft_strncmp(res, s, 5) != 0)
+			if (ft_strcmp(res, s) != 0)
 				swi = 1;
 			ft_free(s);
 		}

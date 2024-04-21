@@ -1,3 +1,13 @@
+5.1.0.1
+{
+@sm222
+	null some pointer after the are free
+	edit libft ft
+		ft_double_sfree
+	ms -u is better and use strcpm now instend of strncmp
+}
+
+
 5.0.0.0
 {
 @sm222

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
+/*   By: anboisve <anboisve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:31:47 by anboisve          #+#    #+#             */
-/*   Updated: 2024/03/25 08:21:40 by anboisve         ###   ########.fr       */
+/*   Updated: 2024/04/19 15:23:55 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,13 @@ static void	free_shell(t_mshell *shell, int ac)
 	if (ac < 2)
 		ft_putstr_fd(BLU"GoodBye~!"WHT"\n", 2);
 	rl_clear_history();
-	ft_free(shell->pwd);
-	ft_free(shell->s);
-	ft_free(shell->prompt);
-	ft_double_sfree((void **)shell->path);
-	ft_double_sfree((void **)shell->en);
-	ft_double_sfree((void **)shell->alias);
-	ft_free(shell->termios);
+	shell->pwd = ft_free(shell->pwd);
+	shell->s = ft_free(shell->s);
+	shell->prompt = ft_free(shell->prompt);
+	shell->termios = ft_free(shell->termios);
+	shell->en = (char **)ft_double_sfree((void **)shell->en);
+	shell->path = (char **)ft_double_sfree((void **)shell->path);
+	shell->alias = (char **)ft_double_sfree((void **)shell->alias);
 }
 
 static void	do_logo(char **av, t_mshell *shell)
@@ -89,7 +89,7 @@ static int	set_shlvl(t_mshell *data)
 	lv++;
 	ft_printf(NO_PRINT, "%oex\bSHLVL=%d", &tmp, lv);
 	export_in_main(data, tmp);
-	ft_free(tmp);
+	tmp = ft_free(tmp);
 	return (SUCCESS);
 }
 
@@ -147,8 +147,6 @@ int	main(int ac, char **av, char **en)
 	free_shell(&shell, ac);
 	return (shell.pec);
 }
-
-//https://opensource.apple.com/source/gdb/gdb-962/src/readline/
 
 /*
 
