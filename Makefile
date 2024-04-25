@@ -155,7 +155,7 @@ clean:
 	@make -C $(LIBFT_DIR)     clean
 	@make -C $(HERE_DOC_DIR)  clean
 	@make -C $(EXECUTION_DIR) clean
-	@make -C parsing		  clean
+	@make -C parsing          clean
 	@echo $(shell clear)
 	@printf $(L)$(GRN)clean *.o$(RESET)\n$(L)
 

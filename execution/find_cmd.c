@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:25:09 by anboisve          #+#    #+#             */
-/*   Updated: 2024/04/09 13:24:12 by anboisve         ###   ########.fr       */
+/*   Updated: 2024/04/22 23:05:25 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,16 +57,18 @@ static short	look_local_file(char **list, char *name)
 	while (list && list[i])
 	{
 		ft_printf(NO_PRINT, "%o%s/%s", &new, list[i], name);
+		if (!new)
+			return (M_FAIL);
 		if (access(new, F_OK) == 0)
 		{
 			if (access(new, X_OK) != 0)
 				ft_printf(2, "%o"MS_NAME"%s %s\n", NULL, new, strerror(errno));
 			else
-				ft_printf(2, "%o"MS_NAME"%s %s\n", NULL, new, strerror(errno));
-			ft_free(new);
+				ft_printf(2, "%o"MS_NAME"%s %s\n", NULL, new, strerror(errno)); // <-- never use ?
+			new = ft_free(new);
 			return (ERR_NO_TXT);
 		}
-		ft_free(new);
+		new = ft_free(new);
 		i++;
 	}
 	return (FAIL);
@@ -87,10 +89,10 @@ int	find_path(char *name, char **out, char **list, mode_t *err)
 	i = 0;
 	tmp = NULL;
 	*out = NULL;
-	if (name && (name[0] == '.' || name[0] == '/'))
-		return (test_local(name, out, err));
 	if (name && !name[0])
 		return (FAIL);
+	if (name && (name[0] == '.' || name[0] == '/'))
+		return (test_local(name, out, err));
 	while (list && list[i])
 	{
 		ft_printf(NO_PRINT, "%o%s/%s", &tmp, list[i], name);
