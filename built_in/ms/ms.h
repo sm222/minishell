@@ -8,6 +8,7 @@
 # include "../../include/structure.h"
 # include "../../lib/lib_ft/libft.h"
 # include "../../include/err.h"
+# include <fcntl.h>
 # include <errno.h>
 
 //--------------------------//
@@ -19,6 +20,7 @@ int	ms_edit(char **av, size_t *j);
 int	ms_logic(char **av, size_t *j);
 int	ms_update(int i);
 int	ms_run(char **av, size_t *j);
+int ms_jump(char *line, size_t *j);
 
 //--------------------------//
 //			define			//

@@ -107,6 +107,8 @@ int	ft_ms(char **av, int re_in, int re_out, char **en)
 			err += info(&j);
 		else if (ft_strncmp(av[j], "log", 4) == 0)
 			err += readlog();
+		else if (ft_strncmp(av[j], "-j", 3) == 0)
+			err += ms_jump(av[j + 1], &j);
 		else
 			err += bad_arg(av[j]);
 	}

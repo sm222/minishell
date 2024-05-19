@@ -80,6 +80,7 @@ SRCS	=	main.c\
 			built_in/export/export_u.c\
 			built_in/ms/ms_update.c\
 			built_in/ms/ms_logic.c\
+			built_in/ms/ms_jump.c\
 			built_in/ms/ms_pwd.c\
 			built_in/ms/ms.c\
 			find_git.c\
@@ -156,7 +157,6 @@ clean:
 	@make -C $(HERE_DOC_DIR)  clean
 	@make -C $(EXECUTION_DIR) clean
 	@make -C parsing          clean
-	@echo $(shell clear)
 	@printf $(L)$(GRN)clean *.o$(RESET)\n$(L)
 
 # Removes objects and executables
@@ -169,7 +169,6 @@ fclean: clean
 	@make -C $(HERE_DOC_DIR)  fclean
 	@make -C $(EXECUTION_DIR) fclean
 	@make -C parsing          fclean
-	@echo $(shell clear)
 	@printf $(L)$(GRN)clean all$(RESET)\n$(L)
 
 ffclean: rm_readline fclean

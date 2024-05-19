@@ -25,6 +25,7 @@ SRCS	=	main.c\
 			ms_logic.c\
 			ms_pwd.c\
 			ms_update.c\
+			ms_jump.c
 
 
 OBJS	=	$(SRCS:.c=.o)

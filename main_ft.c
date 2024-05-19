@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:32:01 by anboisve          #+#    #+#             */
-/*   Updated: 2024/03/20 23:42:17 by anboisve         ###   ########.fr       */
+/*   Updated: 2024/05/19 13:04:39 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,11 +130,13 @@ void	get_user(t_mshell *shell)
 
 static short	lunch(t_mshell *shell)
 {
+	ft_change_dolar(&shell->rest, shell->en, false, shell->pec);
 	if (converter(shell->rest, &shell->cmd_list) == SUCCESS)
 		run_cmd(shell->cmd_list, shell);
 	else
 	{
 		shell->pec = 258;
+		ft_printf(2, "%otemp -> ; fix later\n", NULL);
 		cmd_free(&shell->cmd_list);
 	}
 	free_here_doc(UNLINK);
@@ -149,7 +151,8 @@ static int	skip_to_next(t_mshell *shell, t_index *l)
 {
 	ft_set_mode(-1);
 	l->k = ft_strlen(shell->s);
-	if ((shell->pec != 0 && l->type == '&') || (shell->pec == 0 && l->type == '|'))
+	if ((shell->pec != 0 && l->type == '&') || \
+		(shell->pec == 0 && l->type == '|'))
 	{
 		while (l->j < l->k)
 		{
@@ -173,6 +176,7 @@ static short	ft_caller(t_mshell *shell)
 	t_index	l;
 
 	ft_bzero(&l, sizeof(l));
+	//shell->s_line = &l.j;
 	while (l.j < ft_strlen(shell->s))
 	{
 		l.i = look_for_type(shell->s + l.j, &l.type);
@@ -257,7 +261,7 @@ short	reset_data_main(t_mshell *shell)
 	else if (shell->s[0] && !shell->s_in)
 		add_history(shell->s);
 	shell->s_in = NULL;
-	ft_change_dolar(&shell->s, shell->en, false, shell->pec);
+	//ft_change_dolar(&shell->s, shell->en, false, shell->pec);
 	put_alias(&shell->s, shell->alias);
 	if (test_end_str(shell->s))
 		return (FAIL);

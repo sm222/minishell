@@ -60,6 +60,8 @@ testlist=(
   "< a cat -e"
   "< b < a cat"
   "?"
+  "echo abc > a ; cat a"
+  "echo abc > a > b; cat a ; cat b"
   "<"
   "<<"
   "<<"
@@ -78,6 +80,25 @@ testlist=(
   "\$?;<a cat -e "
   "ls;ls;ls"
   "ls | ls |ls| ls |ls |ls |ls |ls |ls |ls |ls |ls |ls |ls |ls |ls |ls |ls |ls |ls |ls |ls |ls |ls |ls |ls |ls |ls | echo"
+  "export a=a ; echo \$a"
+  "\$?;\$?"
+  "export a=a ; export a=\$a  ; echo \$a"
+  "export a=a && export a=\$a ; echo \$a"
+  "export a=a || export a=\$a ; echo \$a"
+  "unset USER ; echo \$USER"
+  "cd - ; pwd"
+  "cd   ; pwd"
+  "cd /tmp ; pwd"
+  "cd .. ; cd .. ; cd .. ; echo \$PWD"
+  "echo \"\" ' ' \"\""
+  "exit 1"
+  "exit 0"
+  "exit 42"
+  "exit 123"
+  "exit 321"
+  "exit a"
+  "exit 1a"
+  "exit a1"
 )
 
 i=${#testlist[@]}
@@ -86,6 +107,7 @@ di=0
 
 function runTest() {
   printf "$YEL --- --- ---$RESET\n"
+  rm -fr a b
   bash           -c "${testlist[$j]}" > out/out_ba
   bacode=$?
   rm -fr a b

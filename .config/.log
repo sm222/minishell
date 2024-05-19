@@ -1,3 +1,11 @@
+5.1.1.2
+{
+@sm222
+	$ are now made by pipeline and not at start
+	working on ms -j 'not useable yet'
+	need to fix err message with control + c and signale in general
+}
+
 5.1.0.1
 {
 @sm222

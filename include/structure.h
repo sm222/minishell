@@ -63,7 +63,7 @@
 # ifndef COLORS
 #  define COLORS
 #  define CS	"\001" //*start code
-#  define CE	"\002" //*end   code 
+#  define CE	"\002" //*end   code
 #  define RED	CS"\e[31m"CE
 #  define GRN	CS"\e[32m"CE
 #  define YEL	CS"\e[33m"CE
@@ -97,6 +97,7 @@
 //	byte flag			//
 # define BUILT_IN_FLAG	0x10
 
+typedef	char* name;
 
 //--------------------------//
 //			struct			//
@@ -191,6 +192,7 @@ typedef struct s_col_sys
 
 typedef struct s_mshell
 {
+	size_t			*s_line;		//pointer to line parsing //* use for ms jump
 	char			*s;				//readline output
 	int				pec;			//prosess exit code
 	short			exit;			//exit flag could be switch for a bool
