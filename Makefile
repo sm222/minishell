@@ -133,7 +133,7 @@ doc:
 	@printf $(L)$(GRN)doc done$(WHT)\n$(L)
 
 mem: all
-	valgrind --leak-check=full --show-leak-kinds=all --trace-children=yes --track-fds=yes --suppressions=/tmp/supp.txt ./minishell 
+	valgrind --leak-check=full --trace-children=yes --track-fds=yes --suppressions=/tmp/supp.txt ./minishell 
 
 readline:
 	cd include/readline && ./configure && $(MAKE)

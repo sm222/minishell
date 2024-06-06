@@ -34,7 +34,7 @@ static int	more_arg(char **av, int pec)
 	{
 		ft_printf(STDERR_FILENO, \
 		"%oMinishell: exit: %s: numeric argument required\n", NULL, av[1]);
-		pec = 255;
+		pec = 2;
 	}
 	else if (ft_strlen_double(av) >= 3)
 	{

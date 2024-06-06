@@ -26,6 +26,11 @@ outfileval="$PWD/out/val.log"
 val="valgrind --trace-children=yes --track-fds=yes --suppressions=/tmp/supp.txt --log-file=$outfileval"
 
 ## test
+
+heredock=(
+  "$"
+)
+
 testlist=(
   'ls'
   'echo'
@@ -37,11 +42,16 @@ testlist=(
   "ls -la"
   "|"
   "hello\"\"gorge"
+  "echo hello\"\"gorge"
+  "echo '\"    	  	\"'"
+  "										"
+  "		  			''"
+  "''									"
   "echo a | echo"
   "echo   | echo"
   "echo a | echo a"
   "echo   | echo a"
-  "a ; echo $?"
+  "a ; echo \$?"
   "ms -i"
   "echo a a a | cat | wc"
   "env | grep 'LOGNAME'"
@@ -63,15 +73,29 @@ testlist=(
   "echo abc > a ; cat a"
   "echo abc > a > b; cat a ; cat b"
   "<"
+  "< <"
   "<<"
-  "<<"
-  "<<<"
   "<< <"
+  "<<<"
+  "<<< <"
   ">"
+  "> >"
   ">>"
-  ">>>"
   ">> >"
+  ">>>"
+  ">>> >"
+  "<>"
+  "< >"
+  "<|>"
+  "><"
+  "> <"
+  ">|<"
   "||"
+  "&&"
+  "ls &&"
+  "ls && pwd"
+  "pwd || wc"
+  "pwd || cat"
   "pwd || echo a"
   "pwd |  echo b"
   "$;"
@@ -99,6 +123,10 @@ testlist=(
   "exit a"
   "exit 1a"
   "exit a1"
+  "\$a"
+  "export a ; echo \$a"
+  "export a b=a c==c ; echo \$c \$b"
+  "export a ; unset a ; echo \$a"
 )
 
 i=${#testlist[@]}

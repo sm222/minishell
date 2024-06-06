@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 17:47:27 by anboisve          #+#    #+#             */
-/*   Updated: 2023/10/06 20:06:43 by anboisve         ###   ########.fr       */
+/*   Updated: 2024/06/06 11:03:28 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,13 @@ char	*get_env(char **en, char *seed)
 		while (en[i][name] && en[i][name] != '=')
 			name++;
 		if (ft_strncmp(en[i], seed, name) == 0 && (!ft_isalnum(seed[name]) \
-		&& seed[name] != '_'))
-			return (en[i] + name + 1);
+		&& seed[name] != '_')) 
+		{
+			if (*(en[i] + name) != 0)
+				return (en[i] + name + 1);
+			else
+				return (NULL);
+		}
 		i++;
 	}
 	return (NULL);

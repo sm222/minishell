@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:26:42 by anboisve          #+#    #+#             */
-/*   Updated: 2024/03/20 23:38:29 by anboisve         ###   ########.fr       */
+/*   Updated: 2024/05/19 13:23:53 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,12 @@ static void	print_err(char *name, int pec)
 			r_val = (128 + WTERMSIG(pec));
 	}
 	//!shoud show  minishell : ./a.out segmentation fault
-	if (r_val >= 129 && r_val <= 155 && r_val != 141)
+	if (r_val == 141 || r_val == 130 || r_val == 131)
+		;
+	else if (r_val >= 129 && r_val <= 155)
 		ft_printf(2, "%o%s\b: %s %s\n", NULL, MS_NAME, \
 		signal_list[r_val - SIGOFSET] + 4, name);
-	if (r_val == 158 || r_val == 159)
+	else if (r_val == 158 || r_val == 159)
 		ft_printf(2, "%o%s\b: user-defined signal %d %s\n", NULL, \
 		MS_NAME, r_val - 157, name);
 	ft_free(name);

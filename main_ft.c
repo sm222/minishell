@@ -6,7 +6,7 @@
 /*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:32:01 by anboisve          #+#    #+#             */
-/*   Updated: 2024/05/19 13:04:39 by anboisve         ###   ########.fr       */
+/*   Updated: 2024/06/06 13:42:21 by anboisve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,12 +131,14 @@ void	get_user(t_mshell *shell)
 static short	lunch(t_mshell *shell)
 {
 	ft_change_dolar(&shell->rest, shell->en, false, shell->pec);
+	if (!shell->rest || *shell->rest == 0)
+		return (SUCCESS);
 	if (converter(shell->rest, &shell->cmd_list) == SUCCESS)
 		run_cmd(shell->cmd_list, shell);
 	else
 	{
-		shell->pec = 258;
-		ft_printf(2, "%otemp -> ; fix later\n", NULL);
+		shell->pec = 2;
+		//ft_printf(2, "%otemp -> ; fix later\n", NULL);
 		cmd_free(&shell->cmd_list);
 	}
 	free_here_doc(UNLINK);
@@ -261,7 +263,6 @@ short	reset_data_main(t_mshell *shell)
 	else if (shell->s[0] && !shell->s_in)
 		add_history(shell->s);
 	shell->s_in = NULL;
-	//ft_change_dolar(&shell->s, shell->en, false, shell->pec);
 	put_alias(&shell->s, shell->alias);
 	if (test_end_str(shell->s))
 		return (FAIL);
