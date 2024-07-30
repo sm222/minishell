@@ -9,7 +9,7 @@ static short	look_for_space(char *s)
 
 	if (!s || s[0] == '#')
 		return (1);
-	while (s && s[i] && (s[i] == ' ' || s[i] == '\t'))
+	while (s && s[i] && ft_isspace(s[i]))
 		i++;
 	if (s[i] == 0 || s[i] == '\n')
 		return (1);

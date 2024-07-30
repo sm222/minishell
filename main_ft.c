@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_ft.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
+/*   By: antoine <antoine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:32:01 by anboisve          #+#    #+#             */
-/*   Updated: 2024/06/06 13:42:21 by anboisve         ###   ########.fr       */
+/*   Updated: 2024/07/30 10:08:00 by antoine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,17 +128,28 @@ void	get_user(t_mshell *shell)
 
 //\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$
 
+static short	test_end_str(const char* str)
+{
+	size_t	i;
+
+	i = 0;
+	while (str && str[i] && ft_isspace(str[i]))
+		i++;
+	if (i == ft_strlen(str))
+		return (1);
+	return (0);
+}
+
 static short	lunch(t_mshell *shell)
 {
 	ft_change_dolar(&shell->rest, shell->en, false, shell->pec);
-	if (!shell->rest || *shell->rest == 0)
+	if (!shell->rest || *shell->rest == 0 || test_end_str(shell->rest))
 		return (SUCCESS);
 	if (converter(shell->rest, &shell->cmd_list) == SUCCESS)
 		run_cmd(shell->cmd_list, shell);
 	else
 	{
-		shell->pec = 2;
-		//ft_printf(2, "%otemp -> ; fix later\n", NULL);
+		shell->pec = 1;
 		cmd_free(&shell->cmd_list);
 	}
 	free_here_doc(UNLINK);
@@ -239,17 +250,6 @@ static void	set_cmd_input(t_mshell *shell)
 		shell->s = get_next_line(STDIN_FILENO);
 }
 
-static short	test_end_str(const char* str)
-{
-	size_t	i;
-
-	i = 0;
-	while (str && str[i] && (str[i] == ' ' || str[i] == '\t'))
-		i++;
-	if (i == ft_strlen(str))
-		return (1);
-	return (0);
-}
 
 short	reset_data_main(t_mshell *shell)
 {

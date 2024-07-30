@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   verify.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
+/*   By: antoine <antoine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:37:07 by brheaume          #+#    #+#             */
-/*   Updated: 2024/06/06 13:33:09 by anboisve         ###   ########.fr       */
+/*   Updated: 2024/07/30 10:15:16 by antoine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,11 +102,6 @@ int	ft_verify(char *src)
 	{
 		ft_putendl_fd(MS_NAME"\b: syntax error near unexpected token '|'", 2);
 		res = INCORRECT;
-	}
-	if (res == INCORRECT)
-	{
-		//ft_here_doc(src, NULL); //why is it here ?
-		ft_set_error_code(258);
 	}
 	return (res);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   converter.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
+/*   By: antoine <antoine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:32:23 by anboisve          #+#    #+#             */
-/*   Updated: 2024/05/19 13:04:43 by anboisve         ###   ########.fr       */
+/*   Updated: 2024/07/30 10:05:48 by antoine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,7 @@ short	converter(char *in, t_cmd **list)
 		return (BAD_ARGS);
 	nav = ft_parsing(in);
 	if (!nav)
-	{
 		return (FAIL);
-	}
 	while (nav)
 	{
 		flag = 0;
