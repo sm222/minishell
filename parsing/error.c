@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
+/*   By: antoine <antoine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 17:24:19 by brheaume          #+#    #+#             */
-/*   Updated: 2023/10/19 14:51:22 by anboisve         ###   ########.fr       */
+/*   Updated: 2024/07/30 10:28:45 by antoine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	ft_error_file(char *path, int mode)
 		ft_printf(2, "%o"MS_NAME"\b: no file given for output redirection\n", \
 		NULL);
 	else if (mode == NO_ACCESS)
-		ft_printf(2, "%o"MS_NAME"\b: %s: can't access file\n", NULL, path);
+		ft_printf(2, "%o"MS_NAME"\b: %s: %s\n", NULL, path, strerror(errno));
 	else if (mode == NO_FILE && !path)
 		ft_printf(2, "%o"MS_NAME"\b: %s: no such file or directory\n", NULL, \
 		path);
