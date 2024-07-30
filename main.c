@@ -6,7 +6,7 @@
 /*   By: antoine <antoine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:31:47 by anboisve          #+#    #+#             */
-/*   Updated: 2024/07/30 10:39:54 by antoine          ###   ########.fr       */
+/*   Updated: 2024/07/30 13:43:40 by antoine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ static void	free_shell(t_mshell *shell, int ac)
 	(void)ac;
 	if (!shell)
 		return ;
-	//if (ac < 2)
-	//	ft_putstr_fd(BLU"GoodBye~!"WHT"\n", 2);
+	if (ac < 2)
+		ft_putstr_fd(BLU"GoodBye~!"RESET"\n", 2);
 	rl_clear_history();
 	shell->pwd = ft_free(shell->pwd);
 	shell->s = ft_free(shell->s);

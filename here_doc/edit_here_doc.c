@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   edit_here_doc.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
+/*   By: antoine <antoine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:26:47 by anboisve          #+#    #+#             */
-/*   Updated: 2023/11/10 14:15:18 by anboisve         ###   ########.fr       */
+/*   Updated: 2024/07/30 15:30:18 by antoine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ static short	edit_loop(t_doc *doc, char *stop, short inter)
 		f = stat(doc->f_name, &doc->start);
 		if (f != 0 || mode != doc->start.st_mode)
 		{
-			ft_printf(2, "%ominishell: here_doc: file was temperd\n", NULL);
+			ft_printf(2, "%ominishell: here_doc: file was tempered\n", NULL);
 			break ;
 		}
 		if (write_fd(doc->fd, stop, inter) != 0 || f == -1)

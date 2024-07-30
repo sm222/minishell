@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   err.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anboisve <anboisve@student.42quebec.com    +#+  +:+       +#+        */
+/*   By: antoine <antoine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:28:10 by anboisve          #+#    #+#             */
-/*   Updated: 2024/04/22 23:02:22 by anboisve         ###   ########.fr       */
+/*   Updated: 2024/07/30 15:53:56 by antoine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,9 @@
 # define FILE_DEF        ".debug_minishell"
 # define ERR_CNF         "command not found: "
 # define ERR_NSFD        "No such file or directory: "
-# define BAD_LIST_UNSET  "éèÈÉçÇ^.!@#$%?&*()-+=\"\\/;,àÀ||¤{}[]¬ 	"
-# define BAD_LIST_EXPORT "éèÈÉçÇ^.!@#$%?&*()-+/\";,àÀ||¤{}[]¬ 	"
+# define SPACE_LIST      " \t\v\f"
+# define BAD_LIST_UNSET  "éèÈÉçÇ^.!@#$%?&*()-+=\"\\/;,àÀ||¤{}[]¬" SPACE_LIST
+# define BAD_LIST_EXPORT "éèÈÉçÇ^.!@#$%?&*()-+/\";,àÀ||¤{}[]¬" SPACE_LIST
 
 # define DEBUG_ERR -1   //
 

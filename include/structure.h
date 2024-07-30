@@ -79,6 +79,8 @@
 #  define CLE	CS"\e[1;1H\x1b[2J"CE
 #  define GIT	CS"\e[38;5;82m"CE
 #  define GIT_B	CS"\e[38;5;94m"CE
+#  define G_UNDERLINE   CS "\e[4m" CE
+#  define G_BOLD        CS "\e[1m" CE
 # endif
 
 //--------------------------//
