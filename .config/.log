@@ -1,3 +1,15 @@
+5.2.3.6
+{
+@sm222
+	fix err message with error code :exp segfaul, abort or other
+	switch s[i] == ' ' || s[i] == '\t') for while (s && s[i] && ft_isspace(s[i]))
+	lunch() now look for empty line with only space
+	use strerror in ft_error_file()
+	in edit_loop, edit tempered
+	add SPACE_LIST to err.h
+	add ft_putstr_fd(RESET, 1); to lunch(), trying to fix bug with ouput after pipeline
+}
+
 5.1.1.2
 {
 @sm222
