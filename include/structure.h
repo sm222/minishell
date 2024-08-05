@@ -63,24 +63,24 @@
 //ty for that https://github.com/iLucasPires/minishell/blob/e6906a30b2335a9dae38fb5203a6f89062fef7cd/project/includes/minishell_colors.h#L14
 # ifndef COLORS
 #  define COLORS
-#  define CS	"\001" //*start code
-#  define CE	"\002" //*end   code
-#  define RED	CS"\e[31m"CE
-#  define GRN	CS"\e[32m"CE
-#  define YEL	CS"\e[33m"CE
-#  define BLU	CS"\e[34m"CE
-#  define MAG	CS"\e[35m"CE
-#  define CYN	CS"\e[36m"CE
-#  define WHT	CS"\e[37m"CE
-#  define ORG	CS"\e[38;5;202m"CE
-#  define PIK	CS"\e[38;5;176m"CE
-#  define TOX	CS"\e[38;5;51m"CE
-#  define RESET	CS"\e[0m\022"CE
-#  define CLE	CS"\e[1;1H\x1b[2J"CE
-#  define GIT	CS"\e[38;5;82m"CE
-#  define GIT_B	CS"\e[38;5;94m"CE
-#  define G_UNDERLINE   CS "\e[4m" CE
-#  define G_BOLD        CS "\e[1m" CE
+#  define CS			"\001" //*start code
+#  define CE			"\002" //*end   code
+#  define RED			CS "\e[31m"			CE
+#  define GRN			CS "\e[32m"			CE
+#  define YEL			CS "\e[33m"			CE
+#  define BLU			CS "\e[34m"			CE
+#  define MAG			CS "\e[35m"			CE
+#  define CYN			CS "\e[36m"			CE
+#  define WHT			CS "\e[37m"			CE
+#  define ORG			CS "\e[38;5;202m"	CE
+#  define PIK			CS "\e[38;5;176m"	CE
+#  define TOX			CS "\e[38;5;51m"	CE
+#  define RESET			CS "\e[0m\022"		CE
+#  define CLE			CS "\e[1;1H\x1b[2J"	CE
+#  define GIT			CS "\e[38;5;82m"	CE
+#  define GIT_B			CS "\e[38;5;94m"	CE
+#  define G_UNDERLINE   CS  "\e[4m" 		CE
+#  define G_BOLD        CS  "\e[1m" 		CE
 # endif
 
 //--------------------------//

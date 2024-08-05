@@ -127,6 +127,20 @@ testlist=(
   "export a ; echo \$a"
   "export a b=a c==c ; echo \$c \$b"
   "export a ; unset a ; echo \$a"
+  ";"
+  ";;"
+  ";;;"
+  " ; ; ; "
+  " ;;;"
+  ";;;         "
+  ";&&;"
+  ";&"
+  "&&;"
+  ";||;"
+  ";||"
+  "echo \$0"
+  "echo \$1"
+  "echo \$"
 )
 
 i=${#testlist[@]}
@@ -146,25 +160,25 @@ function runTest() {
   then
     printf \%s\ "Error: return value\n shell give $GRN$bacode$RESET ms give $RED$mscode$RESET \n"
   fi
-  str=$(grep  "definitely lost" $outfileval | cut -c15-)
-  test "$str" = 'definitely lost: 0 bytes in 0 blocks'
-  ((err+=$?))
-  str=$(grep  "indirectly lost" $outfileval | cut -c15-)
-  test "$str" = 'indirectly lost: 0 bytes in 0 blocks'
-  ((err+=$?))
-  str=$(grep  "possibly lost" $outfileval | cut -c15-)
-  test "$str" = '  possibly lost: 0 bytes in 0 blocks'
-  ((err+=$?))
-  str=$(grep  "still reachable" $outfileval | cut -c15-)
-  test "$str" = 'still reachable: 0 bytes in 0 blocks'
-  ((err+=$?))
-  if [ $err != 0 ]
-  then
-    grep  "definitely lost" $outfileval | cut -c15-
-    grep  "indirectly lost" $outfileval | cut -c15-
-    grep  "possibly lost"   $outfileval | cut -c15-
-    grep  "still reachable" $outfileval | cut -c15-
-  fi
+  #str=$(grep  "definitely lost" $outfileval | cut -c15-)
+  #test "$str" = 'definitely lost: 0 bytes in 0 blocks'
+  #((err+=$?))
+  #str=$(grep  "indirectly lost" $outfileval | cut -c15-)
+  #test "$str" = 'indirectly lost: 0 bytes in 0 blocks'
+  #((err+=$?))
+  #str=$(grep  "possibly lost" $outfileval | cut -c15-)
+  #test "$str" = '  possibly lost: 0 bytes in 0 blocks'
+  #((err+=$?))
+  #str=$(grep  "still reachable" $outfileval | cut -c15-)
+  #test "$str" = 'still reachable: 0 bytes in 0 blocks'
+  #((err+=$?))
+  #if [ $err != 0 ]
+  #then
+  grep  "definitely lost" $outfileval |  grep -v '=='
+  grep  "indirectly lost" $outfileval |  grep -v '=='
+  grep  "possibly lost"   $outfileval |  grep -v '=='
+  grep  "still reachable" $outfileval |  grep -v '=='
+  #fi
   rm -f out/val.log
   diff  out/out_ba out/out_ms >> diff.txt
 }

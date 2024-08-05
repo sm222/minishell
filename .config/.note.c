@@ -9,9 +9,9 @@
 //better ft name amd smaller logic to decorticate code
 
 //* 0.0.0.0
-//  ^ ^ ^ ^
+//> ^ ^ ^ ^
 //~ | | | | refactor or small update
 //! | | | bug fix
 //? | | new feature add
-//* | major update
-//----------------------------------
+//+ | major update
+//- --------------------------------

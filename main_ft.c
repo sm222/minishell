@@ -6,7 +6,7 @@
 /*   By: antoine <antoine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:32:01 by anboisve          #+#    #+#             */
-/*   Updated: 2024/07/30 13:55:20 by antoine          ###   ########.fr       */
+/*   Updated: 2024/08/05 09:09:05 by antoine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,7 +153,6 @@ static short	lunch(t_mshell *shell)
 		cmd_free(&shell->cmd_list);
 	}
 	free_here_doc(UNLINK);
-	ft_putstr_fd(RESET, 1);
 	return (SUCCESS);
 }
 
