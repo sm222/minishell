@@ -141,6 +141,15 @@ testlist=(
   "echo \$0"
   "echo \$1"
   "echo \$"
+  "\'ls\' \'-la\'"
+  "cd .. | exit | pwd "
+  "./aaabbbcc"
+  "echo -n | wc -l"
+  "/"
+  "cd / ; pwd"
+  "pwd | wc -l ; cd ; pwd | wc -l"
+  "\"\""
+  "\'\'"
 )
 
 i=${#testlist[@]}
@@ -158,7 +167,7 @@ function runTest() {
   err=0
   if [ $bacode != $mscode ];
   then
-    printf \%s\ "Error: return value\n shell give $GRN$bacode$RESET ms give $RED$mscode$RESET \n"
+    printf "Error: return value\n shell give $GRN$bacode$RESET ms give $RED$mscode$RESET \n"
   fi
   #str=$(grep  "definitely lost" $outfileval | cut -c15-)
   #test "$str" = 'definitely lost: 0 bytes in 0 blocks'
@@ -196,8 +205,8 @@ do
   di=$?
   if [ $di != 0 ]
   then
-    printf \%s\ "❌$RED ${testlist[$j]} $RESET\n"
-    printf \%s\ "❌${testlist[$j]}\n" >> diff.txt
+    printf "❌$RED ${testlist[$j]} $RESET\n"
+    printf "❌${testlist[$j]}\n" >> diff.txt
     echo 'ms >'
     cat -be out/out_ms
     echo 'ms <'
@@ -205,14 +214,14 @@ do
     cat -be out/out_ba
     echo 'ba <'
   else
-    printf \%s\ "✅$GRN ${testlist[$j]} $RESET\n"
+    printf "✅$GRN ${testlist[$j]} $RESET\n"
   fi
   j=$((j + 1))
   if [ $slow == 1 ]
   then
     echo '- - - - -'
   fi
-  sleep 0.3
+  sleep 0.1
 done
 read -p "rm file? (Y/N): " confirm && [[ $confirm == [yY] || $confirm == [yY][eE][sS] ]] || exit 0
 make -C .. clean

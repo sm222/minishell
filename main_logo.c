@@ -81,7 +81,8 @@ static void	set_all(t_logo *logo)
 {
 	set_color(logo->color, logo->nb, logo->tmp);
 	set_m_i_n_s_h(logo);
-	print_seed(logo);
+	if (isatty(STDIN_FILENO) && isatty(STDOUT_FILENO))
+		print_seed(logo);
 	logo->e[0] = L0E;
 	logo->e[1] = L1E;
 	logo->e[2] = L2E;
